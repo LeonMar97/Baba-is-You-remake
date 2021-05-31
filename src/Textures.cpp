@@ -9,6 +9,7 @@ void Textures::loadPic(sf::Texture& tex, const std::string& texName, gameTexture
 	if (!tex.loadFromFile(texName)) throw std::exception((texName +
 		" does not exist, please check CMake or give a valid file name\n").data());
 	tex.setSmooth(true);
+	m_gameTex.insert(std::pair<gameTextures, sf::Texture>(curTex, tex));
 }
 
 //set textures for all object in the game once
@@ -17,6 +18,13 @@ Textures::Textures() {
 	sf::Texture pic;
 	auto texName = std::string();
 
+	texName = "Baba.png";
+	loadPic(pic, texName, babas_t);
 
+	texName = "rock.png";
+	loadPic(pic, texName, rocks_t);
+
+	texName = "flags.png";
+	loadPic(pic, texName, flags_t);
 
 }

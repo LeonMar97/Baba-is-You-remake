@@ -21,7 +21,7 @@ private:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
 private:
 	sf::RenderWindow m_gameWindow;
-	sf::Sprite m_background;
+	//sf::Sprite m_background;
 	std::map<char, GameTextures>m_charToTexConverter;
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;

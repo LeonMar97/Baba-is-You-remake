@@ -5,4 +5,5 @@
 									"Board.cpp"
 									"Controller.cpp"
 									"Textures.cpp"
+									"FileHandler.cpp"
 									)

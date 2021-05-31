@@ -5,7 +5,7 @@
 class Board{
 public:
 	void drawBoard(sf::RenderWindow& game_Window);
-	Board(sf::Vector2u mapSize);
+	Board();
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
 	

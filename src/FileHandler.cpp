@@ -26,62 +26,37 @@ m_cf:file pointer.
 FileHandler::FileHandler()
 {
 	m_Cf.open("map.txt");
-	set_Size();
+	
 	set_Map();
 
 }
 //--------------------------------------------------
-/*
-*sets the size of the vector.
-*m_size:size of the vector.
-*/
-bool FileHandler::set_Size() {
-	
-	m_Cf >> m_Size.x >> m_Size.y;
-	m_Cf.get();
-	return (!m_Cf.fail());
 
-}
 //--------------------------------------------------
 /*
 *set the map
 * m_board : the vector for the map.
 * cur:local var for each string .
 */
-void FileHandler::set_Map() {
+bool FileHandler::set_Map() {
 	std::string temp;
 	
 	int i = 0;
 	auto cur = std::string();
-	for (i; i < m_Size.x; i++) {
+	for (i; i < MAP_SIZE.x; i++) {
 		std::getline(m_Cf, cur);
-		if (cur.size() != m_Size.y)
+		if (m_Cf.fail()) {
+			return false;
+		}
+		if (cur.size() != MAP_SIZE.y)
 			throw std::invalid_argument(("Size of row is " +
-									std::to_string(m_Size.y) +
+									std::to_string(MAP_SIZE.y) +
 									" but theres a line with size " +
 									std::to_string(cur.size())).data());
 
 		m_fileHandler.push_back(cur);
 	}
-}
-//--------------------------------------------------
-/*
-*changing specific location at the vector
-* change:location to change.
-* request: requestd char to change to
-*/
-void FileHandler::change_Map(const sf::Vector2i change, const char request) {
-	m_fileHandler[change.x][change.y] = request;
-}
-//--------------------------------------------------
-
-
-//--------------------------------------------------
-/*
-*return the amount of lines in the vector
-*/
-sf::Vector2u FileHandler::get_Size() const {
-	return m_Size;
+	return true;
 }
 //--------------------------------------------------
 /*
@@ -99,14 +74,8 @@ char FileHandler::what_In_Location(const sf::Vector2u cur_Loc)const {
 * loading new map for each lvl
 */
 bool FileHandler::rebuild_Map() {
-	m_fileHandler.clear();
-
-	if (set_Size()) {
-		set_Map();
-		return true;
-	}
-	else
-		return false;
+	m_fileHandler.clear();//clrearing the string first then adding new char map
+		return set_Map();
 }
 
 //--------------------------------------------------

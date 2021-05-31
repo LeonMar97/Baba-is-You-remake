@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Macros.h"
+#include "macros.h"
 
 class Textures {
 	//--------------public--------functions-----------------------//
