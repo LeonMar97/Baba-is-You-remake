@@ -4,4 +4,5 @@
 									"Tile.cpp"
 									"Board.cpp"
 									"Controller.cpp"
+									"Textures.cpp"
 									)
