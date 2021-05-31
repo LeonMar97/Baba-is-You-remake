@@ -20,4 +20,10 @@ Textures::Textures() {
 
 	texName = "Baba.png";
 	loadPic(pic, texName, babas_t);
+
+	texName = "rock.png";
+	loadPic(pic, texName, rocks_t);
+
+	texName = "flags.png";
+	loadPic(pic, texName, flags_t);
 }
