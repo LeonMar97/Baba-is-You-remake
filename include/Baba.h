@@ -2,18 +2,18 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 
-class Textures {
+class Baba {
 	//--------------public--------functions-----------------------//
 public:
-	static Textures& instance();
+	static Baba& Baba& instance();
 	//gets requested sound from sound member
-	const sf::Texture& get_Textures(GameTextures key) { return (m_gameTex[key]); }
+	const sf::Baba& get_me();
 	//--------------private--------functions-----------------------//		
 private:
-	void loadPic(sf::Texture&, const std::string&, GameTextures curpipe);
+	//void loadPic(sf::Texture&, const std::string&, GameTextures curpipe);
 	//------------------members-----------------------------------//		
 private:
-	Textures();//constractor for static member
-	//~Textures();
-	std::map<enum GameTextures, sf::Texture> m_gameTex;
+	Baba();//constractor for static member
+	
+	
 };

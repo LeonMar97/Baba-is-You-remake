@@ -40,20 +40,20 @@ void Controller::startGame() {
 	sf::Event event;
 	while (m_gameWindow.isOpen()) {
 		m_gameWindow.clear();
-		m_gameWindow.draw(m_background);
-		m_gameWindow.draw(m_bgMenu);
-		m_timeText.setString("Time: " + std::to_string(int(m_clock.getElapsedTime().asSeconds())));
-		m_rotationText.setString("Rotations: " + std::to_string(m_numOfRotations));
-		m_lvlText.setString("Level: " + std::to_string(m_level));
-		m_gameWindow.draw(m_timeText);
-		m_gameWindow.draw(m_rotationText);
-		m_gameWindow.draw(m_lvlText);
+		//m_gameWindow.draw(m_background);
+		//m_gameWindow.draw(m_bgMenu);
+		//m_timeText.setString("Time: " + std::to_string(int(m_clock.getElapsedTime().asSeconds())));
+		//m_rotationText.setString("Rotations: " + std::to_string(m_numOfRotations));
+		//m_lvlText.setString("Level: " + std::to_string(m_level));
+		//m_gameWindow.draw(m_timeText);
+		//m_gameWindow.draw(m_rotationText);
+		//m_gameWindow.draw(m_lvlText);
 
 		m_mapOnScreen->drawBoard(m_gameWindow);
 		m_gameWindow.display();
 		if (m_mapOnScreen->isLvlFinished()) {
 			m_gameWindow.display();
-			m_finishedLvlSound.play();
+			//m_finishedLvlSound.play();
 			if (!newLvl()) { //if there isnt a new lvl
 				printEndGameTex();
 				m_gameWindow.close();
@@ -63,9 +63,7 @@ void Controller::startGame() {
 		while (m_gameWindow.pollEvent(event))
 		{
 			switch (event.type) {
-			case::sf::Event::MouseButtonPressed:
-				rotate(event);
-				break;
+		
 			case sf::Event::Closed:
 				m_gameWindow.close();
 				exit(EXIT_SUCCESS);
@@ -77,12 +75,11 @@ void Controller::startGame() {
 bool Controller::newLvl() {
 	//checking if there is a new lvl
 	if (m_map.rebuild_Map()) {
-		m_mapOnScreen.release();
-		m_mapOnScreen = std::make_unique<Board>(m_map.get_Size());
+		m_mapOnScreen.reset();
+		m_mapOnScreen = std::make_unique<Board>();
 		updateDataStructures();
 		m_level++;
-		m_clock.restart();
-		m_numOfRotations = 0;
+		//m_clock.restart();
 		return true;
 	}
 	return false;

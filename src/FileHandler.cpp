@@ -41,19 +41,13 @@ FileHandler::FileHandler()
 bool FileHandler::set_Map() {
 	std::string temp;
 	
-	int i = 0;
+	
 	auto cur = std::string();
-	for (i; i < MAP_SIZE.x; i++) {
+	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
 		std::getline(m_Cf, cur);
 		if (m_Cf.fail()) {
 			return false;
 		}
-		if (cur.size() != MAP_SIZE.y)
-			throw std::invalid_argument(("Size of row is " +
-									std::to_string(MAP_SIZE.y) +
-									" but theres a line with size " +
-									std::to_string(cur.size())).data());
-
 		m_fileHandler.push_back(cur);
 	}
 	return true;
