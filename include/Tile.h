@@ -9,6 +9,6 @@ class Tile {
 private:
 	std::list<BaseObject*>m_baseObjects;
 public:
-	void addObject(BaseObject*);
-	void drawObj(sf::RenderWindow& window);
+	void addObj(BaseObject*);
+	void drawObj(sf::RenderWindow& window, float deltaTime);
 };

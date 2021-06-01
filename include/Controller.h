@@ -15,11 +15,11 @@ public:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines
-	void generateBackgrounds();
+	//void generateBackgrounds();
 	void updateDataStructures();
 	bool newLvl();
-	void printNextLvlTex();
-	void printEndGameTex();
+	//void printNextLvlTex();
+	//void printEndGameTex();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
 private:
 	sf::RenderWindow m_gameWindow;
@@ -28,6 +28,8 @@ private:
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;
+
+	sf::Clock m_animationClock;
 
 	//sf::Sprite m_bgMenu;
 	//sf::Text m_timeText;

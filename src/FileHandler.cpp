@@ -26,6 +26,9 @@ m_cf:file pointer.
 FileHandler::FileHandler()
 {
 	m_Cf.open("map.txt");
+	if (!m_Cf.is_open()) {
+		throw std::exception();
+	}
 	
 	set_Map();
 

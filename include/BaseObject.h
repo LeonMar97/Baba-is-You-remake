@@ -1,9 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Animation.h"
+#include "Macros.h"
 //base class for every object on the screen
 class BaseObject {
 
 public:
+	BaseObject(const Animation& animation);
 	void draw(sf::RenderWindow& window, float deltaTime);
 
 

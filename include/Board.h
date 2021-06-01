@@ -4,7 +4,7 @@
 
 class Board{
 public:
-	void drawBoard(sf::RenderWindow& game_Window);
+	void drawBoard(sf::RenderWindow& game_Window, float deltaTime);
 	Board();
 	void initialize(FileHandler &map);
 	bool isLvlFinished();

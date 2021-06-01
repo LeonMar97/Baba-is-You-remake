@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include "Board.h"
 #include "Textures.h"
+#include "Baba.h"
 
 
 Board::Board()
@@ -16,8 +17,7 @@ void Board::addGameObj(char p,sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		auto cur =
-			m_map[loc.x][loc.y].addObj();
+		m_map[loc.x][loc.y].addObj(&Baba::instance());
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 
@@ -46,10 +46,10 @@ void Board::initialize(FileHandler& map) {
 }
 
 //drawing the board on requested screen..
-void Board::drawBoard(sf::RenderWindow& game_Window) {
+void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
 		for (unsigned int j = 0; j < MAP_SIZE.y; j++) {
-			m_map[i][j].drawObj(game_Window);
+			m_map[i][j].drawObj(game_Window, deltaTime);
 		}
 	}
 }

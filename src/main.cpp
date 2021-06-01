@@ -5,38 +5,6 @@
 
 int main()
 {
-    sf::RectangleShape player(sf::Vector2f(50.f, 50.f));
-    const sf::Texture tex(Textures::instance().get_Textures(flags_t));
-    player.setTexture(&tex);
-   Animation animation(tex, sf::Vector2u(3, 1));
-   float deltaTime = 0.0f;
-   sf::Clock clock;
-   auto window = sf::RenderWindow(sf::VideoMode(300, 300), "Example");
-
-   int row = 0;
-   while (window.isOpen())
-   {
-        deltaTime = clock.restart().asSeconds();
-
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            switch (event.type)
-            {
-            case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::K) {
-                    player.move(sf::Vector2f(5, 0));
-                }
-			break;
-            case sf::Event::Closed:
-                window.close();
-                break;
-            }
-        }
-		animation.update(row, deltaTime);
-		player.setTextureRect(animation.texRect);
-        window.clear();
-        window.draw(player);
-        window.display();
-   }
+    auto ctrl = Controller();
+    ctrl.startGame();
 }
