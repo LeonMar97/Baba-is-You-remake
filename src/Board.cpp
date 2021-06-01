@@ -16,8 +16,8 @@ void Board::addGameObj(char p,sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		auto cur=
-		m_map[loc.x][loc.y].addObj() 
+		auto cur =
+			m_map[loc.x][loc.y].addObj();
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 

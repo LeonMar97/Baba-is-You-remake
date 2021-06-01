@@ -4,6 +4,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "FileHandler.h"
+#include "Tile.h"
 
 class Controller {
 

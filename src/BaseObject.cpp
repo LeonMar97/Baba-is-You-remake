@@ -1,4 +1,5 @@
 #include "BaseObject.h"
-void BaseObject::setTexture(const sf::Texture& pic) {
-	m_baseObj.setTexture(pic);
+
+void BaseObject::draw(sf::RenderWindow& window, float deltaTime) {
+	
 }

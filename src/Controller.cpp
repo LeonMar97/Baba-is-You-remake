@@ -6,13 +6,10 @@
 
 Controller::Controller()
 	: m_gameWindow(sf::VideoMode(0,0),"Baba is you", sf::Style::Fullscreen)
-	
 {
 	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures();
-
 }
-
 
 void Controller::updateDataStructures() {
 	m_mapOnScreen->initialize(m_map);

@@ -4,10 +4,11 @@
 class BaseObject {
 
 public:
-	void setTexture(const sf::Texture& pic);
+	void draw(sf::RenderWindow& window, float deltaTime);
 
 
 private:
 	sf::Sprite m_baseObj;
-	
+	sf::RectangleShape m_character;
+	Animation m_animation;
 };

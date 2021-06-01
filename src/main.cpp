@@ -1,14 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
 #include "Textures.h"
+#include "Controller.h"
 
 int main()
 {
     sf::RectangleShape player(sf::Vector2f(50.f, 50.f));
-    auto tex = Textures::instance().get_Textures(flags_t);
-    player.scale(0.8f, 0.8f);
+    const sf::Texture tex(Textures::instance().get_Textures(flags_t));
     player.setTexture(&tex);
-   Animation animation(&tex, sf::Vector2u(3, 1), 0.2f);
+   Animation animation(tex, sf::Vector2u(3, 1));
    float deltaTime = 0.0f;
    sf::Clock clock;
    auto window = sf::RenderWindow(sf::VideoMode(300, 300), "Example");
