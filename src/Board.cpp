@@ -42,7 +42,6 @@ void Board::initialize(FileHandler& map) {
 			 addGameObj(currentChar, loc);
 		}
 	}
-
 }
 
 //drawing the board on requested screen..
