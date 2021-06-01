@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include "FileHandler.h"
 #include "Tile.h"
+#include "BaseObject.h"
 
 class Controller {
 
