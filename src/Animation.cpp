@@ -1,7 +1,7 @@
 #include "Animation.h"
 #include"Macros.h"
 
-Animation::Animation(sf::Texture& tex, const sf::Vector2u imageCount)
+Animation::Animation(const sf::Texture& tex, const sf::Vector2u imageCount)
 	: m_imgCount(imageCount), m_switchTime(SWITCH_TIME), m_totalTime(0.0f)
 {
 	m_curImg.x = 0; //initial image to be the first

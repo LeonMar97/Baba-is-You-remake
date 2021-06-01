@@ -20,3 +20,4 @@ const sf::Vector2i RIGHT(0,1);
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
 const float SWITCH_TIME = 0.2;
 const sf::Vector2u BABAIMGCOUNT(3, 3);
+asdasd
