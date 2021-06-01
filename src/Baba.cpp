@@ -6,6 +6,6 @@ Baba& Baba::instance() {
 }
 
 Baba::Baba()
-:BaseObject(Animation(Textures::instance().get_Textures(babas_t), BABAIMGCOUNT))
+:BaseObject(Textures::instance().get_Textures(babas_t), BABAIMGCOUNT)
 {
 }
