@@ -5,7 +5,7 @@
 
 class Animation {
 public:
-	Animation(sf::Texture* tex, sf::Vector2u imageCount, float switchTime);
+	Animation(const sf::Texture& tex, const sf::Vector2u imageCount);
 private:
 	sf::Vector2u m_imgCount;
 	sf::Vector2u m_curImg;

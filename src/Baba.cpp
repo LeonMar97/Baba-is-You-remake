@@ -1,19 +1,9 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include "Macros.h"
+#include "Baba.h" 
 
-class Baba {
-	//--------------public--------functions-----------------------//
-public:
-	static Baba& Baba& instance();
-	//gets requested sound from sound member
-	const sf::Baba& get_me();
-	//--------------private--------functions-----------------------//		
-private:
-	//void loadPic(sf::Texture&, const std::string&, GameTextures curpipe);
-	//------------------members-----------------------------------//		
-private:
-	Baba();//constractor for static member
-	
-	
-};
+Baba& Baba::instance() {
+	static Baba baba;
+	return baba;
+}
+Baba::Baba(){
+	m_texture = Textures::instance().get_Textures(babas_t);
+}
