@@ -12,10 +12,11 @@ Board::Board()
 			m_map[i].push_back(Tile(sf::Vector2u(i, j)));
 		}
 	}
+	m_you = std::make_unique<Baba>();
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-void Board::addGameObj(char p,sf::Vector2u loc){
+void Board::addGameObj(char p, sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
@@ -29,7 +30,6 @@ void Board::addGameObj(char p,sf::Vector2u loc){
 						+ " is not a supprorted command, to see supported commands please go to README\n")).data());
 		break;
 	}
-	
 }
 
 void Board::initialize(FileHandler& map) {
@@ -52,6 +52,14 @@ void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
 		for (unsigned int j = 0; j < MAP_SIZE.y; j++) {
 			m_map[i][j].drawObj(game_Window, deltaTime);
+		}
+	}
+}
+
+void Board::move(const sf::Vector2i& dir) {
+	for (auto& row : m_map) {
+		for (auto& col : row) {
+			col.
 		}
 	}
 }
