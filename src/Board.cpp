@@ -22,7 +22,8 @@ void Board::addGameObj(char p,sf::Vector2u loc){
 		m_map[loc.x][loc.y].addObj(new Baba);
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
-
+	case ' ':
+		break;
 	default:
 		throw std::invalid_argument(((std::string(1, p)
 						+ " is not a supprorted command, to see supported commands please go to README\n")).data());
