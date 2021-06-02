@@ -46,7 +46,7 @@ void Controller::startGame() {
 	float deltaTime = 0.0f;
 	int row = 0;
 	sf::View view;
-	view.setViewport(sf::FloatRect(0.f, 0.f, 0.5f, 1.f));
+	view.setViewport(sf::FloatRect(0.f, 0.f, 1500 / 1920.f, 850.f / 1080));
 	while (m_gameWindow.isOpen())
 	{
 		deltaTime = m_animationClock.restart().asSeconds();
