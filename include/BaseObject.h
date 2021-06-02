@@ -8,9 +8,7 @@ class BaseObject {
 
 public:
 	BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCountAnim);
-	void draw(sf::RenderWindow& window, float deltaTime);
-
-
+	void draw(sf::RenderWindow& window, float deltaTime, const sf::Vector2u&);
 private:
 	sf::Sprite m_baseObj;
 	sf::RectangleShape m_character;

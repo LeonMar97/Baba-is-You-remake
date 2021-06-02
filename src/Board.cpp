@@ -6,6 +6,12 @@
 
 Board::Board()
 {
+	for (auto i = 0; i < MAP_SIZE.x; i++) {
+		m_map.push_back(std::vector<Tile>());
+		for (auto j = 0; j < MAP_SIZE.y; j++) {
+			m_map[i].push_back(Tile(sf::Vector2u(i, j)));
+		}
+	}
 	m_map.resize(MAP_SIZE.x);
 	for (unsigned int i = 0; i < MAP_SIZE.x;i++) {
 		m_map[i].resize(MAP_SIZE.y);
@@ -17,7 +23,7 @@ void Board::addGameObj(char p,sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		m_map[loc.x][loc.y].addObj(&Baba::instance());
+		m_map[loc.x][loc.y].addObj(new Baba);
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 

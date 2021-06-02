@@ -20,4 +20,4 @@ const sf::Vector2i RIGHT(0, 1);
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
 const float SWITCH_TIME = 0.2;
 const sf::Vector2u BABAIMGCOUNT(3, 3);
-const sf::Vector2f CHARACTER_SIZE(50, 50);
+const float OBJECT_SIZE = 50.f;
