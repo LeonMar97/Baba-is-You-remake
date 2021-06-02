@@ -45,6 +45,8 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_lvlText);
 	float deltaTime = 0.0f;
 	int row = 0;
+	sf::View view;
+	view.setViewport(sf::FloatRect(0.f, 0.f, 0.5f, 1.f));
 	while (m_gameWindow.isOpen())
 	{
 		deltaTime = m_animationClock.restart().asSeconds();
@@ -61,6 +63,7 @@ void Controller::startGame() {
 			}
 		}
 		m_gameWindow.clear();
+		m_gameWindow.setView(view);
 		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
 		m_gameWindow.display();
 	}

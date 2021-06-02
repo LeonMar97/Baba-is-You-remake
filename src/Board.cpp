@@ -12,10 +12,6 @@ Board::Board()
 			m_map[i].push_back(Tile(sf::Vector2u(i, j)));
 		}
 	}
-	m_map.resize(MAP_SIZE.x);
-	for (unsigned int i = 0; i < MAP_SIZE.x;i++) {
-		m_map[i].resize(MAP_SIZE.y);
-	}
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

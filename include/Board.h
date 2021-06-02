@@ -13,5 +13,6 @@ public:
 
 private:
 	std::vector<std::vector<Tile>> m_map;
+	sf::Vector2f screenSize;
 
 };
