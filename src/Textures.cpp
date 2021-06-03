@@ -32,4 +32,7 @@ Textures::Textures() {
 
 	texName = "Babaword.png";
 	loadPic(pic, texName, babaword_t);
+
+	texName = "youword2.png";
+	loadPic(pic, texName, youword_t);
 }
