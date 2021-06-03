@@ -5,6 +5,7 @@
 #include "Is.h"
 #include "BabaWord.h"
 #include "YouWord.h"
+#include "WinWord.h"
 
 
 Board::Board()
@@ -38,6 +39,9 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	case 'y':
 		m_map[loc.x][loc.y].push_back(new YouWord(loc));
+
+	case 'w':
+		m_map[loc.x][loc.y].push_back(new WinWord(loc));
 
 		break;
 	default:

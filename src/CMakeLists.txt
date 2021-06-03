@@ -11,5 +11,6 @@
 									"Is.cpp"
 									"BabaWord.cpp"
 									"YouWord.cpp"
+									"WinWord.cpp"
 
 									)

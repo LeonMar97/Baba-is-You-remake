@@ -9,6 +9,7 @@ enum GameTextures {
     is_t=4,
     babaword_t=5,
     youword_t=6,
+    winword_t=7
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 
