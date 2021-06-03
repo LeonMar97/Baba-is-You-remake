@@ -10,9 +10,10 @@ public:
 	bool isLvlFinished();
 	
 	void addGameObj(char p, sf::Vector2u loc);
+	void move(const sf::Vector2i& dir);
 
 private:
-	std::vector<std::vector<Tile>> m_map;
+	std::vector<std::vector<std::vector<BaseObject*>>> m_map;
 	sf::Vector2f screenSize;
-
+	std::unique_ptr<BaseObject> m_you;
 };

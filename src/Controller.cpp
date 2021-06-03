@@ -3,6 +3,7 @@
 //#include "Sounds.h"
 //#include "Fonts.h"
 #include "Macros.h"
+#include "Baba.h"
 
 Controller::Controller()
 	: m_gameWindow(sf::VideoMode(0,0),"Baba is you", sf::Style::Fullscreen)
@@ -56,6 +57,10 @@ void Controller::startGame() {
 		{
 			switch (event.type)
 			{
+				break;
+			case sf::Event::KeyReleased:
+				if (event.key.code == sf::Keyboard::Right)
+					//m_you->move(m_mapOnScreen,RIGHT_DIR);
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();

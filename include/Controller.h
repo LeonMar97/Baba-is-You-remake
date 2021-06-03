@@ -29,6 +29,7 @@ private:
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;
 
+
 	sf::Clock m_animationClock;
 
 	//sf::Sprite m_bgMenu;
