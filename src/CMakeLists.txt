@@ -8,4 +8,6 @@
 									"FileHandler.cpp"
 									"Baba.cpp"
 									"Word.cpp"
+									"Is.cpp"
+
 									)

@@ -6,6 +6,7 @@ enum GameTextures {
     rocks_t = 1,
     flags_t = 2,
     background_t = 3,
+    is_t=4
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 
@@ -19,5 +20,7 @@ const sf::Vector2i LEFT_DIR(0, -1);
 const sf::Vector2i RIGHT_DIR(0, 1);
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
 const float SWITCH_TIME = 0.2;
-const sf::Vector2u BABAIMGCOUNT(3, 3);
+const sf::Vector2u BABA_IMG_COUNT(3, 3);
+const sf::Vector2u DEFAULT_IMG_COUNT(3, 1);
+
 const float OBJECT_SIZE = 50.f;

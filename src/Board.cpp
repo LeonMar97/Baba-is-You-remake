@@ -2,6 +2,8 @@
 #include "Board.h"
 #include "Textures.h"
 #include "Baba.h"
+#include "Is.h"
+
 
 
 Board::Board()
@@ -12,7 +14,7 @@ Board::Board()
 			m_map[i].push_back(std::vector<BaseObject*>());
 		}
 	}
-	m_you = std::make_unique<Baba>();
+	//m_you = std::make_unique<Baba>();
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -24,6 +26,10 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 	case ' ':
+		break;
+	case 'i':
+		m_map[loc.x][loc.y].push_back(new Is(loc));
+
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, p)

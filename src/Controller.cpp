@@ -60,7 +60,7 @@ void Controller::startGame() {
 				break;
 			case sf::Event::KeyReleased:
 				if (event.key.code == sf::Keyboard::Right)
-					m_you->move(m_mapOnScreen,RIGHT_DIR);
+					//m_you->move(m_mapOnScreen,RIGHT_DIR);
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();
