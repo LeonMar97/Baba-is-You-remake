@@ -5,10 +5,12 @@
 #include "Board.h"
 #include "Textures.h"
 class Baba : public BaseObject{
-	//--------------public--------functions-----------------------//
 public:
+	//--------------public--------functions-----------------------//
 	Baba();//constractor for static member
-	void draw(sf::RenderWindow& window, float deltaTime);
+	//void draw(sf::RenderWindow& window, float deltaTime);
+	bool move(Board* board, BaseObject*, const sf::Vector2i&);
+	bool onMove(Board* board, const sf::Vector2i&);
 	//--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//		
 private:

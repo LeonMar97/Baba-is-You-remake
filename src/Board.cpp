@@ -7,9 +7,9 @@
 Board::Board()
 {
 	for (auto i = 0; i < MAP_SIZE.x; i++) {
-		m_map.push_back(std::vector<Tile>());
+		m_map.push_back(std::vector<std::list<BaseObject*>>());
 		for (auto j = 0; j < MAP_SIZE.y; j++) {
-			m_map[i].push_back(Tile(sf::Vector2u(i, j)));
+			m_map[i].push_back(std::list<BaseObject*>());
 		}
 	}
 	m_you = std::make_unique<Baba>();
@@ -20,7 +20,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		m_map[loc.x][loc.y].addObj(new Baba);
+		m_map[loc.x][loc.y].push_back(new Baba());
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 	case ' ':
@@ -35,10 +35,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
 	BaseObject* baseobj;
-
-	
 	char currentChar;
-
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
 			currentChar = map.what_In_Location(loc);
@@ -51,15 +48,23 @@ void Board::initialize(FileHandler& map) {
 void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
 		for (unsigned int j = 0; j < MAP_SIZE.y; j++) {
-			m_map[i][j].drawObj(game_Window, deltaTime);
+			if (!m_map[i][j].empty())
+			m_map[i][j].front()->draw(game_Window, deltaTime, sf::Vector2u(i, j));
 		}
 	}
 }
 
 void Board::move(const sf::Vector2i& dir) {
-	for (auto& row : m_map) {
-		for (auto& col : row) {
-			col.
+	for (auto itRow = m_map.begin(); itRow < m_map.end(); itRow++) {
+		for (auto itCol = itRow->begin(); itCol < itRow->end(); itCol++) {
+			if (!itCol->empty()) {
+				if (itCol->front()->move(this, m_you.get(), dir)) {
+					auto temp = itCol->front();
+					itCol->pop_front();
+					(itCol + 1)->push_back(temp);
+					break;
+				}
+			}
 		}
 	}
 }
