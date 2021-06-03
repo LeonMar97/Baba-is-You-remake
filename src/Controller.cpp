@@ -72,6 +72,7 @@ void Controller::startGame() {
 		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
 		m_gameWindow.display();
 	}
+	///aaaa
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 bool Controller::newLvl() {
