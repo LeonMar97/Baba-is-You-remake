@@ -1,7 +1,7 @@
 #include "Baba.h" 
 
-Baba::Baba()
-:BaseObject(Textures::instance().get_Textures(babas_t), BABAIMGCOUNT)
+Baba::Baba(const sf::Vector2u& loc)
+:BaseObject(Textures::instance().get_Textures(babas_t), BABAIMGCOUNT, loc)
 {
 	m_character.setFillColor(sf::Color::Red);
 }

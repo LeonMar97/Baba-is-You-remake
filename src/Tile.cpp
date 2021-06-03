@@ -9,6 +9,6 @@ void Tile::addObj(BaseObject* baseObj) {
 }
 
 void Tile::drawObj(sf::RenderWindow& window, float deltaTime) {
-	if(!m_baseObjects.empty())
-		m_baseObjects.front()->draw(window, deltaTime, m_loc);
+	if (!m_baseObjects.empty());
+		//m_baseObjects.front()->draw(window, deltaTime, m_loc);
 }

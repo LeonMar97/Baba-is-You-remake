@@ -7,7 +7,7 @@
 class Baba : public BaseObject{
 public:
 	//--------------public--------functions-----------------------//
-	Baba();//constractor for static member
+	Baba(const sf::Vector2u& loc);//constractor for static member
 	//void draw(sf::RenderWindow& window, float deltaTime);
 	bool move(Board* board, BaseObject*, const sf::Vector2i&);
 	bool onMove(Board* board, const sf::Vector2i&);

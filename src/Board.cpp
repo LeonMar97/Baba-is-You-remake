@@ -6,13 +6,6 @@
 
 Board::Board()
 {
-	for (auto i = 0; i < MAP_SIZE.x; i++) {
-		m_map.push_back(std::vector<std::list<BaseObject*>>());
-		for (auto j = 0; j < MAP_SIZE.y; j++) {
-			m_map[i].push_back(std::list<BaseObject*>());
-		}
-	}
-	m_you = std::make_unique<Baba>();
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -20,7 +13,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		m_map[loc.x][loc.y].push_back(new Baba());
+		m_map.push_back(new Baba(loc));
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 	case ' ':
@@ -46,14 +39,12 @@ void Board::initialize(FileHandler& map) {
 
 //drawing the board on requested screen..
 void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
-	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
-		for (unsigned int j = 0; j < MAP_SIZE.y; j++) {
-			if (!m_map[i][j].empty())
-			m_map[i][j].front()->draw(game_Window, deltaTime, sf::Vector2u(i, j));
-		}
+	for (auto& character : m_map) {
+		character->draw(game_Window, deltaTime);
 	}
 }
 
+/*
 void Board::move(const sf::Vector2i& dir) {
 	for (auto itRow = m_map.begin(); itRow < m_map.end(); itRow++) {
 		for (auto itCol = itRow->begin(); itCol < itRow->end(); itCol++) {
@@ -68,4 +59,5 @@ void Board::move(const sf::Vector2i& dir) {
 		}
 	}
 }
+*/
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
