@@ -22,7 +22,7 @@ const sf::Vector2i DOWN_DIR(1, 0);
 const sf::Vector2i LEFT_DIR(0, -1);
 const sf::Vector2i RIGHT_DIR(0, 1);
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
-const float SWITCH_TIME = 0.2;
+const float SWITCH_TIME = 0.2f;
 const sf::Vector2u BABA_IMG_COUNT(3, 3);
 const sf::Vector2u DEFAULT_IMG_COUNT(3, 1);
 

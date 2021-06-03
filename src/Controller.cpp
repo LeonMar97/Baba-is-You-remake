@@ -45,7 +45,7 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_rotationText);
 	//m_m_gameWindow.draw(m_lvlText);
 	float deltaTime = 0.0f;
-	int row = 0;
+//	int row = 0;
 	sf::View view;
 	view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
 	while (m_gameWindow.isOpen())
