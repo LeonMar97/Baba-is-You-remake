@@ -7,4 +7,5 @@
 									"Textures.cpp"
 									"FileHandler.cpp"
 									"Baba.cpp"
+									"Word.cpp"
 									)
