@@ -27,7 +27,9 @@ Textures::Textures() {
 	texName = "flags.png";
 	loadPic(pic, texName, flags_t);
 
-
 	texName = "is.png";
 	loadPic(pic, texName, is_t);
+
+	texName = "Babaword.png";
+	loadPic(pic, texName, babaword_t);
 }

@@ -9,5 +9,6 @@
 									"Baba.cpp"
 									"Word.cpp"
 									"Is.cpp"
+									"BabaWord.cpp"
 
 									)

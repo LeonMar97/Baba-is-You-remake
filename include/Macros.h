@@ -6,7 +6,8 @@ enum GameTextures {
     rocks_t = 1,
     flags_t = 2,
     background_t = 3,
-    is_t=4
+    is_t=4,
+    babaword_t=5
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 
