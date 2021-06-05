@@ -1,6 +1,6 @@
 #pragma once
 #include"FileHandler.h"
-#include "Tile.h"
+#include "BaseObject.h"
 
 class Board{
 public:
@@ -15,6 +15,6 @@ public:
 private:
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
-	std::unique_ptr<BaseObject> m_you;
+	
 	sf::RectangleShape m_background;
 };

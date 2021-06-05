@@ -1,5 +1,4 @@
 #include"BabaWord.h"
-#include"Baba.h"
 BabaWord::BabaWord(const sf::Vector2u& loc)
 	:Noun("Baba",Textures::instance().get_Textures(babaword_t), DEFAULT_IMG_COUNT, loc)
 {
@@ -8,6 +7,7 @@ BabaWord::BabaWord(const sf::Vector2u& loc)
 	//m_character.setOutlineColor(sf::Color::Red);
 }
 
-std::unordered_set<Attribute&>& BabaWord::getStatic() {
+std::unordered_set<Attribute*>& BabaWord::getStatic() {
+	
 	return Baba::m_babaAtributes;
 }
