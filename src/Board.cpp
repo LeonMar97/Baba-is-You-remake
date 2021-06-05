@@ -35,15 +35,13 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	case 'i':
 		m_map[loc.x][loc.y].push_back(new Is(loc));
-
 		break;
 	case 'b':
 		m_map[loc.x][loc.y].push_back(new BabaWord(loc));
-
 		break;
 	case 'y':
 		m_map[loc.x][loc.y].push_back(new YouWord(loc));
-
+		break;
 	case 'w':
 		m_map[loc.x][loc.y].push_back(new WinWord(loc));
 
