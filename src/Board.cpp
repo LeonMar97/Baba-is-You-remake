@@ -14,12 +14,7 @@ Board::Board()
 	m_background.setFillColor(BOARD_COLOR);
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
-	for (auto i = 0; i < MAP_SIZE.x; i++) {
-		m_map.push_back(std::vector<std::vector<BaseObject*>>());
-		for (auto j = 0; j < MAP_SIZE.y; j++) {
-			m_map[i].push_back(std::vector<BaseObject*>());
-		}
-	}
+
 	//m_you = std::make_unique<Baba>();
 }
 
@@ -28,22 +23,22 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	switch (p)
 	{
 	case 'B':
-		m_map[loc.x][loc.y].push_back(new Baba(loc));
+		m_map.push_back(new Baba(loc));
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 	case ' ':
 		break;
 	case 'i':
-		m_map[loc.x][loc.y].push_back(new Is(loc));
+		m_map.push_back(new Is(loc));
 		break;
 	case 'b':
-		m_map[loc.x][loc.y].push_back(new BabaWord(loc));
+		m_map.push_back(new BabaWord(loc));
 		break;
 	case 'y':
-		m_map[loc.x][loc.y].push_back(new YouWord(loc));
+		m_map.push_back(new YouWord(loc));
 		break;
 	case 'w':
-		m_map[loc.x][loc.y].push_back(new WinWord(loc));
+		m_map.push_back(new WinWord(loc));
 
 		break;
 	default:
@@ -68,12 +63,10 @@ void Board::initialize(FileHandler& map) {
 //drawing the board on requested screen..
 void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	game_Window.draw(m_background);
-	for (unsigned int i = 0; i < MAP_SIZE.x; i++) {
-		for (unsigned int j = 0; j < MAP_SIZE.y; j++) {
-			if (!m_map[i][j].empty())
-			m_map[i][j].front()->draw(game_Window, deltaTime);
+	for(auto &obj:m_map){
+			obj->draw(game_Window, deltaTime);
 		}
-	}
+	
 }
 
 /*

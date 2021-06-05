@@ -10,8 +10,8 @@ Controller::Controller()
 {
 	//for making boars visible entirely independent of screen size
 	sf::View view = m_gameWindow.getView();
-	view.setCenter(sf::Vector2f(OBJECT_SIZE*30/2.f, OBJECT_SIZE*17/2.f));
-	auto prop = 1920.f * 1080 / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
+	view.setCenter(sf::Vector2f(OBJECT_SIZE* MAP_SIZE.y/2.f, OBJECT_SIZE* MAP_SIZE.x/2.f));
+	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
 	view.zoom(prop);
 
 	m_gameWindow.setView(view);
