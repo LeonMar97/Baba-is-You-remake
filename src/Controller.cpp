@@ -17,11 +17,8 @@ void Controller::updateDataStructures() {
 }
 
 void Controller::openMenu() {
-	sf::View view = m_gameWindow.getView();
-	view.setCenter(sf::Vector2f(DEFAULT_SCREEN_WIDTH / 2.f, DEFAULT_SCREEN_HEIGHT / 2.f));
-	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
-	view.zoom(prop);
-	m_gameWindow.setView(view);
+	auto menu = Menu(*this); //do i want to do this?
+	menu.run();
 
 	sf::RectangleShape temp(sf::Vector2f(720, 220));
 	temp.setPosition(sf::Vector2f(180, 180));
