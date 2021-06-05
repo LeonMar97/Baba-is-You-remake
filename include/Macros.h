@@ -33,4 +33,7 @@ const sf::Color WINDOW_COLOR(37, 37, 70);  //less bluish
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
+//~~~~~~~~~~~~~~gameObj~~~~~~~~~~~~~~~~~
+const bool ON = true;
+const bool OFF = false;
 

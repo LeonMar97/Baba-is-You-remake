@@ -50,7 +50,6 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
-	BaseObject* baseobj;
 	char currentChar;
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
