@@ -6,12 +6,15 @@
 #include "Baba.h"
 
 Controller::Controller()
-	: m_gameWindow(sf::VideoMode(1000, 700),"Baba is you", sf::Style::Fullscreen)
+	: m_gameWindow(sf::VideoMode(),"Baba is you", sf::Style::Fullscreen)
 {
 	//for making boars visible entirely independent of screen size
 	sf::View view = m_gameWindow.getView();
 	view.setCenter(sf::Vector2f(OBJECT_SIZE*30/2.f, OBJECT_SIZE*17/2.f));
-	view.zoom(1920.f / float(m_gameWindow.getSize().x));
+	auto prop = 1920.f * 1080 / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
+//	view.zoom(1920.f / float(m_gameWindow.getSize().x));
+	view.zoom(prop);
+
 	m_gameWindow.setView(view);
 
 	m_mapOnScreen = std::make_unique<Board>();
