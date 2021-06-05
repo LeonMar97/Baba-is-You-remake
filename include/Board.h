@@ -16,4 +16,5 @@ private:
 	std::vector<std::vector<std::vector<BaseObject*>>> m_map;
 	sf::Vector2f screenSize;
 	std::unique_ptr<BaseObject> m_you;
+	sf::RectangleShape m_background;
 };
