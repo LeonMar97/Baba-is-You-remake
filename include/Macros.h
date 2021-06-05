@@ -27,3 +27,7 @@ const sf::Vector2u BABA_IMG_COUNT(3, 3);
 const sf::Vector2u DEFAULT_IMG_COUNT(3, 1);
 
 const float OBJECT_SIZE = 50.f;
+
+//~~~~~~~~~~~~~Colors~~~~~~~~~~~~~~~~~~
+const sf::Color BOARD_COLOR(33, 33, 63); //bluish
+const sf::Color WINDOW_COLOR(37, 37, 70);  //less bluish

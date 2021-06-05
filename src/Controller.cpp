@@ -12,7 +12,6 @@ Controller::Controller()
 	sf::View view = m_gameWindow.getView();
 	view.setCenter(sf::Vector2f(OBJECT_SIZE*30/2.f, OBJECT_SIZE*17/2.f));
 	auto prop = 1920.f * 1080 / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
-//	view.zoom(1920.f / float(m_gameWindow.getSize().x));
 	view.zoom(prop);
 
 	m_gameWindow.setView(view);
@@ -76,11 +75,10 @@ void Controller::startGame() {
 				break;
 			}
 		}
-		m_gameWindow.clear(sf::Color(37, 37, 70));
+		m_gameWindow.clear(WINDOW_COLOR);
 		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
 		m_gameWindow.display();
 	}
-	
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 bool Controller::newLvl() {
