@@ -6,5 +6,5 @@
 int main()
 {
     auto ctrl = Controller();
-    ctrl.startGame();
+    ctrl.openMenu();
 }

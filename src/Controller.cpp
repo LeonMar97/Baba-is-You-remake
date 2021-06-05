@@ -8,21 +8,44 @@
 Controller::Controller()
 	: m_gameWindow(sf::VideoMode(),"Baba is you", sf::Style::Fullscreen)
 {
-	//for making boars visible entirely independent of screen size
-	sf::View view = m_gameWindow.getView();
-	view.setCenter(sf::Vector2f(OBJECT_SIZE* MAP_SIZE.y/2.f, OBJECT_SIZE* MAP_SIZE.x/2.f));
-	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
-	view.zoom(prop);
 
-	m_gameWindow.setView(view);
-
-	m_mapOnScreen = std::make_unique<Board>();
-	updateDataStructures();
 }
 
 void Controller::updateDataStructures() {
 	m_mapOnScreen->initialize(m_map);
 	//m_clock.restart();
+}
+
+void Controller::openMenu() {
+	sf::View view = m_gameWindow.getView();
+	view.setCenter(sf::Vector2f(DEFAULT_SCREEN_WIDTH / 2.f, DEFAULT_SCREEN_HEIGHT / 2.f));
+	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
+	view.zoom(prop);
+	m_gameWindow.setView(view);
+
+	sf::RectangleShape temp(sf::Vector2f(720, 220));
+	temp.setPosition(sf::Vector2f(180, 180));
+	while (m_gameWindow.isOpen())
+	{
+		sf::Event event;
+		while (m_gameWindow.pollEvent(event))
+		{
+			switch (event.type)
+			{
+				break;
+			case sf::Event::KeyReleased:
+				if (event.key.code == sf::Keyboard::Right)
+					//m_you->move(m_mapOnScreen,RIGHT_DIR);
+				break;
+			case sf::Event::Closed:
+				m_gameWindow.close();
+				break;
+			}
+		}
+		m_gameWindow.clear(WINDOW_COLOR);
+		m_gameWindow.draw(temp);
+		m_gameWindow.display();
+	}
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 /*
@@ -52,12 +75,20 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_timeText);
 	//m_m_gameWindow.draw(m_rotationText);
 	//m_m_gameWindow.draw(m_lvlText);
+
+	//for making board visible entirely independent of screen size
+	sf::View view = m_gameWindow.getView();
+	view.setCenter(sf::Vector2f(OBJECT_SIZE* MAP_SIZE.y/2.f, OBJECT_SIZE* MAP_SIZE.x/2.f));
+	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
+	view.zoom(prop);
+	m_gameWindow.setView(view);
+
+	m_mapOnScreen = std::make_unique<Board>();
+	updateDataStructures();
 	float deltaTime = 0.0f;
-//	int row = 0;
-	//view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
-	//view.setCenter(OBJECT_SIZE * MAP_SIZE.x, OBJECT_SIZE * MAP_SIZE.y);
 	while (m_gameWindow.isOpen())
 	{
+		m_gameWindow.setView(m_gameWindow.getDefaultView());
 		deltaTime = m_animationClock.restart().asSeconds();
 
 		sf::Event event;

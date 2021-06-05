@@ -12,5 +12,5 @@
 									"BabaWord.cpp"
 									"YouWord.cpp"
 									"WinWord.cpp"
-									"Rule"
+									"Menu.cpp"
 									)

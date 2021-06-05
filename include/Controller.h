@@ -12,6 +12,7 @@ class Controller {
 public:
 	Controller();
 	void startGame();//the game loop
+	void openMenu();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines
