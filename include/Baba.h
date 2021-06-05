@@ -14,5 +14,5 @@ public:
 	//--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//		
 private:
-	
+	//Word *m_word;//babas word class
 };
