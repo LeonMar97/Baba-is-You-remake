@@ -11,9 +11,9 @@
 Board::Board()
 {
 	m_background = sf::RectangleShape(sf::Vector2f(MAP_SIZE.y, MAP_SIZE.x) * OBJECT_SIZE);
-	m_background.setFillColor(sf::Color(2, 2, 94));
-	m_background.setOutlineThickness(1);
-	m_background.setOutlineColor(sf::Color(sf::Color::Blue));
+	m_background.setFillColor(sf::Color(33, 33, 63));
+	m_background.setOutlineThickness(3);
+	m_background.setOutlineColor(sf::Color::Black);
 	for (auto i = 0; i < MAP_SIZE.x; i++) {
 		m_map.push_back(std::vector<std::vector<BaseObject*>>());
 		for (auto j = 0; j < MAP_SIZE.y; j++) {

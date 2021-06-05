@@ -8,7 +8,7 @@ Textures& Textures::instance() {
 void Textures::loadPic(sf::Texture& tex, const std::string& texName, GameTextures curTex) {
 	if (!tex.loadFromFile(texName)) throw std::exception((texName +
 		" does not exist, please check CMake or give a valid file name\n").data());
-	tex.setSmooth(true);
+	//tex.setSmooth(true);
 	m_gameTex.insert(std::pair<GameTextures, sf::Texture>(curTex, tex));
 }
 
