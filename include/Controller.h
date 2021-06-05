@@ -30,6 +30,7 @@ private:
 	int m_level = 1;
 
 
+
 	sf::Clock m_animationClock;
 
 	//sf::Sprite m_bgMenu;

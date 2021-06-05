@@ -6,8 +6,14 @@
 #include "Baba.h"
 
 Controller::Controller()
-	: m_gameWindow(sf::VideoMode(0,0),"Baba is you", sf::Style::Fullscreen)
+	: m_gameWindow(sf::VideoMode(1000, 700),"Baba is you", sf::Style::Fullscreen)
 {
+	//for making boars visible entirely independent of screen size
+	sf::View view = m_gameWindow.getView();
+	view.setCenter(sf::Vector2f(OBJECT_SIZE*30/2.f, OBJECT_SIZE*17/2.f));
+	view.zoom(1920.f / float(m_gameWindow.getSize().x));
+	m_gameWindow.setView(view);
+
 	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures();
 }
@@ -46,8 +52,8 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_lvlText);
 	float deltaTime = 0.0f;
 //	int row = 0;
-	sf::View view;
-	view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
+	//view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
+	//view.setCenter(OBJECT_SIZE * MAP_SIZE.x, OBJECT_SIZE * MAP_SIZE.y);
 	while (m_gameWindow.isOpen())
 	{
 		deltaTime = m_animationClock.restart().asSeconds();
@@ -67,8 +73,7 @@ void Controller::startGame() {
 				break;
 			}
 		}
-		m_gameWindow.clear();
-		m_gameWindow.setView(view);
+		m_gameWindow.clear(sf::Color(37, 37, 70));
 		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
 		m_gameWindow.display();
 	}
