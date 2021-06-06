@@ -17,32 +17,9 @@ void Controller::updateDataStructures() {
 }
 
 void Controller::openMenu() {
-	auto menu = Menu(*this); //do i want to do this?
+	auto menu = Menu(*this, m_gameWindow); //do i want to do this?
 	menu.run();
 
-	sf::RectangleShape temp(sf::Vector2f(720, 220));
-	temp.setPosition(sf::Vector2f(180, 180));
-	while (m_gameWindow.isOpen())
-	{
-		sf::Event event;
-		while (m_gameWindow.pollEvent(event))
-		{
-			switch (event.type)
-			{
-				break;
-			case sf::Event::KeyReleased:
-				if (event.key.code == sf::Keyboard::Right)
-					//m_you->move(m_mapOnScreen,RIGHT_DIR);
-				break;
-			case sf::Event::Closed:
-				m_gameWindow.close();
-				break;
-			}
-		}
-		m_gameWindow.clear(WINDOW_COLOR);
-		m_gameWindow.draw(temp);
-		m_gameWindow.display();
-	}
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 /*
@@ -74,18 +51,18 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_lvlText);
 
 	//for making board visible entirely independent of screen size
+	m_gameWindow.setView(m_gameWindow.getDefaultView());
 	sf::View view = m_gameWindow.getView();
 	view.setCenter(sf::Vector2f(OBJECT_SIZE* MAP_SIZE.y/2.f, OBJECT_SIZE* MAP_SIZE.x/2.f));
 	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
 	view.zoom(prop);
 	m_gameWindow.setView(view);
 
-	m_mapOnScreen = std::make_unique<Board>();
+	m_mapOnScreen = std::make_unique<Board>(m_you);
 	updateDataStructures();
 	float deltaTime = 0.0f;
 	while (m_gameWindow.isOpen())
 	{
-		m_gameWindow.setView(m_gameWindow.getDefaultView());
 		deltaTime = m_animationClock.restart().asSeconds();
 
 		sf::Event event;

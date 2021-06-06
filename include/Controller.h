@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include "FileHandler.h"
 #include "BaseObject.h"
+#include "Menu.h"
 
 class Controller {
 
@@ -30,9 +31,6 @@ private:
 	int m_level = 1;
 
 	std::vector<BaseObject*> m_you;
-
-
-
 	sf::Clock m_animationClock;
 
 	//sf::Sprite m_bgMenu;
