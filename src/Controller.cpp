@@ -16,7 +16,7 @@ Controller::Controller()
 
 	m_gameWindow.setView(view);
 
-	m_mapOnScreen = std::make_unique<Board>();
+	m_mapOnScreen = std::make_unique<Board>(m_you);
 	updateDataStructures();
 }
 
@@ -67,8 +67,18 @@ void Controller::startGame() {
 			{
 				break;
 			case sf::Event::KeyReleased:
-				if (event.key.code == sf::Keyboard::Right)
-					//m_you->move(m_mapOnScreen,RIGHT_DIR);
+				for (auto& you : m_you)
+					if (event.key.code == sf::Keyboard::Right)
+						you->move(RIGHT_DIR);
+					else if (event.key.code == sf::Keyboard::Left)
+						you->move(LEFT_DIR);
+					else if (event.key.code == sf::Keyboard::Up)
+						you->move(UP_DIR);
+					else if (event.key.code == sf::Keyboard::Down)
+						you->move(DOWN_DIR);
+					else break;
+				for (auto you : m_you)
+					m_mapOnScreen->checkCollisions(you);
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();
@@ -85,7 +95,7 @@ bool Controller::newLvl() {
 	//checking if there is a new lvl
 	if (m_map.rebuild_Map()) {
 		m_mapOnScreen.reset();
-		m_mapOnScreen = std::make_unique<Board>();
+		m_mapOnScreen = std::make_unique<Board>(m_you);
 		updateDataStructures();
 		m_level++;
 		//m_clock.restart();

@@ -15,3 +15,15 @@ void BaseObject::draw(sf::RenderWindow& window, float deltaTime) {
 	m_character.setTextureRect(m_animation.texRect);
 	window.draw(m_character);
 }
+
+void BaseObject::move(const sf::Vector2i& dir) {
+	m_character.move(50.f * sf::Vector2f(dir));
+}
+
+bool BaseObject::collidesWith(BaseObject* obj) {
+	return m_character.getGlobalBounds().intersects(obj->m_character.getGlobalBounds());
+}
+
+void BaseObject::handleCollision(Board* board, BaseObject* obj) {
+
+}

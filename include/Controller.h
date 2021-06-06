@@ -28,6 +28,8 @@ private:
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;
 
+	std::vector<BaseObject*> m_you;
+
 
 
 	sf::Clock m_animationClock;

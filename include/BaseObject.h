@@ -10,7 +10,9 @@ class BaseObject {
 public:
 	BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCountAnim, const sf::Vector2u&);
 	void draw(sf::RenderWindow& window, float deltaTime);
-	//virtual bool move(Board* board, BaseObject*, const sf::Vector2i&) = 0;
+	void move(const sf::Vector2i&);
+	bool collidesWith(BaseObject*);
+	void handleCollision(Board *board, BaseObject* obj);
 	//virtual bool onMove(Board* board, const sf::Vector2i&) { return false; }
 
 protected:
