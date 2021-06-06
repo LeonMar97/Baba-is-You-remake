@@ -1,9 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "Macros.h"
-#include "Animation.h"
 #include "Board.h"
-#include "Textures.h"
+#include <unordered_set>
+#include"Attribute.h"
+
 class Baba : public BaseObject{
 public:
 	//--------------public--------functions-----------------------//
@@ -12,7 +11,9 @@ public:
 	bool move(Board* board, BaseObject*, const sf::Vector2i&);
 	bool onMove(Board* board, const sf::Vector2i&);
 	//--------------private--------functions-----------------------//		
-	//------------------members-----------------------------------//		
+	//------------------members-----------------------------------//
+	static std::unordered_set<Attribute*>m_babaAtributes;//static attributes for all babas
+
+
 private:
-	//Word *m_word;//babas word class
 };

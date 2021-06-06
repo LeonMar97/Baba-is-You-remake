@@ -17,10 +17,10 @@ const  sf::Vector2u MAP_SIZE(17, 30); //17 rows and 30 cols
 //~~~~~~~~~~~movments~~~~~~~~~~~~~~~~~~~
 //where to move,first index is number of steps on rows and second is number of steps of columns
 typedef const sf::Vector2i Dir;
-const sf::Vector2i UP_DIR(-1, 0);
-const sf::Vector2i DOWN_DIR(1, 0);
-const sf::Vector2i LEFT_DIR(0, -1);
-const sf::Vector2i RIGHT_DIR(0, 1);
+const sf::Vector2i UP_DIR(0, -1);
+const sf::Vector2i DOWN_DIR(0, 1);
+const sf::Vector2i LEFT_DIR(-1, 0);
+const sf::Vector2i RIGHT_DIR(1, 0);
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
 const float SWITCH_TIME = 0.2f;
 const sf::Vector2u BABA_IMG_COUNT(3, 3);
@@ -33,4 +33,5 @@ const sf::Color WINDOW_COLOR(37, 37, 70);  //less bluish
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
+
 

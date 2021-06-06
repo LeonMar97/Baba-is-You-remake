@@ -6,3 +6,8 @@ BabaWord::BabaWord(const sf::Vector2u& loc)
 	//m_character.setOutlineThickness(1);
 	//m_character.setOutlineColor(sf::Color::Red);
 }
+
+std::unordered_set<Attribute*>& BabaWord::getStatic() {
+	
+	return Baba::m_babaAtributes;
+}
