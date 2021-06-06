@@ -1,7 +1,8 @@
 #pragma once
 #include"FileHandler.h"
 #include "BaseObject.h"
-
+#include<array>
+#include"Word.h"
 class Board{
 public:
 	void drawBoard(sf::RenderWindow& game_Window, float deltaTime);
@@ -14,6 +15,10 @@ public:
 	void checkCollisions(BaseObject*);
 
 private:
+	void lookForRule();
+
+	 std::array<std::vector<Word*>, WORD_TYPES>m_words;
+
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
 	std::vector<BaseObject*>& m_you;

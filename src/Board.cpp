@@ -22,6 +22,7 @@ Board::Board(std::vector<BaseObject*>& you)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char p, sf::Vector2u loc){
 	BaseObject* a;
+	Word* b;
 	switch (p)
 	{
 	case 'B':
@@ -33,7 +34,9 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	case ' ':
 		break;
 	case 'i':
-		m_map.push_back(new Is(loc));
+		b = new Is(loc);
+		m_map.push_back(b);
+		m_words[CONJUNCTION_VECTOR].push_back(b);
 		break;
 	case 'b':
 		m_map.push_back(new BabaWord(loc));
@@ -98,3 +101,6 @@ void Board::checkCollisions(BaseObject* cur) {
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+void Board::lookForRule() {
+	
+}

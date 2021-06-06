@@ -66,7 +66,7 @@ void Controller::startGame() {
 			switch (event.type)
 			{
 				break;
-			case sf::Event::KeyReleased:
+			case sf::Event::KeyPressed:
 				for (auto& you : m_you)
 					if (event.key.code == sf::Keyboard::Right)
 						you->move(RIGHT_DIR);

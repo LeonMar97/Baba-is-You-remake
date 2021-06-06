@@ -12,7 +12,12 @@ enum GameTextures {
     winword_t=7
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
+const unsigned int NOUN_VECTOR = 0;
+const unsigned int CONJUNCTION_VECTOR =1 ;
+const unsigned int ATTRIBUTE_VECTOR = 2;
 
+
+const unsigned int WORD_TYPES = 3;
 const  sf::Vector2u MAP_SIZE(17, 30); //17 rows and 30 cols
 //~~~~~~~~~~~movments~~~~~~~~~~~~~~~~~~~
 //where to move,first index is number of steps on rows and second is number of steps of columns
@@ -33,5 +38,4 @@ const sf::Color WINDOW_COLOR(37, 37, 70);  //less bluish
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
-
 
