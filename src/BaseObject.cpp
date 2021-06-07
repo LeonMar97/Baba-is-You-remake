@@ -1,5 +1,6 @@
 #include "BaseObject.h"
 #include <SFML/Graphics.hpp>
+#include"Attribute.h"
 
 BaseObject::BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCount, const sf::Vector2u& loc)
 	:m_animation(tex, imgCount), m_character(sf::Vector2f(OBJECT_SIZE, OBJECT_SIZE)),
