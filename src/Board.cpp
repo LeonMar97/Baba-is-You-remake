@@ -41,8 +41,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	case 'b':
 		wordObj = new BabaWord(loc);
 		m_map.push_back(wordObj);
-		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
-		m_map.push_back(new BabaWord(loc));
+		m_words[NOUN_VECTOR].push_back(wordObj);
 		break;
 	case 'y':
 		wordObj = new YouWord(loc);
