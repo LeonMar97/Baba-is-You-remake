@@ -21,32 +21,38 @@ Board::Board(std::vector<BaseObject*>& you)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char p, sf::Vector2u loc){
-	BaseObject* a;
-	Word* b;
+	BaseObject* baseObj;
+	Word* wordObj;
 	switch (p)
 	{
 	case 'B':
-		a = new Baba(loc);
-		m_map.push_back(a);
-		m_you.push_back(a);
+		baseObj = new Baba(loc);
+		m_map.push_back(baseObj);
+		m_you.push_back(baseObj);
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
 	case ' ':
 		break;
 	case 'i':
-		b = new Is(loc);
-		m_map.push_back(b);
-		m_words[CONJUNCTION_VECTOR].push_back(b);
+		wordObj = new Is(loc);
+		m_map.push_back(wordObj);
+		m_words[CONJUNCTION_VECTOR].push_back(wordObj);
 		break;
 	case 'b':
+		wordObj = new BabaWord(loc);
+		m_map.push_back(wordObj);
+		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
 		m_map.push_back(new BabaWord(loc));
 		break;
 	case 'y':
-		m_map.push_back(new YouWord(loc));
+		wordObj = new YouWord(loc);
+		m_map.push_back(wordObj);
+		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
 		break;
 	case 'w':
-		m_map.push_back(new WinWord(loc));
-
+		wordObj = new WinWord(loc);
+		m_map.push_back(wordObj);
+		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, p)
@@ -54,6 +60,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	}
 }
+
 
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
@@ -102,5 +109,9 @@ void Board::checkCollisions(BaseObject* cur) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::lookForRule() {
-	
+	for (auto n : m_words[NOUN_VECTOR]) {
+
+		//dynamic_cast<Noun*>(m_words[NOUN_VECTOR][0]);
+
+	}
 }
