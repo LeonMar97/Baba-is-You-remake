@@ -17,6 +17,7 @@ void BaseObject::draw(sf::RenderWindow& window, float deltaTime) {
 }
 
 void BaseObject::move(const sf::Vector2i& dir) {
+	m_lastPos = m_character.getPosition();
 	m_character.move(50.f * sf::Vector2f(dir));
 }
 
@@ -25,5 +26,5 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 }
 
 void BaseObject::handleCollision(Board* board, BaseObject* obj) {
-
+	obj->m_character.setPosition(obj->m_lastPos);
 }
