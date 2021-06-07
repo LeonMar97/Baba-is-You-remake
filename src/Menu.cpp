@@ -18,7 +18,6 @@ Menu::Menu(Controller& ctrl, sf::RenderWindow& menuWindow)
 
 	m_exitGameButton.setFillColor(sf::Color::Red);
 	m_startGameButton.setFillColor(sf::Color::Green);
-
 }
 
 void Menu::run() {
