@@ -12,4 +12,6 @@
 									"YouWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"
+									"BaseDataHolder.cpp"
+									"DataHolder.cpp"
 									)

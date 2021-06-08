@@ -3,6 +3,16 @@
 #include "BaseObject.h"
 #include<array>
 #include"Word.h"
+#include <cstdlib>
+#include "Textures.h"
+#include "Baba.h"
+#include "Is.h"
+#include "BabaWord.h"
+#include "YouWord.h"
+#include "WinWord.h"
+#include"DataHolder.h"
+#include"BaseDataHolder.h"
+
 class Board{
 public:
 	void drawBoard(sf::RenderWindow& game_Window, float deltaTime);

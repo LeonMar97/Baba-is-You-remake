@@ -1,11 +1,4 @@
-#include <cstdlib>
 #include "Board.h"
-#include "Textures.h"
-#include "Baba.h"
-#include "Is.h"
-#include "BabaWord.h"
-#include "YouWord.h"
-#include "WinWord.h"
 
 
 Board::Board(std::vector<BaseObject*>& you)
@@ -21,6 +14,20 @@ Board::Board(std::vector<BaseObject*>& you)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char p, sf::Vector2u loc){
+
+
+	
+	
+	BaseDataHolder* y;
+
+	DataHolder<Baba> x;
+	std::vector<BaseDataHolder*>a;
+	a.push_back(new DataHolder<Baba>());
+	
+
+
+
+
 	BaseObject* baseObj;
 	Word* wordObj;
 	switch (p)
