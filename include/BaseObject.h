@@ -28,11 +28,10 @@ public:
 	bool collidesWith(BaseObject*);
 	void handleCollision(Board *board, BaseObject* obj);
 	//virtual bool onMove(Board* board, const sf::Vector2i&) { return false; }
-
+	sf::Vector2f returnPos()const;
 protected:
 	sf::RectangleShape m_character;
 	Animation m_animation;
 private:
 	sf::Vector2f m_lastPos;
-	sf::Vector2f m_currentPos;
 };

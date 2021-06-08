@@ -108,9 +108,11 @@ void Board::checkCollisions(BaseObject* cur) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::lookForRule() {
+	bool youMightHasChanged;
 	for (auto n : m_words[NOUN_VECTOR]) {
 
-		//dynamic_cast<Noun*>(m_words[NOUN_VECTOR][0]);
+		dynamic_cast<Noun*>(n);
 
 	}
 }
+//searchFolowingConjunction
