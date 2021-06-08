@@ -76,6 +76,10 @@ void Controller::startGame() {
 						you->move(UP_DIR);
 					else if (event.key.code == sf::Keyboard::Down)
 						you->move(DOWN_DIR);
+					else if (event.key.code == sf::Keyboard::Escape) {
+						m_gameWindow.close();
+						break;
+					}
 					else break;
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
