@@ -23,13 +23,14 @@ public:
 	void addGameObj(char p, sf::Vector2u loc);
 
 	void checkCollisions(BaseObject*);
+	void insert(GameObjects, BaseObject*);
 
 private:
 	void lookForRule();
 
 	 std::array<std::vector<Word*>, WORD_TYPES>m_words;
 
-	std::vector<BaseObject*> m_map;
+	std::map<GameObjects, std::vector<BaseObject*>> m_dataHolder;
 	sf::Vector2f screenSize;
 	std::vector<BaseObject*>& m_you;
 	

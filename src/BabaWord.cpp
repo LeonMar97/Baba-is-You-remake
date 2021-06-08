@@ -8,6 +8,5 @@ BabaWord::BabaWord(const sf::Vector2u& loc)
 }
 
 std::unordered_set<Attribute*>& BabaWord::getStatic() {
-	
 	return Baba::m_babaAtributes;
 }

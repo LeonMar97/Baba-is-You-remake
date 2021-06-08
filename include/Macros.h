@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 //~~~~~~~~~~~Texture~~~~~~~~~~~~~~~~~~~
-enum GameTextures {
+enum GameObjects {
     babas_t = 0,
     rocks_t = 1,
     flags_t = 2,
@@ -12,6 +12,7 @@ enum GameTextures {
     winword_t=7
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
+class BaseObject;
 const unsigned int NOUN_VECTOR = 0;
 const unsigned int CONJUNCTION_VECTOR =1 ;
 const unsigned int ATTRIBUTE_VECTOR = 2;
@@ -19,6 +20,8 @@ const unsigned int ATTRIBUTE_VECTOR = 2;
 
 const unsigned int WORD_TYPES = 3;
 const  sf::Vector2u MAP_SIZE(17, 30); //17 rows and 30 cols
+
+typedef std::vector<BaseObject*> baseObjVec;
 //~~~~~~~~~~~movments~~~~~~~~~~~~~~~~~~~
 //where to move,first index is number of steps on rows and second is number of steps of columns
 typedef const sf::Vector2i Dir;

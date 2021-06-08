@@ -5,11 +5,11 @@ Textures& Textures::instance() {
 	return all_So;
 }
 
-void Textures::loadPic(sf::Texture& tex, const std::string& texName, GameTextures curTex) {
+void Textures::loadPic(sf::Texture& tex, const std::string& texName, GameObjects curTex) {
 	if (!tex.loadFromFile(texName)) throw std::exception((texName +
 		" does not exist, please check CMake or give a valid file name\n").data());
 	//tex.setSmooth(true);
-	m_gameTex.insert(std::pair<GameTextures, sf::Texture>(curTex, tex));
+	m_gameTex.insert(std::pair<GameObjects, sf::Texture>(curTex, tex));
 }
 
 //set textures for all object in the game once

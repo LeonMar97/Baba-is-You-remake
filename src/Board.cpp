@@ -14,28 +14,13 @@ Board::Board(std::vector<BaseObject*>& you)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char p, sf::Vector2u loc){
-
-
-	
-	
-	BaseDataHolder* y;
-
-
-	DataHolder<Baba> x;
-	std::vector<BaseDataHolder*>a;
-	a.push_back(new DataHolder<Baba>());
-	
-
-
-
-
 	BaseObject* baseObj;
 	Word* wordObj;
 	switch (p)
 	{
 	case 'B':
 		baseObj = new Baba(loc);
-		m_map.push_back(baseObj);
+		insert(babas_t, baseObj);
 		m_you.push_back(baseObj);
 		//setting the pointing direction of the vertex represnted by the texture
 		break;
@@ -43,22 +28,22 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	case 'i':
 		wordObj = new Is(loc);
-		m_map.push_back(wordObj);
+		insert(is_t, wordObj);
 		m_words[CONJUNCTION_VECTOR].push_back(wordObj);
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
-		m_map.push_back(wordObj);
+		insert(babaword_t, wordObj);
 		m_words[NOUN_VECTOR].push_back(wordObj);
 		break;
 	case 'y':
 		wordObj = new YouWord(loc);
-		m_map.push_back(wordObj);
+		insert(youword_t, wordObj);
 		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
 		break;
 	case 'w':
 		wordObj = new WinWord(loc);
-		m_map.push_back(wordObj);
+		insert(winword_t, wordObj);
 		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
 		break;
 	default:
@@ -67,6 +52,20 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	}
 }
+
+
+void Board::insert(GameObjects gameObj_t, BaseObject* baseObj) {
+	try {
+		auto &pos = m_dataHolder.at(gameObj_t);
+		pos.push_back(baseObj);
+	}
+
+	catch(std::out_of_range& e){
+		std::vector<BaseObject*> temp = { baseObj };
+		auto pos = m_dataHolder.insert(std::pair<GameObjects, std::vector<BaseObject*>>(gameObj_t, temp));
+	}
+}
+
 
 
 void Board::initialize(FileHandler& map) {
@@ -83,9 +82,10 @@ void Board::initialize(FileHandler& map) {
 //drawing the board on requested screen..
 void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	game_Window.draw(m_background);
-	for(auto &obj:m_map){
+	for(auto &[key, vec]:m_dataHolder){
+		for(auto &obj:vec)
 			obj->draw(game_Window, deltaTime);
-		}
+	}
 }
 
 //checking collision with every pair of objects in map. if collision found, the correct handling
@@ -105,15 +105,17 @@ void Board::checkCollisions() {
 */
 
 void Board::checkCollisions(BaseObject* cur) {
-	for (auto obj = m_map.begin(); obj != m_map.end(); obj++) {
-		if (cur->collidesWith(*obj) && *obj != cur) {
-			(*obj)->handleCollision(this, cur);
-			checkCollisions(*obj); //check collision as a result of current collision handling
-			return;
+	for (auto& [key, vec] : m_dataHolder) {
+		for (auto& obj : vec) {
+			if (cur->collidesWith(obj) && obj != cur) {
+				obj->handleCollision(this, cur);
+				checkCollisions(obj);//check collision as a result of current collision handling
+				return;
+			}
 		}
 	}
 }
-
+	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::lookForRule() {
 	bool youMightHasChanged;

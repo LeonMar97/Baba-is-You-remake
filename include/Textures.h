@@ -7,13 +7,13 @@ class Textures {
 public:
 	static Textures& instance();
 	//gets requested sound from sound member
-	const sf::Texture& get_Textures(GameTextures key) { return (m_gameTex[key]); }
+	const sf::Texture& get_Textures(GameObjects key) { return (m_gameTex[key]); }
 	//--------------private--------functions-----------------------//		
 private:
-	void loadPic(sf::Texture&, const std::string&, GameTextures curpipe);
+	void loadPic(sf::Texture&, const std::string&, GameObjects );
 	//------------------members-----------------------------------//		
 private:
 	Textures();//constractor for static member
 	//~Textures();
-	std::map<enum GameTextures, sf::Texture> m_gameTex;
+	std::map<enum GameObjects, sf::Texture> m_gameTex;
 };

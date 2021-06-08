@@ -23,7 +23,7 @@ private:
 private:
 	sf::RenderWindow m_gameWindow;
 	//sf::Sprite m_background;
-	std::map<char, GameTextures>m_charToTexConverter;
+	std::map<char, GameObjects>m_charToTexConverter;
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;

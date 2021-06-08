@@ -3,7 +3,8 @@
 #include"BaseDataHolder.h"
 template<typename T>
 class DataHolder:public BaseDataHolder {
-	//friend class BaseDataHolder; 
-	private:
+	public:
+	friend class BaseDataHolder;
+	friend class Board;
 	std::vector<T>m_objects;
 };
