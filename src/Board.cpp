@@ -20,6 +20,7 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	
 	BaseDataHolder* y;
 
+
 	DataHolder<Baba> x;
 	std::vector<BaseDataHolder*>a;
 	a.push_back(new DataHolder<Baba>());
