@@ -6,6 +6,7 @@ class Noun:public Word {
 public:
 	using Word::Word;
 	virtual  void fillAttributes(Attribute *atr);
-	virtual  void removeAttributes();//might be deleted later
+	virtual  void removeAttributes(Attribute*);//might be deleted later
+
 
 };

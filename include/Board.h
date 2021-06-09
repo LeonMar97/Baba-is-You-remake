@@ -26,6 +26,7 @@ public:
 
 	void checkCollisions(BaseObject*);
 	void insert(GameObjects, BaseObject*);
+	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
 	//--------------private--------members-----------------------//
 private:
 	std::vector<ruleTuple> m_Rules;
@@ -39,7 +40,5 @@ private:
 	//--------------private--------functions-----------------------//
 	void lookForRules();
 	void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
-
-
-
+	void updateRules(std::vector<ruleTuple>& currentRules);
 };

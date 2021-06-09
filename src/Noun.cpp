@@ -5,7 +5,8 @@ void Noun::fillAttributes(Attribute* atr) {
 	this->getStatic().emplace(atr);
 }
 //removes all of the atributes of the current Noun refrences static member if its objects class 
-void Noun::removeAttributes() {
-	this->getStatic().clear();
+void Noun::removeAttributes(Attribute* atr) {
+	auto del = this->getStatic().find(atr);
+	this->getStatic().erase(del);
 }
 

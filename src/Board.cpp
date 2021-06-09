@@ -100,43 +100,72 @@ void Board::checkCollisions(BaseObject* cur) {
 void Board::lookForRules() {
 	std::array<Word*, 2>horizontal;
 	std::array<Word*, 2>vertical;
-	std::vector<ruleTuple> m_currentRules;
+	std::vector<ruleTuple> newRules;
 
-	for (auto& obj : m_dataHolder[conjunctions_t]) {
+	for (auto &cur : m_dataHolder[conjunctions_t]) {
+		Conjunction* obj = dynamic_cast<Conjunction*>(cur);
 		auto conjuntionPos = obj->returnPos();//getting conjunction position
 		horizontal.fill(NULL);
 		vertical.fill(NULL);
 		//this two for's adding potenitial rules around current conjunction into the vectors
 		for (auto& curNoun : m_dataHolder[nouns_t]) {
-			enterInVec(conjuntionPos, dynamic_cast<Word *>(curNoun), vertical, horizontal);
+			enterInVec(conjuntionPos, dynamic_cast<Word*>(curNoun), vertical, horizontal);
 		}
 		for (auto& curAtr : m_dataHolder[attributes_t]) {
 			enterInVec(conjuntionPos, dynamic_cast<Word*>(curAtr), vertical, horizontal);
 		}
-		if (dynamic_cast <Noun*>(horizontal[0]) != NULL) {//first we check if the first is noun
-			//then we check if the second is atribute or noun
-			if(dynamic_cast <Noun*>(horizontal[1]) != NULL|| dynamic_cast <Attribute*>(horizontal[1]) != NULL){
+		createRule(*obj, vertical, newRules);
+		createRule(*obj, horizontal, newRules);
 
+		updateRules(newRules);
 
-			}
-
-		}
-			
-	
-	}
 
 	}
-
-std::unique_ptr<ruleTuple> creteRule(Conjunction &c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple> &m_currentRules) {
-	if (dynamic_cast <Noun*>(potentialRule[0]) != NULL) {//first we check if the first is noun
-		//then we check if the second is atribute or noun
-		if (dynamic_cast <Noun*>(potentialRule[1]) != NULL || dynamic_cast <Attribute*>(potentialRule[1]) != NULL) {
-			ruleTuple(potentialRule[0], c, potentialRule[1]);
-		}
-
-		return ;
 }
 
+void Board::createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules) {
+	Noun* ptrNoun;
+	Word* ptrWord;
+	if ((ptrNoun = dynamic_cast <Noun*>(potentialRule[0])) != NULL) {//first we check if the first is noun
+		//then we check if the second is atribute or noun
+		if ((ptrWord = dynamic_cast <Noun*>(potentialRule[1])) != NULL || (ptrWord = dynamic_cast <Attribute*>(potentialRule[1])) != NULL) {
+			ruleTuple(*ptrNoun, c, *ptrWord);
+			m_currentRules.push_back(ruleTuple(*ptrNoun, c, *ptrWord));
+		}
+		return;
+	}
+}
+
+/// <summary>
+/// creating a temporary new rule set and updates the current rule set dynamically
+/// </summary>
+/// <param name="newRules"></param>
+void Board::updateRules(std::vector<ruleTuple>& newRules) {
+	bool ruleAlreadyExists = false;
+	for (auto ruleIndex = 0; ruleIndex < m_Rules.size(); ruleIndex++) {
+		for (auto newRuleIndex = 0; newRuleIndex < newRules.size(); newRuleIndex++) {
+			if (m_Rules[ruleIndex] == newRules[newRuleIndex]) {
+				newRules.erase(newRules.begin() + newRuleIndex); //remove new rule because it already exists
+				ruleAlreadyExists = true;
+				break;
+			}
+		}
+		if (!ruleAlreadyExists) {
+			if (auto atrPtr = dynamic_cast<Attribute*>(&(std::get<2>(m_Rules[ruleIndex])))){
+				std::get<0>(m_Rules[ruleIndex]).removeAttributes(atrPtr);
+				m_Rules.erase(m_Rules.begin() + ruleIndex); //remove old rule because it is no longer on map
+			}
+		}
+	}
+	//triggerRules(newRules);
+}
+
+/*
+void Board::triggerRules(std::vector<ruleTuple>& newRules) {
+	for (auto& newRule : newRules) {
+		std::get<0>(newRule).triggerRule(std::get<2>(newRule));
+	}kk
+}*/
 /* <summary>
 gets two empty array which represnt the current conjunction area,
 and sets the objects arround him regarding only words.
@@ -151,16 +180,16 @@ void Board::enterInVec(sf::Vector2f conPos,Word * curObj, std::array<Word*,2>&ve
 	auto pos = curObj->returnPos();
 	
 	if (pos.x - conPos.x == OBJECT_SIZE && pos.y == conPos.y) { //obj on the right
-
+		horizontal[1] = curObj;
 	}
 	else if (pos.x - conPos.x == -OBJECT_SIZE && pos.y == conPos.y) { //obj on the left
-
+		horizontal[0] = curObj;
 	}
 	else if (pos.x == conPos.x  && pos.y -conPos.y==-OBJECT_SIZE) { //obj abbove
-
+		vertical[0] = curObj;
 	}
 	else if (pos.x == conPos.x && pos.y - conPos.y == OBJECT_SIZE) { //obj bellow
-
+		vertical[1] = curObj;
 	}
 	else {//the  object isnt in the area of the conjunction
 		return;
