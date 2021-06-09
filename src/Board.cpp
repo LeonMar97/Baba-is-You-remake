@@ -116,8 +116,8 @@ void Board::checkCollisions(BaseObject* cur) {
 void Board::lookForRule() {
 
 	for (auto& vec: m_dataHolder[nouns_t]) {
-		for (auto& obj : vec)
-			obj->draw(game_Window, deltaTime);
+		//for (auto& obj : vec)
+		//	obj->draw(game_Window, deltaTime);
 	}
 	
 }
