@@ -1,5 +1,5 @@
 #include "Board.h"
-
+#include<array>
 
 Board::Board(std::vector<BaseObject*>& you)
 	: m_you(you)
@@ -114,11 +114,50 @@ void Board::checkCollisions(BaseObject* cur) {
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::lookForRule() {
+	std::array<Word*, 2>horizontal;
+	std::array<Word*, 2>vertical;
 
-	for (auto& vec: m_dataHolder[nouns_t]) {
-		//for (auto& obj : vec)
-		//	obj->draw(game_Window, deltaTime);
+	for (auto& obj : m_dataHolder[conjunctions_t]) {
+		auto conjuntionPos = obj->returnPos();//getting conjunction position
+		horizontal.fill(NULL);
+		vertical.fill(NULL);
+		for (auto& curNoun : m_dataHolder[nouns_t]) {
+			if (conjuntionPos - curNoun->returnPos())
+
+		}
+	}
+}
+
+
+
+/* <summary>
+gets two empty array which represnt the current conjunction area,
+and sets the objects arround him regarding only words.
+we are making it this way to save 6 loops, even though it looks ugly, its usful.
+ </summary>
+ 
+ <param name="curObj"> current suspisious object, might be arround the conjunction</param>
+ <param name="horizontal">vector for horizontal rule </param>
+ <param name=""></param>
+*/
+void Board::enterInVec(sf::Vector2f conPos,Word * curObj, std::array<Word*,2>&vertical, std::array<Word*,2>&horizontal) {
+	auto pos = curObj->returnPos();
+	
+	if (pos.x - conPos.x == OBJECT_SIZE && pos.y == conPos.y) { //obj on the right
+
+	}
+	else if (pos.x - conPos.x == -OBJECT_SIZE && pos.y == conPos.y) { //obj on the left
+
+	}
+	else if (pos.x == conPos.x  && pos.y -conPos.y==-OBJECT_SIZE) { //obj abbove
+
+	}
+	else if (pos.x == conPos.x && pos.y - conPos.y == OBJECT_SIZE) { //obj bellow
+
+	}
+	else {//the  object isnt in the area of the conjunction
+		return;
 	}
 	
 }
-//searchFolowingConjunction
+
