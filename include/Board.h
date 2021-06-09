@@ -12,8 +12,10 @@
 #include "WinWord.h"
 #include"DataHolder.h"
 #include"BaseDataHolder.h"
-
+#include <tuple>
+typedef std::tuple<Noun&, Conjunction&, Word&>ruleTuple;
 class Board{
+	//--------------public--------functions-----------------------//
 public:
 	void drawBoard(sf::RenderWindow& game_Window, float deltaTime);
 	Board(std::vector<BaseObject*>&);
@@ -24,10 +26,9 @@ public:
 
 	void checkCollisions(BaseObject*);
 	void insert(GameObjects, BaseObject*);
-
+	//--------------private--------members-----------------------//
 private:
-	void lookForRule();
-
+	std::vector<ruleTuple> m_Rules;
 	 std::array<std::vector<Word*>, WORD_TYPES>m_words;
 
 	std::map<GameObjects, std::vector<BaseObject*>> m_dataHolder;
@@ -35,4 +36,10 @@ private:
 	std::vector<BaseObject*>& m_you;
 	
 	sf::RectangleShape m_background;
+	//--------------private--------functions-----------------------//
+	void lookForRule();
+	void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
+
+
+
 };

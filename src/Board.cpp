@@ -113,7 +113,7 @@ void Board::checkCollisions(BaseObject* cur) {
 }
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-void Board::lookForRule() {
+void Board::lookForRules() {
 	std::array<Word*, 2>horizontal;
 	std::array<Word*, 2>vertical;
 
@@ -121,12 +121,19 @@ void Board::lookForRule() {
 		auto conjuntionPos = obj->returnPos();//getting conjunction position
 		horizontal.fill(NULL);
 		vertical.fill(NULL);
+		//this two for's adding potenitial rules around current conjunction into the vectors
 		for (auto& curNoun : m_dataHolder[nouns_t]) {
-			if (conjuntionPos - curNoun->returnPos())
-
+			enterInVec(conjuntionPos, dynamic_cast<Word *>(curNoun), vertical, horizontal);
 		}
+		for (auto& curAtr : m_dataHolder[attributes_t]) {
+			enterInVec(conjuntionPos, dynamic_cast<Word*>(curAtr), vertical, horizontal);
+		}
+
+			
+	
 	}
-}
+
+	}
 
 
 
