@@ -37,7 +37,7 @@ private:
 	
 	sf::RectangleShape m_background;
 	//--------------private--------functions-----------------------//
-	void lookForRule();
+	void lookForRules();
 	void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
 
 

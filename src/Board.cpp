@@ -84,22 +84,6 @@ void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	}
 }
 
-//checking collision with every pair of objects in map. if collision found, the correct handling
-//for this collision is executed, and then re-check for another collision as a result of previous handling
-/*
-void Board::checkCollisions() {
-	for (auto obj1 = m_you.begin(); obj1 != m_you.end(); obj1++) {
-		for (auto obj2 = obj1+1; obj2 != m_map.end(); obj2++) {
-			if (obj1->collidesWith(obj2)) {
-				obj1->handleCollision(*this, obj2);
-				checkCollisions(obj2); //check collision as a result of current collision handling
-				return;
-			}
-		}
-	}
-}
-*/
-
 void Board::checkCollisions(BaseObject* cur) {
 	for (auto& [key, vec] : m_dataHolder) {
 		for (auto& obj : vec) {
@@ -116,6 +100,7 @@ void Board::checkCollisions(BaseObject* cur) {
 void Board::lookForRules() {
 	std::array<Word*, 2>horizontal;
 	std::array<Word*, 2>vertical;
+	std::vector<ruleTuple> m_currentRules;
 
 	for (auto& obj : m_dataHolder[conjunctions_t]) {
 		auto conjuntionPos = obj->returnPos();//getting conjunction position
@@ -128,14 +113,29 @@ void Board::lookForRules() {
 		for (auto& curAtr : m_dataHolder[attributes_t]) {
 			enterInVec(conjuntionPos, dynamic_cast<Word*>(curAtr), vertical, horizontal);
 		}
+		if (dynamic_cast <Noun*>(horizontal[0]) != NULL) {//first we check if the first is noun
+			//then we check if the second is atribute or noun
+			if(dynamic_cast <Noun*>(horizontal[1]) != NULL|| dynamic_cast <Attribute*>(horizontal[1]) != NULL){
 
+
+			}
+
+		}
 			
 	
 	}
 
 	}
 
+std::unique_ptr<ruleTuple> creteRule(Conjunction &c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple> &m_currentRules) {
+	if (dynamic_cast <Noun*>(potentialRule[0]) != NULL) {//first we check if the first is noun
+		//then we check if the second is atribute or noun
+		if (dynamic_cast <Noun*>(potentialRule[1]) != NULL || dynamic_cast <Attribute*>(potentialRule[1]) != NULL) {
+			ruleTuple(potentialRule[0], c, potentialRule[1]);
+		}
 
+		return ;
+}
 
 /* <summary>
 gets two empty array which represnt the current conjunction area,
