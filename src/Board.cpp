@@ -157,15 +157,11 @@ void Board::updateRules(std::vector<ruleTuple>& newRules) {
 			}
 		}
 	}
-	//triggerRules(newRules);
+	for (auto& newRule : newRules) {
+		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
+	}
 }
 
-/*
-void Board::triggerRules(std::vector<ruleTuple>& newRules) {
-	for (auto& newRule : newRules) {
-		std::get<0>(newRule).triggerRule(std::get<2>(newRule));
-	}kk
-}*/
 /* <summary>
 gets two empty array which represnt the current conjunction area,
 and sets the objects arround him regarding only words.

@@ -2,11 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include"Attribute.h"
 
-BaseObject::BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCount, const sf::Vector2u& loc)
+BaseObject::BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCount, const sf::Vector2u& loc, GameObjects id)
 	:m_animation(tex, imgCount), m_character(sf::Vector2f(OBJECT_SIZE, OBJECT_SIZE)),
-	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
+	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE), m_objectId(id)
 {
-	
 	m_character.setTexture(&tex);
 	m_character.setPosition(m_lastPos);
 }

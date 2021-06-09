@@ -83,7 +83,7 @@ void Controller::startGame() {
 					else break;
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
-				//m_mapOnScreen->
+				m_mapOnScreen->lookForRules();
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();

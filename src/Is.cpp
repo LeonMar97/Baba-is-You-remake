@@ -1,6 +1,6 @@
 #include"Is.h"
 Is::Is(const sf::Vector2u& loc)
-	:Conjunction("is",Textures::instance().get_Textures(is_t), DEFAULT_IMG_COUNT, loc)
+	:Conjunction("is",Textures::instance().get_Textures(is_t), DEFAULT_IMG_COUNT, loc, is_t)
 {
 	m_character.setFillColor(sf::Color(115, 115, 115));
 	//m_character.setOutlineThickness(1);

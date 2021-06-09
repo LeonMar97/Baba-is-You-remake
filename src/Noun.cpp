@@ -10,3 +10,7 @@ void Noun::removeAttributes(Attribute* atr) {
 	this->getStatic().erase(del);
 }
 
+
+void Noun::putRuleIntoAffect(Noun& noun, Board& board) {
+	board.replace(m_objectId, noun.m_objectId);
+}
