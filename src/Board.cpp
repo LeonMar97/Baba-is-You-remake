@@ -28,23 +28,19 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	case 'i':
 		wordObj = new Is(loc);
-		insert(is_t, wordObj);
-		m_words[CONJUNCTION_VECTOR].push_back(wordObj);
+		insert(conjunctions_t, wordObj);
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
-		insert(babaword_t, wordObj);
-		m_words[NOUN_VECTOR].push_back(wordObj);
+		insert(nouns_t, wordObj);
 		break;
 	case 'y':
 		wordObj = new YouWord(loc);
-		insert(youword_t, wordObj);
-		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
+		insert(attributes_t, wordObj);
 		break;
 	case 'w':
 		wordObj = new WinWord(loc);
-		insert(winword_t, wordObj);
-		m_words[ATTRIBUTE_VECTOR].push_back(wordObj);
+		insert(attributes_t, wordObj);
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, p)
@@ -118,11 +114,11 @@ void Board::checkCollisions(BaseObject* cur) {
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::lookForRule() {
-	bool youMightHasChanged;
-	for (auto n : m_words[NOUN_VECTOR]) {
 
-		dynamic_cast<Noun*>(n);
-
+	for (auto& vec: m_dataHolder[nouns_t]) {
+		for (auto& obj : vec)
+			obj->draw(game_Window, deltaTime);
 	}
+	
 }
 //searchFolowingConjunction

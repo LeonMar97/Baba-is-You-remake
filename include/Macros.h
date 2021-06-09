@@ -9,7 +9,11 @@ enum GameObjects {
     is_t=4,
     babaword_t=5,
     youword_t=6,
-    winword_t=7
+    winword_t=7,
+    nouns_t=8,
+    conjunctions_t=9,
+    attributes_t=10
+
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 class BaseObject;

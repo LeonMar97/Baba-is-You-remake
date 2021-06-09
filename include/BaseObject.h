@@ -27,7 +27,7 @@ public:
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
 	void handleCollision(Board *board, BaseObject* obj);
-	//virtual bool onMove(Board* board, const sf::Vector2i&) { return false; }
+
 	sf::Vector2f returnPos()const;
 protected:
 	sf::RectangleShape m_character;
