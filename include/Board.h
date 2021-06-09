@@ -7,6 +7,8 @@
 #include "Textures.h"
 #include "Baba.h"
 #include "Is.h"
+#include "Rock.h"
+#include "RockWord.h"
 #include "BabaWord.h"
 #include "YouWord.h"
 #include "WinWord.h"
@@ -28,6 +30,7 @@ public:
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
 	void lookForRules();
+	void replace(GameObjects objectToAdd, GameObjects objectToRemove, char objectToCreate);
 	//--------------private--------members-----------------------//
 private:
 	std::vector<ruleTuple> m_Rules;

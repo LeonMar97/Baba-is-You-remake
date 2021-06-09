@@ -22,7 +22,10 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		baseObj = new Baba(loc);
 		insert(babas_t, baseObj);
 		m_you.push_back(baseObj);
-		//setting the pointing direction of the vertex represnted by the texture
+		break;
+	case 'R':
+		baseObj = new Rock(loc);
+		insert(rocks_t, baseObj);
 		break;
 	case ' ':
 		break;
@@ -32,6 +35,10 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
+		insert(nouns_t, wordObj);
+		break;
+	case 'r':
+		wordObj = new RockWord(loc);
 		insert(nouns_t, wordObj);
 		break;
 	case 'y':
@@ -94,6 +101,15 @@ void Board::checkCollisions(BaseObject* cur) {
 			}
 		}
 	}
+}
+
+void Board::replace(GameObjects objectToAdd, GameObjects objectToRemove, char objectToCreate) {
+	for (auto& removeObj : m_dataHolder[objectToRemove]) {
+		auto removeObjPos = removeObj->returnPos() / OBJECT_SIZE;
+		addGameObj(objectToCreate, sf::Vector2u(removeObjPos.y, removeObjPos.x));
+		delete removeObj;
+	}
+	m_dataHolder[objectToRemove].clear();
 }
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

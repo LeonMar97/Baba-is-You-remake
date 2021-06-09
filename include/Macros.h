@@ -2,17 +2,22 @@
 #include <SFML/Graphics.hpp>
 //~~~~~~~~~~~Texture~~~~~~~~~~~~~~~~~~~
 enum GameObjects {
-    babas_t = 0,
-    rocks_t = 1,
-    flags_t = 2,
-    background_t = 3,
-    is_t=4,
-    babaword_t=5,
-    youword_t=6,
-    winword_t=7,
-    nouns_t=8,
-    conjunctions_t=9,
-    attributes_t=10
+    babas_t=0,
+    rocks_t,
+    flags_t,
+
+    nouns_t,
+    babaword_t,
+    rockword_t,
+
+    conjunctions_t,
+    is_t,
+
+    attributes_t,
+    youword_t,
+    winword_t,
+
+    background_t,
 
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~

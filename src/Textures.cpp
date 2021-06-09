@@ -38,4 +38,5 @@ Textures::Textures() {
 
 	texName = "winword.png";
 	loadPic(pic, texName, winword_t);
+
 }

@@ -11,7 +11,7 @@ class BaseObject {
 
 public:
 
-	BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCountAnim, const sf::Vector2u&, GameObjects id);
+	BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCountAnim, const sf::Vector2u&);
 	/// <summary>
 	///DONT FORGET TO MAKE IT DUCKING ABSTRCUT STUPID !!!!!!!!
 	/// !!!!!!!!!!!!
@@ -32,7 +32,6 @@ public:
 protected:
 	sf::RectangleShape m_character;
 	Animation m_animation;
-	GameObjects m_objectId;
 private:
 	sf::Vector2f m_lastPos;
 };
