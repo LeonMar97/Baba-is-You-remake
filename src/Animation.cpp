@@ -1,30 +1,40 @@
 #include "Animation.h"
-#include"Macros.h"
 
-Animation::Animation(const sf::Texture& tex, const sf::Vector2u imageCount)
-	: m_imgCount(imageCount), m_switchTime(SWITCH_TIME), m_totalTime(0.0f)
+#include "Resources.h"
+
+const auto AnimationTime = sf::seconds(0.3f);
+
+Animation::Animation(const AnimationData& data, Direction dir, sf::Sprite& sprite)
+    : m_data(data), m_dir(dir), m_sprite(sprite)
 {
-	m_curImg.x = 0; //initial image to be the first
-
-	//initialize rectangle that will be the mask on the main texture
-	texRect.width = tex.getSize().x / (m_imgCount.x);
-	texRect.height = tex.getSize().y / (m_imgCount.y);
+    m_sprite.setTexture(Resources::instance().texture());
+    update();
 }
 
-void Animation::update(int row, float deltaTime) {
+void Animation::direction(Direction dir)
+{
+    if (m_dir == dir || dir == Direction::Stay)
+    {
+        return;
+    }
 
-	m_curImg.y = row; //set the desired row of animations in textures
-	m_totalTime += deltaTime;
+    m_dir = dir;
+    update();
+}
 
-	if (m_totalTime >= m_switchTime) {
-		m_totalTime -= m_switchTime; //could set to 0, smoother this way
+void Animation::update(sf::Time delta)
+{
+    m_elapsed += delta;
+    if (m_elapsed >= AnimationTime)
+    {
+        m_elapsed -= AnimationTime;
+        ++m_index;
+        m_index %= m_data.m_data.find(m_dir)->second.size();
+        update();
+    }
+}
 
-		m_curImg.x++; //if switch time is up, set next image in row
-		if (m_curImg.x >= m_imgCount.x) {
-			m_curImg.x = 0; ///reset if row is over
-		}
-	}
-	//update IntRect
-	texRect.left = m_curImg.x * texRect.width;
-	texRect.top = m_curImg.y * texRect.height;
+void Animation::update()
+{
+    m_sprite.setTextureRect(m_data.m_data.find(m_dir)->second[m_index]);
 }

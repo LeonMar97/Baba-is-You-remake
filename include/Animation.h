@@ -1,19 +1,23 @@
 #pragma once
+
+#include "Direction.h"
+#include "AnimationData.h"
+
 #include <SFML/Graphics.hpp>
-//class for handling Animation
-//was taken from https://youtu.be/Aa8bXSq5LDE
 
-class Animation {
+class Animation
+{
 public:
-	Animation(const sf::Texture& tex, const sf::Vector2u imageCount);
+    Animation(const AnimationData& data, Direction dir, sf::Sprite& sprite);
+    void direction(Direction dir);
+    void update(sf::Time delta);
+
 private:
-	sf::Vector2u m_imgCount;
-	sf::Vector2u m_curImg;
+    void update();
 
-	float m_totalTime;
-	float m_switchTime;
-
-public:
-	sf::IntRect	 texRect;
-	void update(int row, float deltaTime);
+    const AnimationData& m_data;
+    sf::Time m_elapsed = {};
+    Direction m_dir = Direction::Up;
+    int m_index = 0;
+    sf::Sprite& m_sprite;
 };

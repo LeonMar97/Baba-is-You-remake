@@ -17,4 +17,7 @@
 									"BaseDataHolder.cpp"
 									"DataHolder.cpp"
 									"Attribute.cpp"
+									"AnimationData.cpp"
+									"DebugUtils.cpp"
+									"Direction.cpp"
 									)
