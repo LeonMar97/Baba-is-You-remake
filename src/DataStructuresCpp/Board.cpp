@@ -142,9 +142,9 @@ void Board::lookForRules() {
 void Board::createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules) {
 	Noun* ptrNoun;
 	Word* ptrWord;
-	if ((ptrNoun = dynamic_cast <Noun*>(potentialRule[0])) != NULL) {//first we check if the first is noun
+	if ((ptrNoun = dynamic_cast <Noun*>(potentialRule[0]))) {//first we check if the first is noun
 		//then we check if the second is atribute or noun
-		if ((ptrWord = dynamic_cast <Noun*>(potentialRule[1])) != NULL || (ptrWord = dynamic_cast <Attribute*>(potentialRule[1])) != NULL) {
+		if ((ptrWord = dynamic_cast <Noun*>(potentialRule[1]))  || (ptrWord = dynamic_cast <Attribute*>(potentialRule[1]))) {
 			ruleTuple(*ptrNoun, c, *ptrWord);
 			m_currentRules.push_back(ruleTuple(*ptrNoun, c, *ptrWord));
 		}
