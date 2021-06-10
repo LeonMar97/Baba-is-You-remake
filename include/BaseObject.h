@@ -29,6 +29,8 @@ public:
 	void handleCollision(Board *board, BaseObject* obj);
 
 	sf::Vector2f returnPos()const;
+
+	bool operator<(const BaseObject&) const;
 protected:
 	sf::RectangleShape m_character;
 	Animation m_animation;

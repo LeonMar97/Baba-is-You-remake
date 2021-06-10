@@ -83,7 +83,8 @@ void Controller::startGame() {
 					else break;
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
-				m_mapOnScreen->lookForRules();
+				//m_mapOnScreen->lookForRules();
+				m_mapOnScreen->searchConsecutiveTriplesRects();
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();

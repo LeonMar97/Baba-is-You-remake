@@ -20,34 +20,34 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 	{
 	case 'B':
 		baseObj = new Baba(loc);
-		insert(babas_t, baseObj);
+		m_map.push_back(baseObj);
 		m_you.push_back(baseObj);
 		break;
 	case 'R':
 		baseObj = new Rock(loc);
-		insert(rocks_t, baseObj);
+		m_map.push_back(baseObj);
 		break;
 	case ' ':
 		break;
 	case 'i':
 		wordObj = new Is(loc);
-		insert(conjunctions_t, wordObj);
+		m_map.push_back(wordObj);
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
-		insert(nouns_t, wordObj);
+		m_map.push_back(wordObj);
 		break;
 	case 'r':
 		wordObj = new RockWord(loc);
-		insert(nouns_t, wordObj);
+		m_map.push_back(wordObj);
 		break;
 	case 'y':
 		wordObj = new YouWord(loc);
-		insert(attributes_t, wordObj);
+		m_map.push_back(wordObj);
 		break;
 	case 'w':
 		wordObj = new WinWord(loc);
-		insert(attributes_t, wordObj);
+		m_map.push_back(wordObj);
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, p)
@@ -55,20 +55,6 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		break;
 	}
 }
-
-
-void Board::insert(GameObjects gameObj_t, BaseObject* baseObj) {
-	try {
-		auto &pos = m_dataHolder.at(gameObj_t);
-		pos.push_back(baseObj);
-	}
-
-	catch(std::out_of_range& e){
-		std::vector<BaseObject*> temp = { baseObj };
-		auto pos = m_dataHolder.insert(std::pair<GameObjects, std::vector<BaseObject*>>(gameObj_t, temp));
-	}
-}
-
 
 
 void Board::initialize(FileHandler& map) {
@@ -85,31 +71,48 @@ void Board::initialize(FileHandler& map) {
 //drawing the board on requested screen..
 void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
 	game_Window.draw(m_background);
-	for(auto &[key, vec]:m_dataHolder){
-		for(auto &obj:vec)
-			obj->draw(game_Window, deltaTime);
+	for(auto &obj:m_map){
+		obj->draw(game_Window, deltaTime);
 	}
 }
 
 void Board::checkCollisions(BaseObject* cur) {
-	for (auto& [key, vec] : m_dataHolder) {
-		for (auto& obj : vec) {
-			if (cur->collidesWith(obj) && obj != cur) {
-				obj->handleCollision(this, cur);
-				checkCollisions(obj);//check collision as a result of current collision handling
-				return;
-			}
+	for (auto& obj : m_map) {
+		if (cur->collidesWith(obj) && obj != cur) {
+			obj->handleCollision(this, cur);
+			checkCollisions(obj);//check collision as a result of current collision handling
+			return;
 		}
 	}
 }
 
+void Board::searchConsecutiveTriplesRects(){
+	//std::sort(m_map.begin(), m_map.end(), [](const BaseObject* a, const BaseObject* b) -> bool { return *a < *b; });
+	std::vector<baseObjTuple> s;
+	for (auto obj1 = m_map.begin(); obj1 < m_map.end(); obj1++)
+	{
+		for (auto obj2 = obj1 + 1; obj2 < m_map.end(); obj2++)
+		{
+			// Use hash to find if there is
+			// a previous element with difference
+			// equal to arr[j] - arr[i]
+			
+			if (std::find(arr[i] - diff) != s.end())
+				cout << arr[i] - diff << " " << arr[i]
+				<< " " << arr[j] << endl;
+		}
+		s.insert(arr[i]);
+	}
+}
+
+/*
 void Board::replace(GameObjects objectToAdd, GameObjects objectToRemove, char objectToCreate) {
-	for (auto& removeObj : m_dataHolder[objectToRemove]) {
+	for (auto& removeObj : m_map[objectToRemove]) {
 		auto removeObjPos = removeObj->returnPos() / OBJECT_SIZE;
 		addGameObj(objectToCreate, sf::Vector2u(removeObjPos.y, removeObjPos.x));
 		delete removeObj;
 	}
-	m_dataHolder[objectToRemove].clear();
+	m_map[objectToRemove].clear();
 }
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -118,16 +121,16 @@ void Board::lookForRules() {
 	std::array<Word*, 2>vertical;
 	std::vector<ruleTuple> newRules;
 
-	for (auto &cur : m_dataHolder[conjunctions_t]) {
+	for (auto &cur : m_map[conjunctions_t]) {
 		Conjunction* obj = dynamic_cast<Conjunction*>(cur);
 		auto conjuntionPos = obj->returnPos();//getting conjunction position
 		horizontal.fill(NULL);
 		vertical.fill(NULL);
 		//this two for's adding potenitial rules around current conjunction into the vectors
-		for (auto& curNoun : m_dataHolder[nouns_t]) {
+		for (auto& curNoun : m_map[nouns_t]) {
 			enterInVec(conjuntionPos, dynamic_cast<Word*>(curNoun), vertical, horizontal);
 		}
-		for (auto& curAtr : m_dataHolder[attributes_t]) {
+		for (auto& curAtr : m_map[attributes_t]) {
 			enterInVec(conjuntionPos, dynamic_cast<Word*>(curAtr), vertical, horizontal);
 		}
 		createRule(*obj, vertical, newRules);
@@ -177,6 +180,7 @@ void Board::updateRules(std::vector<ruleTuple>& newRules) {
 		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
 	}
 }
+*/
 
 /* <summary>
 gets two empty array which represnt the current conjunction area,
@@ -188,6 +192,7 @@ we are making it this way to save 6 loops, even though it looks ugly, its usful.
  <param name="horizontal">vector for horizontal rule </param>
  <param name=""></param>
 */
+/*
 void Board::enterInVec(sf::Vector2f conPos,Word * curObj, std::array<Word*,2>&vertical, std::array<Word*,2>&horizontal) {
 	auto pos = curObj->returnPos();
 	
@@ -209,3 +214,4 @@ void Board::enterInVec(sf::Vector2f conPos,Word * curObj, std::array<Word*,2>&ve
 	
 }
 
+*/

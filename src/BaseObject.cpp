@@ -9,6 +9,9 @@ BaseObject::BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCount, con
 	m_character.setTexture(&tex);
 	m_character.setPosition(m_lastPos);
 }
+bool BaseObject::operator<(const BaseObject& otherObj) const {
+	return m_character.getPosition().x < otherObj.m_character.getPosition().x;
+}
 
 void BaseObject::draw(sf::RenderWindow& window, float deltaTime) {
 	m_animation.update(0, deltaTime);

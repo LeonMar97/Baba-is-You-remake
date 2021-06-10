@@ -5,5 +5,6 @@ class Attribute :public Word {
 public:
 	using Word::Word;
 	void putRuleIntoAffect(Noun&, Board&) override;
+	void removeRule(Noun*);
 private:
 };
