@@ -2,7 +2,8 @@
 #include <SFML/Graphics.hpp>
 //~~~~~~~~~~~Texture~~~~~~~~~~~~~~~~~~~
 enum GameObjects {
-    babas_t=0,
+    all_t = 0,
+    babas_t,
     rocks_t,
     flags_t,
 
@@ -18,6 +19,7 @@ enum GameObjects {
     winword_t,
 
     background_t,
+    Max=100
 
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~

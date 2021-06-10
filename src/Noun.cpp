@@ -1,9 +1,10 @@
 #pragma once
 #include "Noun.h"
 #include "Board.h"
-Noun::Noun(const std::string& word, const sf::Texture& tex, const sf::Vector2u& imgCount,
-	const sf::Vector2u& loc,  char objectCreationChar, GameObjects objectCreationEnum)
-	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationEnum), Word(word, tex, imgCount, loc)
+	Noun::Noun(const std::string& word, const AnimationData& animationData,
+		Direction dir, const sf::Vector2u& loc,
+		char objectCreationChar, GameObjects objectCreationCharEnum)
+	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Word(word, animationData, dir, loc)
 {}
 
 //adds atribute if rull is made 

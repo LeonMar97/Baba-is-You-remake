@@ -10,7 +10,5 @@ public:
 	//--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
 	static std::unordered_set<Attribute*>m_babaAtributes;//static attributes for all babas
-
-
 private:
 };

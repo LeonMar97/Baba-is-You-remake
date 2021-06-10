@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
-#include "Textures.h"
+#include "Resources.h"
 #include "Controller.h"
 
 int main()

@@ -69,7 +69,7 @@ void Board::initialize(FileHandler& map) {
 }
 
 //drawing the board on requested screen..
-void Board::drawBoard(sf::RenderWindow& game_Window, float deltaTime) {
+void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 	game_Window.draw(m_background);
 	for(auto &obj:m_map){
 		obj->draw(game_Window, deltaTime);
@@ -83,25 +83,6 @@ void Board::checkCollisions(BaseObject* cur) {
 			checkCollisions(obj);//check collision as a result of current collision handling
 			return;
 		}
-	}
-}
-
-void Board::searchConsecutiveTriplesRects(){
-	//std::sort(m_map.begin(), m_map.end(), [](const BaseObject* a, const BaseObject* b) -> bool { return *a < *b; });
-	std::vector<baseObjTuple> s;
-	for (auto obj1 = m_map.begin(); obj1 < m_map.end(); obj1++)
-	{
-		for (auto obj2 = obj1 + 1; obj2 < m_map.end(); obj2++)
-		{
-			// Use hash to find if there is
-			// a previous element with difference
-			// equal to arr[j] - arr[i]
-			
-			if (std::find(arr[i] - diff) != s.end())
-				cout << arr[i] - diff << " " << arr[i]
-				<< " " << arr[j] << endl;
-		}
-		s.insert(arr[i]);
 	}
 }
 

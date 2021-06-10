@@ -6,8 +6,8 @@ class Board;
 class Noun:public Word {
 public:
 	//NEED TO CHECK IF NEED GameObjects id
-	Noun(const std::string& word, const sf::Texture& tex,
-		const sf::Vector2u& imgCount, const sf::Vector2u& loc,
+	Noun(const std::string& word, const AnimationData& animationData,
+		Direction dir, const sf::Vector2u& loc,
 		char objectCreationChar, GameObjects objectCreationCharEnum);
 	virtual  void fillAttributes(Attribute *atr);
 	virtual  void removeAttributes(Attribute*);//might be deleted later

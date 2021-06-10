@@ -4,7 +4,7 @@
 #include<array>
 #include"Word.h"
 #include <cstdlib>
-#include "Textures.h"
+#include "Resources.h"
 #include "Baba.h"
 #include "Is.h"
 #include "Rock.h"
@@ -20,7 +20,7 @@ typedef std::tuple<BaseObject&, BaseObject&, BaseObject&>baseObjTuple;
 class Board{
 	//--------------public--------functions-----------------------//
 public:
-	void drawBoard(sf::RenderWindow& game_Window, float deltaTime);
+	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	Board(std::vector<BaseObject*>&);
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
@@ -28,7 +28,6 @@ public:
 	void addGameObj(char p, sf::Vector2u loc);
 
 	void checkCollisions(BaseObject*);
-	void searchConsecutiveTriplesRects();
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);

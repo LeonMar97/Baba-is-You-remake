@@ -1,5 +1,5 @@
 #include "Controller.h"
-#include "Textures.h"
+#include "Resources.h"
 //#include "Sounds.h"
 //#include "Fonts.h"
 #include "Macros.h"
@@ -52,13 +52,13 @@ void Controller::startGame() {
 	//m_m_gameWindow.draw(m_timeText);
 	//m_m_gameWindow.draw(m_rotationText);
 	//m_m_gameWindow.draw(m_lvlText);
-	float deltaTime = 0.0f;
+	sf::Time deltaTime = {};
 //	int row = 0;
 	//view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
 	//view.setCenter(OBJECT_SIZE * MAP_SIZE.x, OBJECT_SIZE * MAP_SIZE.y);
 	while (m_gameWindow.isOpen())
 	{
-		deltaTime = m_animationClock.restart().asSeconds();
+		deltaTime = m_animationClock.restart();
 
 		sf::Event event;
 		while (m_gameWindow.pollEvent(event))
@@ -84,7 +84,6 @@ void Controller::startGame() {
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
 				//m_mapOnScreen->lookForRules();
-				m_mapOnScreen->searchConsecutiveTriplesRects();
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();

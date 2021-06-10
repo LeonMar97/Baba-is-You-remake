@@ -2,38 +2,36 @@
 #include <SFML/Graphics.hpp>
 #include"Attribute.h"
 
-BaseObject::BaseObject(const sf::Texture& tex, const sf::Vector2u& imgCount, const sf::Vector2u& loc)
-	:m_animation(tex, imgCount), m_character(sf::Vector2f(OBJECT_SIZE, OBJECT_SIZE)),
+BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc)
+	:m_animation(animationData, dir, m_sprite),
 	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
 {
-	m_character.setTexture(&tex);
-	m_character.setPosition(m_lastPos);
+	m_sprite.setPosition(m_lastPos);
 }
 bool BaseObject::operator<(const BaseObject& otherObj) const {
-	return m_character.getPosition().x < otherObj.m_character.getPosition().x;
+	return m_sprite.getPosition().x < otherObj.m_sprite.getPosition().x;
 }
 
-void BaseObject::draw(sf::RenderWindow& window, float deltaTime) {
-	m_animation.update(0, deltaTime);
-	m_character.setTextureRect(m_animation.texRect);
-	window.draw(m_character);
+void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
+	m_animation.update(deltaTime);
+	window.draw(m_sprite);
 }
 
 void BaseObject::move(const sf::Vector2i& dir) {
-	m_lastPos = m_character.getPosition();
-	m_character.move(50.f * sf::Vector2f(dir));
+	m_lastPos = m_sprite.getPosition();
+	m_sprite.move(50.f * sf::Vector2f(dir));
 }
 
 sf::Vector2f BaseObject:: returnPos()const {
-	return m_character.getPosition();
+	return m_sprite.getPosition();
 }
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~collisions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bool BaseObject::collidesWith(BaseObject* obj) {
-	return m_character.getGlobalBounds().intersects(obj->m_character.getGlobalBounds());
+	return m_sprite.getGlobalBounds().intersects(obj->m_sprite.getGlobalBounds());
 }
 
 void BaseObject::handleCollision(Board* board, BaseObject* obj) {
-	obj->m_character.setPosition(obj->m_lastPos);
+	obj->m_sprite.setPosition(obj->m_lastPos);
 }
