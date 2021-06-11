@@ -15,7 +15,6 @@ void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 
     }
     //else it does nothing because the current rule 
-
 }
 
 
