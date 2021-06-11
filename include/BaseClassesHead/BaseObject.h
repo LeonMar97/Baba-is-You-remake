@@ -2,6 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
 #include "Macros.h"
+#include <typeinfo>
+#include <typeindex>
+
 #include "Resources.h"
 #include<unordered_set>
 //base class for every object on the screen
@@ -28,7 +31,7 @@ public:
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
 	void handleCollision(Board *board, BaseObject* obj);
-
+	virtual const std::type_index& baseTypeId();
 	sf::Vector2f returnPos()const;
 
 	bool operator<(const BaseObject&) const;

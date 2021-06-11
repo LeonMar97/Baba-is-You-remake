@@ -13,6 +13,9 @@ Noun::Noun(const std::string& word, const AnimationData& animationData,
 	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Predicate(word, animationData, dir, loc, color)
 {}
 
+const std::type_index& Noun::baseTypeId() {
+	return typeid(Noun);
+}
 //adds atribute if rull is made 
 void Noun::fillAttributes(Attribute* atr) {
 	this->getStatic().emplace(atr);

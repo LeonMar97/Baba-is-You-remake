@@ -87,9 +87,9 @@ void Board::checkCollisions(BaseObject* cur) {
 }
 
 void Board::lookForRules() {
-	BaseObject* p1 = new Baba(sf::Vector2u(2, 3));
+	BaseObject* p1 = new BabaWord(sf::Vector2u(2, 3));
 	BaseObject* p2 = new Is(sf::Vector2u(2, 4));
-	BaseObject* p3 = new Rock(sf::Vector2u(2, 5));
+	BaseObject* p3 = new RockWord(sf::Vector2u(2, 5));
 	auto p = baseObjTuple(*p1, *p2, *p3);
 	m_ruleHandler.processCollision(p);
 }

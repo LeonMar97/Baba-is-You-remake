@@ -39,3 +39,6 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 void BaseObject::handleCollision(Board* board, BaseObject* obj) {
 	obj->m_sprite.setPosition(obj->m_lastPos);
 }
+ const std::type_index& BaseObject::baseTypeId() {
+	 return typeid(BaseObject);
+}

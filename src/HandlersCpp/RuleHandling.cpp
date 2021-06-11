@@ -6,12 +6,16 @@
 
 void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 {
-	auto p = typeid(std::get<0>(potentialRule)).name();
-    if (auto updateFunPtr = lookup(typeid(std::get<0>(potentialRule)), typeid(std::get<1>(potentialRule)),
-		typeid(std::get<2>(potentialRule))))
+
+	auto k = std::get<0>(potentialRule).baseTypeId();
+	auto k1 = std::get<1>(potentialRule).baseTypeId();
+	auto k2 = std::get<2>(potentialRule).baseTypeId();
+	auto r = lookup(k, k1, k2);
+if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get<1>(potentialRule).baseTypeId(),
+		std::get<2>(potentialRule).baseTypeId()))
     {
         //the current tuple is a rule 
-		(this->*updateFunPtr)(potentialRule);
+		//(this->*updateFunPtr)(potentialRule);
 
     }
     //else it does nothing because the current rule 
@@ -22,7 +26,6 @@ RuleToFunctionMap RuleHandling:: initializeCollisionMap(){
     RuleToFunctionMap map;
     map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &RuleHandling::updateRulesNCA;
     map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &RuleHandling::updateRulesNCN;
-    map[Key( typeid(Baba), typeid(Is), typeid(Rock)      )] =			&RuleHandling::updateRulesNCN;
     return map;
 }
 

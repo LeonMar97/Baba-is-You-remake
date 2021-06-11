@@ -15,6 +15,8 @@ public:
 	virtual  void fillAttributes(Attribute *atr);
 	virtual  void removeAttributes(Attribute*);//might be deleted later
 	void putRuleIntoAffect(Noun&, Board&) override;
+
+	const std::type_index& baseTypeId()override;
 private:
 	char m_objectCreationChar;
 	GameObjects m_objectCreationEnum;

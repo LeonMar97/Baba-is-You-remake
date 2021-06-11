@@ -7,5 +7,6 @@
 									"WinWord.cpp"
 									"Noun.cpp"
 									"Attribute.cpp"
-									"Predicate"
+									"Predicate.cpp"
+									"Conjunction.cpp"
 									)
