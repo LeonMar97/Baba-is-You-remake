@@ -1,4 +1,3 @@
-/*
 #include "RuleHandling.h"
 
 
@@ -31,15 +30,6 @@ FunctionPtr RuleHandling::lookup(const std::type_index& class1, const std::type_
 }
 
 
-void Board::replace(GameObjects objectToAdd, GameObjects objectToRemove, char objectToCreate) {
-	for (auto& removeObj : m_dataHolder[objectToRemove]) {
-		auto removeObjPos = removeObj->returnPos() / OBJECT_SIZE;
-		addGameObj(objectToCreate, sf::Vector2u(removeObjPos.y, removeObjPos.x));
-		delete removeObj;
-	}
-	m_dataHolder[objectToRemove].clear();
-}
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 
@@ -71,4 +61,3 @@ void Board::updateRules(std::vector<ruleTuple>& newRules) {
 }
 
 
-*/
