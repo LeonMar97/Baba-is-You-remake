@@ -1,12 +1,12 @@
 #include "Controller.h"
-#include "Textures.h"
+#include "Resources.h"
 //#include "Sounds.h"
 //#include "Fonts.h"
 #include "Macros.h"
 #include "Baba.h"
 
 Controller::Controller()
-	: m_gameWindow(sf::VideoMode(),"Baba is you", sf::Style::Fullscreen)
+	: m_gameWindow(sf::VideoMode(1920,1080),"Baba is you", sf::Style::Fullscreen)
 {
 
 }
@@ -60,10 +60,13 @@ void Controller::startGame() {
 
 	m_mapOnScreen = std::make_unique<Board>(m_you);
 	updateDataStructures();
-	float deltaTime = 0.0f;
+	sf::Time deltaTime = {};
+//	int row = 0;
+	//view.setViewport(sf::FloatRect(0.25f, 0.25f, 0.5f, 0.5f));
+	//view.setCenter(OBJECT_SIZE * MAP_SIZE.x, OBJECT_SIZE * MAP_SIZE.y);
 	while (m_gameWindow.isOpen())
 	{
-		deltaTime = m_animationClock.restart().asSeconds();
+		deltaTime = m_animationClock.restart();
 
 		sf::Event event;
 		while (m_gameWindow.pollEvent(event))
@@ -71,7 +74,7 @@ void Controller::startGame() {
 			switch (event.type)
 			{
 				break;
-			case sf::Event::KeyReleased:
+			case sf::Event::KeyPressed:
 				for (auto& you : m_you)
 					if (event.key.code == sf::Keyboard::Right)
 						you->move(RIGHT_DIR);
@@ -81,9 +84,14 @@ void Controller::startGame() {
 						you->move(UP_DIR);
 					else if (event.key.code == sf::Keyboard::Down)
 						you->move(DOWN_DIR);
+					else if (event.key.code == sf::Keyboard::Escape) {
+						m_gameWindow.close();
+						break;
+					}
 					else break;
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
+				//m_mapOnScreen->lookForRules();
 				break;
 			case sf::Event::Closed:
 				m_gameWindow.close();
