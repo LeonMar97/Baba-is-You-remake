@@ -14,9 +14,7 @@
 #include "WinWord.h"
 #include"DataHolder.h"
 #include"BaseDataHolder.h"
-#include <tuple>
-typedef std::tuple<Noun&, Conjunction&, Word&>ruleTuple;
-typedef std::tuple<BaseObject&, BaseObject&, BaseObject&>baseObjTuple;
+#include "RuleHandling.h"
 class Board{
 	//--------------public--------functions-----------------------//
 public:

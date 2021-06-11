@@ -1,9 +1,9 @@
 #pragma once
-#include "Word.h"
+#include "Predicate.h"
 #include "Attribute.h"
 #include<unordered_set>
 class Board;
-class Noun:public Word {
+class Noun:public Predicate {
 public:
 	//NEED TO CHECK IF NEED GameObjects id
 	Noun(const std::string& word, const AnimationData& animationData,

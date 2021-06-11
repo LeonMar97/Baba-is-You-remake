@@ -1,11 +1,13 @@
 #include "RuleHandling.h"
 
 
-void  RuleHandling::processCollision(BaseObject& object1, BaseObject& object2, BaseObject& object3)
+void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 {
-    if (auto phf = lookup(typeid(object1), typeid(object2), typeid(object3)))
+    if (auto updateFunPtr = lookup(typeid(std::get<0>(potentialRule)), typeid(std::get<1>(potentialRule)),
+		typeid(std::get<2>(potentialRule))))
     {
         //the current tuple is a rule 
+		updateFunPtr(potentialRule);
 
     }
     //else it does nothing because the current rule 
@@ -15,8 +17,8 @@ void  RuleHandling::processCollision(BaseObject& object1, BaseObject& object2, B
 
 RuleToFunctionMap RuleHandling:: initializeCollisionMap(){
     RuleToFunctionMap map;
-    map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &updateRules;
-    map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &updateRules;
+    map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &updateRulesNCA;
+    map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &updateRulesNCN;
     return map;
 }
 
@@ -31,14 +33,29 @@ FunctionPtr RuleHandling::lookup(const std::type_index& class1, const std::type_
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//casting function
+void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
+	
+	auto ncaRule=ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
+		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Attribute&>(std::get<2>(currentRule)));
+	 updateRules(ncaRule);
 
+}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//casting function
+void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
+	auto ncnRule = ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
+		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Noun&>(std::get<2>(currentRule)));
+	updateRules(ncnRule);
+
+}
 
 
 /// <summary>
 /// creating a temporary new rule set and updates the current rule set dynamically
 /// </summary>
 /// <param name="newRules"></param>
-void Board::updateRules(std::vector<ruleTuple>& newRules) {
+void RuleHandling::updateRules(ruleTuple&) {
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < m_Rules.size(); ruleIndex++) {
 		for (auto newRuleIndex = 0; newRuleIndex < newRules.size(); newRuleIndex++) {

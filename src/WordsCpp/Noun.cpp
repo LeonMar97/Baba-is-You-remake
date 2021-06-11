@@ -4,13 +4,13 @@
 Noun::Noun(const std::string& word, const AnimationData& animationData,
 	Direction dir, const sf::Vector2u& loc,
 	char objectCreationChar, GameObjects objectCreationCharEnum)
-	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Word(word, animationData, dir, loc)
+	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Predicate(word, animationData, dir, loc)
 {}
 
 Noun::Noun(const std::string& word, const AnimationData& animationData,
 	Direction dir, const sf::Vector2u& loc, const sf::Color& color,
 	char objectCreationChar, GameObjects objectCreationCharEnum)
-	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Word(word, animationData, dir, loc, color)
+	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Predicate(word, animationData, dir, loc, color)
 {}
 
 //adds atribute if rull is made 

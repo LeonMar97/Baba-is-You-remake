@@ -1,9 +1,9 @@
 #pragma once
-#include "Word.h"
+#include "Predicate.h"
 #include "Noun.h"
-class Attribute :public Word {
+class Attribute :public Predicate {
 public:
-	using Word::Word;
+	using Predicate::Predicate;
 	void putRuleIntoAffect(Noun&, Board&) override;
 	void removeRule(Noun*);
 private:
