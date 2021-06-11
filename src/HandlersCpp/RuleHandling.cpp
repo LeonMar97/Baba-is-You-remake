@@ -1,3 +1,4 @@
+/*
 #include "RuleHandling.h"
 
 
@@ -70,3 +71,4 @@ void Board::updateRules(std::vector<ruleTuple>& newRules) {
 }
 
 
+*/
