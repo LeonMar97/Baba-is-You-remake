@@ -1,3 +1,6 @@
 ﻿target_sources (oop2_ex04 PRIVATE
-									"Animation.cpp")
+									"Animation.cpp"
 									"Resources.cpp"
+									"AnimationData.cpp"
+									"Direction.cpp"
+									)
