@@ -11,7 +11,7 @@
 #include "Macros.h"
 typedef std::tuple<Noun&, Conjunction&, Predicate&>ruleTuple;
 typedef std::tuple<BaseObject&, BaseObject&, BaseObject&>baseObjTuple;
-
+class RuleHandling;
 using FunctionPtr = void (RuleHandling::*)(baseObjTuple&);
 using Key = std::tuple<std::type_index, std::type_index,std::type_index>;
 using RuleToFunctionMap = std::map<Key, FunctionPtr>;

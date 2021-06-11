@@ -1,13 +1,17 @@
 #include "RuleHandling.h"
 
+#include "Baba.h"
+#include "Is.h"
+#include "Rock.h"
 
 void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 {
+	auto p = typeid(std::get<0>(potentialRule)).name();
     if (auto updateFunPtr = lookup(typeid(std::get<0>(potentialRule)), typeid(std::get<1>(potentialRule)),
 		typeid(std::get<2>(potentialRule))))
     {
         //the current tuple is a rule 
-		updateFunPtr(potentialRule);
+		(this->*updateFunPtr)(potentialRule);
 
     }
     //else it does nothing because the current rule 
@@ -17,8 +21,9 @@ void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 
 RuleToFunctionMap RuleHandling:: initializeCollisionMap(){
     RuleToFunctionMap map;
-    map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &updateRulesNCA;
-    map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &updateRulesNCN;
+    map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &RuleHandling::updateRulesNCA;
+    map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &RuleHandling::updateRulesNCN;
+    map[Key( typeid(Baba), typeid(Is), typeid(Rock)      )] =			&RuleHandling::updateRulesNCN;
     return map;
 }
 
@@ -56,6 +61,7 @@ void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
 /// </summary>
 /// <param name="newRules"></param>
 void RuleHandling::updateRules(ruleTuple&) {
+	/*
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < m_Rules.size(); ruleIndex++) {
 		for (auto newRuleIndex = 0; newRuleIndex < newRules.size(); newRuleIndex++) {
@@ -75,6 +81,7 @@ void RuleHandling::updateRules(ruleTuple&) {
 	for (auto& newRule : newRules) {
 		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
 	}
+	*/
 }
 
 

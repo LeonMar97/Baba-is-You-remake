@@ -26,6 +26,7 @@ public:
 	void addGameObj(char p, sf::Vector2u loc);
 
 	void checkCollisions(BaseObject*);
+	void lookForRules();
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
@@ -40,6 +41,7 @@ private:
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
 	std::vector<BaseObject*>& m_you;
+	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;
 	//--------------private--------functions-----------------------//
