@@ -6,7 +6,7 @@
 #include "Baba.h"
 
 Controller::Controller()
-	: m_gameWindow(sf::VideoMode(),"Baba is you", sf::Style::Fullscreen)
+	: m_gameWindow(sf::VideoMode(1920,1080),"Baba is you")
 {
 	//for making boars visible entirely independent of screen size
 	sf::View view = m_gameWindow.getView();
