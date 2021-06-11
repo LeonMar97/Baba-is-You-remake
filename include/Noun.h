@@ -9,6 +9,9 @@ public:
 	Noun(const std::string& word, const AnimationData& animationData,
 		Direction dir, const sf::Vector2u& loc,
 		char objectCreationChar, GameObjects objectCreationCharEnum);
+	Noun(const std::string& word, const AnimationData& animationData,
+		Direction dir, const sf::Vector2u& loc, const sf::Color& color,
+		char objectCreationChar, GameObjects objectCreationCharEnum);
 	virtual  void fillAttributes(Attribute *atr);
 	virtual  void removeAttributes(Attribute*);//might be deleted later
 	void putRuleIntoAffect(Noun&, Board&) override;

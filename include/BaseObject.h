@@ -12,6 +12,7 @@ class BaseObject {
 public:
 
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
+	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
 	/// <summary>
 	///DONT FORGET TO MAKE IT DUCKING ABSTRCUT STUPID !!!!!!!!
 	/// !!!!!!!!!!!!

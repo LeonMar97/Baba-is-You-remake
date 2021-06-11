@@ -8,8 +8,12 @@ BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const 
 {
 	m_sprite.setPosition(m_lastPos);
 }
-bool BaseObject::operator<(const BaseObject& otherObj) const {
-	return m_sprite.getPosition().x < otherObj.m_sprite.getPosition().x;
+BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color& color)
+	:m_animation(animationData, dir, m_sprite),
+	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
+{
+	m_sprite.setPosition(m_lastPos);
+	m_sprite.setColor(color);
 }
 
 void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {

@@ -1,6 +1,6 @@
 #include"YouWord.h"
 YouWord::YouWord(const sf::Vector2u& loc)
-	:Attribute("You",Resources::instance().animationData(youword_t), Direction::Stay, loc)
+	:Attribute("You",Resources::instance().animationData(youword_t), Direction::Stay, loc, sf::Color(217, 57, 106))
 {
 	//m_character.setFillColor(sf::Color(217,57,106));
 	//m_character.setOutlineThickness(1);
