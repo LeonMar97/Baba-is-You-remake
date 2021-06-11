@@ -118,7 +118,7 @@ Resources::Resources()
     );
     m_data[youword_t] = readData(
         sf::Vector2i(24, 24),
-        sf::Vector2i(479, 1008),
+        sf::Vector2i(480, 1008),
         sf::Vector2i(0, 0),
         directionInitArray{
 			std::make_pair<Direction, int>(Direction::Right, 0),
@@ -130,7 +130,7 @@ Resources::Resources()
     );
     m_data[winword_t] = readData(
         sf::Vector2i(24, 24),
-        sf::Vector2i(407, 1007),
+        sf::Vector2i(408, 1008),
         sf::Vector2i(0, 0),
         directionInitArray{
 			std::make_pair<Direction, int>(Direction::Right, 0),
