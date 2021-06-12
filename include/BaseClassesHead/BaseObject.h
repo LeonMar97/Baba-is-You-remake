@@ -31,7 +31,7 @@ public:
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
 	void handleCollision(Board *board, BaseObject* obj);
-	virtual const std::type_index& baseTypeId();
+	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 
 	bool operator<(const BaseObject&) const;

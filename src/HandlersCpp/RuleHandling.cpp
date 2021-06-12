@@ -10,7 +10,7 @@ void  RuleHandling::processCollision(baseObjTuple& potentialRule)
 	auto k = std::get<0>(potentialRule).baseTypeId();
 	auto k1 = std::get<1>(potentialRule).baseTypeId();
 	auto k2 = std::get<2>(potentialRule).baseTypeId();
-	auto r = lookup(k, k1, k2);
+	//auto r = lookup(k, k1, k2);
 if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get<1>(potentialRule).baseTypeId(),
 		std::get<2>(potentialRule).baseTypeId()))
     {
@@ -20,6 +20,7 @@ if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get
     }
     //else it does nothing because the current rule 
 }
+
 
 
 RuleToFunctionMap RuleHandling:: initializeCollisionMap(){

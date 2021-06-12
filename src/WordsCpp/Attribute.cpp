@@ -7,6 +7,6 @@ void Attribute::removeRule(Noun* noun) {
 	noun->removeAttributes(this);
 }
 
-const std::type_index& Attribute::baseTypeId() {
+std::type_index Attribute::baseTypeId() {
 	return typeid(Attribute);
 }

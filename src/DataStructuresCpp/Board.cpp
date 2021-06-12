@@ -87,6 +87,26 @@ void Board::checkCollisions(BaseObject* cur) {
 }
 
 void Board::lookForRules() {
+
+	auto potentialNewRuleVec = std::vector<baseObjTuple>();
+	std::stable_sort(m_map.begin(), m_map.end(),
+		[&](BaseObject* a, BaseObject* b) { return a->returnPos().x < b->returnPos().x; });
+	std::stable_sort(m_map.begin(), m_map.end(),
+		[&](BaseObject* a, BaseObject* b) { return a->returnPos().y < b->returnPos().y; });
+
+	for (auto beginSequence = m_map.begin(), endSequence = beginSequence + 2;
+		endSequence + 2 < m_map.end();
+		beginSequence++, endSequence++) {
+		auto beginPosX = (*beginSequence)->returnPos().x,
+			endPosX = (*endSequence)->returnPos().x,
+			beginPosY = (*beginSequence)->returnPos().y,
+			endPosY = (*endSequence)->returnPos().y;
+
+		if (beginPosX == endPosX && beginPosY == endPosY - 2*50) {
+			potentialNewRuleVec.emplace_back(**beginSequence, **(beginSequence + 1), **endSequence);
+		}
+	}
+
 	BaseObject* p1 = new BabaWord(sf::Vector2u(2, 3));
 	BaseObject* p2 = new Is(sf::Vector2u(2, 4));
 	BaseObject* p3 = new RockWord(sf::Vector2u(2, 5));
