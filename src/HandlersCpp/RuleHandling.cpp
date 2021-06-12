@@ -4,21 +4,22 @@
 #include "Is.h"
 #include "Rock.h"
 
-void  RuleHandling::processCollision(baseObjTuple& potentialRule)
+void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesOnBoard ,Board & b)
 {
+	 std::vector<ruleTuple> currentRules;
+	 m_currentTripplesOnBoard = &currentRules;
+	for (auto potentialRule : currentTripplesOnBoard) {
+		//looks if the current ordered tuple is a rule
+		if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get<1>(potentialRule).baseTypeId(),
+			std::get<2>(potentialRule).baseTypeId()))
+		{
+			//the current tuple is a rule 
+			(this->*updateFunPtr)(potentialRule);
 
-	auto k = std::get<0>(potentialRule).baseTypeId();
-	auto k1 = std::get<1>(potentialRule).baseTypeId();
-	auto k2 = std::get<2>(potentialRule).baseTypeId();
-	//auto r = lookup(k, k1, k2);
-if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get<1>(potentialRule).baseTypeId(),
-		std::get<2>(potentialRule).baseTypeId()))
-    {
-        //the current tuple is a rule 
-		//(this->*updateFunPtr)(potentialRule);
-
-    }
-    //else it does nothing because the current rule 
+		}
+	}
+	updateRules(b);
+    
 }
 
 
@@ -46,7 +47,7 @@ void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 	
 	auto ncaRule=ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
 		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Attribute&>(std::get<2>(currentRule)));
-	 updateRules(ncaRule);
+	m_currentTripplesOnBoard->push_back(ncaRule);
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -54,7 +55,9 @@ void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
 	auto ncnRule = ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
 		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Noun&>(std::get<2>(currentRule)));
-	updateRules(ncnRule);
+	m_currentTripplesOnBoard->push_back(ncnRule);
+
+
 
 }
 
@@ -63,28 +66,38 @@ void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
 /// creating a temporary new rule set and updates the current rule set dynamically
 /// </summary>
 /// <param name="newRules"></param>
-void RuleHandling::updateRules(ruleTuple&) {
-	/*
+
+void RuleHandling::updateRules(Board &b) {
+	
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < m_Rules.size(); ruleIndex++) {
-		for (auto newRuleIndex = 0; newRuleIndex < newRules.size(); newRuleIndex++) {
-			if (m_Rules[ruleIndex] == newRules[newRuleIndex]) {
-				newRules.erase(newRules.begin() + newRuleIndex); //remove new rule because it already exists
-				ruleAlreadyExists = true;
+		unsigned int amountOfRules = m_currentTripplesOnBoard->size();
+		for (unsigned int newRuleIndex = 0; newRuleIndex < amountOfRules; newRuleIndex++) {
+			if ((m_Rules[ruleIndex]) == ((*m_currentTripplesOnBoard)[newRuleIndex])) {
+
+				(*m_currentTripplesOnBoard).erase((*m_currentTripplesOnBoard).begin() ); //remove new rule because it already exists
+			}
+/*
+
+			ruleAlreadyExists = true;
 				break;
 			}
 		}
 		if (!ruleAlreadyExists) {
-			if (auto atrPtr = dynamic_cast<Attribute*>(&(std::get<2>(m_Rules[ruleIndex])))) {
-				std::get<0>(m_Rules[ruleIndex]).removeAttributes(atrPtr);
+				std::get<2>(m_Rules[ruleIndex]).deleteRule(std::get<0>(m_Rules[ruleIndex]));
 				m_Rules.erase(m_Rules.begin() + ruleIndex); //remove old rule because it is no longer on map
 			}
 		}
-	}
+	*/
+	/*
 	for (auto& newRule : newRules) {
 		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
 	}
+
 	*/
+		}
+
+	}
 }
 
 

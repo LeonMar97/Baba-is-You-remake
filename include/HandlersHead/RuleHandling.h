@@ -20,15 +20,15 @@ class RuleHandling	{
 	
 public:
 	
-	void processCollision(baseObjTuple&);
+	void processCollision(std::vector<baseObjTuple>& currentTripplesOnBoard, Board& b);
 	
 private:
 	std::vector<ruleTuple>m_Rules;
 	void updateRulesNCA(baseObjTuple&);
 	void updateRulesNCN(baseObjTuple& currentRule);
 
-	void updateRules(ruleTuple&);
-	
+	void updateRules(Board& b);
+	std::vector<ruleTuple>*m_currentTripplesOnBoard;
 	RuleToFunctionMap initializeCollisionMap();
 	FunctionPtr lookup(const std::type_index& class1, const std::type_index& class2, const std::type_index& class3);
 

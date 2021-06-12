@@ -10,3 +10,7 @@ void Attribute::removeRule(Noun* noun) {
 std::type_index Attribute::baseTypeId() {
 	return typeid(Attribute);
 }
+
+void Attribute:: deleteRule(Noun& curNoun) {
+	curNoun.removeAttributes(this);
+}

@@ -111,7 +111,9 @@ void Board::lookForRules() {
 	BaseObject* p2 = new Is(sf::Vector2u(2, 4));
 	BaseObject* p3 = new RockWord(sf::Vector2u(2, 5));
 	auto p = baseObjTuple(*p1, *p2, *p3);
-	m_ruleHandler.processCollision(p);
+	std::vector<baseObjTuple>vec;
+	vec.push_back(p);
+	m_ruleHandler.processCollision(vec,*this);
 }
 
 /*

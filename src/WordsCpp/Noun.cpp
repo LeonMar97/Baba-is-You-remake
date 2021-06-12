@@ -30,3 +30,4 @@ void Noun::removeAttributes(Attribute* atr) {
 void Noun::putRuleIntoAffect(Noun& noun, Board& board) {
 	//board.replace(m_objectCreationEnum, noun.m_objectCreationEnum, m_objectCreationChar);
 }
+

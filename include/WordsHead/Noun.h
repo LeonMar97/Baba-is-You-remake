@@ -15,7 +15,9 @@ public:
 	virtual  void fillAttributes(Attribute *atr);
 	virtual  void removeAttributes(Attribute*);//might be deleted later
 	void putRuleIntoAffect(Noun&, Board&) override;
-
+	//rule removing doesnt effect the noun but needed empty for polymorphic 
+		//prefrences when attribte thus created in class predicate virtually 
+	void deleteRule(Noun&) {};
 	std::type_index baseTypeId()override;
 private:
 	char m_objectCreationChar;
