@@ -8,10 +8,10 @@ void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesO
 {
 	 std::vector<ruleTuple> currentRules;
 	 m_currentTripplesOnBoard = &currentRules;
-	for (auto potentialRule : currentTripplesOnBoard) {
+	for (auto &potentialRule : currentTripplesOnBoard) {
 		//looks if the current ordered tuple is a rule
-		if (auto updateFunPtr = lookup(std::get<0>(potentialRule).baseTypeId(), std::get<1>(potentialRule).baseTypeId(),
-			std::get<2>(potentialRule).baseTypeId()))
+		if (auto updateFunPtr = lookup(std::get<0>(potentialRule)->baseTypeId(), std::get<1>(potentialRule)->baseTypeId(),
+			std::get<2>(potentialRule)->baseTypeId()))
 		{
 			//the current tuple is a rule 
 			(this->*updateFunPtr)(potentialRule);
@@ -45,20 +45,17 @@ FunctionPtr RuleHandling::lookup(const std::type_index& class1, const std::type_
 //casting function
 void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 	
-	auto ncaRule=ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
-		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Attribute&>(std::get<2>(currentRule)));
+	auto ncaRule=ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
+		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Attribute*>(std::get<2>(currentRule)));
 	m_currentTripplesOnBoard->push_back(ncaRule);
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //casting function
 void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
-	auto ncnRule = ruleTuple(static_cast<Noun&>(std::get<0>(currentRule)),
-		static_cast<Conjunction&>(std::get<1>(currentRule)), static_cast<Noun&>(std::get<2>(currentRule)));
+	auto ncnRule = ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
+		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Noun*>(std::get<2>(currentRule)));
 	m_currentTripplesOnBoard->push_back(ncnRule);
-
-
-
 }
 
 
@@ -75,7 +72,15 @@ void RuleHandling::updateRules(Board &b) {
 		for (unsigned int newRuleIndex = 0; newRuleIndex < amountOfRules; newRuleIndex++) {
 			if ((m_Rules[ruleIndex]) == ((*m_currentTripplesOnBoard)[newRuleIndex])) {
 
-				(*m_currentTripplesOnBoard).erase((*m_currentTripplesOnBoard).begin() ); //remove new rule because it already exists
+				typedef std::tuple<Noun*, Conjunction*, Word*> tupp;
+				auto a = tupp(
+					new BabaWord({ 0, 0 }), new Is({ 0,0 }), new RockWord({ 0,0 }));
+				auto a2 = tupp(
+					new BabaWord({ 0, 0 }), new Is({ 0,0 }), new RockWord({ 0,0 }));
+
+				a = a2;
+
+				m_Rules.erase(m_Rules.cbegin() ); //remove new rule because it already exists
 			}
 /*
 

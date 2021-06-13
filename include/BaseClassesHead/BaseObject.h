@@ -33,8 +33,6 @@ public:
 	void handleCollision(Board *board, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
-
-	bool operator<(const BaseObject&) const;
 protected:
 private:
 	sf::Sprite m_sprite;
