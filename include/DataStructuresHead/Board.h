@@ -28,8 +28,7 @@ public:
 
 	void checkCollisions(BaseObject*);
 	void lookForRules();
-	void replaceObjects(Noun &toReplace, Noun & toReplaceWith);
-
+	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
@@ -40,10 +39,12 @@ public:
 private:
 	std::vector<ruleTuple> m_Rules;
 	std::array<std::vector<Word*>, WORD_TYPES>m_words;
+
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
 	std::vector<BaseObject*>& m_you;
 	RuleHandling m_ruleHandler;
+	
 	sf::RectangleShape m_background;
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);

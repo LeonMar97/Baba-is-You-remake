@@ -8,6 +8,7 @@ public:
 	Word(const std::string& word, const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
 	Word(const std::string& word, const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
 	virtual bool operator==(const Word& word) { return this == &word; }
+	std::type_index wordTypeId() override { return typeid(Word); }
 	
 
 protected:

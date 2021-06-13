@@ -70,8 +70,8 @@ void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
 
 void RuleHandling::updateRules(Board &b) {
 	
-	updateRulesVector(m_AllRulesNCA, &m_RulesInGameNCA);
 	updateRulesVector(m_AllRulesNCN, &m_RulesInGameNCN);
+	updateRulesVector(m_AllRulesNCA, &m_RulesInGameNCA);
 	addNewNCN(b);
 	addNewNCA();
 
@@ -86,9 +86,10 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < rules->size(); ruleIndex++) {
 		unsigned int amountOfRules = currentRulesOnBoard->size();
-		for (unsigned int newRuleIndex = 0; newRuleIndex < amountOfRules; newRuleIndex++) {
+		for (unsigned int newRuleIndex = 0; newRuleIndex < currentRulesOnBoard->size(); newRuleIndex++) {
 			if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
-				(currentRulesOnBoard)->erase(rules->begin() + newRuleIndex); //remove new rule because it already exists
+				(currentRulesOnBoard)->erase(currentRulesOnBoard->begin() + newRuleIndex); //remove new rule because it already exists
+				
 				ruleAlreadyExists = true;
 				break;
 			}
@@ -98,7 +99,6 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 			rules->erase(rules->begin() + ruleIndex); //remove old rule because it is no longer on map
 		}
 	}
-	
 }
 
 void RuleHandling::addNewNCA() {
@@ -116,6 +116,5 @@ void RuleHandling::addNewNCN(Board &b) {
 		m_RulesInGameNCN.push_back(ruleToAdd);
 	}
 	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
-
 }
 

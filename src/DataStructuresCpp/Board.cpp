@@ -140,13 +140,15 @@ void Board::lookForRules() {
 	m_ruleHandler.processCollision(potentialNewRuleVec, *this);
 }
 void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
-	for (auto &cur : m_map) {
+	const auto& replaceWithId = typeid(toReplace);
+	for (auto& cur : m_map) {
 		//neccecry to check because BABA OBJECT needs to be changed to "baba word" first, 
 			//then to check wheter it is the same noun for creating the replacement noun- 
 				//-representation Object, and replacing the current on board 
-		if (cur->wordTypeId().name() == typeid(toReplace).name()) { 
+
+		auto curId = cur->wordTypeId();
+		if (curId == replaceWithId)
 			toReplaceWith.replaceObjInLocation(cur);
-		}
 	}
 }
 
