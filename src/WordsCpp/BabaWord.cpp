@@ -13,7 +13,3 @@ void BabaWord::replaceObjInLocation(BaseObject*& cur) {
 std::unordered_set<Attribute*>& BabaWord::getStaticRepresentation() {
 	return Baba::m_babaAttributes;
 }
-std::unordered_set<Attribute*>& BabaWord::getStatic() {
-	return Word::getStatic();
-}
-

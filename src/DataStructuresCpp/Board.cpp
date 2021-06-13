@@ -8,6 +8,7 @@ Board::Board(std::vector<BaseObject*>& you)
 	m_background.setFillColor(BOARD_COLOR);
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
+	Word::m_wordAttributes.insert(new PushWord());
 
 	//m_you = std::make_unique<Baba>();
 }

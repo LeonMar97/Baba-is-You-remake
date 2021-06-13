@@ -1,6 +1,6 @@
 #include "PushWord.h"
 
-std::unordered_set<Attribute*> Word::m_wordAttributes = std::unordered_set<Attribute*>{ new PushWord({0,0}) };
+std::unordered_set<Attribute*> Word::m_wordAttributes = std::unordered_set<Attribute*>{};
 
 Word::Word(const std::string& word, const AnimationData& animationData,
 	Direction dir, const sf::Vector2u& loc)

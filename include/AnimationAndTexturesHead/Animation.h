@@ -10,7 +10,6 @@ class Animation
 public:
     Animation(const AnimationData& data, Direction dir, sf::Sprite& sprite);
     void direction(Direction dir);
-    Direction getDirection();
     void update(sf::Time delta);
 
 private:

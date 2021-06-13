@@ -13,9 +13,6 @@ Animation::Animation(const AnimationData& data, Direction dir, sf::Sprite& sprit
     update();
 }
 
-Direction Animation::getDirection() {
-    return m_dir;
-}
 
 void Animation::direction(Direction dir)
 {

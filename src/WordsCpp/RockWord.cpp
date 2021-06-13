@@ -15,6 +15,3 @@ void RockWord::replaceObjInLocation(BaseObject*& cur) {
 std::unordered_set<Attribute*>& RockWord::getStaticRepresentation() {
 	return Rock::m_rockAttributes;
 }
-std::unordered_set<Attribute*>& RockWord::getStatic() {
-	return Word::getStatic();
-}
