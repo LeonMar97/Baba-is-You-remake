@@ -3,6 +3,7 @@
 									"Is.cpp"
 									"BabaWord.cpp"
 									"RockWord.cpp"
+									"PushWord.cpp"
 									"YouWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"

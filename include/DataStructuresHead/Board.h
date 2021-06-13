@@ -13,6 +13,7 @@
 #include "BabaWord.h"
 #include "YouWord.h"
 #include "WinWord.h"
+#include "PushWord.h"
 #include"DataHolder.h"
 #include"BaseDataHolder.h"
 #include "RuleHandling.h"

@@ -11,6 +11,7 @@ enum GameObjects {
     nouns_t,
     babaword_t,
     rockword_t,
+    pushword_t,
 
     conjunctions_t,
     is_t,

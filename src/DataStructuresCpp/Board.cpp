@@ -13,10 +13,10 @@ Board::Board(std::vector<BaseObject*>& you)
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-void Board::addGameObj(char p, sf::Vector2u loc){
+void Board::addGameObj(char character, sf::Vector2u loc){
 	BaseObject* baseObj;
 	Word* wordObj;
-	switch (p)
+	switch (character)
 	{
 	case 'B':
 		baseObj = new Baba(loc);
@@ -49,8 +49,12 @@ void Board::addGameObj(char p, sf::Vector2u loc){
 		wordObj = new WinWord(loc);
 		m_map.push_back(wordObj);
 		break;
+	case 'p':
+		wordObj = new PushWord(loc);
+		m_map.push_back(wordObj);
+		break;
 	default:
-		throw std::invalid_argument(((std::string(1, p)
+		throw std::invalid_argument(((std::string(1, character)
 						+ " is not a supprorted command, to see supported commands please go to README\n")).data());
 		break;
 	}
@@ -66,6 +70,7 @@ void Board::initialize(FileHandler& map) {
 			 addGameObj(currentChar, loc);
 		}
 	}
+	lookForRules();
 }
 
 //drawing the board on requested screen..

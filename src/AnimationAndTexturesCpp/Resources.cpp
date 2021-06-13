@@ -140,6 +140,18 @@ Resources::Resources()
 			std::make_pair<Direction, int>(Direction::Stay, 3)
         }
     ); 
+    m_data[pushword_t] = readData(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(47, 1008),
+        sf::Vector2i(0, 0),
+        directionInitArray{
+            std::make_pair<Direction, int>(Direction::Right, 0),
+            std::make_pair<Direction, int>(Direction::Left, 0),
+            std::make_pair<Direction, int>(Direction::Up, 0),
+            std::make_pair<Direction, int>(Direction::Down, 0),
+            std::make_pair<Direction, int>(Direction::Stay, 3)
+        }
+    );
     m_data[rocks_t] = readData(
         sf::Vector2i(24, 24),
         sf::Vector2i(361, 505),
