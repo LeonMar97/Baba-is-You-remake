@@ -21,6 +21,8 @@ public:
 	//getting a location in the board for which a new representaion of the current noun will be created instead of it.
 	virtual  void replaceObjInLocation(BaseObject*&)=0;
 
+	virtual std::unordered_set<Attribute*>& getStatic() = 0;
+	virtual std::unordered_set<Attribute*>& getStaticRepresentation() = 0;
 	std::type_index baseTypeId()override;
 private:
 	char m_objectCreationChar;

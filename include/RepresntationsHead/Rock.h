@@ -11,7 +11,8 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static std::unordered_set<Attribute*>m_rockAtributes;//static attributes for all babas
+	static std::unordered_set<Attribute*>m_rockAttributes;//static attributes for all babas
+	std::unordered_set<Attribute*>& getStatic() override;
 
 private:
 };

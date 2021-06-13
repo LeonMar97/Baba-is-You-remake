@@ -11,6 +11,7 @@ public:
 
 	//--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static std::unordered_set<Attribute*>m_babaAtributes;//static attributes for all babas
+	static std::unordered_set<Attribute*>m_babaAttributes;//static attributes for all babas
+	std::unordered_set<Attribute*>& getStatic() override;
 private:
 };

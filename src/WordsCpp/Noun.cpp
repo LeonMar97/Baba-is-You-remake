@@ -18,7 +18,7 @@ std::type_index Noun::baseTypeId() {
 }
 //adds atribute if rull is made 
 void Noun::fillAttributes(Attribute* atr) {
-	this->getStatic().emplace(atr);
+	this->getStaticRepresentation().emplace(atr);
 }
 //removes all of the atributes of the current Noun refrences static member if its objects class 
 void Noun::removeAttribute(Attribute* atr) {

@@ -3,5 +3,5 @@
 class PushWord :public Attribute{
 public:
 	PushWord(const sf::Vector2u& loc);
-	//void handleCollision(Board *board, BaseObject* obj) override;
+	void handleCollision(BaseObject*, BaseObject* obj) override;
 };

@@ -29,6 +29,15 @@ void BaseObject::move(const sf::Vector2i& dir) {
 sf::Vector2f BaseObject:: returnPos()const {
 	return m_sprite.getPosition();
 }
+sf::Vector2f BaseObject:: returnLastPos()const {
+	return m_lastPos;
+}
+
+//triggeting attributes once a collision is detected
+void BaseObject::triggerAttribute(BaseObject* objectMoved) {
+	//dont forget to make sure the set is sorted
+	(*getStatic().begin())->handleCollision(objectMoved, this);
+}
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~collisions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,8 +45,8 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 	return m_sprite.getGlobalBounds().intersects(obj->m_sprite.getGlobalBounds());
 }
 
-void BaseObject::handleCollision(Board* board, BaseObject* obj) {
-	obj->m_sprite.setPosition(obj->m_lastPos);
+void BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
+	//obj->m_sprite.setPosition(obj->m_lastPos);
 }
 std::type_index BaseObject::baseTypeId() {
 	 return typeid(BaseObject);

@@ -18,23 +18,15 @@ public:
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
 	
 
-	/// <summary>
-	///DONT FORGET TO MAKE IT DUCKING ABSTRCUT STUPID !!!!!!!!
-	/// !!!!!!!!!!!!
-	/// !!!!!!!!!!!!!!
-	/// !!!!!!!!!!!
-	/// !!!!!!!!!!!!!!
-	/// !!!!!!!!!!!
-	/// 
-	/// </summary>
-	/// <returns></returns>
-	virtual std::unordered_set<Attribute*>& getStatic() { return *(new std::unordered_set<Attribute*>()); } //returns spesific static varible which located at each derived class
+	virtual std::unordered_set<Attribute*>& getStatic() = 0;
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
-	virtual void handleCollision(Board *board, BaseObject* obj);
+	virtual void handleCollision(BaseObject*, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
+	sf::Vector2f returnLastPos()const;
+	void triggerAttribute(BaseObject*);
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 protected:
