@@ -32,14 +32,14 @@ public:
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
-	void handleCollision(Board *board, BaseObject* obj);
+	virtual void handleCollision(Board *board, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 protected:
-private:
 	sf::Sprite m_sprite;
 	Animation m_animation;
 	sf::Vector2f m_lastPos;
+private:
 };

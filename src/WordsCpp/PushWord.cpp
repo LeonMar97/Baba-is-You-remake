@@ -4,3 +4,4 @@ PushWord::PushWord(const sf::Vector2u& loc)
 {
 	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
+
