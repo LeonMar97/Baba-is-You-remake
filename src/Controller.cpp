@@ -73,9 +73,9 @@ void Controller::startGame() {
 		{
 			switch (event.type)
 			{
-				break;
+				
 			case sf::Event::KeyPressed:
-				for (auto& you : m_you)
+				for (auto& you : m_you) {
 					if (event.key.code == sf::Keyboard::Right)
 						you->move(RIGHT_DIR);
 					else if (event.key.code == sf::Keyboard::Left)
@@ -84,11 +84,12 @@ void Controller::startGame() {
 						you->move(UP_DIR);
 					else if (event.key.code == sf::Keyboard::Down)
 						you->move(DOWN_DIR);
-					else if (event.key.code == sf::Keyboard::Escape) {
-						m_gameWindow.close();
-						break;
-					}
 					else break;
+				}
+				if (event.key.code == sf::Keyboard::Escape) {
+					m_gameWindow.close();
+					break;
+				}
 				for (auto you : m_you)
 					m_mapOnScreen->checkCollisions(you);
 				m_mapOnScreen->lookForRules();
