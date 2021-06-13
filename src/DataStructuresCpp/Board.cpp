@@ -86,34 +86,58 @@ void Board::checkCollisions(BaseObject* cur) {
 	}
 }
 
-void Board::lookForRules() {
+//check for triples of sprites in board using pre-defined functions to
+void Board::searchTriples(std::vector<baseObjTuple>& vec,
+	std::function<float(const sf::Vector2f&)> mainCoordinate,
+	std::function<float(const sf::Vector2f&)> secondaryCoordinate)
+	{
+	std::sort(m_map.begin(), m_map.end(), [&](BaseObject* baseObj1, BaseObject* baseObj2) {
+		return mainCoordinate(baseObj1->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
-	auto potentialNewRuleVec = std::vector<baseObjTuple>();
 	std::stable_sort(m_map.begin(), m_map.end(),
-		[&](BaseObject* a, BaseObject* b) { return a->returnPos().x < b->returnPos().x; });
-	std::stable_sort(m_map.begin(), m_map.end(),
-		[&](BaseObject* a, BaseObject* b) { return a->returnPos().y < b->returnPos().y; });
+		[&](BaseObject* baseObj1, BaseObject* baseObj2) {
+			if (mainCoordinate(baseObj1->returnPos()) == mainCoordinate(baseObj2->returnPos()))
+				return secondaryCoordinate(baseObj1->returnPos()) < secondaryCoordinate(baseObj2->returnPos());
+			else return mainCoordinate(baseObj2->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
-	for (auto beginSequence = m_map.begin(), endSequence = beginSequence + 2;
-		endSequence + 2 < m_map.end();
-		beginSequence++, endSequence++) {
-		auto beginPosX = (*beginSequence)->returnPos().x,
-			endPosX = (*endSequence)->returnPos().x,
-			beginPosY = (*beginSequence)->returnPos().y,
-			endPosY = (*endSequence)->returnPos().y;
+	sf::Vector2f firstPos, secondPos, thirdPos;
+	for (auto first = m_map.begin(); first < m_map.end() - 2; first++) {
+		firstPos = (*first)->returnPos();
+		for (auto second = first; second < m_map.end() - 1; second++) {
+			secondPos = (*second)->returnPos();
+				//if second coordinate is not on same col/row as first or is farther than 1 unit
+			if (mainCoordinate(firstPos) != mainCoordinate(secondPos) || 
+				secondaryCoordinate(firstPos) + 1*OBJECT_SIZE < secondaryCoordinate(secondPos)) break;
+			for (auto third = second; third < m_map.end(); third++) {
+				thirdPos = (*third)->returnPos();
 
-		if (beginPosX == endPosX && beginPosY == endPosY - 2*50) {
-		//	potentialNewRuleVec.emplace_back(**beginSequence, **(beginSequence + 1), **endSequence);
+				//if third coordinate is not on same col/row as second or is farther than 1 unit
+				if (mainCoordinate(secondPos) != mainCoordinate(thirdPos) ||
+					secondaryCoordinate(secondPos) + 1*OBJECT_SIZE < secondaryCoordinate(thirdPos))
+					break;
+
+				//check if the triple is on same row and consecutive cols / same col consecutive rows
+				if (mainCoordinate(secondPos) - mainCoordinate(firstPos) == 0 &&
+					mainCoordinate(thirdPos) - mainCoordinate(firstPos) == 0 &&
+					secondaryCoordinate(secondPos) - secondaryCoordinate(firstPos) == OBJECT_SIZE &&
+					secondaryCoordinate(thirdPos) - secondaryCoordinate(secondPos) == OBJECT_SIZE){
+
+					vec.emplace_back(baseObjTuple(*first, *second, *third)); //a valid triple is found
+				}
+			}
 		}
 	}
+}
 
-	BaseObject* p1 = new BabaWord(sf::Vector2u(2, 3));
-	BaseObject* p2 = new Is(sf::Vector2u(2, 4));
-	BaseObject* p3 = new RockWord(sf::Vector2u(2, 5));
-	auto p = baseObjTuple(p1, p2, p3);
-	std::vector<baseObjTuple>vec;
-	vec.push_back(p);
-	m_ruleHandler.processCollision(vec,*this);
+void Board::lookForRules() {
+
+	auto getXCoordinate = [&](const sf::Vector2f& vec) {return vec.x; };
+	auto getYCoordinate = [&](const sf::Vector2f& vec) {return vec.y; };
+	auto potentialNewRuleVec = std::vector<baseObjTuple>();
+	searchTriples(potentialNewRuleVec, getXCoordinate, getYCoordinate);
+	searchTriples(potentialNewRuleVec, getYCoordinate, getXCoordinate);
+	//perform stable sort on position of vectors (first x coordinate, then y coordinate)
+	m_ruleHandler.processCollision(potentialNewRuleVec, *this);
 }
 
 /*

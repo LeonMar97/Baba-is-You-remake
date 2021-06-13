@@ -2,6 +2,7 @@
 #include"FileHandler.h"
 #include "BaseObject.h"
 #include<array>
+#include <functional>
 #include"Word.h"
 #include <cstdlib>
 #include "Resources.h"
@@ -47,4 +48,7 @@ private:
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
 	void updateRules(std::vector<ruleTuple>& currentRules);
+	void searchTriples(std::vector<baseObjTuple>& vec,
+		std::function<float(const sf::Vector2f&)> mainCoordinate,
+		std::function<float(const sf::Vector2f&)> secondaryCoordinate);
 };
