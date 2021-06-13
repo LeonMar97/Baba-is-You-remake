@@ -13,7 +13,7 @@ public:
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color,
 		char objectCreationChar, GameObjects objectCreationCharEnum);
 	virtual  void fillAttributes(Attribute *atr);
-	virtual  void removeAttributes(Attribute*);//might be deleted later
+	virtual  void removeAttribute(Attribute*);//might be deleted later
 	void putRuleIntoAffect(Noun&, Board&) override;
 	//rule removing doesnt effect the noun but needed empty for polymorphic 
 		//prefrences when attribte thus created in class predicate virtually 

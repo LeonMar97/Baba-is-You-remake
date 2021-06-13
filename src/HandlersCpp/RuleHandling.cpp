@@ -7,7 +7,7 @@
 void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesOnBoard ,Board & b)
 {
 	 std::vector<ruleTuple> currentRules;
-	 m_currentTripplesOnBoard = &currentRules;
+	 m_currentRulesOnBoard = &currentRules;
 	for (auto &potentialRule : currentTripplesOnBoard) {
 		//looks if the current ordered tuple is a rule
 		if (auto updateFunPtr = lookup(std::get<0>(potentialRule)->baseTypeId(), std::get<1>(potentialRule)->baseTypeId(),
@@ -47,7 +47,7 @@ void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 	
 	auto ncaRule=ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
 		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Attribute*>(std::get<2>(currentRule)));
-	m_currentTripplesOnBoard->push_back(ncaRule);
+	m_currentRulesOnBoard->push_back(ncaRule);
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -55,7 +55,7 @@ void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
 	auto ncnRule = ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
 		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Noun*>(std::get<2>(currentRule)));
-	m_currentTripplesOnBoard->push_back(ncnRule);
+	m_currentRulesOnBoard->push_back(ncnRule);
 }
 
 
@@ -68,41 +68,28 @@ void RuleHandling::updateRules(Board &b) {
 	
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < m_Rules.size(); ruleIndex++) {
-		unsigned int amountOfRules = m_currentTripplesOnBoard->size();
+		unsigned int amountOfRules = m_currentRulesOnBoard->size();
 		for (unsigned int newRuleIndex = 0; newRuleIndex < amountOfRules; newRuleIndex++) {
-			if ((m_Rules[ruleIndex]) == ((*m_currentTripplesOnBoard)[newRuleIndex])) {
-
-				typedef std::tuple<Noun*, Conjunction*, Word*> tupp;
-				auto a = tupp(
-					new BabaWord({ 0, 0 }), new Is({ 0,0 }), new RockWord({ 0,0 }));
-				auto a2 = tupp(
-					new BabaWord({ 0, 0 }), new Is({ 0,0 }), new RockWord({ 0,0 }));
-
-				a = a2;
-
-				m_Rules.erase(m_Rules.cbegin() ); //remove new rule because it already exists
-			}
-/*
-
-			ruleAlreadyExists = true;
+			if ((m_Rules[ruleIndex]) == ((*m_currentRulesOnBoard)[newRuleIndex])) {
+				(m_currentRulesOnBoard)->erase(m_Rules.begin()+newRuleIndex ); //remove new rule because it already exists
+						ruleAlreadyExists = true;
 				break;
 			}
 		}
 		if (!ruleAlreadyExists) {
-				std::get<2>(m_Rules[ruleIndex]).deleteRule(std::get<0>(m_Rules[ruleIndex]));
+				(std::get<2>(m_Rules[ruleIndex]))->deleteRule(*(std::get<0>(m_Rules[ruleIndex])));
 				m_Rules.erase(m_Rules.begin() + ruleIndex); //remove old rule because it is no longer on map
 			}
 		}
-	*/
-	/*
-	for (auto& newRule : newRules) {
+	
+	
+	for (auto& newRule : (*m_currentRulesOnBoard)) {
 		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
 	}
 
-	*/
+	
 		}
 
-	}
-}
+
 
 

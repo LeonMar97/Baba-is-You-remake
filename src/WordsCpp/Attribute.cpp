@@ -4,7 +4,7 @@ void Attribute::putRuleIntoAffect(Noun& noun, Board& board) {
 	noun.fillAttributes(this);
 }
 void Attribute::removeRule(Noun* noun) {
-	noun->removeAttributes(this);
+	noun->removeAttribute(this);
 }
 
 std::type_index Attribute::baseTypeId() {
@@ -12,5 +12,5 @@ std::type_index Attribute::baseTypeId() {
 }
 
 void Attribute:: deleteRule(Noun& curNoun) {
-	curNoun.removeAttributes(this);
+	curNoun.removeAttribute(this);
 }

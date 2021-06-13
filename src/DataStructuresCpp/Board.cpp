@@ -103,7 +103,7 @@ void Board::lookForRules() {
 			endPosY = (*endSequence)->returnPos().y;
 
 		if (beginPosX == endPosX && beginPosY == endPosY - 2*50) {
-			potentialNewRuleVec.emplace_back(**beginSequence, **(beginSequence + 1), **endSequence);
+		//	potentialNewRuleVec.emplace_back(**beginSequence, **(beginSequence + 1), **endSequence);
 		}
 	}
 

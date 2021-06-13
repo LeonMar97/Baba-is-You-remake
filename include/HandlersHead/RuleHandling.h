@@ -28,7 +28,7 @@ private:
 	void updateRulesNCN(baseObjTuple& currentRule);
 
 	void updateRules(Board& b);
-	std::vector<ruleTuple>*m_currentTripplesOnBoard;
+	std::vector<ruleTuple>* m_currentRulesOnBoard;
 	RuleToFunctionMap initializeCollisionMap();
 	FunctionPtr lookup(const std::type_index& class1, const std::type_index& class2, const std::type_index& class3);
 
