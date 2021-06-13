@@ -84,7 +84,7 @@ void RuleHandling::updateRules(Board &b) {
 	
 	
 	for (auto& newRule : (*m_currentRulesOnBoard)) {
-		std::get<2>(newRule).putRuleIntoAffect(std::get<0>(newRule), *this);
+		std::get<2>(newRule)->putRuleIntoAffect((*std::get<0>(newRule)),b);
 	}
 
 	
