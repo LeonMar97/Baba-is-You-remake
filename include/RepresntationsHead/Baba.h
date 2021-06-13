@@ -7,6 +7,8 @@ class Baba : public BaseObject{
 public:
 	//--------------public--------functions-----------------------//
 	Baba(const sf::Vector2u& loc);//constractor for static member
+	std::type_index wordTypeId()override;
+
 	//--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
 	static std::unordered_set<Attribute*>m_babaAtributes;//static attributes for all babas

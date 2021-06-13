@@ -6,3 +6,7 @@ Rock::Rock(const sf::Vector2u& loc)
 {
 	
 }
+
+std::type_index Rock::wordTypeId() {
+	return typeid(RockWord);
+}

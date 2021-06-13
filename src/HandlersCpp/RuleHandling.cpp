@@ -72,11 +72,8 @@ void RuleHandling::updateRules(Board &b) {
 	
 	updateRulesVector(m_AllRulesNCA, &m_RulesInGameNCA);
 	updateRulesVector(m_AllRulesNCN, &m_RulesInGameNCN);
-	/*
-	for (auto& newRule : (*m_currentRulesOnBoard)) {
-		std::get<2>(newRule)->putRuleIntoAffect((*std::get<0>(newRule)), b);
-	}
-	*/
+	addNewNCN(b);
+	addNewNCA();
 
 	
 }
@@ -101,8 +98,24 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 			rules->erase(rules->begin() + ruleIndex); //remove old rule because it is no longer on map
 		}
 	}
+	
 }
 
+void RuleHandling::addNewNCA() {
+	//triggering new attributes and inserting the current new rule in his vector 
+	for (auto& ruleToAdd : *m_AllRulesNCA) {
+		static_cast<Attribute*>(std::get<2>(ruleToAdd))->putRuleIntoAffect(*std::get<0>(ruleToAdd));
+		m_RulesInGameNCA.push_back(ruleToAdd);
+	}
+	m_AllRulesNCA = nullptr;//not neccesery but to state a point ..
+}
 
+void RuleHandling::addNewNCN(Board &b) {
+	for (auto& ruleToAdd : *m_AllRulesNCN) {//for each rule
+		b.replaceObjects(*std::get<0>(ruleToAdd),*static_cast<Noun*>(std::get<2>(ruleToAdd)));
+		m_RulesInGameNCN.push_back(ruleToAdd);
+	}
+	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
 
+}
 

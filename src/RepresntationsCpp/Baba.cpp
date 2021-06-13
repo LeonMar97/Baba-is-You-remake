@@ -6,3 +6,6 @@ Baba::Baba(const sf::Vector2u& loc)
 {
 	
 }
+std::type_index Baba::wordTypeId() {
+	return typeid(BabaWord);
+}

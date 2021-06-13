@@ -1,6 +1,6 @@
 #include "Attribute.h"
 
-void Attribute::putRuleIntoAffect(Noun& noun, Board& board) {
+void Attribute::putRuleIntoAffect(Noun& noun) {
 	noun.fillAttributes(this);
 }
 void Attribute::removeRule(Noun* noun) {

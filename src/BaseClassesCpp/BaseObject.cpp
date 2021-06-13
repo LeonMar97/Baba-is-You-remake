@@ -42,3 +42,10 @@ void BaseObject::handleCollision(Board* board, BaseObject* obj) {
 std::type_index BaseObject::baseTypeId() {
 	 return typeid(BaseObject);
 }
+
+std::type_index BaseObject::wordTypeId() {
+	return typeid(*this);
+}
+sf::Vector2u BaseObject::castToLoc(sf::Vector2f spritePos) {
+	return sf::Vector2u(spritePos.y / OBJECT_SIZE, spritePos.x / OBJECT_SIZE);
+}

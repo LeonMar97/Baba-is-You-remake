@@ -16,6 +16,8 @@ public:
 
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
+	
+
 	/// <summary>
 	///DONT FORGET TO MAKE IT DUCKING ABSTRCUT STUPID !!!!!!!!
 	/// !!!!!!!!!!!!
@@ -33,6 +35,8 @@ public:
 	void handleCollision(Board *board, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
+	virtual std::type_index wordTypeId();
+	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 protected:
 private:
 	sf::Sprite m_sprite;

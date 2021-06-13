@@ -8,3 +8,8 @@ BabaWord::BabaWord(const sf::Vector2u& loc)
 std::unordered_set<Attribute*>& BabaWord::getStatic() {
 	return Baba::m_babaAtributes;
 }
+void BabaWord::replaceObjInLocation(BaseObject*& cur) {
+	auto loc=castToLoc(cur->returnPos());
+	delete(cur);
+	cur = new Baba(loc);
+}

@@ -7,10 +7,11 @@ class Rock : public BaseObject{
 public:
 	//--------------public--------functions-----------------------//
 	Rock(const sf::Vector2u& loc);//constractor for static member
-	//--------------private--------functions-----------------------//		
+	std::type_index wordTypeId()override;
+
+								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
 	static std::unordered_set<Attribute*>m_rockAtributes;//static attributes for all babas
-
 
 private:
 };

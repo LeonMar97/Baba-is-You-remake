@@ -40,6 +40,8 @@ private:
 	void updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules);
 	RuleToFunctionMap initializeCollisionMap();
 	FunctionPtr lookup(const std::type_index& class1, const std::type_index& class2, const std::type_index& class3);
+	void addNewNCA();
+	void addNewNCN(Board& b);
 
 };	
 
