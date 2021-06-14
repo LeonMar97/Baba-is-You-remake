@@ -28,6 +28,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		baseObj = new Rock(loc);
 		m_map.push_back(baseObj);
 		break;
+	case 'K':
+		baseObj = new Wall(loc);
+		m_map.push_back(baseObj);
+		break;
 	case ' ':
 		break;
 	case 'i':
@@ -36,6 +40,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
+		m_map.push_back(wordObj);
+		break;
+	case 'k':
+		wordObj = new WallWord(loc);
 		m_map.push_back(wordObj);
 		break;
 	case 'r':
@@ -52,6 +60,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'p':
 		wordObj = new PushWord(loc);
+		m_map.push_back(wordObj);
+		break;
+	case 's':
+		wordObj = new StopWord(loc);
 		m_map.push_back(wordObj);
 		break;
 	default:
@@ -85,9 +97,10 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 void Board::checkCollisions(BaseObject* cur) {
 	for (auto& obj : m_map) {
 		if (cur->collidesWith(obj) && obj != cur) {
-			if(obj->triggerAttribute(cur))
+			if (obj->triggerAttribute(cur)) {
 				checkCollisions(obj);//check collision as a result of current collision handling
-			return;
+				return;
+			}
 		}
 	}
 }

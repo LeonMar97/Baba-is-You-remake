@@ -7,11 +7,14 @@ enum GameObjects {
     babas_t,
     rocks_t,
     flags_t,
+    walls_t,
 
     nouns_t,
     babaword_t,
     rockword_t,
+    wallword_t,
     pushword_t,
+    stopword_t,
 
     conjunctions_t,
     is_t,

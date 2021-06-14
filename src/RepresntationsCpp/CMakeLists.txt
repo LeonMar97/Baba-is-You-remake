@@ -1,2 +1,4 @@
 ﻿target_sources (oop2_ex04 PRIVATE	"Rock.cpp"	
-									"Baba.cpp")
+									"Baba.cpp"
+									"Wall.cpp"
+									)

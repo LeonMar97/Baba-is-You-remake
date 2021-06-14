@@ -85,11 +85,11 @@ void RuleHandling::updateRules(Board &b) {
 void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules ) {
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < rules->size(); ruleIndex++) {
+		ruleAlreadyExists = false;
 		unsigned int amountOfRules = currentRulesOnBoard->size();
 		for (unsigned int newRuleIndex = 0; newRuleIndex < currentRulesOnBoard->size(); newRuleIndex++) {
-			if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
+		if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
 				(currentRulesOnBoard)->erase(currentRulesOnBoard->begin() + newRuleIndex); //remove new rule because it already exists
-				
 				ruleAlreadyExists = true;
 				break;
 			}

@@ -5,6 +5,8 @@
 									"RockWord.cpp"
 									"PushWord.cpp"
 									"YouWord.cpp"
+									"WallWord.cpp"
+									"StopWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"
 									"Attribute.cpp"

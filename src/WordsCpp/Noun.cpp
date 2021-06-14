@@ -22,8 +22,9 @@ void Noun::fillAttributes(Attribute* atr) {
 }
 //removes all of the atributes of the current Noun refrences static member if its objects class 
 void Noun::removeAttribute(Attribute* atr) {
-	auto del = this->getStaticRepresentation().find(atr);
-	this->getStaticRepresentation().erase(del);
+	auto &attributes = this->getStaticRepresentation();
+	auto del = attributes.find(atr);
+	attributes.erase(del);
 }
 
 

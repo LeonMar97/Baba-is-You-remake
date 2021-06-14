@@ -152,6 +152,18 @@ Resources::Resources()
             std::make_pair<Direction, int>(Direction::Stay, 3)
         }
     );
+    m_data[stopword_t] = readData(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(288, 1008),
+        sf::Vector2i(0, 0),
+        directionInitArray{
+            std::make_pair<Direction, int>(Direction::Right, 0),
+            std::make_pair<Direction, int>(Direction::Left, 0),
+            std::make_pair<Direction, int>(Direction::Up, 0),
+            std::make_pair<Direction, int>(Direction::Down, 0),
+            std::make_pair<Direction, int>(Direction::Stay, 3)
+        }
+    );
     m_data[rocks_t] = readData(
         sf::Vector2i(24, 24),
         sf::Vector2i(361, 505),
@@ -167,6 +179,30 @@ Resources::Resources()
     m_data[rockword_t] = readData(
         sf::Vector2i(24, 24),
         sf::Vector2i(265, 793),
+        sf::Vector2i(0, 0),
+        directionInitArray{
+			std::make_pair<Direction, int>(Direction::Right, 0),
+			std::make_pair<Direction, int>(Direction::Left, 0),
+			std::make_pair<Direction, int>(Direction::Up, 0),
+			std::make_pair<Direction, int>(Direction::Down, 0),
+			std::make_pair<Direction, int>(Direction::Stay, 3)
+        }
+    ); 
+    m_data[walls_t] = readData(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(0, 1368),
+        sf::Vector2i(0, 0),
+        directionInitArray{
+			std::make_pair<Direction, int>(Direction::Right, 0),
+			std::make_pair<Direction, int>(Direction::Left, 0),
+			std::make_pair<Direction, int>(Direction::Up, 0),
+			std::make_pair<Direction, int>(Direction::Down, 0),
+			std::make_pair<Direction, int>(Direction::Stay, 3)
+        }
+    ); 
+    m_data[wallword_t] = readData(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(648, 792),
         sf::Vector2i(0, 0),
         directionInitArray{
 			std::make_pair<Direction, int>(Direction::Right, 0),
