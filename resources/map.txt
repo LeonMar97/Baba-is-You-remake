@@ -7,7 +7,7 @@
         B                     
                               
                               
-        R                     
+        R        B            
                biy            
                rip            
         R                     

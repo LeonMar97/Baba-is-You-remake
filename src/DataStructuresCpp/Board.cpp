@@ -8,7 +8,7 @@ Board::Board(std::vector<BaseObject*>& you)
 	m_background.setFillColor(BOARD_COLOR);
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
-	Word::m_wordAttributes.insert(new PushWord());
+	Word::m_wordAttributes.insert(new PushWord()); //all words can be pushed
 
 	//m_you = std::make_unique<Baba>();
 }
@@ -85,22 +85,23 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 void Board::checkCollisions(BaseObject* cur) {
 	for (auto& obj : m_map) {
 		if (cur->collidesWith(obj) && obj != cur) {
-			obj->triggerAttribute(cur);
-			//obj->handleCollision(this, cur);
-			checkCollisions(obj);//check collision as a result of current collision handling
+			if(obj->triggerAttribute(cur))
+				checkCollisions(obj);//check collision as a result of current collision handling
 			return;
 		}
 	}
 }
 
-//check for triples of sprites in board using pre-defined functions to
+//check for triples of sprites in board using pre-defined functions
 void Board::searchTriples(std::vector<baseObjTuple>& vec,
-	std::function<float(const sf::Vector2f&)> mainCoordinate,
+	std::function<float(const sf::Vector2f&)> mainCoordinate, 
 	std::function<float(const sf::Vector2f&)> secondaryCoordinate)
 	{
+	//sort based on main coordinates
 	std::sort(m_map.begin(), m_map.end(), [&](BaseObject* baseObj1, BaseObject* baseObj2) {
 		return mainCoordinate(baseObj1->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
+	//sorting secondary coordinates without changing previous order based on main coordinates
 	std::stable_sort(m_map.begin(), m_map.end(),
 		[&](BaseObject* baseObj1, BaseObject* baseObj2) {
 			if (mainCoordinate(baseObj1->returnPos()) == mainCoordinate(baseObj2->returnPos()))
@@ -123,7 +124,7 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 					secondaryCoordinate(secondPos) + 1*OBJECT_SIZE < secondaryCoordinate(thirdPos))
 					break;
 
-				//check if the triple is on same row and consecutive cols / same col consecutive rows
+				//check if the triple is on same row/col and consecutive cols/ rows accordingly
 				if (mainCoordinate(secondPos) - mainCoordinate(firstPos) == 0 &&
 					mainCoordinate(thirdPos) - mainCoordinate(firstPos) == 0 &&
 					secondaryCoordinate(secondPos) - secondaryCoordinate(firstPos) == OBJECT_SIZE &&
@@ -143,13 +144,12 @@ void Board::lookForRules() {
 	auto potentialNewRuleVec = std::vector<baseObjTuple>();
 	searchTriples(potentialNewRuleVec, getXCoordinate, getYCoordinate);
 	searchTriples(potentialNewRuleVec, getYCoordinate, getXCoordinate);
-	//perform stable sort on position of vectors (first x coordinate, then y coordinate)
 	m_ruleHandler.processCollision(potentialNewRuleVec, *this);
 }
 void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 	const auto& replaceWithId = typeid(toReplace);
 	for (auto& cur : m_map) {
-		//neccecry to check because BABA OBJECT needs to be changed to "baba word" first, 
+		//necessary to check because BABA OBJECT needs to be changed to "baba word" first, 
 			//then to check wheter it is the same noun for creating the replacement noun- 
 				//-representation Object, and replacing the current on board 
 

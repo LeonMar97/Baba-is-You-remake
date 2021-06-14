@@ -26,7 +26,7 @@ public:
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 	sf::Vector2f returnLastPos()const;
-	void triggerAttribute(BaseObject*);
+	bool triggerAttribute(BaseObject*);
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 protected:
