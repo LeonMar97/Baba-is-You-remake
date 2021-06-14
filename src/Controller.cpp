@@ -89,7 +89,7 @@ void Controller::startGame() {
 					m_gameWindow.close();
 					break;
 				}
-				for (auto you : m_you)
+				for (auto &you : m_you)
 					m_mapOnScreen->checkCollisions(you);
 				m_mapOnScreen->lookForRules();
 				break;
