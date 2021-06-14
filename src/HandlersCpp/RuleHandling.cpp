@@ -97,6 +97,7 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 		if (!ruleAlreadyExists) {
 			(std::get<2>((*rules)[ruleIndex]))->deleteRule(*(std::get<0>((*rules)[ruleIndex])));
 			rules->erase(rules->begin() + ruleIndex); //remove old rule because it is no longer on map
+			ruleIndex--;
 		}
 	}
 }
