@@ -4,6 +4,7 @@
 #include "Macros.h"
 #include <typeinfo>
 #include <typeindex>
+#include "Direction.h"
 
 #include "Resources.h"
 #include<unordered_set>
@@ -20,8 +21,9 @@ public:
 
 	virtual std::unordered_set<Attribute*>& getStatic() = 0;
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
-	void move(const sf::Vector2i&);
+	void move(const Direction&);
 	bool collidesWith(BaseObject*);
+	Direction getDir();
 	virtual bool handleCollision(BaseObject*, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;

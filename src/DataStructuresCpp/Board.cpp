@@ -171,10 +171,10 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 	}
 }
 
-void Board::moveYou(sf::Vector2i dir) {
+void Board::moveYou(const Direction& dir) {
 	for (auto& curObj : m_map) {
-		auto attributes = curObj->getStatic();
-		for (auto &it :attributes) {
+		auto &attributes = curObj->getStatic();
+		for (auto &it : attributes) {
 			if (it->move(*curObj, dir))
 				checkCollisions(curObj);
 				break;

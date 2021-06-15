@@ -21,9 +21,14 @@ void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
 	window.draw(m_sprite);
 }
 
-void BaseObject::move(const sf::Vector2i& dir) {
+void BaseObject::move(const Direction& dir) {
 	m_lastPos = m_sprite.getPosition();
-	m_sprite.move(50.f * sf::Vector2f(dir));
+	m_sprite.move(50.f * toVector(dir));
+	m_animation.direction(dir);
+}
+
+Direction BaseObject::getDir() {
+	return m_animation.getDir();
 }
 
 sf::Vector2f BaseObject:: returnPos()const {

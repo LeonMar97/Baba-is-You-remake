@@ -6,6 +6,7 @@
 #include"Word.h"
 #include <cstdlib>
 #include "Resources.h"
+#include "Direction.h"
 #include "Baba.h"
 #include "Is.h"
 #include "Wall.h"
@@ -33,7 +34,7 @@ public:
 	void checkCollisions(BaseObject*);
 	void lookForRules();
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
-	void moveYou(sf::Vector2i dir);
+	void moveYou(const Direction& dir);
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);

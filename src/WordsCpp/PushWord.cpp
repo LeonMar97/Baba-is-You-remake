@@ -11,7 +11,8 @@ PushWord::PushWord()
 }
 
 bool PushWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
-	passiveObj->move((sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / OBJECT_SIZE)));
+	passiveObj->move(activeObj->getDir());
+	//passiveObj->move((sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / OBJECT_SIZE)));
 	return true;
 	//passiveObj->move({ -5, 0 });
 }

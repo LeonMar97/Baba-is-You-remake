@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include "FileHandler.h"
 #include "BaseObject.h"
+#include "Direction.h"
 #include "Menu.h"
 
 class Controller {

@@ -40,7 +40,7 @@ void Controller::settingFontsAndSounds() {
 //part of start game - maybe put in later
 
 void Controller::startGame() {
-	sf::Vector2i dir;
+	Direction dir;
 	//for making board visible entirely independent of screen size
 	 setView();
 	
@@ -57,17 +57,15 @@ void Controller::startGame() {
 		{
 			switch (event.type)
 			{
-				dir = { 0,0 };
-
 			case sf::Event::KeyPressed:
 				if (event.key.code == sf::Keyboard::Right)
-					dir = RIGHT_DIR;
+					dir = Direction::Right;
 				else if (event.key.code == sf::Keyboard::Left)
-					dir = LEFT_DIR;
+					dir = Direction::Left;
 				else if (event.key.code == sf::Keyboard::Up)
-					dir = UP_DIR;
+					dir = Direction::Up;
 				else if (event.key.code == sf::Keyboard::Down)
-					dir = DOWN_DIR;
+					dir = Direction::Down;
 
 				if (event.key.code == sf::Keyboard::Escape) {
 					m_gameWindow.close();

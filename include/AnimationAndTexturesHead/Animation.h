@@ -11,6 +11,7 @@ public:
     Animation(const AnimationData& data, Direction dir, sf::Sprite& sprite);
     void direction(Direction dir);
     void update(sf::Time delta);
+    Direction getDir();
 
 private:
     void update();

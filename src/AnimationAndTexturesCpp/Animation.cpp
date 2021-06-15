@@ -25,6 +25,10 @@ void Animation::direction(Direction dir)
     update();
 }
 
+Direction Animation::getDir() {
+    return m_dir;
+}
+
 void Animation::update(sf::Time delta)
 {
     m_elapsed += delta;

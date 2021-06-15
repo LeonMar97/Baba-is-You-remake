@@ -11,6 +11,7 @@ StopWord::StopWord()
 }
 
 bool StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
-	activeObj->move(sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / -OBJECT_SIZE));
+	activeObj->move(opposite(activeObj->getDir()));
+	//activeObj->move(sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / -OBJECT_SIZE));
 	return true;
 }
