@@ -41,7 +41,7 @@ void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
 void BaseObject::move(const Direction& dir) {
 	m_lastPos = m_sprite.getPosition();
 	m_sprite.move(50.f * toVector(dir));
-	(m_currentAnimation == m_animation.end() - 1) ? (m_currentAnimation++) : m_currentAnimation = m_animation.begin();
+	(m_currentAnimation == m_animation.end() || m_currentAnimation == m_animation.end() - 1) ? m_currentAnimation = m_animation.begin() : (m_currentAnimation++);
 	m_currentAnimation->direction(dir);
 
 }
