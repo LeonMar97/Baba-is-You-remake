@@ -4,15 +4,13 @@
 #include <array>
 
 #include <stdexcept>
-typedef std::array<std::pair<Direction, int>, 5> directionInitArray;
 namespace {
     AnimationData readDataBaba(const sf::Vector2i& size,
-                            const sf::Vector2i& initSpace,
-                            const directionInitArray& directionInitArray)
+                            const sf::Vector2i& initSpace)
     {
-        auto redGhost = AnimationData{};
+        auto animData = AnimationData{};
         auto currentStart = initSpace;
-        currentStart.y -= size.y;
+        currentStart.y -= size.y; //starting from -1 to make sure nextStart will start from beginning
         int counter = 0;
 
         auto nextStart = [&]()
@@ -28,24 +26,24 @@ namespace {
             }
             return currentStart;
         };
-        redGhost.m_data[Direction::Right].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Right].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Right].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Up].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Up].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Up].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Left].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Left].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Left].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Down].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Down].emplace_back(nextStart(), size);
-        redGhost.m_data[Direction::Down].emplace_back(nextStart(), size);
-        return redGhost;
+        animData.m_data[Direction::Right].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Right].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Right].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Up].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Up].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Up].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Left].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Left].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Left].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Down].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Down].emplace_back(nextStart(), size);
+        animData.m_data[Direction::Down].emplace_back(nextStart(), size);
+        return animData;
     }
     AnimationData readDataDefault(const sf::Vector2i& size,
                             const sf::Vector2i& initSpace)
     {
-        auto redGhost = AnimationData{};
+        auto animData = AnimationData{};
         auto currentStart = initSpace - sf::Vector2i(0, size.y);
         int counter = 0;
 
@@ -57,13 +55,13 @@ namespace {
 
         for (auto i = 0; i < 3; i++) {
             auto pos = nextStart();
-            redGhost.m_data[Direction::Right].emplace_back(pos, size);
-            redGhost.m_data[Direction::Left].emplace_back(pos, size);
-            redGhost.m_data[Direction::Up].emplace_back(pos, size);
-            redGhost.m_data[Direction::Down].emplace_back(pos, size);
-            redGhost.m_data[Direction::Stay].emplace_back(pos, size);
+            animData.m_data[Direction::Right].emplace_back(pos, size);
+            animData.m_data[Direction::Left].emplace_back(pos, size);
+            animData.m_data[Direction::Up].emplace_back(pos, size);
+            animData.m_data[Direction::Down].emplace_back(pos, size);
+            animData.m_data[Direction::Stay].emplace_back(pos, size);
         }
-        return redGhost;
+        return animData;
     }
     /*
 
@@ -117,47 +115,19 @@ Resources::Resources()
 
     m_data[babas_t] = readDataBaba(
         sf::Vector2i(24, 24),
-        sf::Vector2i(0, 0),
-        directionInitArray{
-            std::make_pair<Direction, int>(Direction::Right, 3),
-            std::make_pair<Direction, int>(Direction::Left, 3),
-            std::make_pair<Direction, int>(Direction::Up, 3),
-            std::make_pair<Direction, int>(Direction::Down, 3),
-            std::make_pair<Direction, int>(Direction::Stay, 0)
-        }
+        sf::Vector2i(24, 0)
     );
     m_data[babas1_t] = readDataBaba(
         sf::Vector2i(24, 24),
-        sf::Vector2i(24, 0),
-        directionInitArray{
-            std::make_pair<Direction, int>(Direction::Right, 3),
-            std::make_pair<Direction, int>(Direction::Left, 3),
-            std::make_pair<Direction, int>(Direction::Up, 3),
-            std::make_pair<Direction, int>(Direction::Down, 3),
-            std::make_pair<Direction, int>(Direction::Stay, 0)
-        }
+        sf::Vector2i(48, 0)
     );
     m_data[babas2_t] = readDataBaba(
         sf::Vector2i(24, 24),
-        sf::Vector2i(24, 0),
-        directionInitArray{
-            std::make_pair<Direction, int>(Direction::Right, 3),
-            std::make_pair<Direction, int>(Direction::Left, 3),
-            std::make_pair<Direction, int>(Direction::Up, 3),
-            std::make_pair<Direction, int>(Direction::Down, 3),
-            std::make_pair<Direction, int>(Direction::Stay, 0)
-        }
+        sf::Vector2i(72, 0)
     );
     m_data[babas3_t] = readDataBaba(
         sf::Vector2i(24, 24),
-        sf::Vector2i(24, 0),
-        directionInitArray{
-            std::make_pair<Direction, int>(Direction::Right, 3),
-            std::make_pair<Direction, int>(Direction::Left, 3),
-            std::make_pair<Direction, int>(Direction::Up, 3),
-            std::make_pair<Direction, int>(Direction::Down, 3),
-            std::make_pair<Direction, int>(Direction::Stay, 0)
-        }
+        sf::Vector2i(96, 0)
     );
     m_data[babaword_t] = readDataDefault(
         sf::Vector2i(24, 24),

@@ -3,32 +3,51 @@
 #include"Attribute.h"
 
 BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc)
-	:m_animation(animationData, dir, m_sprite),
-	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
+	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
 {
 	m_sprite.setPosition(m_lastPos);
+	m_animation.push_back(Animation(animationData, dir, m_sprite));
+	m_currentAnimation = m_animation.begin();
+
 }
+BaseObject::BaseObject(const AnimationData& animData1,
+	const AnimationData& animData2,
+	const AnimationData& animData3,
+	const AnimationData& animData4,
+	Direction dir, const sf::Vector2u& loc) {
+
+	m_sprite.setPosition(m_lastPos);
+	m_animation.push_back(Animation(animData1, dir, m_sprite));
+	m_animation.push_back(Animation(animData2, dir, m_sprite));
+	m_animation.push_back(Animation(animData3, dir, m_sprite));
+	m_animation.push_back(Animation(animData4, dir, m_sprite));
+	m_currentAnimation = m_animation.begin();
+}
+
 BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color& color)
-	:m_animation(animationData, dir, m_sprite),
-	m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
+	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
 {
 	m_sprite.setPosition(m_lastPos);
 	m_sprite.setColor(color);
+	m_animation.push_back(Animation(animationData, dir, m_sprite));
+	m_currentAnimation = m_animation.begin();
 }
 
 void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
-	m_animation.update(deltaTime);
+	m_currentAnimation->update(deltaTime);
 	window.draw(m_sprite);
 }
 
 void BaseObject::move(const Direction& dir) {
 	m_lastPos = m_sprite.getPosition();
 	m_sprite.move(50.f * toVector(dir));
-	m_animation.direction(dir);
+	(m_currentAnimation == m_animation.end() - 1) ? (m_currentAnimation++) : m_currentAnimation = m_animation.begin();
+	m_currentAnimation->direction(dir);
+
 }
 
 Direction BaseObject::getDir() {
-	return m_animation.getDir();
+	return m_currentAnimation->getDir();
 }
 
 sf::Vector2f BaseObject:: returnPos()const {
