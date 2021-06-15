@@ -22,7 +22,7 @@ namespace {
             if (counter == 3) {
                 auto temp = currentStart;
                 currentStart.y -= 3 * size.y;
-                currentStart.x += (size.x - 0.25f) * 4 + 25;
+                currentStart.x += (size.x - 0.25f) * 4 + 25; //calculated manually 
                 counter = 0;
                 return temp;
             }
@@ -117,7 +117,40 @@ Resources::Resources()
 
     m_data[babas_t] = readDataBaba(
         sf::Vector2i(24, 24),
-        sf::Vector2i(96, 0),
+        sf::Vector2i(0, 0),
+        directionInitArray{
+            std::make_pair<Direction, int>(Direction::Right, 3),
+            std::make_pair<Direction, int>(Direction::Left, 3),
+            std::make_pair<Direction, int>(Direction::Up, 3),
+            std::make_pair<Direction, int>(Direction::Down, 3),
+            std::make_pair<Direction, int>(Direction::Stay, 0)
+        }
+    );
+    m_data[babas1_t] = readDataBaba(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(24, 0),
+        directionInitArray{
+            std::make_pair<Direction, int>(Direction::Right, 3),
+            std::make_pair<Direction, int>(Direction::Left, 3),
+            std::make_pair<Direction, int>(Direction::Up, 3),
+            std::make_pair<Direction, int>(Direction::Down, 3),
+            std::make_pair<Direction, int>(Direction::Stay, 0)
+        }
+    );
+    m_data[babas2_t] = readDataBaba(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(24, 0),
+        directionInitArray{
+            std::make_pair<Direction, int>(Direction::Right, 3),
+            std::make_pair<Direction, int>(Direction::Left, 3),
+            std::make_pair<Direction, int>(Direction::Up, 3),
+            std::make_pair<Direction, int>(Direction::Down, 3),
+            std::make_pair<Direction, int>(Direction::Stay, 0)
+        }
+    );
+    m_data[babas3_t] = readDataBaba(
+        sf::Vector2i(24, 24),
+        sf::Vector2i(24, 0),
         directionInitArray{
             std::make_pair<Direction, int>(Direction::Right, 3),
             std::make_pair<Direction, int>(Direction::Left, 3),

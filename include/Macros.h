@@ -5,6 +5,9 @@
 enum GameObjects {
     all_t = 0,
     babas_t,
+    babas1_t,
+    babas2_t,
+    babas3_t,
     rocks_t,
     flags_t,
     walls_t,
