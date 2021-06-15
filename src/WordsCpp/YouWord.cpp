@@ -6,3 +6,8 @@ YouWord::YouWord(const sf::Vector2u& loc)
 	//m_character.setOutlineThickness(1);
 	//m_character.setOutlineColor(sf::Color::Red);
 }
+bool YouWord::move (BaseObject& curYou,const sf::Vector2i& dir) {
+	curYou.move(dir);
+	return true;
+}
+

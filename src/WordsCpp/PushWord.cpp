@@ -10,7 +10,8 @@ PushWord::PushWord()
 	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
 
-void PushWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
+bool PushWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	passiveObj->move((sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / OBJECT_SIZE)));
+	return true;
 	//passiveObj->move({ -5, 0 });
 }

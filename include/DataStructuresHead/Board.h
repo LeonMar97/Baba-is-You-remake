@@ -33,6 +33,7 @@ public:
 	void checkCollisions(BaseObject*);
 	void lookForRules();
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
+	void moveYou(sf::Vector2i dir);
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);

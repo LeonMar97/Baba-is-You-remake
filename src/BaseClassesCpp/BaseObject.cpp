@@ -38,8 +38,8 @@ bool BaseObject::triggerAttribute(BaseObject* objectMoved) {
 	auto& attributes = getStatic();
 	//dont forget to make sure the set is sorted
 	if (!attributes.empty()) {
-		(*attributes.begin())->handleCollision(this, objectMoved);
-		return true;
+		return((*attributes.begin())->handleCollision(this, objectMoved));
+		
 	}
 	return false;
 }
@@ -50,8 +50,9 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 	return m_sprite.getGlobalBounds().intersects(obj->m_sprite.getGlobalBounds());
 }
 
-void BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
+bool BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
 	//obj->m_sprite.setPosition(obj->m_lastPos);
+	return false;
 }
 std::type_index BaseObject::baseTypeId() {
 	 return typeid(BaseObject);

@@ -10,6 +10,7 @@ StopWord::StopWord()
 	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
 
-void StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
+bool StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	activeObj->move(sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / -OBJECT_SIZE));
+	return true;
 }

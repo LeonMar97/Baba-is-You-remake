@@ -22,7 +22,7 @@ public:
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const sf::Vector2i&);
 	bool collidesWith(BaseObject*);
-	virtual void handleCollision(BaseObject*, BaseObject* obj);
+	virtual bool handleCollision(BaseObject*, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 	sf::Vector2f returnLastPos()const;

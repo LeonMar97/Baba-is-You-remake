@@ -22,7 +22,6 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 	case 'B':
 		baseObj = new Baba(loc);
 		m_map.push_back(baseObj);
-		m_you.push_back(baseObj);
 		break;
 	case 'R':
 		baseObj = new Rock(loc);
@@ -172,3 +171,14 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 	}
 }
 
+void Board::moveYou(sf::Vector2i dir) {
+	for (auto& curObj : m_map) {
+		auto attributes = curObj->getStatic();
+		for (auto &it :attributes) {
+			if (it->move(*curObj, dir))
+				checkCollisions(curObj);
+				break;
+		}
+
+	}
+}

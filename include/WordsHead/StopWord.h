@@ -4,5 +4,5 @@ class StopWord :public Attribute{
 public:
 	StopWord();
 	StopWord(const sf::Vector2u& loc);
-	void handleCollision(BaseObject*, BaseObject* obj) override;
+	bool handleCollision(BaseObject*, BaseObject* obj) override;
 };
