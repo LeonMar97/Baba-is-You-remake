@@ -14,8 +14,8 @@ BaseObject::BaseObject(const AnimationData& animData1,
 	const AnimationData& animData2,
 	const AnimationData& animData3,
 	const AnimationData& animData4,
-	Direction dir, const sf::Vector2u& loc) {
-
+	Direction dir, const sf::Vector2u& loc) 
+	: m_lastPos(loc.y*OBJECT_SIZE, loc.x * OBJECT_SIZE){
 	m_sprite.setPosition(m_lastPos);
 	m_animation.push_back(Animation(animData1, dir, m_sprite));
 	m_animation.push_back(Animation(animData2, dir, m_sprite));
@@ -41,7 +41,9 @@ void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
 void BaseObject::move(const Direction& dir) {
 	m_lastPos = m_sprite.getPosition();
 	m_sprite.move(50.f * toVector(dir));
-	(m_currentAnimation == m_animation.end() || m_currentAnimation == m_animation.end() - 1) ? m_currentAnimation = m_animation.begin() : (m_currentAnimation++);
+	//for making baba look like he walks, the animation is changed and iterator is set accordingly
+	(m_currentAnimation == m_animation.end() || m_currentAnimation == m_animation.end() - 1) //if not at the end
+		? m_currentAnimation = m_animation.begin() : (m_currentAnimation++);
 	m_currentAnimation->direction(dir);
 
 }
