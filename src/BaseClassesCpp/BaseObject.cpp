@@ -41,6 +41,11 @@ void BaseObject::move(const Direction& dir) {
 		? m_currentAnimation = m_animation.begin() : (m_currentAnimation++);
 	m_currentAnimation->direction(dir);
 
+	auto pos = castToLoc(m_sprite.getPosition());
+	
+	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
+		move(opposite(dir));
+	}
 }
 
 Direction BaseObject::getDir() {
