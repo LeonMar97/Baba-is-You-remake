@@ -2,7 +2,7 @@
 std::unordered_set<Attribute*>Flag::m_flagAttributes = std::unordered_set<Attribute*>();
 
 Flag::Flag(const sf::Vector2u& loc)
-:BaseObject(Resources::instance().animationData(flags_t), Direction::Stay, loc, ROCK_LIGHTER_COLOR)
+:BaseObject(Resources::instance().animationData(flags_t), Direction::Stay, loc, FLAG_LIGHTER_COLOR)
 {}
 
 std::type_index Flag::wordTypeId() {

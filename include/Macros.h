@@ -11,11 +11,13 @@ enum GameObjects {
     rocks_t,
     flags_t,
     walls_t,
+    skulls_t,
 
     nouns_t,
     babaword_t,
     rockword_t,
     flagword_t,
+    skullword_t,
 
     wallword_t,
     pushword_t,
@@ -64,8 +66,14 @@ const sf::Color BABA_COLOR = sf::Color(113, 28, 53);
 const sf::Color YOU_LIGHTER_COLOR = sf::Color(217, 57, 106);
 const sf::Color YOU_COLOR = sf::Color(113, 28, 53);
 
-const sf::Color WIN_LIGHTER_COLOR = sf::Color(144, 103, 62);
-const sf::Color WIN_COLOR = sf::Color(62, 53, 31);
+const sf::Color WIN_LIGHTER_COLOR = sf::Color(237, 226, 133);
+const sf::Color WIN_COLOR = sf::Color(115, 110, 67);
+
+const sf::Color FLAG_LIGHTER_COLOR = sf::Color(237, 226, 133);
+const sf::Color FLAG_COLOR = sf::Color(115, 110, 67);
+
+const sf::Color SKULL_LIGHTER_COLOR = sf::Color(197, 58, 58);
+const sf::Color SKULL_COLOR = sf::Color(95, 28, 28);
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;

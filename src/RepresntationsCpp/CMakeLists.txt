@@ -2,4 +2,5 @@
 									"Baba.cpp"
 									"Wall.cpp"
 									"Flag.cpp"
+									"Skull.cpp"
 									)

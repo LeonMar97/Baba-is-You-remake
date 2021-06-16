@@ -155,7 +155,7 @@ Resources::Resources()
         sf::Vector2i(146, 505)
     ); 
     m_data[flagword_t] = readDataDefault(
-        sf::Vector2i(25, 721) //****//
+        sf::Vector2i(25, 721)
     ); 
 
     m_data[walls_t] = readDataDefault(
@@ -163,6 +163,13 @@ Resources::Resources()
     ); 
     m_data[wallword_t] = readDataDefault(
         sf::Vector2i(648, 792)
+    ); 
+
+    m_data[skulls_t] = readDataDefault(
+        sf::Vector2i(265, 360)
+    ); 
+    m_data[skullword_t] = readDataDefault(
+        sf::Vector2i(384, 793)
     ); 
 
     //conjunctions

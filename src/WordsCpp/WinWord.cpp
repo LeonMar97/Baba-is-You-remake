@@ -10,5 +10,5 @@ bool WinWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 		if(dynamic_cast<YouWord*>(atr)) 
 			m_board.endLevel();
 	}
-	return true;
+	return false;
 }

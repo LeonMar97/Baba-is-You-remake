@@ -8,6 +8,7 @@
 									"WallWord.cpp"
 									"StopWord.cpp"
 									"FlagWord.cpp"
+									"SkullWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"
 									"Attribute.cpp"

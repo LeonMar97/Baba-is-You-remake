@@ -32,6 +32,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		baseObj = new Flag(loc);
 		m_map.push_back(baseObj);
 		break;
+	case 'G':
+		baseObj = new Skull(loc);
+		m_map.push_back(baseObj);
+		break;
 	case ' ':
 		break;
 	case 'i':
@@ -40,6 +44,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'b':
 		wordObj = new BabaWord(loc);
+		m_map.push_back(wordObj);
+		break;
+	case 'g':
+		wordObj = new SkullWord(loc);
 		m_map.push_back(wordObj);
 		break;
 	case 'k':

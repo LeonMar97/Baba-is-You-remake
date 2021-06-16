@@ -19,6 +19,8 @@
 #include "WinWord.h"
 #include "PushWord.h"
 #include "FlagWord.h"
+#include "SkullWord.h"
+#include "Skull.h"
 #include "Flag.h"
 #include"DataHolder.h"
 #include"BaseDataHolder.h"

@@ -1,6 +1,6 @@
 #include"FlagWord.h"
 FlagWord::FlagWord(const sf::Vector2u& loc)
-	:Noun("Flag",Resources::instance().animationData(flagword_t), Direction::Stay, loc, ROCK_COLOR, ROCK_LIGHTER_COLOR)
+	:Noun("Flag",Resources::instance().animationData(flagword_t), Direction::Stay, loc, FLAG_COLOR, FLAG_LIGHTER_COLOR)
 {}
 
 void FlagWord::replaceObjInLocation(BaseObject*& cur) {
