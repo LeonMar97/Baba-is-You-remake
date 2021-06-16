@@ -172,13 +172,17 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 }
 
 void Board::moveYou(const Direction& dir) {
+	std::vector<BaseObject*> whatMoved;
 	for (auto& curObj : m_map) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {
-			if (it->move(*curObj, dir))
-				checkCollisions(curObj);
+			if (it->move(*curObj, dir)) {
+				whatMoved.push_back((curObj));
 				break;
+			}
 		}
-
 	}
+	for (auto& moved : whatMoved)
+		checkCollisions(moved);
+
 }
