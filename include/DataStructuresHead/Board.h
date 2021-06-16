@@ -19,6 +19,7 @@
 #include "WinWord.h"
 #include "PushWord.h"
 #include "FlagWord.h"
+#include "DefeatWord.h"
 #include "SkullWord.h"
 #include "Skull.h"
 #include "Flag.h"
@@ -40,6 +41,7 @@ public:
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
 	void moveYou(const Direction& dir);
 	void endLevel();
+	void removeObject(BaseObject*);
 	//void isLevelOver();
 	/*
 	void insert(GameObjects, BaseObject*);

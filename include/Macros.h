@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 //~~~~~~~~~~~Texture~~~~~~~~~~~~~~~~~~~
 enum GameObjects {
-    all_t = 0,
     babas_t,
     babas1_t,
     babas2_t,
@@ -13,25 +12,21 @@ enum GameObjects {
     walls_t,
     skulls_t,
 
-    nouns_t,
-    babaword_t,
     rockword_t,
+    babaword_t,
     flagword_t,
     skullword_t,
-
     wallword_t,
+
     pushword_t,
     stopword_t,
-
+    youword_t,
+    winword_t,
+    defeatword_t,
 
     conjunctions_t,
     is_t,
 
-    attributes_t,
-    youword_t,
-    winword_t,
-
-    background_t,
     Max
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
@@ -74,6 +69,9 @@ const sf::Color FLAG_COLOR = sf::Color(115, 110, 67);
 
 const sf::Color SKULL_LIGHTER_COLOR = sf::Color(197, 58, 58);
 const sf::Color SKULL_COLOR = sf::Color(95, 28, 28);
+
+const sf::Color DEFEAT_LIGHTER_COLOR = sf::Color(197, 58, 58);
+const sf::Color DEFEAT_COLOR = sf::Color(95, 28, 28);
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;

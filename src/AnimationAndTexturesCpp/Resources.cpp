@@ -140,10 +140,13 @@ Resources::Resources()
     m_data[pushword_t] = readDataDefault(
         sf::Vector2i(47, 1008)
     );
+    m_data[defeatword_t] = readDataDefault(
+        sf::Vector2i(120, 936)
+    );
+
     m_data[stopword_t] = readDataDefault(
         sf::Vector2i(288, 1008)
     );
-
     //nouns + representations
     m_data[rocks_t] = readDataDefault(
         sf::Vector2i(361, 505)

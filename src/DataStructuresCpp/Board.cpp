@@ -70,6 +70,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		wordObj = new WinWord(loc, *this);
 		m_map.push_back(wordObj);
 		break;
+	case 'd':
+		wordObj = new DefeatWord(loc, *this);
+		m_map.push_back(wordObj);
+		break;
 	case 'p':
 		wordObj = new PushWord(loc);
 		m_map.push_back(wordObj);
@@ -185,12 +189,12 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 }
 
 void Board::moveYou(const Direction& dir) {
-	std::vector<BaseObject*> whatMoved;
+	std::vector<std::reference_wrapper<BaseObject*>> whatMoved;
 	for (auto& curObj : m_map) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {
 			if (it->move(*curObj, dir)) {
-				whatMoved.push_back((curObj));
+				whatMoved.push_back(curObj);
 				break;
 			}
 		}
@@ -198,6 +202,11 @@ void Board::moveYou(const Direction& dir) {
 	for (auto moved = whatMoved.begin(); moved != whatMoved.end(); moved++)
 		for (auto& moved : whatMoved)
 			checkCollisions(moved);
+}
+
+void Board::removeObject(BaseObject* objToRemove) {
+	delete objToRemove;
+	m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
 }
 
 void Board::endLevel() {
