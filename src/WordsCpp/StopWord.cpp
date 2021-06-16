@@ -1,7 +1,7 @@
 #include"StopWord.h"
 StopWord::StopWord(const sf::Vector2u& loc)
-	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, sf::Color(144, 103, 62),
-		sf::Color::Red)
+	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, STOP_COLOR,
+		STOP_LIGHTER_COLOR)
 {
 }
 StopWord::StopWord()

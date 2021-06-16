@@ -1,6 +1,6 @@
 #include"RockWord.h"
 RockWord::RockWord(const sf::Vector2u& loc)
-	:Noun("Rock",Resources::instance().animationData(rockword_t), Direction::Stay, loc, sf::Color::Yellow, sf::Color::Red)
+	:Noun("Rock",Resources::instance().animationData(rockword_t), Direction::Stay, loc, ROCK_COLOR, ROCK_LIGHTER_COLOR)
 {
 	//m_character.setFillColor(sf::Color(217,57,106));
 	//m_character.setOutlineThickness(1);

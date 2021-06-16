@@ -1,11 +1,8 @@
 #include"BabaWord.h"
 BabaWord::BabaWord(const sf::Vector2u& loc)
-//IS ENUM NEEDED???
-	:Noun("Baba",Resources::instance().animationData(babaword_t), Direction::Stay, loc, sf::Color(217, 57, 106),
-		sf::Color::Red)
-{
-}
-
+	:Noun("Baba",Resources::instance().animationData(babaword_t), Direction::Stay, loc, BABA_COLOR,
+		BABA_LIGHTER_COLOR)
+{}
 void BabaWord::replaceObjInLocation(BaseObject*& cur) {
 	auto loc=castToLoc(cur->returnPos());
 	delete(cur);
