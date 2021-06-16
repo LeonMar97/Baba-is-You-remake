@@ -66,8 +66,8 @@ const sf::Color STOP_LIGHTER_COLOR = sf::Color(180, 255, 153);
 const sf::Color PUSH_LIGHTER_COLOR = sf::Color(144, 103, 62);
 const sf::Color PUSH_COLOR = sf::Color(74, 51, 30);
 
-const sf::Color ROCK_LIGHTER_COLOR = sf::Color(95, 75, 34);
-const sf::Color ROCK_COLOR = sf::Color(190, 151, 75);
+const sf::Color ROCK_COLOR = sf::Color(95, 75, 34);
+const sf::Color ROCK_LIGHTER_COLOR = sf::Color(190, 151, 75);
 
 const sf::Color IS_LIGHTER_COLOR = sf::Color(255, 255, 255);
 const sf::Color IS_COLOR = sf::Color(115, 115, 115);

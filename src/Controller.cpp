@@ -45,7 +45,7 @@ void Controller::startGame() {
 	//for making board visible entirely independent of screen size
 	 setView();
 	
-	m_mapOnScreen = std::make_unique<Board>(m_you);
+	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures();
 	sf::Time deltaTime = {};
 
@@ -93,7 +93,7 @@ bool Controller::newLvl() {
 	//checking if there is a new lvl
 	if (m_map.rebuild_Map()) {
 		m_mapOnScreen.reset();
-		m_mapOnScreen = std::make_unique<Board>(m_you);
+		m_mapOnScreen = std::make_unique<Board>();
 		updateDataStructures();
 		m_level++;
 		//m_clock.restart();

@@ -25,7 +25,7 @@ class Board{
 	//--------------public--------functions-----------------------//
 public:
 	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
-	Board(std::vector<BaseObject*>&);
+	Board();
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
 	
@@ -48,7 +48,6 @@ private:
 
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
-	std::vector<BaseObject*>& m_you;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;

@@ -1,8 +1,7 @@
 #include "Board.h"
 #include<array>
 
-Board::Board(std::vector<BaseObject*>& you)
-	: m_you(you)
+Board::Board()
 {
 	m_background = sf::RectangleShape(sf::Vector2f(MAP_SIZE.y, MAP_SIZE.x) * OBJECT_SIZE);
 	m_background.setFillColor(BOARD_COLOR);

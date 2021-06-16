@@ -13,7 +13,6 @@ std::type_index Baba::wordTypeId() {
 	return typeid(BabaWord);
 }
 
-
 std::unordered_set<Attribute*>& Baba::getStatic() {
 	return Baba::m_babaAttributes;
 }

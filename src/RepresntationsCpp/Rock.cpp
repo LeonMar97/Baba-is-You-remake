@@ -2,7 +2,7 @@
 std::unordered_set<Attribute*>Rock::m_rockAttributes = std::unordered_set<Attribute*>();
 
 Rock::Rock(const sf::Vector2u& loc)
-:BaseObject(Resources::instance().animationData(rocks_t), Direction::Stay, loc, sf::Color(190, 151, 75))
+:BaseObject(Resources::instance().animationData(rocks_t), Direction::Stay, loc, ROCK_LIGHTER_COLOR)
 {
 	
 }

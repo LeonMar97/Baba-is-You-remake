@@ -7,6 +7,7 @@
 #include "BaseObject.h"
 #include "Direction.h"
 #include "Menu.h"
+#include <stack>
 
 class Controller {
 
