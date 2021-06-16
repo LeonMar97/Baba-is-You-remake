@@ -7,11 +7,7 @@ class Noun:public Predicate {
 public:
 	//NEED TO CHECK IF NEED GameObjects id
 	Noun(const std::string& word, const AnimationData& animationData,
-		Direction dir, const sf::Vector2u& loc,
-		char objectCreationChar, GameObjects objectCreationCharEnum);
-	Noun(const std::string& word, const AnimationData& animationData,
-		Direction dir, const sf::Vector2u& loc, const sf::Color& color,
-		char objectCreationChar, GameObjects objectCreationCharEnum);
+		Direction dir, const sf::Vector2u& loc, const sf::Color& color, const sf::Color&);
 	virtual  void fillAttributes(Attribute *atr);
 	virtual  void removeAttribute(Attribute*);//might be deleted later
 	void putRuleIntoAffect(Noun&, Board&) ;

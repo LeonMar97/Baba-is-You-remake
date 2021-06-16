@@ -15,14 +15,16 @@ class BaseObject {
 
 public:
 
-	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
+	
+	//BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
+	//constructor for initializing with color
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
+	//constructor for multiple animations using same sprite
 	BaseObject(const AnimationData& animData1,
 		const AnimationData& animData2,
 		const AnimationData& animData3,
 		const AnimationData& animData4,
-		Direction dir, const sf::Vector2u& loc);
-	
+		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
 	virtual std::unordered_set<Attribute*>& getStatic() = 0;
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
@@ -36,10 +38,12 @@ public:
 	bool triggerAttribute(BaseObject*);
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
+	void setDefaultColor();
 protected:
 	sf::Sprite m_sprite;
 	std::vector<Animation> m_animation;
 	std::vector<Animation>::iterator m_currentAnimation;
 	sf::Vector2f m_lastPos;
 private:
+	sf::Color m_defaultColor;
 };

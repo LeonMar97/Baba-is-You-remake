@@ -1,16 +1,10 @@
 #pragma once
 #include "Noun.h"
 #include "Board.h"
-Noun::Noun(const std::string& word, const AnimationData& animationData,
-	Direction dir, const sf::Vector2u& loc,
-	char objectCreationChar, GameObjects objectCreationCharEnum)
-	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Predicate(word, animationData, dir, loc)
-{}
 
 Noun::Noun(const std::string& word, const AnimationData& animationData,
-	Direction dir, const sf::Vector2u& loc, const sf::Color& color,
-	char objectCreationChar, GameObjects objectCreationCharEnum)
-	: m_objectCreationChar(objectCreationChar), m_objectCreationEnum(objectCreationCharEnum), Predicate(word, animationData, dir, loc, color)
+	Direction dir, const sf::Vector2u& loc, const sf::Color& darker, const sf::Color& lighter)
+	: Predicate(word, animationData, dir, loc, darker, lighter)
 {}
 
 std::type_index Noun::baseTypeId() {

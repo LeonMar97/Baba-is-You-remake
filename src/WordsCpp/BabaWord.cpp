@@ -1,7 +1,8 @@
 #include"BabaWord.h"
 BabaWord::BabaWord(const sf::Vector2u& loc)
 //IS ENUM NEEDED???
-	:Noun("Baba",Resources::instance().animationData(babaword_t), Direction::Stay, loc, sf::Color(217, 57, 106), 'B', babas_t)
+	:Noun("Baba",Resources::instance().animationData(babaword_t), Direction::Stay, loc, sf::Color(217, 57, 106),
+		sf::Color::Red)
 {
 }
 

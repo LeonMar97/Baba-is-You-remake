@@ -2,21 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include"Attribute.h"
 
-BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc)
-	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
-{
-	m_sprite.setPosition(m_lastPos);
-	m_animation.push_back(Animation(animationData, dir, m_sprite));
-	m_currentAnimation = m_animation.begin();
-
-}
 BaseObject::BaseObject(const AnimationData& animData1,
 	const AnimationData& animData2,
 	const AnimationData& animData3,
 	const AnimationData& animData4,
-	Direction dir, const sf::Vector2u& loc) 
-	: m_lastPos(loc.y*OBJECT_SIZE, loc.x * OBJECT_SIZE){
+	Direction dir, const sf::Vector2u& loc, const sf::Color& defaultColor) 
+	: m_lastPos(loc.y*OBJECT_SIZE, loc.x * OBJECT_SIZE),
+		m_defaultColor(defaultColor){
 	m_sprite.setPosition(m_lastPos);
+	m_sprite.setColor(defaultColor);
 	m_animation.push_back(Animation(animData1, dir, m_sprite));
 	m_animation.push_back(Animation(animData2, dir, m_sprite));
 	m_animation.push_back(Animation(animData3, dir, m_sprite));
@@ -24,11 +18,12 @@ BaseObject::BaseObject(const AnimationData& animData1,
 	m_currentAnimation = m_animation.begin();
 }
 
-BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color& color)
-	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE)
+BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color& defaultColor)
+	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE),
+	m_defaultColor(defaultColor)
 {
 	m_sprite.setPosition(m_lastPos);
-	m_sprite.setColor(color);
+	m_sprite.setColor(defaultColor);
 	m_animation.push_back(Animation(animationData, dir, m_sprite));
 	m_currentAnimation = m_animation.begin();
 }
@@ -89,4 +84,8 @@ std::type_index BaseObject::wordTypeId() {
 }
 sf::Vector2u BaseObject::castToLoc(sf::Vector2f spritePos) {
 	return sf::Vector2u(spritePos.y / OBJECT_SIZE, spritePos.x / OBJECT_SIZE);
+}
+
+void BaseObject::setDefaultColor() {
+	m_sprite.setColor(m_defaultColor);
 }

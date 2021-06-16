@@ -7,7 +7,7 @@ Baba::Baba(const sf::Vector2u& loc)
 		Resources::instance().animationData(babas1_t),
 		Resources::instance().animationData(babas2_t),
 		Resources::instance().animationData(babas3_t),
-		Direction::Right, loc)
+		Direction::Right, loc, sf::Color::White)
 {}
 std::type_index Baba::wordTypeId() {
 	return typeid(BabaWord);

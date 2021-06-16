@@ -1,11 +1,12 @@
 #include"StopWord.h"
 StopWord::StopWord(const sf::Vector2u& loc)
-	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, sf::Color(144, 103, 62))
+	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, sf::Color(144, 103, 62),
+		sf::Color::Red)
 {
-	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
 StopWord::StopWord()
-	: Attribute("Stop", Resources::instance().animationData(stopword_t), Direction::Stay, {0,0}, sf::Color(144, 103, 62))
+	: Attribute("Stop", Resources::instance().animationData(stopword_t), Direction::Stay, {0,0}, sf::Color(144, 103, 62),
+		sf::Color::Red)
 {
 	//m_character.setFillColor(sf::Color(144, 103, 62));
 }

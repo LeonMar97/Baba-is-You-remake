@@ -57,6 +57,8 @@ const float OBJECT_SIZE = 50.f;
 //~~~~~~~~~~~~~Colors~~~~~~~~~~~~~~~~~~
 const sf::Color BOARD_COLOR(33, 33, 63); //bluish
 const sf::Color WINDOW_COLOR(37, 37, 70);  //less bluish
+const float MAKE_COLOR_DIMMER = 0.5;
+const float MAKE_COLOR_LIGHTER = 2;
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;

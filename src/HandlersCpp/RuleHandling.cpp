@@ -82,19 +82,23 @@ void RuleHandling::updateRules(Board &b) {
 /// </summary>
 /// <param name="currentRulesOnBoard"></param>
 /// <param name="rules"></param>
-void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules ) {
+void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules) {
 	bool ruleAlreadyExists = false;
 	for (auto ruleIndex = 0; ruleIndex < rules->size(); ruleIndex++) {
 		ruleAlreadyExists = false;
 		unsigned int amountOfRules = currentRulesOnBoard->size();
 		for (unsigned int newRuleIndex = 0; newRuleIndex < currentRulesOnBoard->size(); newRuleIndex++) {
-		if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
+			if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
 				(currentRulesOnBoard)->erase(currentRulesOnBoard->begin() + newRuleIndex); //remove new rule because it already exists
 				ruleAlreadyExists = true;
 				break;
 			}
 		}
 		if (!ruleAlreadyExists) {
+			auto& [noun, con, pred] = (*rules)[ruleIndex];
+			noun->setDefaultColor();
+			con->setDefaultColor();
+			pred->setDefaultColor();
 			(std::get<2>((*rules)[ruleIndex]))->deleteRule(*(std::get<0>((*rules)[ruleIndex])));
 			rules->erase(rules->begin() + ruleIndex); //remove old rule because it is no longer on map
 			ruleIndex--;
@@ -105,16 +109,24 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 void RuleHandling::addNewNCA() {
 	//triggering new attributes and inserting the current new rule in his vector 
 	for (auto& ruleToAdd : *m_AllRulesNCA) {
-		static_cast<Attribute*>(std::get<2>(ruleToAdd))->putRuleIntoAffect(*std::get<0>(ruleToAdd));
+		auto &[noun, con, pred] = ruleToAdd;
+		static_cast<Attribute*>(pred)->putRuleIntoAffect(*noun);
 		m_RulesInGameNCA.push_back(ruleToAdd);
+		noun->setLighterColor();
+		con->setLighterColor();
+		pred->setLighterColor();
 	}
 	m_AllRulesNCA = nullptr;//not neccesery but to state a point ..
 }
 
 void RuleHandling::addNewNCN(Board &b) {
 	for (auto& ruleToAdd : *m_AllRulesNCN) {//for each rule
-		b.replaceObjects(*std::get<0>(ruleToAdd),*static_cast<Noun*>(std::get<2>(ruleToAdd)));
+		auto &[noun, con, pred] = ruleToAdd;
+		b.replaceObjects(*noun,*static_cast<Noun*>(pred));
 		m_RulesInGameNCN.push_back(ruleToAdd);
+		noun->setLighterColor();
+		con->setLighterColor();
+		pred->setLighterColor();
 	}
 	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
 }

@@ -1,6 +1,7 @@
 #include"WinWord.h"
 WinWord::WinWord(const sf::Vector2u& loc)
-	:Attribute("Win",Resources::instance().animationData(winword_t), Direction::Stay, loc, sf::Color(144, 103, 62))
+	:Attribute("Win",Resources::instance().animationData(winword_t), Direction::Stay, loc,
+		sf::Color(144, 103, 62), sf::Color::Red)
 {
 	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
