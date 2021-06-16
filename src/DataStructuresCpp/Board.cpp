@@ -8,8 +8,6 @@ Board::Board()
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
 	Word::m_wordAttributes.insert(new PushWord()); //all words can be pushed
-
-	//m_you = std::make_unique<Baba>();
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -181,7 +179,7 @@ void Board::moveYou(const Direction& dir) {
 			}
 		}
 	}
-	for (auto& moved : whatMoved)
-		checkCollisions(moved);
-
+	for (auto moved = whatMoved.begin(); moved != whatMoved.end(); moved++)
+		for (auto& moved : whatMoved)
+			checkCollisions(moved);
 }

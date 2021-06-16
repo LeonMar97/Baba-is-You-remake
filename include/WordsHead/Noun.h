@@ -20,6 +20,4 @@ public:
 	virtual std::unordered_set<Attribute*>& getStaticRepresentation() = 0;
 	std::type_index baseTypeId()override;
 private:
-	char m_objectCreationChar;
-	GameObjects m_objectCreationEnum;
 };

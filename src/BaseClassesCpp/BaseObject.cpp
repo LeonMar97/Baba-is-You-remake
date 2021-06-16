@@ -61,13 +61,14 @@ sf::Vector2f BaseObject:: returnLastPos()const {
 
 //triggeting attributes once a collision is detected
 bool BaseObject::triggerAttribute(BaseObject* objectMoved) {
+	bool isMoved = false;
 	auto& attributes = getStatic();
 	//dont forget to make sure the set is sorted
-	if (!attributes.empty()) {
-		return((*attributes.begin())->handleCollision(this, objectMoved));
-		
+	for (auto& atr : attributes) {
+		if (atr->handleCollision(this, objectMoved))
+			isMoved = true;
 	}
-	return false;
+	return isMoved;
 }
 
 

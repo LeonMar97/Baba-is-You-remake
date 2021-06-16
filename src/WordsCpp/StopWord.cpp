@@ -13,6 +13,5 @@ StopWord::StopWord()
 
 bool StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	activeObj->move(opposite(activeObj->getDir()));
-	//activeObj->move(sf::Vector2i((activeObj->returnPos() - activeObj->returnLastPos()) / -OBJECT_SIZE));
-	return true;
+	return false; //it acts as if nothing was moved at all - so no further actions are needed
 }

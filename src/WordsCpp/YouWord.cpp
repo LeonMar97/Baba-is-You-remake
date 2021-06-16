@@ -3,12 +3,17 @@ YouWord::YouWord(const sf::Vector2u& loc)
 	:Attribute("You",Resources::instance().animationData(youword_t), Direction::Stay, loc,
 		YOU_COLOR, YOU_LIGHTER_COLOR)
 {
-	//m_character.setFillColor(sf::Color(217,57,106));
-	//m_character.setOutlineThickness(1);
-	//m_character.setOutlineColor(sf::Color::Red);
 }
 bool YouWord::move(BaseObject& curYou,const Direction& dir) {
 	curYou.move(dir);
 	return true;
 }
 
+void YouWord::putRuleIntoAffect(Noun& noun) {
+	Attribute::putRuleIntoAffect(noun);
+	noun.fillAttributes(&m_pushOfYou);
+}
+void YouWord::deleteRule(Noun& noun){
+	Attribute::deleteRule(noun);
+	noun.removeAttribute(&m_pushOfYou);
+}
