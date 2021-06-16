@@ -8,6 +8,7 @@
 Controller::Controller()
 	: m_gameWindow(sf::VideoMode(1920,1080),"Baba is you",sf::Style::Fullscreen)
 {
+	m_gameWindow.setFramerateLimit(60);
 }
 
 void Controller::updateDataStructures() {
