@@ -18,6 +18,8 @@
 #include "StopWord.h"
 #include "WinWord.h"
 #include "PushWord.h"
+#include "FlagWord.h"
+#include "Flag.h"
 #include"DataHolder.h"
 #include"BaseDataHolder.h"
 #include "RuleHandling.h"

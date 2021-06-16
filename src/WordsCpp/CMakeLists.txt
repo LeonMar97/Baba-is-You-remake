@@ -7,6 +7,7 @@
 									"YouWord.cpp"
 									"WallWord.cpp"
 									"StopWord.cpp"
+									"FlagWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"
 									"Attribute.cpp"

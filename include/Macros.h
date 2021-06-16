@@ -15,9 +15,12 @@ enum GameObjects {
     nouns_t,
     babaword_t,
     rockword_t,
+    flagword_t,
+
     wallword_t,
     pushword_t,
     stopword_t,
+
 
     conjunctions_t,
     is_t,
@@ -27,8 +30,7 @@ enum GameObjects {
     winword_t,
 
     background_t,
-    Max=100
-
+    Max
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 class BaseObject;
