@@ -5,9 +5,9 @@
 
 #include <stdexcept>
 namespace {
-    AnimationData readDataBaba(const sf::Vector2i& size,
-                            const sf::Vector2i& initSpace)
+    AnimationData readDataBaba(const sf::Vector2i& initSpace)
     {
+        auto size = sf::Vector2i(24, 24);
         auto animData = AnimationData{};
         auto currentStart = initSpace;
         currentStart.y -= size.y; //starting from -1 to make sure nextStart will start from beginning
@@ -40,9 +40,9 @@ namespace {
         animData.m_data[Direction::Down].emplace_back(nextStart(), size);
         return animData;
     }
-    AnimationData readDataDefault(const sf::Vector2i& size,
-                            const sf::Vector2i& initSpace)
+    AnimationData readDataDefault(const sf::Vector2i& initSpace)
     {
+        auto size = sf::Vector2i(24, 24);
         auto animData = AnimationData{};
         auto currentStart = initSpace - sf::Vector2i(0, size.y);
         int counter = 0;
@@ -114,59 +114,45 @@ Resources::Resources()
     }
 
     m_data[babas_t] = readDataBaba(
-        sf::Vector2i(24, 24),
         sf::Vector2i(24, 0)
     );
     m_data[babas1_t] = readDataBaba(
-        sf::Vector2i(24, 24),
         sf::Vector2i(48, 0)
     );
     m_data[babas2_t] = readDataBaba(
-        sf::Vector2i(24, 24),
         sf::Vector2i(72, 0)
     );
     m_data[babas3_t] = readDataBaba(
-        sf::Vector2i(24, 24),
         sf::Vector2i(96, 0)
     );
     m_data[babaword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(143, 648)
     );
     m_data[is_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(432, 720)
     );
     m_data[youword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(480, 1008)
     );
     m_data[winword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(408, 1008)
     ); 
     m_data[pushword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(47, 1008)
     );
     m_data[stopword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(288, 1008)
     );
     m_data[rocks_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(361, 505)
     ); 
     m_data[rockword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(265, 793)
     ); 
     m_data[walls_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(0, 1368)
     ); 
     m_data[wallword_t] = readDataDefault(
-        sf::Vector2i(24, 24),
         sf::Vector2i(648, 792)
     ); 
 }
