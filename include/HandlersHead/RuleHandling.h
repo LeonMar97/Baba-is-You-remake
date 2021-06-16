@@ -9,8 +9,8 @@
 #include <iostream>
 #include<tuple>
 #include "Macros.h"
-typedef std::tuple<Noun*, Conjunction*, Predicate*> ruleTuple;
-typedef std::tuple<BaseObject*, BaseObject*, BaseObject*>baseObjTuple;
+typedef std::tuple<std::shared_ptr<Noun>, std::shared_ptr<Conjunction> , std::shared_ptr<Predicate> > ruleTuple;
+typedef std::tuple<std::shared_ptr<BaseObject>, std::shared_ptr<BaseObject>, std::shared_ptr<BaseObject>>baseObjTuple;
 typedef std::vector<ruleTuple>* ptrToRTVector;
 class RuleHandling;
 using FunctionPtr = void (RuleHandling::*)(baseObjTuple&);

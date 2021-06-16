@@ -27,16 +27,12 @@ private:
 private:
 	sf::RenderWindow m_gameWindow;
 	//sf::Sprite m_background;
-	std::map<char, GameObjects>m_charToTexConverter;
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;
 	void setView();
-
-	std::vector<BaseObject*> m_you;
 	sf::Clock m_animationClock;
-	void moveYou(sf::Vector2i dir);
-
+	
 	//sf::Sprite m_bgMenu;
 	//sf::Text m_timeText;
 	//sf::Text m_lvlText;

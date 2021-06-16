@@ -15,7 +15,7 @@ public:
 		//prefrences when attribte thus created in class predicate virtually 
 	void deleteRule(Noun&) {};
 	//getting a location in the board for which a new representaion of the current noun will be created instead of it.
-	virtual  void replaceObjInLocation(BaseObject*&)=0;
+	virtual  void replaceObjInLocation(std::shared_ptr<BaseObject>&)=0;
 
 	virtual std::unordered_set<Attribute*>& getStaticRepresentation() = 0;
 	std::type_index baseTypeId()override;

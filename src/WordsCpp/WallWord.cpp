@@ -7,10 +7,9 @@ WallWord::WallWord(const sf::Vector2u& loc)
 	//m_character.setOutlineColor(sf::Color::Red);
 }
 
-void WallWord::replaceObjInLocation(BaseObject*& cur) {
+void WallWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur) {
 	auto loc = castToLoc(cur->returnPos());
-	delete(cur);
-	cur = new Wall(loc);
+	cur.reset(new Wall(loc));
 }
 std::unordered_set<Attribute*>& WallWord::getStaticRepresentation() {
 	return Wall::m_wallAttributes;

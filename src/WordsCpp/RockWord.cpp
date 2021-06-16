@@ -7,10 +7,10 @@ RockWord::RockWord(const sf::Vector2u& loc)
 	//m_character.setOutlineColor(sf::Color::Red);
 }
 
-void RockWord::replaceObjInLocation(BaseObject*& cur) {
+void RockWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur) {
 	auto loc = castToLoc(cur->returnPos());
-	delete(cur);
-	cur = new Rock(loc);
+	cur.reset(new Rock(loc));
+	
 }
 std::unordered_set<Attribute*>& RockWord::getStaticRepresentation() {
 	return Rock::m_rockAttributes;

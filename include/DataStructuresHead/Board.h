@@ -21,13 +21,14 @@
 #include"DataHolder.h"
 #include"BaseDataHolder.h"
 #include "RuleHandling.h"
+#include <memory>
 class Board{
 	//--------------public--------functions-----------------------//
 public:
 	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	Board();
 	void initialize(FileHandler &map);
-	bool isLvlFinished();
+	//bool isLvlFinished();
 	
 	void addGameObj(char p, sf::Vector2u loc);
 
@@ -44,16 +45,16 @@ public:
 	//--------------private--------members-----------------------//
 private:
 	std::vector<ruleTuple> m_Rules;
-	std::array<std::vector<Word*>, WORD_TYPES>m_words;
-
-	std::vector<BaseObject*> m_map;
+	
+	
+	std::vector<std::shared_ptr<BaseObject>> m_map;
 	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
-	void updateRules(std::vector<ruleTuple>& currentRules);
+	//void updateRules(std::vector<ruleTuple>& currentRules);
 	void searchTriples(std::vector<baseObjTuple>& vec,
 		std::function<float(const sf::Vector2f&)> mainCoordinate,
 		std::function<float(const sf::Vector2f&)> secondaryCoordinate);

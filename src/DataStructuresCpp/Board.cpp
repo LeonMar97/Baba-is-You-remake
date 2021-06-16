@@ -3,7 +3,7 @@
 
 Board::Board()
 {
-	m_background = sf::RectangleShape(sf::Vector2f(MAP_SIZE.y, MAP_SIZE.x) * OBJECT_SIZE);
+	m_background = sf::RectangleShape(sf::Vector2f(MAP_SIZE.y, MAP_SIZE.x) * float(OBJECT_SIZE));
 	m_background.setFillColor(BOARD_COLOR);
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
@@ -14,55 +14,42 @@ Board::Board()
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char character, sf::Vector2u loc){
-	BaseObject* baseObj;
-	Word* wordObj;
 	switch (character)
 	{
 	case 'B':
-		baseObj = new Baba(loc);
-		m_map.push_back(baseObj);
+		m_map.push_back(std::make_shared<BaseObject>(Baba(loc)));
 		break;
 	case 'R':
-		baseObj = new Rock(loc);
-		m_map.push_back(baseObj);
+		m_map.push_back(std::make_shared<BaseObject>(Rock(loc)));
 		break;
 	case 'K':
-		baseObj = new Wall(loc);
-		m_map.push_back(baseObj);
+		m_map.push_back(std::make_shared<BaseObject>(Wall(loc)));
 		break;
 	case ' ':
 		break;
 	case 'i':
-		wordObj = new Is(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(Is(loc)));
 		break;
 	case 'b':
-		wordObj = new BabaWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(BabaWord(loc)));
 		break;
 	case 'k':
-		wordObj = new WallWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(WallWord(loc)));
 		break;
 	case 'r':
-		wordObj = new RockWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(RockWord(loc)));
 		break;
 	case 'y':
-		wordObj = new YouWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(YouWord(loc)));
 		break;
 	case 'w':
-		wordObj = new WinWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(WinWord(loc)));
 		break;
 	case 'p':
-		wordObj = new PushWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(PushWord(loc)));
 		break;
 	case 's':
-		wordObj = new StopWord(loc);
-		m_map.push_back(wordObj);
+		m_map.push_back(std::make_shared<BaseObject>(StopWord(loc)));
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, character)
@@ -94,9 +81,9 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 
 void Board::checkCollisions(BaseObject* cur) {
 	for (auto& obj : m_map) {
-		if (cur->collidesWith(obj) && obj != cur) {
+		if (cur->collidesWith(obj.get()) && obj.get() != cur) {
 			if (obj->triggerAttribute(cur)) {
-				checkCollisions(obj);//check collision as a result of current collision handling
+				checkCollisions(obj.get());//check collision as a result of current collision handling
 				return;
 			}
 		}
@@ -171,7 +158,7 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 }
 
 void Board::moveYou(const Direction& dir) {
-	std::vector<BaseObject*> whatMoved;
+	std::vector<std::shared_ptr<BaseObject>> whatMoved;
 	for (auto& curObj : m_map) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {
@@ -182,6 +169,6 @@ void Board::moveYou(const Direction& dir) {
 		}
 	}
 	for (auto& moved : whatMoved)
-		checkCollisions(moved);
+		checkCollisions(moved.get());
 
 }

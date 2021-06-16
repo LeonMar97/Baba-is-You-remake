@@ -49,16 +49,25 @@ FunctionPtr RuleHandling::lookup(const std::type_index& class1, const std::type_
 //casting function
 void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 	
-	auto ncaRule=ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
-		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Attribute*>(std::get<2>(currentRule)));
+	auto& [noun, con, atr] = currentRule;
+
+	auto ncaRule = ruleTuple(
+		std::make_shared<Noun>(static_cast<Noun*>(noun.get())),
+		std::make_shared<Conjunction>(static_cast<Conjunction*>(con.get())),
+		std::make_shared<Attribute>(static_cast<Attribute*>(atr.get())));
+		
 	m_AllRulesNCA->push_back(ncaRule);
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //casting function
 void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
-	auto ncnRule = ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
-		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Noun*>(std::get<2>(currentRule)));
+	auto& [nounF, con, nounS] = currentRule;
+
+	auto ncnRule = ruleTuple(
+		std::make_shared<Noun>(static_cast<Noun*>(nounF.get())),
+		std::make_shared<Conjunction>(static_cast<Conjunction*>(con.get())),
+		std::make_shared<Noun>(static_cast<Noun*>(nounS.get())));
 	m_AllRulesNCN->push_back(ncnRule);
 }
 
@@ -110,7 +119,7 @@ void RuleHandling::addNewNCA() {
 	//triggering new attributes and inserting the current new rule in his vector 
 	for (auto& ruleToAdd : *m_AllRulesNCA) {
 		auto &[noun, con, pred] = ruleToAdd;
-		static_cast<Attribute*>(pred)->putRuleIntoAffect(*noun);
+		static_cast<Attribute*>(pred.get())->putRuleIntoAffect(*noun);
 		m_RulesInGameNCA.push_back(ruleToAdd);
 		noun->setLighterColor();
 		con->setLighterColor();
@@ -122,7 +131,7 @@ void RuleHandling::addNewNCA() {
 void RuleHandling::addNewNCN(Board &b) {
 	for (auto& ruleToAdd : *m_AllRulesNCN) {//for each rule
 		auto &[noun, con, pred] = ruleToAdd;
-		b.replaceObjects(*noun,*static_cast<Noun*>(pred));
+		b.replaceObjects(*noun,*static_cast<Noun*>(pred.get()));
 		m_RulesInGameNCN.push_back(ruleToAdd);
 		noun->setLighterColor();
 		con->setLighterColor();
