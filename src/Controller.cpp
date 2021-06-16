@@ -51,41 +51,45 @@ void Controller::startGame() {
 
 	while (m_gameWindow.isOpen())
 	{
-		deltaTime = m_animationClock.restart();
+		while (!m_mapOnScreen->isLvlFinished()) {
+			deltaTime = m_animationClock.restart();
 
-		sf::Event event;
-		while (m_gameWindow.pollEvent(event))
-		{
-			switch (event.type)
+			sf::Event event;
+			while (m_gameWindow.pollEvent(event))
 			{
-			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Right)
-					dir = Direction::Right;
-				else if (event.key.code == sf::Keyboard::Left)
-					dir = Direction::Left;
-				else if (event.key.code == sf::Keyboard::Up)
-					dir = Direction::Up;
-				else if (event.key.code == sf::Keyboard::Down)
-					dir = Direction::Down;
+				switch (event.type)
+				{
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Right)
+						dir = Direction::Right;
+					else if (event.key.code == sf::Keyboard::Left)
+						dir = Direction::Left;
+					else if (event.key.code == sf::Keyboard::Up)
+						dir = Direction::Up;
+					else if (event.key.code == sf::Keyboard::Down)
+						dir = Direction::Down;
 
-				if (event.key.code == sf::Keyboard::Escape) {
+					if (event.key.code == sf::Keyboard::Escape) {
+						m_gameWindow.close();
+						break;
+					}
+
+					m_mapOnScreen->moveYou(dir);
+
+
+					m_mapOnScreen->lookForRules();
+					break;
+				case sf::Event::Closed:
 					m_gameWindow.close();
 					break;
 				}
-				
-				m_mapOnScreen->moveYou(dir);
-				
-					
-				m_mapOnScreen->lookForRules();
-				break;
-			case sf::Event::Closed:
-				m_gameWindow.close();
-				break;
 			}
+			m_gameWindow.clear(WINDOW_COLOR);
+			m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
+			m_gameWindow.display();
 		}
-		m_gameWindow.clear(WINDOW_COLOR);
-		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
-		m_gameWindow.display();
+		if (!newLvl())
+			break;
 	}
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

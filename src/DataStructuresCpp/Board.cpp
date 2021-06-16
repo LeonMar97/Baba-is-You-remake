@@ -51,7 +51,7 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		m_map.push_back(wordObj);
 		break;
 	case 'w':
-		wordObj = new WinWord(loc);
+		wordObj = new WinWord(loc, *this);
 		m_map.push_back(wordObj);
 		break;
 	case 'p':
@@ -182,4 +182,12 @@ void Board::moveYou(const Direction& dir) {
 	for (auto moved = whatMoved.begin(); moved != whatMoved.end(); moved++)
 		for (auto& moved : whatMoved)
 			checkCollisions(moved);
+}
+
+void Board::endLevel() {
+	m_endLevel = true;
+}
+
+bool Board::isLvlFinished() {
+	return m_endLevel;
 }

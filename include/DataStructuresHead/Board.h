@@ -35,6 +35,8 @@ public:
 	void lookForRules();
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
 	void moveYou(const Direction& dir);
+	void endLevel();
+	//void isLevelOver();
 	/*
 	void insert(GameObjects, BaseObject*);
 	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
@@ -44,13 +46,14 @@ public:
 	//--------------private--------members-----------------------//
 private:
 	std::vector<ruleTuple> m_Rules;
-	std::array<std::vector<Word*>, WORD_TYPES>m_words;
 
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;
+	bool m_endLevel = false;
+
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
 	void updateRules(std::vector<ruleTuple>& currentRules);
