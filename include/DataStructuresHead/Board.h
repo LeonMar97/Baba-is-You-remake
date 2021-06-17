@@ -55,6 +55,7 @@ public:
 	//--------------private--------members-----------------------//
 private:
 	std::vector<ruleTuple> m_Rules;
+	std::vector<BaseObject*> m_whatMoved;
 
 	std::vector<BaseObject*> m_map;
 	sf::Vector2f screenSize;
@@ -62,6 +63,7 @@ private:
 	
 	sf::RectangleShape m_background;
 	bool m_endLevel = false;
+	void sortTextures();
 
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);

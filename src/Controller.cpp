@@ -80,6 +80,7 @@ void Controller::startGame() {
 
 
 					m_mapOnScreen->lookForRules();
+					
 					break;
 				case sf::Event::Closed:
 					m_gameWindow.close();

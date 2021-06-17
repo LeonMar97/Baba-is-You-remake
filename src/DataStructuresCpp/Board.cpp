@@ -116,6 +116,7 @@ void Board::initialize(FileHandler& map) {
 
 //drawing the board on requested screen..
 void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
+	sortTextures();
 	game_Window.draw(m_background);
 	for(auto &obj:m_map){
 		obj->draw(game_Window, deltaTime);
@@ -201,20 +202,34 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 }
 
 void Board::moveYou(const Direction& dir) {
-	std::vector<BaseObject*> whatMoved;
+	m_whatMoved.clear();
+	
 	for (auto& curObj : m_map) {
-		auto &attributes = curObj->getStatic();
-		for (auto &it : attributes) {
+		auto& attributes = curObj->getStatic();
+		for (auto& it : attributes) {
 			if (it->move(*curObj, dir)) {
-				whatMoved.push_back(curObj);
+				m_whatMoved.push_back((curObj));
 				break;
 			}
 		}
 	}
-	for (auto moved = whatMoved.begin(); moved != whatMoved.end(); moved++)
-		for (auto& moved : whatMoved)
-			checkCollisions(moved);
+	for (auto& moved : m_whatMoved)
+		checkCollisions(moved);
+	
+	
 }
+//sorting the textures so the object which moved will appear on top of everything
+void Board:: sortTextures() {
+	for (auto moved : m_whatMoved) {
+		auto temp = moved;
+		auto cur = std::find(m_map.begin(), m_map.end(), moved);
+		if (cur != m_map.end()) {//making sure the object didnt die in middle of game and no appeared on map 
+			m_map.erase(std::find(m_map.begin(), m_map.end(), moved));
+			m_map.push_back(temp);
+		}
+	}
+}
+
 
 void Board::removeObject(BaseObject* objToRemove) {
 	delete objToRemove;
