@@ -6,15 +6,15 @@
 #include "FileHandler.h"
 #include "BaseObject.h"
 #include "Direction.h"
-#include "Menu.h"
+//#include "Menu.h"
 #include <stack>
 
 class Controller {
 
 public:
-	Controller();
+	Controller(sf::RenderWindow&);
 	void startGame();//the game loop
-	void openMenu();
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines
@@ -25,7 +25,7 @@ private:
 	//void printEndGameTex();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
 private:
-	sf::RenderWindow m_gameWindow;
+	sf::RenderWindow& m_gameWindow;
 	//sf::Sprite m_background;
 	std::map<char, GameObjects>m_charToTexConverter;
 	FileHandler m_map;

@@ -2,9 +2,11 @@
 #include "Animation.h"
 #include "Resources.h"
 #include "Controller.h"
+#include "Menu.h"
 
 int main()
 {
-    auto ctrl = Controller();
-    ctrl.openMenu();
+    
+    Menu m;
+    m.activate();
 }

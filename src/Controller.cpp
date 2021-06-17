@@ -5,8 +5,8 @@
 #include "Macros.h"
 #include "Baba.h"
 
-Controller::Controller()
-	: m_gameWindow(sf::VideoMode(1920,1080),"Baba is you",sf::Style::Fullscreen)
+Controller::Controller(sf::RenderWindow& gameWindow)
+	: m_gameWindow(gameWindow)
 {
 	m_gameWindow.setFramerateLimit(60);
 }
@@ -16,11 +16,13 @@ void Controller::updateDataStructures() {
 	//m_clock.restart();
 }
 
+/*
 void Controller::openMenu() {
 	auto menu = Menu(*this, m_gameWindow); //do i want to do this?
 	menu.run();
 
 }
+*/
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 /*
 void Controller::settingFontsAndSounds() {

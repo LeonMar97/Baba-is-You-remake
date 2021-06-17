@@ -80,3 +80,7 @@ const sf::Color YOU_COLOR = sf::Color(113, 28, 53);
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
+//~~~~~~~~~~~~~Menu~~~~~~~~~~~~~~~~~~
+const unsigned int START_NEW_GAME = 0;
+
+
