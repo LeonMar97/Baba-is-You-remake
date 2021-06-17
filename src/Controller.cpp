@@ -73,7 +73,7 @@ void Controller::startGame() {
 
 					if (event.key.code == sf::Keyboard::Escape) {
 						m_gameWindow.close();
-						break;
+						return;
 					}
 
 					m_mapOnScreen->moveYou(dir);
