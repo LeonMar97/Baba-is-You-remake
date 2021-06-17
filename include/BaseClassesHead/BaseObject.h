@@ -42,6 +42,7 @@ public:
 	void setDefaultColor();
 	void updateLocOnStack();
 	void setLastLoc();
+	void removeTopLocStack(){ m_previousLoc.pop(); }
 protected:
 	sf::Sprite m_sprite;
 	std::vector<Animation> m_animation;

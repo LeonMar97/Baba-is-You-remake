@@ -34,6 +34,7 @@ void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
 }
 
 void BaseObject::move(const Direction& dir) {
+	updateLocOnStack();
 	m_lastPos = m_sprite.getPosition();
 	m_sprite.move(50.f * toVector(dir));
 	//for making baba look like he walks, the animation is changed and iterator is set accordingly
@@ -45,8 +46,9 @@ void BaseObject::move(const Direction& dir) {
 	
 	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
 		move(opposite(dir));
+		m_previousLoc.pop();
+		m_previousLoc.pop();
 	}
-	updateLocOnStack();
 }
 
 void BaseObject::updateLocOnStack() {

@@ -10,6 +10,7 @@ PushWord::PushWord()
 {}
 
 bool PushWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
+	passiveObj->removeTopLocStack();
 	passiveObj->move(activeObj->getDir());
 	return true;
 }
