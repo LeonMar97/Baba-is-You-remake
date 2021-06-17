@@ -41,8 +41,8 @@ typedef std::vector<BaseObject*> baseObjVec;
 const float OBJECT_SIZE = 50.f;
 
 //~~~~~~~~~~~~~Colors~~~~~~~~~~~~~~~~~~
-const sf::Color BOARD_COLOR(33, 33, 63); //bluish
-const sf::Color WINDOW_COLOR(0, 0, 0);  //black
+const sf::Color WINDOW_COLOR(33, 33, 63); //bluish
+const sf::Color BOARD_COLOR(0, 0, 0);  //black
 const sf::Color WALL_COLOR = sf::Color(90, 151, 75);
 const sf::Color WALL_LIGHTER_COLOR = sf::Color(180, 255, 153);
 
