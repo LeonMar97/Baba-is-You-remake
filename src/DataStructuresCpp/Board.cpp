@@ -200,6 +200,12 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 	}
 }
 
+void Board::setPreviousLocations() {
+	for (auto& obj : m_map) {
+		obj->setLastLoc();
+	}
+}
+
 void Board::moveYou(const Direction& dir) {
 	std::vector<BaseObject*> whatMoved;
 	for (auto& curObj : m_map) {

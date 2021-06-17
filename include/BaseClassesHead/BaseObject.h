@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <typeindex>
 #include "Direction.h"
+#include <stack>
 
 #include "Resources.h"
 #include<unordered_set>
@@ -39,6 +40,8 @@ public:
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 	void setDefaultColor();
+	void updateLocOnStack();
+	void setLastLoc();
 protected:
 	sf::Sprite m_sprite;
 	std::vector<Animation> m_animation;
@@ -46,4 +49,5 @@ protected:
 	sf::Vector2f m_lastPos;
 private:
 	sf::Color m_defaultColor;
+	std::stack<sf::Vector2f> m_previousLoc;
 };

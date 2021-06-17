@@ -46,6 +46,18 @@ void BaseObject::move(const Direction& dir) {
 	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
 		move(opposite(dir));
 	}
+	updateLocOnStack();
+}
+
+void BaseObject::updateLocOnStack() {
+	m_previousLoc.push(m_sprite.getPosition());
+}
+
+void BaseObject::setLastLoc() {
+	if (!m_previousLoc.empty()) {
+		m_sprite.setPosition(m_previousLoc.top());
+		m_previousLoc.pop();
+	}
 }
 
 Direction BaseObject::getDir() {

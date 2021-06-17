@@ -63,22 +63,21 @@ void Controller::startGame() {
 				{
 				case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Right)
-						dir = Direction::Right;
+						m_mapOnScreen->moveYou(Direction::Right);
 					else if (event.key.code == sf::Keyboard::Left)
-						dir = Direction::Left;
+						m_mapOnScreen->moveYou(Direction::Left);
 					else if (event.key.code == sf::Keyboard::Up)
-						dir = Direction::Up;
+						m_mapOnScreen->moveYou(Direction::Up);
 					else if (event.key.code == sf::Keyboard::Down)
-						dir = Direction::Down;
-
-					if (event.key.code == sf::Keyboard::Escape) {
+						m_mapOnScreen->moveYou(Direction::Down);
+					else if (event.key.code == sf::Keyboard::Z) {
+						m_mapOnScreen->setPreviousLocations();
+					}
+					else if (event.key.code == sf::Keyboard::Escape) {
 						m_gameWindow.close();
 						return;
 					}
-
-					m_mapOnScreen->moveYou(dir);
-
-
+					else break;
 					m_mapOnScreen->lookForRules();
 					break;
 				case sf::Event::Closed:

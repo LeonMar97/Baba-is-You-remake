@@ -11,3 +11,8 @@ std::type_index Attribute::baseTypeId() {
 void Attribute:: deleteRule(Noun& curNoun) {
 	curNoun.removeAttribute(this);
 }
+
+bool Attribute::move(BaseObject& baseObj, const Direction&) {
+	baseObj.updateLocOnStack();
+	return false;
+}

@@ -45,6 +45,7 @@ public:
 	void moveYou(const Direction& dir);
 	void endLevel();
 	void removeObject(BaseObject*);
+	void setPreviousLocations();
 	//void isLevelOver();
 	/*
 	void insert(GameObjects, BaseObject*);

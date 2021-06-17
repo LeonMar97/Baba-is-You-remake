@@ -7,6 +7,6 @@ public:
 	virtual void putRuleIntoAffect(Noun&) ;
 	virtual void deleteRule(Noun&)override;
 	std::type_index baseTypeId() override;
-	virtual bool move(BaseObject& , const Direction& ) { return false; }
+	virtual bool move(BaseObject&, const Direction&);
 private:
 };
