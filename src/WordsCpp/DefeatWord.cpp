@@ -11,4 +11,3 @@ bool DefeatWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) 
 	}
 	return false;
 }
-

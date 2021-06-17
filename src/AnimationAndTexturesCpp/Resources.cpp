@@ -143,6 +143,9 @@ Resources::Resources()
     m_data[defeatword_t] = readDataDefault(
         sf::Vector2i(120, 936)
     );
+    m_data[sinkword_t] = readDataDefault(
+        sf::Vector2i(216, 1008)
+    );
 
     m_data[stopword_t] = readDataDefault(
         sf::Vector2i(288, 1008)
@@ -173,6 +176,12 @@ Resources::Resources()
     ); 
     m_data[skullword_t] = readDataDefault(
         sf::Vector2i(384, 793)
+    ); 
+    m_data[water_t] = readDataDefault(
+        sf::Vector2i(576, 1224)
+    ); 
+    m_data[waterword_t] = readDataDefault(
+        sf::Vector2i(672, 792)
     ); 
 
     //conjunctions

@@ -16,7 +16,7 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 	Word* wordObj;
 	switch (character)
 	{
-	case 'B':
+	case 'B': 
 		baseObj = new Baba(loc);
 		m_map.push_back(baseObj);
 		break;
@@ -34,6 +34,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'G':
 		baseObj = new Skull(loc);
+		m_map.push_back(baseObj);
+		break;
+	case 'M':
+		baseObj = new Water(loc);
 		m_map.push_back(baseObj);
 		break;
 	case ' ':
@@ -62,6 +66,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		wordObj = new RockWord(loc);
 		m_map.push_back(wordObj);
 		break;
+	case 'm':
+		wordObj = new WaterWord(loc);
+		m_map.push_back(wordObj);
+		break;
 	case 'y':
 		wordObj = new YouWord(loc);
 		m_map.push_back(wordObj);
@@ -72,6 +80,10 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'd':
 		wordObj = new DefeatWord(loc, *this);
+		m_map.push_back(wordObj);
+		break;
+	case 'l':
+		wordObj = new SinkWord(loc, *this);
 		m_map.push_back(wordObj);
 		break;
 	case 'p':
@@ -115,7 +127,7 @@ void Board::checkCollisions(BaseObject* cur) {
 		if (cur->collidesWith(obj) && obj != cur) {
 			if (obj->triggerAttribute(cur)) {
 				checkCollisions(obj);//check collision as a result of current collision handling
-				return;
+				//return; maybe this is not supposed to be here
 			}
 		}
 	}
@@ -189,7 +201,7 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 }
 
 void Board::moveYou(const Direction& dir) {
-	std::vector<std::reference_wrapper<BaseObject*>> whatMoved;
+	std::vector<BaseObject*> whatMoved;
 	for (auto& curObj : m_map) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {

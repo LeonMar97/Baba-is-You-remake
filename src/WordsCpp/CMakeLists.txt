@@ -9,6 +9,8 @@
 									"StopWord.cpp"
 									"FlagWord.cpp"
 									"DefeatWord.cpp"
+									"WaterWord.cpp"
+									"SinkWord.cpp"
 									"SkullWord.cpp"
 									"WinWord.cpp"
 									"Noun.cpp"
