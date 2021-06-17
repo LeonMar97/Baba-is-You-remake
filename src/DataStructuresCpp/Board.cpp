@@ -16,7 +16,7 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 	Word* wordObj;
 	switch (character)
 	{
-	case 'B':
+	case 'B': 
 		baseObj = new Baba(loc);
 		m_map.push_back(baseObj);
 		break;
@@ -26,6 +26,18 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		break;
 	case 'K':
 		baseObj = new Wall(loc);
+		m_map.push_back(baseObj);
+		break;
+	case 'F':
+		baseObj = new Flag(loc);
+		m_map.push_back(baseObj);
+		break;
+	case 'G':
+		baseObj = new Skull(loc);
+		m_map.push_back(baseObj);
+		break;
+	case 'M':
+		baseObj = new Water(loc);
 		m_map.push_back(baseObj);
 		break;
 	case ' ':
@@ -38,12 +50,24 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		wordObj = new BabaWord(loc);
 		m_map.push_back(wordObj);
 		break;
+	case 'g':
+		wordObj = new SkullWord(loc);
+		m_map.push_back(wordObj);
+		break;
 	case 'k':
 		wordObj = new WallWord(loc);
 		m_map.push_back(wordObj);
 		break;
+	case 'f':
+		wordObj = new FlagWord(loc);
+		m_map.push_back(wordObj);
+		break;
 	case 'r':
 		wordObj = new RockWord(loc);
+		m_map.push_back(wordObj);
+		break;
+	case 'm':
+		wordObj = new WaterWord(loc);
 		m_map.push_back(wordObj);
 		break;
 	case 'y':
@@ -51,7 +75,15 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 		m_map.push_back(wordObj);
 		break;
 	case 'w':
-		wordObj = new WinWord(loc);
+		wordObj = new WinWord(loc, *this);
+		m_map.push_back(wordObj);
+		break;
+	case 'd':
+		wordObj = new DefeatWord(loc, *this);
+		m_map.push_back(wordObj);
+		break;
+	case 'l':
+		wordObj = new SinkWord(loc, *this);
 		m_map.push_back(wordObj);
 		break;
 	case 'p':
@@ -95,7 +127,7 @@ void Board::checkCollisions(BaseObject* cur) {
 		if (cur->collidesWith(obj) && obj != cur) {
 			if (obj->triggerAttribute(cur)) {
 				checkCollisions(obj);//check collision as a result of current collision handling
-				return;
+				//return; maybe this is not supposed to be here
 			}
 		}
 	}
@@ -174,7 +206,7 @@ void Board::moveYou(const Direction& dir) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {
 			if (it->move(*curObj, dir)) {
-				whatMoved.push_back((curObj));
+				whatMoved.push_back(curObj);
 				break;
 			}
 		}
@@ -182,4 +214,17 @@ void Board::moveYou(const Direction& dir) {
 	for (auto moved = whatMoved.begin(); moved != whatMoved.end(); moved++)
 		for (auto& moved : whatMoved)
 			checkCollisions(moved);
+}
+
+void Board::removeObject(BaseObject* objToRemove) {
+	delete objToRemove;
+	m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
+}
+
+void Board::endLevel() {
+	m_endLevel = true;
+}
+
+bool Board::isLvlFinished() {
+	return m_endLevel;
 }

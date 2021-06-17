@@ -8,7 +8,6 @@ StopWord::StopWord()
 	: Attribute("Stop", Resources::instance().animationData(stopword_t), Direction::Stay, {0,0}, sf::Color(144, 103, 62),
 		sf::Color::Red)
 {
-	//m_character.setFillColor(sf::Color(144, 103, 62));
 }
 
 bool StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {

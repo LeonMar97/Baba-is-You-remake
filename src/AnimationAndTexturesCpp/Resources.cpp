@@ -113,6 +113,7 @@ Resources::Resources()
         throw std::runtime_error("Can't load file");
     }
 
+    //babas
     m_data[babas_t] = readDataBaba(
         sf::Vector2i(24, 0)
     );
@@ -128,9 +129,8 @@ Resources::Resources()
     m_data[babaword_t] = readDataDefault(
         sf::Vector2i(143, 648)
     );
-    m_data[is_t] = readDataDefault(
-        sf::Vector2i(432, 720)
-    );
+
+//attributes
     m_data[youword_t] = readDataDefault(
         sf::Vector2i(480, 1008)
     );
@@ -140,19 +140,52 @@ Resources::Resources()
     m_data[pushword_t] = readDataDefault(
         sf::Vector2i(47, 1008)
     );
+    m_data[defeatword_t] = readDataDefault(
+        sf::Vector2i(120, 936)
+    );
+    m_data[sinkword_t] = readDataDefault(
+        sf::Vector2i(216, 1008)
+    );
+
     m_data[stopword_t] = readDataDefault(
         sf::Vector2i(288, 1008)
     );
+    //nouns + representations
     m_data[rocks_t] = readDataDefault(
         sf::Vector2i(361, 505)
     ); 
     m_data[rockword_t] = readDataDefault(
         sf::Vector2i(265, 793)
     ); 
+    m_data[flags_t] = readDataDefault(
+        sf::Vector2i(146, 505)
+    ); 
+    m_data[flagword_t] = readDataDefault(
+        sf::Vector2i(25, 721)
+    ); 
+
     m_data[walls_t] = readDataDefault(
         sf::Vector2i(0, 1368)
     ); 
     m_data[wallword_t] = readDataDefault(
         sf::Vector2i(648, 792)
     ); 
+
+    m_data[skulls_t] = readDataDefault(
+        sf::Vector2i(265, 360)
+    ); 
+    m_data[skullword_t] = readDataDefault(
+        sf::Vector2i(384, 793)
+    ); 
+    m_data[water_t] = readDataDefault(
+        sf::Vector2i(576, 1224)
+    ); 
+    m_data[waterword_t] = readDataDefault(
+        sf::Vector2i(672, 792)
+    ); 
+
+    //conjunctions
+    m_data[is_t] = readDataDefault(
+        sf::Vector2i(432, 720)
+    );
 }

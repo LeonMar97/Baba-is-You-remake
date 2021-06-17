@@ -78,7 +78,6 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 }
 
 bool BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
-	//obj->m_sprite.setPosition(obj->m_lastPos);
 	return false;
 }
 std::type_index BaseObject::baseTypeId() {
