@@ -20,8 +20,9 @@ public:
 
 private:
     Resources();
-    std::vector<sf::Texture> m_texture;
     std::vector<AnimationData> m_data;
     void loadSprite(spriteSheet curSheetInVec, std::string sheetName);
+    void createAllLetter();
+    std::vector<sf::Texture> m_texture;
 
 };

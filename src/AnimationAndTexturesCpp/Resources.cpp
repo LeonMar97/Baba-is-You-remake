@@ -63,40 +63,7 @@ namespace {
         }
         return animData;
     }
-    /*
-
-    AnimationData pacmanData()
-    {
-        const auto size = sf::Vector2i(40, 40);
-        const auto initSpace = sf::Vector2i(851, 2);
-        const auto middleSpace = sf::Vector2i(0, 10);
-
-        auto pacman = AnimationData{};
-        auto currentStart = initSpace;
-
-        auto nextStart = [&]()
-        {
-            currentStart += middleSpace;
-            currentStart.y += size.y;
-            return currentStart;
-        };
-
-        pacman.m_data[Direction::Right].emplace_back(currentStart, size);
-        pacman.m_data[Direction::Right].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Right].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Down].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Down].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Down].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Left].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Left].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Left].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Up].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Up].emplace_back(nextStart(), size);
-        pacman.m_data[Direction::Up].emplace_back(nextStart(), size);
-
-        return pacman;
-    }
-    */
+    
 }
 
 Resources& Resources::instance()
@@ -108,7 +75,11 @@ Resources& Resources::instance()
 Resources::Resources()
     : m_data(Max)
 {
-   
+    m_texture.resize(NUM_OF_SHEETS);
+     loadSprite(gameSheet_t, "Spritesheet.png");
+     loadSprite(mainMenuSheet_t, "menuButtons.png");
+
+
 
     //babas
     m_data[babas_t] = readDataBaba(
@@ -185,13 +156,25 @@ Resources::Resources()
     m_data[is_t] = readDataDefault(
         sf::Vector2i(432, 720)
     );
+    createAllLetter();
 }
+void Resources::createAllLetter() {
+    int j = 0;
+    for (int i = static_cast<int>(letterA_t); i <= static_cast<int>(letterX_t); i++) {
+        m_data[i] = readDataDefault(
+            sf::Vector2i(j, 863));
+        j += 24;
+    }
+}
+
 void Resources:: loadSprite(spriteSheet curSheetInVec,std::string sheetName ) {
     std::stringstream error;
     error << "Can't load file";
+    
     if (!m_texture[curSheetInVec].loadFromFile(sheetName))
     {
         error << " " << sheetName;
         throw std::runtime_error(error.str());
     }
+   
 }

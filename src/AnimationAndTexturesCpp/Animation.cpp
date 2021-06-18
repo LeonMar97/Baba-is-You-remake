@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-#include "Resources.h"
+
 
 const auto AnimationTime = sf::seconds(0.2);
 

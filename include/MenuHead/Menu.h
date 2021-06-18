@@ -9,6 +9,8 @@
 #include "Macros.h"
 #include "Controller.h"
 #include"NewGame.h"
+#include "Header.h"
+#include<sstream>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -30,8 +32,8 @@ private:
 	std::shared_ptr<Controller> m_cntrl;
 	sf::RectangleShape m_startGameButton;
 	sf::RectangleShape m_exitGameButton;
+	Header m_babaIsU;
 
-	
 	
 
 };

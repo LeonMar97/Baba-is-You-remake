@@ -5,9 +5,11 @@ void Menu::add(unique_ptr<Command> c){
 
 Menu::Menu()
 	:
+	m_babaIsU(std::stringstream("BABAISU")),
 	m_menuWindow(sf::VideoMode(1920, 1080), "Baba is you", sf::Style::Fullscreen),
 	m_startGameButton(sf::Vector2f(430, 48)),
 	m_exitGameButton(sf::Vector2f(430, 48)),
+
 	m_cntrl(std::make_shared<Controller>(m_menuWindow))
 {
 	sf::View view = m_menuWindow.getView();
@@ -27,8 +29,18 @@ Menu::Menu()
 	m_exitGameButton.setFillColor(sf::Color(35,41,67));
 	m_exitGameButton.setOutlineThickness(2.f);
 	m_exitGameButton.setOutlineColor(sf::Color(78, 90, 148));
+	m_babaIsU.m_sprites[0]->setPosition(sf::Vector2f(750, 400));
+	m_babaIsU.m_sprites[0]->setScale(sf::Vector2f(3.f, 3.f));
+	m_babaIsU.m_sprites[0]->setColor(sf::Color::Red);
 
-	
+	m_babaIsU.m_sprites[1]->setPosition(sf::Vector2f(750, 400));
+	m_babaIsU.m_sprites[1]->setScale(sf::Vector2f(3.f, 3.f));
+	m_babaIsU.m_sprites[1]->setColor(sf::Color::Red);
+
+	m_babaIsU.m_sprites[2]->setPosition(sf::Vector2f(750, 400));
+	m_babaIsU.m_sprites[2]->setScale(sf::Vector2f(3.f, 3.f));
+	m_babaIsU.m_sprites[2]->setColor(sf::Color::Red);
+
 	//~~~~~~~~adding commands~~~~~~~~~~~~~
 	add(std::make_unique <NewGame>(m_cntrl));
 	
@@ -46,7 +58,9 @@ void Menu::activate() {
 			case sf::Event::MouseButtonPressed:
 				 b = sf::Mouse::getPosition();
 				if (event.key.code == sf::Mouse::Left) {
-					auto k = sf::Mouse::getPosition();
+					auto c = sf::Mouse::getPosition();
+					auto c2 = m_startGameButton.getGlobalBounds();
+
 					if (m_startGameButton.getGlobalBounds().contains(sf::Vector2f(b)))
 						m_options[START_NEW_GAME]->execute();
 
@@ -61,6 +75,10 @@ void Menu::activate() {
 			m_menuWindow.clear(WINDOW_COLOR);
 			m_menuWindow.draw(m_exitGameButton);
 			m_menuWindow.draw(m_startGameButton);
+			//m_menuWindow.draw(*m_babaIsU.m_sprites[0]);
+			m_menuWindow.draw(*m_babaIsU.m_sprites[1]);
+			//m_menuWindow.draw(*m_babaIsU.m_sprites[2]);
+
 			m_menuWindow.display();
 		}
 	}

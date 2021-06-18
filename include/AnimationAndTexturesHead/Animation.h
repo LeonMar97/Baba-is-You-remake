@@ -2,7 +2,7 @@
 
 #include "Direction.h"
 #include "AnimationData.h"
-
+#include "Resources.h"
 #include <SFML/Graphics.hpp>
 
 class Animation

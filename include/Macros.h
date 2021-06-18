@@ -30,6 +30,27 @@ enum GameObjects {
     conjunctions_t,
     is_t,
 
+    letterA_t,
+    letterB_t,
+    letterC_t,
+    letterD_t, 
+    letterE_t, 
+    letterF_t, 
+    letterG_t,
+    letterH_t,
+    letterI_t,
+    letterL_t, 
+    letterM_t,
+    letterN_t,
+    letterO_t,
+    letterR_t, 
+    letterS_t,
+    letterT_t,
+    letterU_t, 
+    letterV_t, 
+    letterW_t,
+    letterX_t,
+
     Max
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
@@ -83,6 +104,7 @@ const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
 //~~~~~~~~~~~~~Menu~~~~~~~~~~~~~~~~~~
 const unsigned int START_NEW_GAME = 0;
+const unsigned int NUM_OF_SHEETS=2;
 enum spriteSheet {
     gameSheet_t=0,
     mainMenuSheet_t
