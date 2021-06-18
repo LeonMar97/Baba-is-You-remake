@@ -1,4 +1,6 @@
 #include"PushWord.h"
+#include "OperationMove.h"
+#include "NoOperation.h"
 PushWord::PushWord(const sf::Vector2u& loc)
 	:Attribute("Push",Resources::instance().animationData(pushword_t), Direction::Stay, loc, PUSH_COLOR,
 		PUSH_LIGHTER_COLOR)
@@ -10,6 +12,13 @@ PushWord::PushWord()
 {}
 
 bool PushWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
-	passiveObj->move(activeObj->getDir());
-	return true;
+	auto lastOp = passiveObj->lastOp();
+	if (dynamic_cast<NoOperation*>(lastOp)) {
+		passiveObj->removeOperation();
+		passiveObj->executeOperation(new OperationMove(activeObj->getDir()));
+	}
+	else {
+		passiveObj->undoOperation();
+		return true;
+	}
 }

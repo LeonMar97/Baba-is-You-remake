@@ -12,88 +12,107 @@ Board::Board()
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void Board::addGameObj(char character, sf::Vector2u loc){
-	BaseObject* baseObj;
+	std::shared_ptr<BaseObject> baseObj;
+	std::unique_ptr<DataHolder> dataholder;
 	Word* wordObj;
 	switch (character)
 	{
 	case 'B': 
-		m_dataHolder.push_back(std::make_unique<DataHolder<Baba>>(std::make_unique<Baba>(loc)));
+		baseObj = std::make_shared<Baba>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
-		
 		break;
 	case 'R':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Rock>>(std::make_unique<Rock>(loc)));
+		baseObj = std::make_shared<Rock>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
 		break;
 	case 'K':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Wall>>(std::make_unique<Wall>(loc)));
+		baseObj = std::make_shared<Wall>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
 		break;
 	case 'F':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Flag>>(std::make_unique<Flag>(loc)));
+		baseObj = std::make_shared<Flag>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
 		break;
 	case 'G':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Skull>>(std::make_unique<Skull>(loc)));
+		baseObj = std::make_shared<Skull>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
 		break;
 	case 'M':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Water>>(std::make_unique<Water>(loc)));
+		baseObj = std::make_shared<Water>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
 		m_map.push_back(baseObj);
 		break;
 	case ' ':
 		break;
 	case 'i':
-		m_dataHolder.push_back(std::make_unique<DataHolder<Is>>(std::make_unique<Is>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<Is>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'b':
-		m_dataHolder.push_back(std::make_unique<DataHolder<BabaWord>>(std::make_unique<BabaWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<BabaWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'g':
-		m_dataHolder.push_back(std::make_unique<DataHolder<SkullWord>>(std::make_unique<SkullWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<SkullWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'k':
-		m_dataHolder.push_back(std::make_unique<DataHolder<WallWord>>(std::make_unique<WallWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<WallWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'f':
-		m_dataHolder.push_back(std::make_unique<DataHolder<FlagWord>>(std::make_unique<FlagWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<FlagWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'r':
-		m_dataHolder.push_back(std::make_unique<DataHolder<RockWord>>(std::make_unique<RockWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<RockWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'm':
-		m_dataHolder.push_back(std::make_unique<DataHolder<WaterWord>>(std::make_unique<WaterWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<WaterWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'y':
-		m_dataHolder.push_back(std::make_unique<DataHolder<YouWord>>(std::make_unique<YouWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<YouWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'w':
-		m_dataHolder.push_back(std::make_unique<DataHolder<WinWord>>(std::make_unique<WinWord>(loc, *this)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<WinWord>(loc, *this);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'd':
-		m_dataHolder.push_back(std::make_unique<DataHolder<DefeatWord>>(std::make_unique<DefeatWord>(loc, *this)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<DefeatWord>(loc, *this);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'l':
-		m_dataHolder.push_back(std::make_unique<DataHolder<SinkWord>>(std::make_unique<SinkWord>(loc, *this)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<SinkWord>(loc, *this);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 'p':
-		m_dataHolder.push_back(std::make_unique<DataHolder<PushWord>>(std::make_unique<PushWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<PushWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	case 's':
-		m_dataHolder.push_back(std::make_unique<DataHolder<StopWord>>(std::make_unique<StopWord>(loc)));
-		m_map.push_back(wordObj);
+		baseObj = std::make_shared<StopWord>(loc);
+		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
+		m_map.push_back(baseObj);
 		break;
 	default:
 		throw std::invalid_argument(((std::string(1, character)
@@ -106,16 +125,11 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
 	char currentChar;
-	//initializing data map
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
 			currentChar = map.what_In_Location(loc);
 			 addGameObj(currentChar, loc);
 		}
-	}
-	//initializing interaction map
-	for (auto& dataHolder : m_dataHolder) {
-		m_map.push_back(dataHolder.get()->getPtr());
 	}
 	lookForRules();
 }
@@ -129,10 +143,10 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 }
 
 void Board::checkCollisions(BaseObject* cur) {
-	for (auto& obj : m_map) {
-		if (cur->collidesWith(obj) && obj != cur) {
-			if (obj->triggerAttribute(cur)) {
-				checkCollisions(obj);//check collision as a result of current collision handling
+	for(auto it = m_map.begin(); it < m_map.end(); it++){
+		if (cur->collidesWith(it->get()) && it->get() != cur) {
+			if (it->get()->triggerAttribute(cur)) {
+				checkCollisions(it->get());//check collision as a result of current collision handling
 				//return; maybe this is not supposed to be here
 			}
 		}
@@ -145,25 +159,29 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 	std::function<float(const sf::Vector2f&)> secondaryCoordinate)
 	{
 	//sort based on main coordinates
-	std::sort(m_map.begin(), m_map.end(), [&](BaseObject* baseObj1, BaseObject* baseObj2) {
+	std::sort(m_map.begin(), m_map.end(), [&](const std::shared_ptr<BaseObject>& baseObj1, const std::shared_ptr<BaseObject>& baseObj2) {
 		return mainCoordinate(baseObj1->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
 	//sorting secondary coordinates without changing previous order based on main coordinates
 	std::stable_sort(m_map.begin(), m_map.end(),
-		[&](BaseObject* baseObj1, BaseObject* baseObj2) {
+		[&](const std::shared_ptr<BaseObject>& baseObj1, const std::shared_ptr<BaseObject>& baseObj2) {
 			if (mainCoordinate(baseObj1->returnPos()) == mainCoordinate(baseObj2->returnPos()))
 				return secondaryCoordinate(baseObj1->returnPos()) < secondaryCoordinate(baseObj2->returnPos());
 			else return mainCoordinate(baseObj2->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
 	sf::Vector2f firstPos, secondPos, thirdPos;
+	BaseObject* firstPtr, *secondPtr, *thirdPtr;
 	for (auto first = m_map.begin(); first < m_map.end() - 2; first++) {
 		firstPos = (*first)->returnPos();
+		firstPtr = (*first).get();
 		for (auto second = first; second < m_map.end() - 1; second++) {
 			secondPos = (*second)->returnPos();
+			secondPtr = (*second).get();
 				//if second coordinate is not on same col/row as first or is farther than 1 unit
 			if (mainCoordinate(firstPos) != mainCoordinate(secondPos) || 
 				secondaryCoordinate(firstPos) + 1*OBJECT_SIZE < secondaryCoordinate(secondPos)) break;
 			for (auto third = second; third < m_map.end(); third++) {
+				thirdPtr = (*third).get();
 				thirdPos = (*third)->returnPos();
 
 				//if third coordinate is not on same col/row as second or is farther than 1 unit
@@ -177,7 +195,7 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 					secondaryCoordinate(secondPos) - secondaryCoordinate(firstPos) == OBJECT_SIZE &&
 					secondaryCoordinate(thirdPos) - secondaryCoordinate(secondPos) == OBJECT_SIZE){
 
-					vec.emplace_back(baseObjTuple(*first, *second, *third)); //a valid triple is found
+					vec.emplace_back(baseObjTuple(firstPtr, secondPtr, thirdPtr)); //a valid triple is found
 				}
 			}
 		}
@@ -185,7 +203,6 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 }
 
 void Board::lookForRules() {
-
 	auto getXCoordinate = [&](const sf::Vector2f& vec) {return vec.x; };
 	auto getYCoordinate = [&](const sf::Vector2f& vec) {return vec.y; };
 	auto potentialNewRuleVec = std::vector<baseObjTuple>();
@@ -201,14 +218,22 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 				//-representation Object, and replacing the current on board 
 
 		auto curId = cur->wordTypeId();
-		if (curId == replaceWithId)
-			toReplaceWith.replaceObjInLocation(cur);
+		if (curId == replaceWithId) {
+			auto ptr = cur.get();
+			toReplaceWith.replaceObjInLocation(ptr);
+		}
 	}
 }
 
-void Board::setPreviousLocations() {
-	for (auto& obj : m_map) {
-		obj->setLastLoc();
+void Board::setDefaultOperation() {
+	for (auto& dataHolder : m_dataHolder) {
+		dataHolder->execute(new NoOperation());
+	}
+}
+
+void Board::undoAllObjects() {
+	for (auto& obj : m_dataHolder) {
+		obj->undo();
 	}
 }
 
@@ -218,7 +243,7 @@ void Board::moveYou(const Direction& dir) {
 		auto &attributes = curObj->getStatic();
 		for (auto &it : attributes) {
 			if (it->move(*curObj, dir)) {
-				whatMoved.push_back(curObj);
+				whatMoved.push_back(curObj.get());
 				break;
 			}
 		}
@@ -228,9 +253,13 @@ void Board::moveYou(const Direction& dir) {
 			checkCollisions(moved);
 }
 
-void Board::removeObject(BaseObject* objToRemove) {
-	delete objToRemove;
-	m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
+void Board::removeObject(const std::shared_ptr<BaseObject>& objToRemove) {
+	std::experimental::erase_if(m_map, 
+		[&](const std::shared_ptr<BaseObject>& baseObj) {return baseObj == objToRemove; });
+}
+
+void Board::addObject(const std::shared_ptr<BaseObject>& objToAdd) {
+	m_map.push_back(std::shared_ptr<BaseObject>(objToAdd));
 }
 
 void Board::endLevel() {

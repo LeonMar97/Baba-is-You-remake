@@ -62,6 +62,10 @@ void Controller::startGame() {
 				switch (event.type)
 				{
 				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Z)
+						m_mapOnScreen->undoAllObjects();
+					else m_mapOnScreen->setDefaultOperation();
+
 					if (event.key.code == sf::Keyboard::Right)
 						m_mapOnScreen->moveYou(Direction::Right);
 					else if (event.key.code == sf::Keyboard::Left)
@@ -70,9 +74,6 @@ void Controller::startGame() {
 						m_mapOnScreen->moveYou(Direction::Up);
 					else if (event.key.code == sf::Keyboard::Down)
 						m_mapOnScreen->moveYou(Direction::Down);
-					else if (event.key.code == sf::Keyboard::Z) {
-						m_mapOnScreen->setPreviousLocations();
-					}
 					else if (event.key.code == sf::Keyboard::Escape) {
 						m_gameWindow.close();
 						return;

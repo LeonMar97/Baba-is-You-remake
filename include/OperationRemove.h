@@ -5,8 +5,8 @@
 class OperationRemove : public BaseOperation {
 public:
 	OperationRemove(Board& board) : m_board(board) {}
-	void execute(BaseObject* baseObj) override { m_board.removeObject(baseObj); }
-	void undo(BaseObject* baseObj) override { m_board.addObject(baseObj); }
+	void execute(const std::shared_ptr<BaseObject>& baseObj) override { m_board.removeObject(baseObj); }
+	void undo(const std::shared_ptr<BaseObject>& baseObj) override { m_board.addObject(baseObj); }
 private:
 	Board& m_board;
 };

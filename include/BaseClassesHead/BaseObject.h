@@ -6,7 +6,6 @@
 #include <typeindex>
 #include "Direction.h"
 #include <stack>
-#include "BaseDataHolder.h"
 #include "BaseOperation.h"
 
 #include "Resources.h"
@@ -14,6 +13,7 @@
 //base class for every object on the screen
 class Attribute;
 class Board;
+class DataHolder;
 class BaseObject {
 
 public:
@@ -28,6 +28,7 @@ public:
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
 	virtual std::unordered_set<Attribute*>& getStatic() = 0;
+	void initializeDataHolder(DataHolder*);
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const Direction&);
 	bool collidesWith(BaseObject*);
@@ -40,9 +41,13 @@ public:
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 	void setDefaultColor();
-	void updateLocOnStack();
 	void setLastLoc();
 	void executeOperation(BaseOperation*);
+	void undoOperation();
+	void removeOperation();
+	BaseOperation* lastOp();
+	void setNotOnBoard() { m_notOnBoard = true; }
+	void setOnBoard() { m_notOnBoard = false; }
 protected:
 	sf::Sprite m_sprite;
 	std::vector<Animation> m_animation;
@@ -50,5 +55,6 @@ protected:
 	sf::Vector2f m_lastPos;
 private:
 	sf::Color m_defaultColor;
-	BaseDataHolder* m_dataHolder;
+	DataHolder *m_dataHolder;
+	bool m_notOnBoard = false;
 };

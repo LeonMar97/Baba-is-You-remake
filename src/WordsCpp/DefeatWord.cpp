@@ -6,8 +6,8 @@ DefeatWord::DefeatWord(const sf::Vector2u& loc, Board& board)
 }
 bool DefeatWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	for (auto& atr : activeObj->getStatic()) {
-		if (dynamic_cast<YouWord*>(atr))
-			m_board.removeObject(activeObj);
+		if (dynamic_cast<YouWord*>(atr)) {}
+			//m_board.removeObject(activeObj);
 	}
 	return false;
 }

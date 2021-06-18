@@ -14,6 +14,6 @@ void Attribute:: deleteRule(Noun& curNoun) {
 }
 
 bool Attribute::move(BaseObject& baseObj, const Direction&) {
-	baseObj.executeOperation(new NoOperation());
+	//baseObj.executeOperation(new NoOperation());
 	return false;
 }

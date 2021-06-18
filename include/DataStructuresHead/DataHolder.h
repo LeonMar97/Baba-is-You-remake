@@ -1,15 +1,35 @@
 #pragma once
 #include <Memory>
-#include "BaseDataHolder.h"
+#include "DataHolder.h"
 #include "BaseOperation.h"
 #include "BaseObject.h"
 #include <stack>
-template<typename T>
-class DataHolder : public BaseDataHolder{
+class DataHolder{
 public:
-	DataHolder(std::unique_ptr<T>&& baseObj) : m_ptrObject(std::move(baseObj)) {}
-	BaseObject* getPtr() { return static_cast<BaseObject*>(m_ptrObject); }
-	//T* operator->() const { return m_ptrObject->get(); }
+	DataHolder(const std::shared_ptr<BaseObject>& baseObj) : m_ptrObject(baseObj)
+	{ m_ptrObject->initializeDataHolder(this); }
+	void addToHistory(BaseOperation* op) { m_history.push(op); }
+	void execute(BaseOperation* op) {
+		op->execute(m_ptrObject);
+		m_history.push(op);
+	}
+	void undo() {
+		if (!m_history.empty()) {
+			m_history.top()->undo(m_ptrObject);
+			m_history.pop();
+		}
+	}
+
+	void removeOperation() {
+		if (!m_history.empty()) {
+			auto op = m_history.top();
+			m_history.pop();
+			delete op;
+		}
+	}
+
+	BaseOperation* lastOp() { if (!m_history.empty()) return m_history.top(); else return nullptr; }
 private:
-	const std::unique_ptr<T> m_ptrObject;
+	std::shared_ptr<BaseObject> m_ptrObject;
+	std::stack<BaseOperation*> m_history;
 };

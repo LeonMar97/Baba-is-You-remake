@@ -1,7 +1,7 @@
 #pragma once
 #include"FileHandler.h"
 #include "BaseObject.h"
-#include<array>
+#include <experimental/vector>
 #include <functional>
 #include"Word.h"
 #include <cstdlib>
@@ -27,8 +27,8 @@
 #include "DefeatWord.h"
 #include "SinkWord.h"
 #include"DataHolder.h"
-#include"BaseDataHolder.h"
 #include "RuleHandling.h"
+#include "NoOperation.h"
 class Board{
 	//--------------public--------functions-----------------------//
 public:
@@ -44,8 +44,14 @@ public:
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
 	void moveYou(const Direction& dir);
 	void endLevel();
-	void removeObject(BaseObject*);
-	void setPreviousLocations();
+	void removeObject(const std::shared_ptr<BaseObject>&);
+	void addObject(const std::shared_ptr<BaseObject>&);
+	void undoAllObjects();
+	//set all objects to do nothing
+	//is needed because the interaction map only takes into account objects on board
+	//and disregards ones that are dead
+	//other operations are overwritten if needed
+	void setDefaultOperation(); //set all objects to do nothing, override with other operations if needed
 	//void isLevelOver();
 	/*
 	void insert(GameObjects, BaseObject*);
@@ -57,8 +63,8 @@ public:
 private:
 	//std::vector<ruleTuple> m_Rules;
 
-	std::vector<std::unique_ptr<BaseDataHolder>> m_dataHolder; //all data will be stored here
-	std::vector<BaseObject*> m_map; //all interactions will be done here
+	std::vector<std::unique_ptr<DataHolder>> m_dataHolder; //all data will be stored here
+	std::vector<std::shared_ptr<BaseObject>> m_map; //all interactions will be done here
 
 	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;

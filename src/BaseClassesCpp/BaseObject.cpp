@@ -1,5 +1,6 @@
 #include "BaseObject.h"
 #include <SFML/Graphics.hpp>
+#include "DataHolder.h"
 #include"Attribute.h"
 
 BaseObject::BaseObject(const AnimationData& animData1,
@@ -28,6 +29,10 @@ BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const 
 	m_currentAnimation = m_animation.begin();
 }
 
+void BaseObject::initializeDataHolder(DataHolder* dataHolder) {
+	m_dataHolder = dataHolder;
+}
+
 void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
 	m_currentAnimation->update(deltaTime);
 	window.draw(m_sprite);
@@ -44,21 +49,8 @@ void BaseObject::move(const Direction& dir) {
 	auto pos = castToLoc(m_sprite.getPosition());
 	
 	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
-		move(opposite(dir));
+		undoOperation();
 	}
-	updateLocOnStack();
-}
-
-void BaseObject::updateLocOnStack() {
-	//m_previousLoc.push(m_sprite.getPosition());
-}
-
-void BaseObject::setLastLoc() {
-/*	if (!m_previousLoc.empty()) {
-		m_sprite.setPosition(m_previousLoc.top());
-		m_previousLoc.pop();
-	}
-	*/
 }
 
 Direction BaseObject::getDir() {
@@ -109,6 +101,17 @@ void BaseObject::setDefaultColor() {
 }
 
 void BaseObject::executeOperation(BaseOperation* op) {
-	op->execute(this);
-	m_dataHolder->addToHistory(op);
+	m_dataHolder->execute(op);
+}
+
+void BaseObject::undoOperation() {
+	m_dataHolder->undo();
+}
+
+void BaseObject::removeOperation() {
+	m_dataHolder->removeOperation();
+}
+
+BaseOperation* BaseObject::lastOp() {
+	return m_dataHolder->lastOp();
 }

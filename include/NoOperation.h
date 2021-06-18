@@ -3,6 +3,6 @@
 
 class NoOperation : public BaseOperation{
 public:
-	void execute(BaseObject*) override{}
-	void undo(BaseObject*) override{}
+	void execute(const std::shared_ptr<BaseObject>&) override{}
+	void undo(const std::shared_ptr<BaseObject>&) override{}
 };
