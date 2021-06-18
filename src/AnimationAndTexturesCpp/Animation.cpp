@@ -7,7 +7,7 @@ const auto AnimationTime = sf::seconds(0.2);
 Animation::Animation(const AnimationData& data, Direction dir, sf::Sprite& sprite)
     : m_data(data), m_dir(dir), m_sprite(sprite)
 {
-    m_sprite.setTexture(Resources::instance().texture());
+    m_sprite.setTexture(Resources::instance().texture(gameSheet_t));
     if(m_sprite.getScale() != sf::Vector2f(50.f / 24.f, 50.f / 24.f))
         m_sprite.scale(sf::Vector2f(50.f / 24.f , 50.f / 24.f));
     //m_sprite.scale(sf::Vector2f(50.f / m_sprite.getLocalBounds().height, 50.f / m_sprite.getLocalBounds().width));

@@ -2,7 +2,7 @@
 
 #include "Direction.h"
 #include <array>
-
+#include <sstream> 
 #include <stdexcept>
 namespace {
     AnimationData readDataBaba(const sf::Vector2i& initSpace)
@@ -108,10 +108,7 @@ Resources& Resources::instance()
 Resources::Resources()
     : m_data(Max)
 {
-    if (!m_texture.loadFromFile("Spritesheet.png"))
-    {
-        throw std::runtime_error("Can't load file");
-    }
+   
 
     //babas
     m_data[babas_t] = readDataBaba(
@@ -188,4 +185,13 @@ Resources::Resources()
     m_data[is_t] = readDataDefault(
         sf::Vector2i(432, 720)
     );
+}
+void Resources:: loadSprite(spriteSheet curSheetInVec,std::string sheetName ) {
+    std::stringstream error;
+    error << "Can't load file";
+    if (!m_texture[curSheetInVec].loadFromFile(sheetName))
+    {
+        error << " " << sheetName;
+        throw std::runtime_error(error.str());
+    }
 }
