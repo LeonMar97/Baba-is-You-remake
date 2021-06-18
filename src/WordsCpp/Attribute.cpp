@@ -1,4 +1,5 @@
 #include "Attribute.h"
+#include "NoOperation.h"
 
 void Attribute::putRuleIntoAffect(Noun& noun) {
 	noun.fillAttributes(this);
@@ -13,6 +14,6 @@ void Attribute:: deleteRule(Noun& curNoun) {
 }
 
 bool Attribute::move(BaseObject& baseObj, const Direction&) {
-	baseObj.updateLocOnStack();
+	baseObj.executeOperation(new NoOperation());
 	return false;
 }

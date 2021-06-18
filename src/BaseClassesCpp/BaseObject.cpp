@@ -50,14 +50,15 @@ void BaseObject::move(const Direction& dir) {
 }
 
 void BaseObject::updateLocOnStack() {
-	m_previousLoc.push(m_sprite.getPosition());
+	//m_previousLoc.push(m_sprite.getPosition());
 }
 
 void BaseObject::setLastLoc() {
-	if (!m_previousLoc.empty()) {
+/*	if (!m_previousLoc.empty()) {
 		m_sprite.setPosition(m_previousLoc.top());
 		m_previousLoc.pop();
 	}
+	*/
 }
 
 Direction BaseObject::getDir() {
@@ -105,4 +106,9 @@ sf::Vector2u BaseObject::castToLoc(sf::Vector2f spritePos) {
 
 void BaseObject::setDefaultColor() {
 	m_sprite.setColor(m_defaultColor);
+}
+
+void BaseObject::executeOperation(BaseOperation* op) {
+	op->execute(this);
+	m_dataHolder->addToHistory(op);
 }

@@ -1,11 +1,12 @@
 #include"YouWord.h"
+#include "OperationMove.h"
 YouWord::YouWord(const sf::Vector2u& loc)
 	:Attribute("You",Resources::instance().animationData(youword_t), Direction::Stay, loc,
 		YOU_COLOR, YOU_LIGHTER_COLOR)
 {
 }
 bool YouWord::move(BaseObject& curYou,const Direction& dir) {
-	curYou.move(dir);
+	curYou.executeOperation(new OperationMove(dir));
 	return true;
 }
 

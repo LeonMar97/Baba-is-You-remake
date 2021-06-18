@@ -17,81 +17,82 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 	switch (character)
 	{
 	case 'B': 
-		baseObj = new Baba(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Baba>>(std::make_unique<Baba>(loc)));
 		m_map.push_back(baseObj);
+		
 		break;
 	case 'R':
-		baseObj = new Rock(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Rock>>(std::make_unique<Rock>(loc)));
 		m_map.push_back(baseObj);
 		break;
 	case 'K':
-		baseObj = new Wall(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Wall>>(std::make_unique<Wall>(loc)));
 		m_map.push_back(baseObj);
 		break;
 	case 'F':
-		baseObj = new Flag(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Flag>>(std::make_unique<Flag>(loc)));
 		m_map.push_back(baseObj);
 		break;
 	case 'G':
-		baseObj = new Skull(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Skull>>(std::make_unique<Skull>(loc)));
 		m_map.push_back(baseObj);
 		break;
 	case 'M':
-		baseObj = new Water(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Water>>(std::make_unique<Water>(loc)));
 		m_map.push_back(baseObj);
 		break;
 	case ' ':
 		break;
 	case 'i':
-		wordObj = new Is(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<Is>>(std::make_unique<Is>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'b':
-		wordObj = new BabaWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<BabaWord>>(std::make_unique<BabaWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'g':
-		wordObj = new SkullWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<SkullWord>>(std::make_unique<SkullWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'k':
-		wordObj = new WallWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<WallWord>>(std::make_unique<WallWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'f':
-		wordObj = new FlagWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<FlagWord>>(std::make_unique<FlagWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'r':
-		wordObj = new RockWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<RockWord>>(std::make_unique<RockWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'm':
-		wordObj = new WaterWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<WaterWord>>(std::make_unique<WaterWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'y':
-		wordObj = new YouWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<YouWord>>(std::make_unique<YouWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 'w':
-		wordObj = new WinWord(loc, *this);
+		m_dataHolder.push_back(std::make_unique<DataHolder<WinWord>>(std::make_unique<WinWord>(loc, *this)));
 		m_map.push_back(wordObj);
 		break;
 	case 'd':
-		wordObj = new DefeatWord(loc, *this);
+		m_dataHolder.push_back(std::make_unique<DataHolder<DefeatWord>>(std::make_unique<DefeatWord>(loc, *this)));
 		m_map.push_back(wordObj);
 		break;
 	case 'l':
-		wordObj = new SinkWord(loc, *this);
+		m_dataHolder.push_back(std::make_unique<DataHolder<SinkWord>>(std::make_unique<SinkWord>(loc, *this)));
 		m_map.push_back(wordObj);
 		break;
 	case 'p':
-		wordObj = new PushWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<PushWord>>(std::make_unique<PushWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	case 's':
-		wordObj = new StopWord(loc);
+		m_dataHolder.push_back(std::make_unique<DataHolder<StopWord>>(std::make_unique<StopWord>(loc)));
 		m_map.push_back(wordObj);
 		break;
 	default:
@@ -105,11 +106,16 @@ void Board::addGameObj(char character, sf::Vector2u loc){
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
 	char currentChar;
+	//initializing data map
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
 			currentChar = map.what_In_Location(loc);
 			 addGameObj(currentChar, loc);
 		}
+	}
+	//initializing interaction map
+	for (auto& dataHolder : m_dataHolder) {
+		m_map.push_back(dataHolder.get()->getPtr());
 	}
 	lookForRules();
 }

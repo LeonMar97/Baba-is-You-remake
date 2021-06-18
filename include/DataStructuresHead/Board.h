@@ -55,9 +55,11 @@ public:
 	*/
 	//--------------private--------members-----------------------//
 private:
-	std::vector<ruleTuple> m_Rules;
+	//std::vector<ruleTuple> m_Rules;
 
-	std::vector<BaseObject*> m_map;
+	std::vector<std::unique_ptr<BaseDataHolder>> m_dataHolder; //all data will be stored here
+	std::vector<BaseObject*> m_map; //all interactions will be done here
+
 	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	

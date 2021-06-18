@@ -6,6 +6,8 @@
 #include <typeindex>
 #include "Direction.h"
 #include <stack>
+#include "BaseDataHolder.h"
+#include "BaseOperation.h"
 
 #include "Resources.h"
 #include<unordered_set>
@@ -15,8 +17,6 @@ class Board;
 class BaseObject {
 
 public:
-
-	
 	//BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc);
 	//constructor for initializing with color
 	BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color&);
@@ -42,12 +42,13 @@ public:
 	void setDefaultColor();
 	void updateLocOnStack();
 	void setLastLoc();
+	void executeOperation(BaseOperation*);
 protected:
 	sf::Sprite m_sprite;
 	std::vector<Animation> m_animation;
-	std::vector<Animation>::iterator m_currentAnimation;
+	std::vector<Animation>::iterator m_currentAnimation; //to access animations more easily
 	sf::Vector2f m_lastPos;
 private:
 	sf::Color m_defaultColor;
-	std::stack<sf::Vector2f> m_previousLoc;
+	BaseDataHolder* m_dataHolder;
 };
