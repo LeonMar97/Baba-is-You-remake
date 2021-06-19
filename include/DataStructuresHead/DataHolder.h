@@ -10,8 +10,8 @@ public:
 	{ m_ptrObject->initializeDataHolder(this); }
 	void addToHistory(BaseOperation* op) { m_history.push(op); }
 	void execute(BaseOperation* op) {
-		op->execute(m_ptrObject);
 		m_history.push(op);
+		op->execute(m_ptrObject);
 	}
 	void undo() {
 		if (!m_history.empty()) {

@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 
+//a base class for all possible operations that can be done on board
 class BaseObject;
 class BaseOperation {
 public:
