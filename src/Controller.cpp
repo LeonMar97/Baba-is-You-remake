@@ -117,4 +117,5 @@ void Controller::setView() {
 	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
 	view.zoom(prop);
 	m_gameWindow.setView(view);
-}
+	
+	}

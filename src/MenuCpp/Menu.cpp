@@ -12,11 +12,8 @@ Menu::Menu()
 
 	m_cntrl(std::make_shared<Controller>(m_menuWindow))
 {
-	sf::View view = m_menuWindow.getView();
-	view.setCenter(sf::Vector2f(DEFAULT_SCREEN_WIDTH / 2.f, DEFAULT_SCREEN_HEIGHT / 2.f));
-	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_menuWindow.getSize().x * m_menuWindow.getSize().y);
-	view.zoom(prop);
-	m_menuWindow.setView(view);
+	setView();
+	
 	m_startGameButton.setPosition(sf::Vector2f(750, 570));
 	
 	m_exitGameButton.setPosition(sf::Vector2f(750, 624));
@@ -56,13 +53,15 @@ void Menu::activate() {
 			{
 				break;
 			case sf::Event::MouseButtonPressed:
-				 b = sf::Mouse::getPosition();
+				 
 				if (event.key.code == sf::Mouse::Left) {
-					auto c = sf::Mouse::getPosition();
-					auto c2 = m_startGameButton.getGlobalBounds();
+				
+				
 
-					if (m_startGameButton.getGlobalBounds().contains(sf::Vector2f(b)))
+					if (m_startGameButton.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition()))) {
 						m_options[START_NEW_GAME]->execute();
+						setView();
+					}
 
 					else if (m_exitGameButton.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition())))
 						return;
@@ -82,4 +81,23 @@ void Menu::activate() {
 			m_menuWindow.display();
 		}
 	}
+}
+
+void Menu::setView() {
+
+	
+	sf::View view = m_menuWindow.getView();
+	view.setCenter(sf::Vector2f(DEFAULT_SCREEN_WIDTH / 2.f, DEFAULT_SCREEN_HEIGHT / 2.f));
+	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_menuWindow.getSize().x * m_menuWindow.getSize().y);
+	view.zoom(prop);
+	m_menuWindow.setView(view);
+
+
+	
+
+
+
+
+
+
 }

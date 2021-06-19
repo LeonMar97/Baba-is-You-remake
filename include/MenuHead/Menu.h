@@ -27,6 +27,8 @@ public:
 	Menu();
 	~Menu() {}
 private:
+	void setView();
+private:
 	vector<option> m_options;
 	sf::RenderWindow m_menuWindow;
 	std::shared_ptr<Controller> m_cntrl;
