@@ -47,27 +47,21 @@ void Menu::activate() {
 	while (m_menuWindow.isOpen())
 	{
 		sf::Event event;
+		sf::Vector2f mousepos;
 		while (m_menuWindow.pollEvent(event))
 		{
 			switch (event.type)
 			{
-				break;
 			case sf::Event::MouseButtonPressed:
-				 
+				mousepos = m_menuWindow.mapPixelToCoords(sf::Mouse::getPosition() - m_menuWindow.getPosition());
 				if (event.key.code == sf::Mouse::Left) {
-				
-				
-
-					if (m_startGameButton.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition()))) {
+					if (m_startGameButton.getGlobalBounds().contains(mousepos)) {// sf::Vector2f(sf::Mouse::getPosition()))) {
 						m_options[START_NEW_GAME]->execute();
 						setView();
 					}
-
-					else if (m_exitGameButton.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition())))
+					else if (m_exitGameButton.getGlobalBounds().contains(sf::Vector2f(mousepos)))
 						return;
 				}
-				//m_you->move(m_mapOnScreen,RIGHT_DIR);
-				break;
 			default:
 				break;
 			}
@@ -85,7 +79,6 @@ void Menu::activate() {
 
 void Menu::setView() {
 
-	
 	sf::View view = m_menuWindow.getView();
 	view.setCenter(sf::Vector2f(DEFAULT_SCREEN_WIDTH / 2.f, DEFAULT_SCREEN_HEIGHT / 2.f));
 	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_menuWindow.getSize().x * m_menuWindow.getSize().y);
