@@ -1,5 +1,6 @@
 #pragma once
 #include "Attribute.h" 
+#include "NoOperation.h"
 class StopWord :public Attribute{
 public:
 	StopWord();

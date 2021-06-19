@@ -6,8 +6,7 @@ RockWord::RockWord(const sf::Vector2u& loc)
 
 void RockWord::replaceObjInLocation(BaseObject*& cur) {
 	auto loc = castToLoc(cur->returnPos());
-	delete(cur);
-	cur = new Rock(loc);
+	cur->executeOperation(new OperationTransform<Rock>());
 }
 std::unordered_set<Attribute*>& RockWord::getStaticRepresentation() {
 	return Rock::m_rockAttributes;

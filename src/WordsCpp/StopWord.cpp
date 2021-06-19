@@ -12,6 +12,7 @@ StopWord::StopWord()
 bool StopWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	//activeObj->undoOperation();
 	activeObj->undoOperation();
+	activeObj->executeOperation(new NoOperation());
 	//activeObj->move(opposite(activeObj->getDir()));
 	return false; //it acts as if nothing was moved at all - so no further actions are needed
 }
