@@ -28,6 +28,8 @@ public:
 	~Menu() {}
 private:
 	void setView();
+	void draw(sf::Time &deltaTime);
+
 private:
 	sf::Clock m_animationClock;
 	vector<option> m_options;
@@ -35,7 +37,10 @@ private:
 	std::shared_ptr<Controller> m_cntrl;
 	sf::RectangleShape m_startGameButton;
 	sf::RectangleShape m_exitGameButton;
-	Header m_babaIsU;
+	Header m_babaHead;
+	Header m_isHead;
+	Header m_uHead;
+
 	
 	
 

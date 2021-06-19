@@ -1,6 +1,5 @@
 #include "Header.h"
-Header::Header(std::stringstream sentecnce) {
-
+Header::Header(std::stringstream sentecnce, const sf::Vector2f& startPosOfSentence, const sf::Vector2f& scaling, const sf::Color& cr){
 	m_charToEnum.insert(std::pair<char, GameObjects >('A', letterA_t));
 	m_charToEnum.insert(std::pair<char, GameObjects >('B', letterB_t));
 	m_charToEnum.insert(std::pair<char, GameObjects >('C', letterC_t));
@@ -24,9 +23,9 @@ Header::Header(std::stringstream sentecnce) {
 
 	//m_sprites.resize(sentecnce.str().size());
 
+	unsigned int latterLoc = 0;
 
 	while(sentecnce.rdbuf()->in_avail()){
-		unsigned int latterLoc = 0;
 		char curLetter;
 		sentecnce >> curLetter;
 		
@@ -41,30 +40,30 @@ Header::Header(std::stringstream sentecnce) {
 		}
 
 	}
-	
+	setArt(startPosOfSentence, scaling,cr);
 }
-/*
-
-m_animations{
-Animation(Resources::instance().animationData(letterA_t),Direction::Stay,m_sprites[0]),
-Animation(Resources::instance().animationData(letterB_t),Direction::Stay,m_sprites[1]),
-Animation(Resources::instance().animationData(letterC_t),Direction::Stay,m_sprites[2]),
-Animation(Resources::instance().animationData(letterD_t),Direction::Stay,m_sprites[3]),
-Animation(Resources::instance().animationData(letterE_t),Direction::Stay,m_sprites[4]),
-Animation(Resources::instance().animationData(letterF_t),Direction::Stay,m_sprites[5]),
-Animation(Resources::instance().animationData(letterG_t),Direction::Stay,m_sprites[6]),
-Animation(Resources::instance().animationData(letterH_t),Direction::Stay,m_sprites[7]),
-Animation(Resources::instance().animationData(letterI_t),Direction::Stay,m_sprites[8]),
-Animation(Resources::instance().animationData(letterL_t),Direction::Stay,m_sprites[9]),
-Animation(Resources::instance().animationData(letterM_t),Direction::Stay,m_sprites[10]),
-Animation(Resources::instance().animationData(letterN_t),Direction::Stay,m_sprites[11]),
-Animation(Resources::instance().animationData(letterO_t),Direction::Stay,m_sprites[12]),
-Animation(Resources::instance().animationData(letterR_t),Direction::Stay,m_sprites[13]),
-Animation(Resources::instance().animationData(letterS_t),Direction::Stay,m_sprites[14]),
-Animation(Resources::instance().animationData(letterT_t),Direction::Stay,m_sprites[15]),
-Animation(Resources::instance().animationData(letterU_t),Direction::Stay,m_sprites[16]),
-Animation(Resources::instance().animationData(letterV_t),Direction::Stay,m_sprites[17]),
-Animation(Resources::instance().animationData(letterW_t),Direction::Stay,m_sprites[18]),
-Animation(Resources::instance().animationData(letterX_t),Direction::Stay,m_sprites[19])
+//creates the requetsed art of the current header ~ starting pos,size,color..
+void Header::setArt(const sf::Vector2f & startPosOfSentence, const sf::Vector2f & scaling, const sf::Color& cr) {
+	
+	for (int i = 0; i < m_animations.size(); i++){
+		m_sprites[i]->setScale(scaling);
+		m_sprites[i]->setColor(cr);
+		m_sprites[i]->setPosition(startPosOfSentence + sf::Vector2f(i * OBJECT_SIZE*2,0));
 	}
-*/
+
+}
+//draws the sentence with animataion in current window
+void Header::draw(const sf::Time& deltaTime, sf::Clock& m_animClock, sf::RenderWindow &drawingToWindow) {
+	for (int i = 0; i < m_animations.size(); i++) {
+		m_animations[i].update(deltaTime);
+		drawingToWindow.draw(*m_sprites[i]);
+	}
+
+}
+//function returns the last letter pos
+const sf::Vector2f Header::wordEnd() {
+	//auto r = m_sprites.size() - 1;
+	//auto s = m_sprites[r]->getScale().x();
+	auto x = m_sprites[0]->getPosition() + sf::Vector2f((m_sprites.size()+1) * OBJECT_SIZE * 2, 0);
+	return (x);
+}
