@@ -43,9 +43,12 @@ Menu::Menu()
 	
 }
 void Menu::activate() {
-	auto b = sf::Mouse::getPosition();
+	
+	sf::Time deltaTime = {};
+
 	while (m_menuWindow.isOpen())
 	{
+		deltaTime = m_animationClock.restart();
 		sf::Event event;
 		while (m_menuWindow.pollEvent(event))
 		{
@@ -74,8 +77,9 @@ void Menu::activate() {
 			m_menuWindow.clear(WINDOW_COLOR);
 			m_menuWindow.draw(m_exitGameButton);
 			m_menuWindow.draw(m_startGameButton);
-			//m_menuWindow.draw(*m_babaIsU.m_sprites[0]);
-			m_menuWindow.draw(*m_babaIsU.m_sprites[1]);
+			m_menuWindow.draw(*m_babaIsU.m_sprites[0]);
+
+			//m_menuWindow.draw(*m_babaIsU.m_sprites[1]);
 			//m_menuWindow.draw(*m_babaIsU.m_sprites[2]);
 
 			m_menuWindow.display();

@@ -29,13 +29,14 @@ public:
 private:
 	void setView();
 private:
+	sf::Clock m_animationClock;
 	vector<option> m_options;
 	sf::RenderWindow m_menuWindow;
 	std::shared_ptr<Controller> m_cntrl;
 	sf::RectangleShape m_startGameButton;
 	sf::RectangleShape m_exitGameButton;
 	Header m_babaIsU;
-
+	
 	
 
 };
