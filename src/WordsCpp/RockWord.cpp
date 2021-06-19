@@ -4,9 +4,9 @@ RockWord::RockWord(const sf::Vector2u& loc)
 {
 }
 
-void RockWord::replaceObjInLocation(BaseObject*& cur) {
+void RockWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {
 	auto loc = castToLoc(cur->returnPos());
-	cur->executeOperation(new OperationTransform<Rock>());
+	cur->executeOperation(new OperationTransform<Rock>(board));
 }
 std::unordered_set<Attribute*>& RockWord::getStaticRepresentation() {
 	return Rock::m_rockAttributes;

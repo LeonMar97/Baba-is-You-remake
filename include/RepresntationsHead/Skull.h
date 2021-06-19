@@ -14,5 +14,7 @@ public:
 	static std::unordered_set<Attribute*>m_skullAttributes;//static attributes for all babas
 	std::unordered_set<Attribute*>& getStatic() override;
 
+	BaseObject* clone() override { return new Skull(*this); }
+
 private:
 };

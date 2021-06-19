@@ -9,8 +9,8 @@
 class OperationRemove : public BaseOperation {
 public:
 	OperationRemove(Board& board);
-	void execute(const std::shared_ptr<BaseObject>& baseObj) override;
-	void undo(const std::shared_ptr<BaseObject>& baseObj);
+	void execute(std::shared_ptr<BaseObject>& baseObj) override;
+	void undo(std::shared_ptr<BaseObject>& baseObj);
 private:
 	Board& m_board; //there must be an interactions with the board as the adding and removing is done from there
 };

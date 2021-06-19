@@ -10,7 +10,7 @@ std::unordered_set<Attribute*>& Word::getStatic() {
 	return Word::m_wordAttributes;
 }
 void Word::setLighterColor() {
-	m_sprite.setColor(m_colorWordInRule);
+	m_sprite->setColor(m_colorWordInRule);
 }
 void Word::setDarkerColor() {
 	setDefaultColor();

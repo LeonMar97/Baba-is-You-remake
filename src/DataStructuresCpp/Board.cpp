@@ -216,13 +216,17 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 		//necessary to check because BABA OBJECT needs to be changed to "baba word" first, 
 			//then to check wheter it is the same noun for creating the replacement noun- 
 				//-representation Object, and replacing the current on board 
-
 		auto curId = cur->wordTypeId();
 		if (curId == replaceWithId) {
-			auto ptr = cur.get();
-			toReplaceWith.replaceObjInLocation(ptr);
+			toReplaceWith.replaceObjInLocation(cur, *this);
 		}
 	}
+}
+
+void Board::replaceObjectWith(std::shared_ptr<BaseObject>& replacedObject, std::shared_ptr<BaseObject>& replacingObject) {
+	auto replacingPos = std::find(m_map.begin(), m_map.end(), replacedObject);
+	(*replacingPos)->replaceDataHolderPtr(replacingObject);
+	(*replacingPos) = replacingObject;
 }
 
 void Board::setDefaultOperation() {

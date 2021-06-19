@@ -4,10 +4,9 @@ SkullWord::SkullWord(const sf::Vector2u& loc)
 {
 }
 
-void SkullWord::replaceObjInLocation(BaseObject*& cur) {
+void SkullWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {
 	auto loc = castToLoc(cur->returnPos());
-	delete(cur);
-	cur = new Skull(loc);
+	cur->executeOperation(new OperationTransform<Skull>(board));
 }
 std::unordered_set<Attribute*>& SkullWord::getStaticRepresentation() {
 	return Skull::m_skullAttributes;

@@ -10,8 +10,8 @@
 class OperationMove : public BaseOperation{
 public:
 	OperationMove(Direction dir);
-	void execute(const std::shared_ptr<BaseObject>& baseObj) override; 
-	void undo(const std::shared_ptr<BaseObject>& baseObj) override;
+	void execute(std::shared_ptr<BaseObject>& baseObj) override; 
+	void undo(std::shared_ptr<BaseObject>& baseObj) override;
 private:
 	Direction m_dir;
 };

@@ -8,19 +8,21 @@
 template<typename T>
 class OperationTransform : public BaseOperation {
 public:
-	void execute(const std::shared_ptr<BaseObject>& baseObj) override;
-	void undo(const std::shared_ptr<BaseObject>& baseObj) override;
+	OperationTransform(Board& board) : m_board(board) {}
+	void execute(std::shared_ptr<BaseObject>& baseObj) override;
+	void undo(std::shared_ptr<BaseObject>& baseObj) override;
 private:
-	BaseObject* m_previousObject;
+	std::shared_ptr<BaseObject> m_previousObject;
+	std::shared_ptr<BaseObject> m_currentObject;
+	Board& m_board;
 };
 
 template<typename T>
-void OperationTransform<T>::execute(const std::shared_ptr<BaseObject>& baseObj) {
+void OperationTransform<T>::execute(std::shared_ptr<BaseObject>& baseObj) {
 	m_previousObject = baseObj;
-	*baseObj = T(baseObj->castToLoc(baseObj->returnPos()));
+	m_board.replaceObjectWith(baseObj, std::make_shared<T>(baseObj->getDir()));
 }
-
 template<typename T>
-void OperationTransform<T>::undo(const std::shared_ptr<BaseObject>& baseObj) {
-	//*baseObj = *m_previousObject;
+void OperationTransform<T>::undo(std::shared_ptr<BaseObject>& baseObj) {
+	m_board.replaceObjectWith(baseObj, m_previousObject);
 }

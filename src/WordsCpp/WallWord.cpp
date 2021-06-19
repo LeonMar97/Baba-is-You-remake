@@ -3,10 +3,9 @@ WallWord::WallWord(const sf::Vector2u& loc)
 	:Noun("Wall",Resources::instance().animationData(wallword_t), Direction::Stay, loc, WALL_COLOR, WALL_LIGHTER_COLOR)
 {}
 
-void WallWord::replaceObjInLocation(BaseObject*& cur) {
+void WallWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {
 	auto loc = castToLoc(cur->returnPos());
-	delete(cur);
-	cur = new Wall(loc);
+	cur->executeOperation(new OperationTransform<Wall>(board));
 }
 std::unordered_set<Attribute*>& WallWord::getStaticRepresentation() {
 	return Wall::m_wallAttributes;

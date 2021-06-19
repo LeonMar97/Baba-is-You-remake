@@ -28,6 +28,8 @@ public:
 		}
 	}
 
+	void replacePtr(std::shared_ptr<BaseObject>& replacePtr) { m_ptrObject = replacePtr; }
+
 	BaseOperation* lastOp() { if (!m_history.empty()) return m_history.top(); else return nullptr; }
 private:
 	std::shared_ptr<BaseObject> m_ptrObject;

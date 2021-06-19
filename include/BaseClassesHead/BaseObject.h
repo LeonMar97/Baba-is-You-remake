@@ -27,6 +27,7 @@ public:
 		const AnimationData& animData4,
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
+public:
 	virtual std::unordered_set<Attribute*>& getStatic() = 0;
 	void initializeDataHolder(DataHolder*);
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
@@ -41,20 +42,18 @@ public:
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 	void setDefaultColor();
-	void setLastLoc();
 	void executeOperation(BaseOperation*);
 	void undoOperation();
 	void removeOperation();
 	BaseOperation* lastOp();
-	void setNotOnBoard() { m_notOnBoard = true; }
-	void setOnBoard() { m_notOnBoard = false; }
+	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
+	virtual BaseObject* clone() { return nullptr; }
 protected:
-	sf::Sprite m_sprite;
-	std::vector<Animation> m_animation;
-	std::vector<Animation>::iterator m_currentAnimation; //to access animations more easily
+	std::shared_ptr<sf::Sprite> m_sprite; //shared so it is possible to copy object
+	std::vector<std::shared_ptr<Animation>> m_animation; //shared because on copying baseObject it might share
+	std::vector<std::shared_ptr<Animation>>::iterator m_currentAnimation; //to access animations more easily
 	sf::Vector2f m_lastPos;
 private:
 	sf::Color m_defaultColor;
-	DataHolder *m_dataHolder;
-	bool m_notOnBoard = false;
+	DataHolder* m_dataHolder;
 };

@@ -1,7 +1,7 @@
 #include "NoOperation.h"
-void NoOperation::execute(const std::shared_ptr<BaseObject>&) {
+void NoOperation::execute(std::shared_ptr<BaseObject>&) {
 
 }
-void NoOperation::undo(const std::shared_ptr<BaseObject>&) {
+void NoOperation::undo(std::shared_ptr<BaseObject>&) {
 
 }

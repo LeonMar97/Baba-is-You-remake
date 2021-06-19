@@ -4,6 +4,6 @@
 class WaterWord :public Noun{
 public:
 	WaterWord(const sf::Vector2u& loc);
-	void replaceObjInLocation(BaseObject*& cur)override;
+	void replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board)override;
 	std::unordered_set<Attribute*>& getStaticRepresentation() override;
 };

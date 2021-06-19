@@ -8,24 +8,24 @@ BaseObject::BaseObject(const AnimationData& animData1,
 	const AnimationData& animData3,
 	const AnimationData& animData4,
 	Direction dir, const sf::Vector2u& loc, const sf::Color& defaultColor) 
-	: m_lastPos(loc.y*OBJECT_SIZE, loc.x * OBJECT_SIZE),
+	: m_lastPos(loc.y*OBJECT_SIZE, loc.x * OBJECT_SIZE), m_sprite(std::make_shared<sf::Sprite>()),
 		m_defaultColor(defaultColor){
-	m_sprite.setPosition(m_lastPos);
-	m_sprite.setColor(defaultColor);
-	m_animation.push_back(Animation(animData1, dir, m_sprite));
-	m_animation.push_back(Animation(animData2, dir, m_sprite));
-	m_animation.push_back(Animation(animData3, dir, m_sprite));
-	m_animation.push_back(Animation(animData4, dir, m_sprite));
+	m_sprite->setPosition(m_lastPos);
+	m_sprite->setColor(defaultColor);
+	m_animation.emplace_back(std::make_shared<Animation>(animData1, dir, *m_sprite));
+	m_animation.emplace_back(std::make_shared<Animation>(animData2, dir, *m_sprite));
+	m_animation.emplace_back(std::make_shared<Animation>(animData3, dir, *m_sprite));
+	m_animation.emplace_back(std::make_shared<Animation>(animData4, dir, *m_sprite));
 	m_currentAnimation = m_animation.begin();
 }
 
 BaseObject::BaseObject(const AnimationData& animationData, Direction dir, const sf::Vector2u& loc, const sf::Color& defaultColor)
-	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE),
+	: m_lastPos(loc.y* OBJECT_SIZE, loc.x* OBJECT_SIZE), m_sprite(std::make_shared<sf::Sprite>()),
 	m_defaultColor(defaultColor)
 {
-	m_sprite.setPosition(m_lastPos);
-	m_sprite.setColor(defaultColor);
-	m_animation.push_back(Animation(animationData, dir, m_sprite));
+	m_sprite->setPosition(m_lastPos);
+	m_sprite->setColor(defaultColor);
+	m_animation.emplace_back(std::make_shared<Animation>(animationData, dir, *m_sprite));
 	m_currentAnimation = m_animation.begin();
 }
 
@@ -34,19 +34,23 @@ void BaseObject::initializeDataHolder(DataHolder* dataHolder) {
 }
 
 void BaseObject::draw(sf::RenderWindow& window, sf::Time deltaTime) {
-	m_currentAnimation->update(deltaTime);
-	window.draw(m_sprite);
+	(*m_currentAnimation)->update(deltaTime);
+	window.draw(*m_sprite);
+}
+
+void BaseObject::replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject) {
+	m_dataHolder->replacePtr(replacingObject);
 }
 
 void BaseObject::move(const Direction& dir) {
-	m_lastPos = m_sprite.getPosition();
-	m_sprite.move(50.f * toVector(dir));
+	m_lastPos = m_sprite->getPosition();
+	m_sprite->move(50.f * toVector(dir));
 	//for making baba look like he walks, the animation is changed and iterator is set accordingly
 	(m_currentAnimation == m_animation.end() || m_currentAnimation == m_animation.end() - 1) //if not at the end
 		? m_currentAnimation = m_animation.begin() : (m_currentAnimation++);
-	m_currentAnimation->direction(dir);
+	(*m_currentAnimation)->direction(dir);
 
-	auto pos = castToLoc(m_sprite.getPosition());
+	auto pos = castToLoc(m_sprite->getPosition());
 	
 	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
 		undoOperation();
@@ -54,11 +58,11 @@ void BaseObject::move(const Direction& dir) {
 }
 
 Direction BaseObject::getDir() {
-	return m_currentAnimation->getDir();
+	return (*m_currentAnimation)->getDir();
 }
 
 sf::Vector2f BaseObject:: returnPos()const {
-	return m_sprite.getPosition();
+	return m_sprite->getPosition();
 }
 sf::Vector2f BaseObject:: returnLastPos()const {
 	return m_lastPos;
@@ -79,7 +83,7 @@ bool BaseObject::triggerAttribute(BaseObject* objectMoved) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~collisions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bool BaseObject::collidesWith(BaseObject* obj) {
-	return m_sprite.getGlobalBounds().intersects(obj->m_sprite.getGlobalBounds());
+	return m_sprite->getGlobalBounds().intersects(obj->m_sprite->getGlobalBounds());
 }
 
 bool BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
@@ -97,7 +101,7 @@ sf::Vector2u BaseObject::castToLoc(sf::Vector2f spritePos) {
 }
 
 void BaseObject::setDefaultColor() {
-	m_sprite.setColor(m_defaultColor);
+	m_sprite->setColor(m_defaultColor);
 }
 
 void BaseObject::executeOperation(BaseOperation* op) {
