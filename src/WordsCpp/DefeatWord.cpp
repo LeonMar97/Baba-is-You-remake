@@ -6,8 +6,10 @@ DefeatWord::DefeatWord(const sf::Vector2u& loc, Board& board)
 }
 bool DefeatWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	for (auto& atr : activeObj->getStatic()) {
-		if (dynamic_cast<YouWord*>(atr)) {}
-			//m_board.removeObject(activeObj);
+		if (dynamic_cast<YouWord*>(atr)) {
+			activeObj->undoOperation(); //for making character appear one step before defeat after undo
+			activeObj->executeOperation(new OperationRemove(m_board));
+		}
 	}
 	return false;
 }

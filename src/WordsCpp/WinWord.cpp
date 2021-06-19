@@ -7,8 +7,8 @@ WinWord::WinWord(const sf::Vector2u& loc, Board& board)
 
 bool WinWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
 	for (auto& atr : activeObj->getStatic()) {
-		if(dynamic_cast<YouWord*>(atr)) 
+		if(dynamic_cast<YouWord*>(atr))  //only you can win, dynamic cast is needed
 			m_board.endLevel();
 	}
-	return false;
+	return false; //no more collision detections are needed
 }

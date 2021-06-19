@@ -5,7 +5,7 @@ WallWord::WallWord(const sf::Vector2u& loc)
 
 void WallWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {
 	auto loc = castToLoc(cur->returnPos());
-	cur->executeOperation(new OperationTransform<Wall>(board));
+	cur->executeOperation(new OperationTransform<Wall>(board)); //transform to wall
 }
 std::unordered_set<Attribute*>& WallWord::getStaticRepresentation() {
 	return Wall::m_wallAttributes;

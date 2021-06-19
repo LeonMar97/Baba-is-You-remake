@@ -20,7 +20,10 @@ private:
 template<typename T>
 void OperationTransform<T>::execute(std::shared_ptr<BaseObject>& baseObj) {
 	m_previousObject = baseObj;
-	m_board.replaceObjectWith(baseObj, std::make_shared<T>(baseObj->getDir()));
+	std::shared_ptr<BaseObject> a;
+	a.reset(new T(baseObj->castToLoc(baseObj->returnPos())));
+	a->initializeDataHolder(baseObj->getDataHolder());
+	m_board.replaceObjectWith(baseObj, a);
 }
 template<typename T>
 void OperationTransform<T>::undo(std::shared_ptr<BaseObject>& baseObj) {

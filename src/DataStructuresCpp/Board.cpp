@@ -131,7 +131,7 @@ void Board::initialize(FileHandler& map) {
 			 addGameObj(currentChar, loc);
 		}
 	}
-	lookForRules();
+	lookForRules(); //immediately detect rules and put them into play
 }
 
 //drawing the board on requested screen..
@@ -154,8 +154,15 @@ void Board::checkCollisions(BaseObject* cur) {
 }
 
 //check for triples of sprites in board using pre-defined functions
+//Algorithm: sort the map by locations of x/y values, and then by y/x values accordingly
+//using stable sort. Using the correct equivalnce functions, the vector is sorted by both coordinates
+//which one of them is the primary one and the other one is the secondary one.
+
+//horizontal rules are found by using Y as main coordinate and X as secondary
+//Vertical rules are found by using X as main coordinate and Y as secondary
+
 void Board::searchTriples(std::vector<baseObjTuple>& vec,
-	std::function<float(const sf::Vector2f&)> mainCoordinate, 
+	std::function<float(const sf::Vector2f&)> mainCoordinate, //lambda function
 	std::function<float(const sf::Vector2f&)> secondaryCoordinate)
 	{
 	//sort based on main coordinates
@@ -169,7 +176,7 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 				return secondaryCoordinate(baseObj1->returnPos()) < secondaryCoordinate(baseObj2->returnPos());
 			else return mainCoordinate(baseObj2->returnPos()) < mainCoordinate(baseObj2->returnPos()); });
 
-	sf::Vector2f firstPos, secondPos, thirdPos;
+	sf::Vector2f firstPos, secondPos, thirdPos; //readability
 	BaseObject* firstPtr, *secondPtr, *thirdPtr;
 	for (auto first = m_map.begin(); first < m_map.end() - 2; first++) {
 		firstPos = (*first)->returnPos();
@@ -203,6 +210,7 @@ void Board::searchTriples(std::vector<baseObjTuple>& vec,
 }
 
 void Board::lookForRules() {
+	//lambda functions are needed for extraction of valuable coordinates
 	auto getXCoordinate = [&](const sf::Vector2f& vec) {return vec.x; };
 	auto getYCoordinate = [&](const sf::Vector2f& vec) {return vec.y; };
 	auto potentialNewRuleVec = std::vector<baseObjTuple>();
@@ -218,6 +226,7 @@ void Board::replaceObjects(Noun& toReplace, Noun& toReplaceWith) {
 				//-representation Object, and replacing the current on board 
 		auto curId = cur->wordTypeId();
 		if (curId == replaceWithId) {
+			//can send directly to function below, but need to record action in 
 			toReplaceWith.replaceObjInLocation(cur, *this);
 		}
 	}

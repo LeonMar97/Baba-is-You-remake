@@ -48,6 +48,7 @@ public:
 	BaseOperation* lastOp();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	virtual BaseObject* clone() { return nullptr; }
+	DataHolder* getDataHolder() { return m_dataHolder; }
 protected:
 	std::shared_ptr<sf::Sprite> m_sprite; //shared so it is possible to copy object
 	std::vector<std::shared_ptr<Animation>> m_animation; //shared because on copying baseObject it might share

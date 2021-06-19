@@ -6,14 +6,14 @@ YouWord::YouWord(const sf::Vector2u& loc)
 {
 }
 bool YouWord::move(BaseObject& curYou,const Direction& dir) {
-	curYou.undoOperation();
-	curYou.executeOperation(new OperationMove(dir));
+	curYou.undoOperation(); //overwrite default NoOperation that was inserted as default
+	curYou.executeOperation(new OperationMove(dir)); //move to the direction needed
 	return true;
 }
 
 void YouWord::putRuleIntoAffect(Noun& noun) {
 	Attribute::putRuleIntoAffect(noun);
-	noun.fillAttributes(&m_pushOfYou);
+	noun.fillAttributes(&m_pushOfYou); //"you" is always pushed, otherwise cheating might occur
 }
 void YouWord::deleteRule(Noun& noun){
 	Attribute::deleteRule(noun);

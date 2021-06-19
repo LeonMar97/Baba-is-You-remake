@@ -5,7 +5,7 @@ WaterWord::WaterWord(const sf::Vector2u& loc)
 
 void WaterWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {
 	auto loc = castToLoc(cur->returnPos());
-	cur->executeOperation(new OperationTransform<Water>(board));
+	cur->executeOperation(new OperationTransform<Water>(board)); //transform to water
 }
 std::unordered_set<Attribute*>& WaterWord::getStaticRepresentation() {
 	return Water::m_waterAttributes;
