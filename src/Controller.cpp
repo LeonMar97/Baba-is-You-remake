@@ -50,6 +50,7 @@ void Controller::startGame() {
 	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures();
 	sf::Time deltaTime = {};
+	deltaTime = m_animationClock.restart();//so the animations wont start bublin fast..
 
 	while (m_gameWindow.isOpen())
 	{

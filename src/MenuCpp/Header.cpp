@@ -1,5 +1,5 @@
 #include "Header.h"
-Header::Header(std::stringstream sentecnce, const sf::Vector2f& startPosOfSentence, const sf::Vector2f& scaling, const sf::Color& cr){
+Header::Header(std::stringstream word, const sf::Vector2f& startPosOfSentence, const sf::Vector2f& scaling, const sf::Color& cr){
 	m_charToEnum.insert(std::pair<char, GameObjects >('A', letterA_t));
 	m_charToEnum.insert(std::pair<char, GameObjects >('B', letterB_t));
 	m_charToEnum.insert(std::pair<char, GameObjects >('C', letterC_t));
@@ -25,9 +25,9 @@ Header::Header(std::stringstream sentecnce, const sf::Vector2f& startPosOfSenten
 
 	unsigned int latterLoc = 0;
 
-	while(sentecnce.rdbuf()->in_avail()){
+	while(word.rdbuf()->in_avail()){
 		char curLetter;
-		sentecnce >> curLetter;
+		word >> curLetter;
 		
 		auto curEnumData = m_charToEnum.find(curLetter);
 		if (curEnumData == m_charToEnum.end()) {
@@ -48,7 +48,8 @@ void Header::setArt(const sf::Vector2f & startPosOfSentence, const sf::Vector2f 
 	for (int i = 0; i < m_animations.size(); i++){
 		m_sprites[i]->setScale(scaling);
 		m_sprites[i]->setColor(cr);
-		m_sprites[i]->setPosition(startPosOfSentence + sf::Vector2f(i * OBJECT_SIZE*2,0));
+		//auto letterSize = m_sprites[i]->getScale();
+		m_sprites[i]->setPosition(startPosOfSentence + sf::Vector2f(i * (OBJECT_SIZE/2*scaling.x),0));
 	}
 
 }
@@ -63,7 +64,8 @@ void Header::draw(const sf::Time& deltaTime, sf::Clock& m_animClock, sf::RenderW
 //function returns the last letter pos
 const sf::Vector2f Header::wordEnd() {
 	//auto r = m_sprites.size() - 1;
-	//auto s = m_sprites[r]->getScale().x();
-	auto x = m_sprites[0]->getPosition() + sf::Vector2f((m_sprites.size()+1) * OBJECT_SIZE * 2, 0);
+	auto s = m_sprites[0]->getScale().x;
+
+	auto x = m_sprites[0]->getPosition() + sf::Vector2f((m_sprites.size()+1) * OBJECT_SIZE/2*s , 0);
 	return (x);
 }

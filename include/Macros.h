@@ -105,6 +105,8 @@ const float DEFAULT_SCREEN_HEIGHT= 1080.f;
 //~~~~~~~~~~~~~Menu~~~~~~~~~~~~~~~~~~
 const unsigned int START_NEW_GAME = 0;
 const unsigned int NUM_OF_SHEETS=2;
+const unsigned int NUM_OF_BUTTONS = 4;
+
 enum spriteSheet {
     gameSheet_t=0,
     mainMenuSheet_t
