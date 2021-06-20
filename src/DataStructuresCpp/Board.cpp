@@ -11,115 +11,6 @@ Board::Board()
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-void Board::addGameObj(char character, sf::Vector2u loc){
-	std::shared_ptr<BaseObject> baseObj;
-	std::unique_ptr<DataHolder> dataholder;
-	switch (character)
-	{
-	case 'B': 
-		baseObj = std::make_shared<Baba>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'R':
-		baseObj = std::make_shared<Rock>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'K':
-		baseObj = std::make_shared<Wall>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'F':
-		baseObj = std::make_shared<Flag>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'G':
-		baseObj = std::make_shared<Skull>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'M':
-		baseObj = std::make_shared<Water>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case ' ':
-		break;
-	case 'i':
-		baseObj = std::make_shared<Is>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'b':
-		baseObj = std::make_shared<BabaWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'g':
-		baseObj = std::make_shared<SkullWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'k':
-		baseObj = std::make_shared<WallWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'f':
-		baseObj = std::make_shared<FlagWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'r':
-		baseObj = std::make_shared<RockWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'm':
-		baseObj = std::make_shared<WaterWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'y':
-		baseObj = std::make_shared<YouWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'w':
-		baseObj = std::make_shared<WinWord>(loc, *this);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'd':
-		baseObj = std::make_shared<DefeatWord>(loc, *this);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'l':
-		baseObj = std::make_shared<SinkWord>(loc, *this);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 'p':
-		baseObj = std::make_shared<PushWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	case 's':
-		baseObj = std::make_shared<StopWord>(loc);
-		m_dataHolder.emplace_back(std::make_unique<DataHolder>(baseObj));
-		m_map.push_back(baseObj);
-		break;
-	default:
-		throw std::invalid_argument(((std::string(1, character)
-						+ " is not a supprorted command, to see supported commands please go to README\n")).data());
-		break;
-	}
-}
-
 
 void Board::initialize(FileHandler& map) {
 	sf::Vector2u loc;
@@ -129,7 +20,7 @@ void Board::initialize(FileHandler& map) {
 			currentChar = map.what_In_Location(loc);
 			auto p = Factory::create(currentChar, loc, *this);
 			if (p.second && p.first) {
-				m_dataHolder.push_back(std::move(p.second));
+				m_dataHolder.push_back(std::move(p.second)); //shared and unique ptr should be held uniquely by vectors
 				m_map.push_back(std::move(p.first));
 			}
 			 //addGameObj(currentChar, loc);
