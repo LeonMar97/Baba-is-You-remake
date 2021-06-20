@@ -282,3 +282,8 @@ void Board::endLevel() {
 bool Board::isLvlFinished() {
 	return m_endLevel;
 }
+
+void Board::restartBoard() {
+	for (auto& dataholder : m_dataHolder)
+		while (dataholder->undo());
+}		

@@ -48,6 +48,7 @@ public:
 	void addObject(const std::shared_ptr<BaseObject>&);
 	void replaceObjectWith(std::shared_ptr<BaseObject>& replacedObject, std::shared_ptr<BaseObject>& replacingObject);
 	void undoAllObjects();
+	void restartBoard();
 
 	//set all objects to do nothing
 	//is needed because the interaction map only takes into account objects on board

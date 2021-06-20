@@ -8,8 +8,7 @@ class DataHolder{
 public:
 	DataHolder(const std::shared_ptr<BaseObject>& baseObj);
 	void execute(BaseOperation* op);
-	void undo();
-	void removeOperation();
+	bool undo();
 	void replacePtr(const std::shared_ptr<BaseObject>& replacePtr);
 	BaseOperation* lastOp();
 private:

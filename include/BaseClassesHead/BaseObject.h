@@ -7,6 +7,7 @@
 #include "Direction.h"
 #include <stack>
 #include "BaseOperation.h"
+#include "NoOperation.h"
 
 #include "Resources.h"
 #include<unordered_set>
@@ -44,7 +45,6 @@ public:
 	void setDefaultColor();
 	void executeOperation(BaseOperation*);
 	void undoOperation();
-	void removeOperation();
 	BaseOperation* lastOp();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	virtual BaseObject* clone() { return nullptr; }

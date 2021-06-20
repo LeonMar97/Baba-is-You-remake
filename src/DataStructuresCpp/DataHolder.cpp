@@ -6,19 +6,13 @@ void DataHolder::execute(BaseOperation* op) {
 	m_history.push(op);
 	op->execute(m_ptrObject);
 }
-void DataHolder::undo() {
+bool DataHolder::undo() {
 	if (!m_history.empty()) {
 		m_history.top()->undo(m_ptrObject);
 		m_history.pop();
+		return true;
 	}
-}
-
-void DataHolder::removeOperation() {
-	if (!m_history.empty()) {
-		auto op = m_history.top();
-		m_history.pop();
-		delete op;
-	}
+	return false;
 }
 
 void DataHolder::replacePtr(const std::shared_ptr<BaseObject>& replacePtr) {

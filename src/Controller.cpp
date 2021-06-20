@@ -66,6 +66,8 @@ void Controller::startGame() {
 						m_mapOnScreen->undoAllObjects();
 					else m_mapOnScreen->setDefaultOperation();
 
+					if (event.key.code == sf::Keyboard::R)
+						m_mapOnScreen->restartBoard();
 					if (event.key.code == sf::Keyboard::Right)
 						m_mapOnScreen->moveYou(Direction::Right);
 					else if (event.key.code == sf::Keyboard::Left)

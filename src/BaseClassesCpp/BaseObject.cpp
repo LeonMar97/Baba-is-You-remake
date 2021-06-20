@@ -54,6 +54,7 @@ void BaseObject::move(const Direction& dir) {
 	
 	if (pos.x < 0 || pos.y < 0 || pos.x > MAP_SIZE.x - 1 ||  pos.y > MAP_SIZE.y - 1) {
 		undoOperation();
+		executeOperation(new NoOperation());
 	}
 }
 
@@ -110,10 +111,6 @@ void BaseObject::executeOperation(BaseOperation* op) {
 
 void BaseObject::undoOperation() {
 	m_dataHolder->undo();
-}
-
-void BaseObject::removeOperation() {
-	m_dataHolder->removeOperation();
 }
 
 BaseOperation* BaseObject::lastOp() {
