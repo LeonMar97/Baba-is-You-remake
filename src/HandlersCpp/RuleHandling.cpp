@@ -13,6 +13,19 @@ void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesO
 	 m_AllRulesNCN = &currentRulesNCN;
 
 	for (auto &potentialRule : currentTripplesOnBoard) {
+
+		//first checking whether  'you' 'is' 'win' which stops the game and making the rule seeking void..
+		
+
+		if (auto updateFunPtr = lookup(typeid(*std::get<0>(potentialRule)),
+			typeid(*std::get<1>(potentialRule)),typeid(*std::get<2>(potentialRule)))) {
+
+			(this->*updateFunPtr)(potentialRule);
+			break;
+		}
+
+
+
 		//looks if the current ordered tuple is a rule
 		if (auto updateFunPtr = lookup(std::get<0>(potentialRule)->baseTypeId(), std::get<1>(potentialRule)->baseTypeId(),
 			std::get<2>(potentialRule)->baseTypeId()))
@@ -32,6 +45,10 @@ RuleToFunctionMap RuleHandling:: initializeCollisionMap(){
     RuleToFunctionMap map;
     map[Key( typeid(Noun), typeid(Conjunction), typeid(Attribute) )] = &RuleHandling::updateRulesNCA;
     map[Key( typeid(Noun), typeid(Conjunction), typeid(Noun)      )] = &RuleHandling::updateRulesNCN;
+	map[Key(typeid(YouWord), typeid(Is), typeid(WinWord))] = &RuleHandling::youWin;
+	
+
+
     return map;
 }
 
@@ -131,3 +148,9 @@ void RuleHandling::addNewNCN(Board &b) {
 	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
 }
 
+void RuleHandling::youWin(baseObjTuple& currentRule) {
+	auto& [noun, con, pred] = currentRule;
+	
+	static_cast<WinWord*>(pred)->youWin();
+
+}

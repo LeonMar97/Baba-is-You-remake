@@ -3,6 +3,8 @@
 #include "DataHolder.h"
 #include"Attribute.h"
 
+std::vector<std::shared_ptr<BaseObject>> m_whatMoved = std::vector<std::shared_ptr<BaseObject>>();
+
 BaseObject::BaseObject(const AnimationData& animData1,
 	const AnimationData& animData2,
 	const AnimationData& animData3,

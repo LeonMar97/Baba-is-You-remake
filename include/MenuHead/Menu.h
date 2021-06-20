@@ -9,6 +9,8 @@
 #include "Macros.h"
 #include "Controller.h"
 #include"NewGame.h"
+#include "Header.h"
+#include<sstream>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -25,13 +27,24 @@ public:
 	Menu();
 	~Menu() {}
 private:
+	void setView();
+	void draw(sf::Time &deltaTime);
+
+private:
+	sf::Clock m_animationClock;
 	vector<option> m_options;
 	sf::RenderWindow m_menuWindow;
 	std::shared_ptr<Controller> m_cntrl;
 	sf::RectangleShape m_startGameButton;
+	sf::RectangleShape m_loadLevelGameButton;
 	sf::RectangleShape m_exitGameButton;
+	
+
 
 	
+	std::vector<std::unique_ptr<Header>>m_babaIsU;
+
+	std::vector<std::unique_ptr<Header>>m_creators;
 	
 
 };

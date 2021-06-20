@@ -13,7 +13,6 @@ public:
 	void undo(std::shared_ptr<BaseObject>& baseObj) override;
 private:
 	std::shared_ptr<BaseObject> m_previousObject;
-	std::shared_ptr<BaseObject> m_currentObject;
 	Board& m_board;
 };
 

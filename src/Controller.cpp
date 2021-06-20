@@ -50,6 +50,7 @@ void Controller::startGame() {
 	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures();
 	sf::Time deltaTime = {};
+	deltaTime = m_animationClock.restart();//so the animations wont start bublin fast..
 
 	while (m_gameWindow.isOpen())
 	{
@@ -81,6 +82,7 @@ void Controller::startGame() {
 						return;
 					}
 					m_mapOnScreen->lookForRules();
+					
 					break;
 				case sf::Event::Closed:
 					m_gameWindow.close();
@@ -117,4 +119,5 @@ void Controller::setView() {
 	auto prop = DEFAULT_SCREEN_WIDTH * DEFAULT_SCREEN_HEIGHT / float(m_gameWindow.getSize().x * m_gameWindow.getSize().y);
 	view.zoom(prop);
 	m_gameWindow.setView(view);
-}
+	
+	}

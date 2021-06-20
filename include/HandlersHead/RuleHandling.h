@@ -36,6 +36,8 @@ private:
 	//~~~~~~~~~~~~~~~~ private functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void updateRulesNCA(baseObjTuple&);
 	void updateRulesNCN(baseObjTuple& currentRule);
+	void youWin(baseObjTuple& );
+
 	void updateRules(Board& b);
 	void updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules);
 	RuleToFunctionMap initializeCollisionMap();

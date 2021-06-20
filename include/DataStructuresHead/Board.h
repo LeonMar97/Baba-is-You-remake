@@ -68,12 +68,14 @@ private:
 
 	std::vector<std::unique_ptr<DataHolder>> m_dataHolder; //all data will be stored here
 	std::vector<std::shared_ptr<BaseObject>> m_map; //all interactions will be done here
+	std::vector<std::shared_ptr<BaseObject>> m_whatMoved;
 
 	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;
 	bool m_endLevel = false;
+	void sortTextures();
 
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
