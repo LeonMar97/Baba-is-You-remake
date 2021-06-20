@@ -2,10 +2,10 @@
 #include "Factory.h"
 
 bool WinWord::m_registerit = Factory::registerit('w',
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<WinWord>();
+	[](const sf::Vector2u& loc, Board& board) -> PairObjData {
+		auto obj = std::make_shared<WinWord>(loc, board);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 WinWord::WinWord(const sf::Vector2u& loc, Board& board)
 	:Attribute("Win", Resources::instance().animationData(winword_t), Direction::Stay, loc,

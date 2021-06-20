@@ -2,10 +2,10 @@
 #include "Factory.h"
 std::unordered_set<Attribute*>Rock::m_rockAttributes = std::unordered_set<Attribute*>();
 bool Rock::m_registerit = Factory::registerit('R', 
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<Rock>();
+	[](const sf::Vector2u& loc, Board&) -> PairObjData {
+		auto obj = std::make_shared<Rock>(loc);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 
 Rock::Rock(const sf::Vector2u& loc)

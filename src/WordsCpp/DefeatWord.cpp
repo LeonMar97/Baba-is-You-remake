@@ -1,10 +1,10 @@
 #include"DefeatWord.h"
 #include "Factory.h"
 bool DefeatWord::m_registerit = Factory::registerit('d',
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<DefeatWord>();
+	[](const sf::Vector2u& loc, Board& board) -> PairObjData {
+		auto obj = std::make_shared<DefeatWord>(loc, board);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 
 DefeatWord::DefeatWord(const sf::Vector2u& loc, Board& board)

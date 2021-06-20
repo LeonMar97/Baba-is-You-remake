@@ -1,10 +1,10 @@
 #include"BabaWord.h"
 #include "Factory.h"
 bool BabaWord::m_registerit = Factory::registerit('b',
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<BabaWord>();
+	[](const sf::Vector2u& loc, Board&) -> PairObjData {
+		auto obj = std::make_shared<BabaWord>(loc);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 
 BabaWord::BabaWord(const sf::Vector2u& loc)

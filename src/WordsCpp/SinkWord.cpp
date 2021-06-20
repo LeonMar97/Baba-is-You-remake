@@ -4,10 +4,10 @@
 #include "Factory.h"
 
 bool SinkWord::m_registerit = Factory::registerit('l',
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<SinkWord>();
+	[](const sf::Vector2u& loc, Board& board) -> PairObjData {
+		auto obj = std::make_shared<SinkWord>(loc, board);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 SinkWord::SinkWord(const sf::Vector2u& loc, Board& board)
 	:Attribute("Sink",Resources::instance().animationData(sinkword_t), Direction::Stay, loc, WATER_COLOR,

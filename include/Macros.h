@@ -55,9 +55,11 @@ enum GameObjects {
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 class BaseObject;
+class DataHolder;
 const  sf::Vector2u MAP_SIZE(17, 30); //17 rows and 30 cols
 
 typedef std::vector<BaseObject*> baseObjVec;
+typedef std::pair < std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> PairObjData;
 //~~~~~~~~~~~Animation~~~~~~~~~~~~~~~~~~~
 const float OBJECT_SIZE = 50.f;
 

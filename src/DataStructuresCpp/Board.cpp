@@ -127,9 +127,11 @@ void Board::initialize(FileHandler& map) {
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
 			currentChar = map.what_In_Location(loc);
-			auto p = Factory::create(currentChar, loc);
-			m_dataHolder.push_back(std::move(p.second));
-			m_map.push_back(std::move(p.first));
+			auto p = Factory::create(currentChar, loc, *this);
+			if (p.second && p.first) {
+				m_dataHolder.push_back(std::move(p.second));
+				m_map.push_back(std::move(p.first));
+			}
 			 //addGameObj(currentChar, loc);
 		}
 	}

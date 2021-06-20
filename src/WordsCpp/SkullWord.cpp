@@ -1,10 +1,10 @@
 #include"SkullWord.h"
 #include "Factory.h"
 bool SkullWord::m_registerit = Factory::registerit('g',
-	[](const sf::Vector2u& loc) -> std::pair<std::shared_ptr<BaseObject>, std::unique_ptr<DataHolder>> {
-		auto obj = std::make_shared<SkullWord>();
+	[](const sf::Vector2u& loc, Board&) -> PairObjData {
+		auto obj = std::make_shared<SkullWord>(loc);
 		auto dh = std::make_unique<DataHolder>(obj);
-		return std::make_pair(obj, dh);
+		return std::make_pair(obj, std::move(dh));
 	});
 
 SkullWord::SkullWord(const sf::Vector2u& loc)
