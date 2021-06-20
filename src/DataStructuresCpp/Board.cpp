@@ -23,7 +23,6 @@ void Board::initialize(FileHandler& map) {
 				m_dataHolder.push_back(std::move(p.second)); //shared and unique ptr should be held uniquely by vectors
 				m_map.push_back(std::move(p.first));
 			}
-			 //addGameObj(currentChar, loc);
 		}
 	}
 	lookForRules(); //immediately detect rules and put them into play
@@ -160,8 +159,6 @@ void Board::moveYou(const Direction& dir) {
 	}
 	for (auto& moved : m_whatMoved)
 		checkCollisions(moved.get());
-	
-	
 }
 //sorting the textures so the object which moved will appear on top of everything
 void Board:: sortTextures() {

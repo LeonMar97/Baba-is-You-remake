@@ -36,7 +36,6 @@ public:
 	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
-	void addGameObj(char p, sf::Vector2u loc);
 	void checkCollisions(BaseObject*);
 	void lookForRules();
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
@@ -55,13 +54,10 @@ public:
 	void setDefaultOperation(); //set all objects to do nothing, override with other operations if needed
 	//--------------private--------members-----------------------//
 private:
-	//std::vector<ruleTuple> m_Rules;
-
 	std::vector<std::unique_ptr<DataHolder>> m_dataHolder; //all data will be stored here
 	std::vector<std::shared_ptr<BaseObject>> m_map; //all interactions will be done here
 	std::vector<std::shared_ptr<BaseObject>> m_whatMoved;
 
-	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;

@@ -11,4 +11,3 @@ bool Factory::registerit(char c, pFnc f) {
 	Factory::getMap().emplace(c, f);
 	return true;
 }
-

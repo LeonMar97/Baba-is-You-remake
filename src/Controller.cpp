@@ -100,6 +100,18 @@ void Controller::startGame() {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 bool Controller::newLvl() {
 	//checking if there is a new lvl
+	auto animationClock = sf::Clock{};
+	auto deltaTime = sf::Time{};
+	auto header = Header(std::stringstream("CONGRATULATIONS"), { 0,0 }, { 1,1 }, sf::Color::Red);
+	int i = 0;
+	while (i < 1000) {
+		m_gameWindow.clear();
+		header.draw(deltaTime, m_gameWindow);
+		deltaTime = animationClock.restart();
+		m_gameWindow.display();
+		i++;
+	}
+
 	if (m_map.rebuild_Map()) {
 		m_mapOnScreen.reset();
 		m_mapOnScreen = std::make_unique<Board>();

@@ -7,13 +7,7 @@
 
 int main()
 {
-    auto file = std::fstream("log.txt", std::fstream::out);
-    try {
+	auto file = std::fstream("log.txt", std::fstream::out);
         Menu m;
         m.activate();
-    }
-    catch(std::exception& e){
-        file << e.what();
-        file.flush();
-    }
 }

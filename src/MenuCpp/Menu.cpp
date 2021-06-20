@@ -106,10 +106,10 @@ void Menu::setView() {
 void Menu::draw(sf::Time &deltaTime) {
 	
 	for (auto & cur  : m_babaIsU) {
-		cur->draw(deltaTime, m_animationClock, m_menuWindow);
+		cur->draw(deltaTime, /*m_animationClock,*/ m_menuWindow);
 	}
 	for (auto& cur : m_creators) {
-		cur->draw(deltaTime, m_animationClock, m_menuWindow);
+		cur->draw(deltaTime, /*m_animationClock,*/ m_menuWindow);
 	}
 	m_menuWindow.draw(m_startGameButton);
 	m_menuWindow.draw(m_loadLevelGameButton);
