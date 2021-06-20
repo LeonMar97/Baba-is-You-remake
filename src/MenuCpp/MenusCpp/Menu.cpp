@@ -6,10 +6,7 @@ void Menu::add(unique_ptr<Command> c){
 Menu::Menu(sf::RenderWindow &window)
 :
 	m_menuWindow(window)
-{
-	
-	
-}
+{}
 
 
 void Menu::setView() {

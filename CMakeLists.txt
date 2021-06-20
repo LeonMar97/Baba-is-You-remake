@@ -21,6 +21,7 @@ add_subdirectory(include/RepresntationsHead)
 add_subdirectory(include/WordsHead)
 add_subdirectory(include/MenuHead)
 add_subdirectory(include/MenuHead/CommandsHead)
+add_subdirectory(include/MenuHead/MenusHead)
 
 
 add_subdirectory (src)
@@ -34,6 +35,8 @@ add_subdirectory(src/WordsCpp)
 add_subdirectory (resources)
 add_subdirectory(src/MenuCpp)
 add_subdirectory(src/MenuCpp/CommandsCpp)
+add_subdirectory(src/MenuCpp/MenusCpp)
+
 set (SFML_STATIC_LIBRARIES TRUE)
 set (SFML_DIR "C:/SFML/SFML-2.5.1/lib/cmake/SFML")
 

@@ -8,7 +8,7 @@ public:
 	virtual bool contains(sf::Vector2f &mousePos);
 	virtual sf::RectangleShape& getRect();
 
-
+	void mouseHover(sf::Vector2f& mousePos);
 protected:
 	std::unique_ptr<sf::RectangleShape> m_buttonRect;
 };

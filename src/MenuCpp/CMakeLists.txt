@@ -1,3 +1,3 @@
-target_sources (oop2_ex04 PRIVATE "Menu.cpp"
+target_sources (oop2_ex04 PRIVATE 
 									"Header.cpp"
-									"MainMenu.cpp")
+									)

@@ -1,4 +1,7 @@
 #include "Menu.h"
+#include "ExitGame.h"
+#include"NewGame.h"
+
 class MainMenu:public Menu{
 public:
 	

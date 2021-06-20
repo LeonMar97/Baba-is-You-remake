@@ -8,7 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 #include "Controller.h"
-#include"NewGame.h"
 #include "Header.h"
 #include<sstream>
 using std::cout;

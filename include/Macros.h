@@ -108,7 +108,12 @@ const unsigned int LOAD_LEVEL = 1;
 const unsigned int EXIT_GAME = 2;
 
 const unsigned int NUM_OF_SHEETS=2;
-const unsigned int NUM_OF_BUTTONS = 4;
+const unsigned int NUM_OF_BUTTONS = 3;
+
+const auto MAIN_MENU_BUTTONS_START = sf::IntRect(0, 0, 428, 48);
+const auto FIRST_BUTTON_REC = sf::Vector2f(750, 570);
+const auto MAIN_MENU_BUTTON_HEIGHT = 53.f;
+const auto MAIN_MENU_POS_DIF=sf::Vector2f(0.f, 54.f);
 
 enum spriteSheet {
     gameSheet_t=0,
