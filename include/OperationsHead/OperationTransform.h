@@ -19,10 +19,10 @@ private:
 template<typename T>
 void OperationTransform<T>::execute(std::shared_ptr<BaseObject>& baseObj) {
 	m_previousObject = baseObj;
-	std::shared_ptr<BaseObject> a;
-	a.reset(new T(baseObj->castToLoc(baseObj->returnPos())));
-	a->initializeDataHolder(baseObj->getDataHolder());
-	m_board.replaceObjectWith(baseObj, a);
+	std::shared_ptr<BaseObject> newObject;
+	newObject.reset(new T(baseObj->castToLoc(baseObj->returnPos())));
+	newObject->initializeDataHolder(baseObj->getDataHolder());
+	m_board.replaceObjectWith(baseObj, newObject);
 }
 template<typename T>
 void OperationTransform<T>::undo(std::shared_ptr<BaseObject>& baseObj) {

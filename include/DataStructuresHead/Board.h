@@ -1,10 +1,10 @@
 #pragma once
 #include"FileHandler.h"
+#include "Factory.h"
 #include "BaseObject.h"
+#include "functional"
 #include <experimental/vector>
-#include <functional>
 #include"Word.h"
-#include <cstdlib>
 #include "Resources.h"
 #include "Direction.h"
 #include "Baba.h"
@@ -36,9 +36,6 @@ public:
 	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
-	
-	void addGameObj(char p, sf::Vector2u loc);
-
 	void checkCollisions(BaseObject*);
 	void lookForRules();
 	void replaceObjects(Noun& toReplace, Noun& toReplaceWith);
@@ -55,22 +52,12 @@ public:
 	//and disregards ones that are dead
 	//other operations are overwritten if needed
 	void setDefaultOperation(); //set all objects to do nothing, override with other operations if needed
-	//void isLevelOver();
-	/*
-	void insert(GameObjects, BaseObject*);
-	void createRule(Conjunction& c, std::array<Word*, 2>& potentialRule, std::vector<ruleTuple>& m_currentRules);
-	void lookForRules();
-	void replace(GameObjects objectToAdd, GameObjects objectToRemove, char objectToCreate);
-	*/
 	//--------------private--------members-----------------------//
 private:
-	//std::vector<ruleTuple> m_Rules;
-
 	std::vector<std::unique_ptr<DataHolder>> m_dataHolder; //all data will be stored here
 	std::vector<std::shared_ptr<BaseObject>> m_map; //all interactions will be done here
 	std::vector<std::shared_ptr<BaseObject>> m_whatMoved;
 
-	sf::Vector2f screenSize;
 	RuleHandling m_ruleHandler;
 	
 	sf::RectangleShape m_background;

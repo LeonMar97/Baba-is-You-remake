@@ -10,4 +10,5 @@ public:
 	void deleteRule(Noun&)override;
 private:
 	PushWord m_pushOfYou;
+	static bool m_registerit;
 };

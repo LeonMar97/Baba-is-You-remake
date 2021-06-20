@@ -7,4 +7,7 @@ public:
 	std::unordered_set<Attribute*>& getStaticRepresentation() override;
 	///std::unordered_set<Attribute*>& getStatic() override;
 	void replaceObjInLocation(std::shared_ptr<BaseObject>&, Board& board) override;
+private:
+
+	static bool m_registerit;
 };

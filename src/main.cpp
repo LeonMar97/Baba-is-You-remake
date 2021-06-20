@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <fstream>
 #include "Animation.h"
 #include "Resources.h"
 #include "Controller.h"

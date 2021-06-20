@@ -6,7 +6,7 @@ class MainMenu:public Menu{
 public:
 	
 	MainMenu(sf::RenderWindow&);
-	void draw(sf::Time& deltaTime)override;
+	void draw()override;
 	void activate()override;
 	void setButtonsTextures()override;
 

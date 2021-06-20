@@ -28,7 +28,7 @@ public:
 
 protected:
 	virtual void setView();
-	virtual void draw(sf::Time &deltaTime)=0;
+	virtual void draw()=0;
 	virtual void setButtonsTextures()=0;
 
 protected:

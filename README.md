@@ -9,9 +9,9 @@
 #* making borders and making sure nothing goes over the board
 * generalize for any size of map
 * loading levels
-* going back on failure (z)
+#* going back on failure (z)
 * adding music, tutorial
-* changing to factory
+#* changing to factory
 #* building menu using commands pattern
 * making priority to attributes and in picture drawing
 

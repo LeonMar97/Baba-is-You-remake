@@ -37,13 +37,13 @@ MainMenu::MainMenu(sf::RenderWindow& gameWindeow)
 	setView();
 	setButtonsTextures();
 }
-void MainMenu::draw(sf::Time& deltaTime) {
+void MainMenu::draw() {
 
 	for (auto& cur : m_babaIsU) {
-		cur->draw(deltaTime, m_animationClock, m_menuWindow);
+		cur->draw(m_menuWindow);
 	}
 	for (auto& cur : m_creators) {
-		cur->draw(deltaTime, m_animationClock, m_menuWindow);
+		cur->draw(m_menuWindow);
 	}
 	for (auto& cur : m_options) {
 		m_menuWindow.draw((cur)->getRect());
@@ -106,7 +106,7 @@ void MainMenu::activate() {
 
 		}
 		m_menuWindow.clear(WINDOW_COLOR);
-		draw(deltaTime);
+		draw();
 		m_menuWindow.display();
 	}
 }

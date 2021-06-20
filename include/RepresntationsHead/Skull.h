@@ -17,4 +17,5 @@ public:
 	BaseObject* clone() override { return new Skull(*this); }
 
 private:
+	static bool m_registerit;
 };

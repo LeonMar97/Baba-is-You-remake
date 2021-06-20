@@ -14,4 +14,5 @@ public:
 	static std::unordered_set<Attribute*>m_flagAttributes;//static attributes for all babas
 	std::unordered_set<Attribute*>& getStatic() override;
 private:
+	static bool m_registerit;
 };

@@ -8,7 +8,9 @@ void DataHolder::execute(BaseOperation* op) {
 }
 bool DataHolder::undo() {
 	if (!m_history.empty()) {
-		m_history.top()->undo(m_ptrObject);
+		auto op = m_history.top();
+		op->undo(m_ptrObject);
+		delete op;
 		m_history.pop();
 		return true;
 	}

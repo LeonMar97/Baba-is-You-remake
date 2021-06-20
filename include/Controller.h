@@ -6,8 +6,8 @@
 #include "FileHandler.h"
 #include "BaseObject.h"
 #include "Direction.h"
+#include "Header.h"
 //#include "Menu.h"
-#include <stack>
 
 class Controller {
 
@@ -21,18 +21,15 @@ private:
 	//void generateBackgrounds();
 	void updateDataStructures();
 	bool newLvl();
+	void printCongratulations();
 	//void printNextLvlTex();
 	//void printEndGameTex();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
 private:
 	sf::RenderWindow& m_gameWindow;
-	//sf::Sprite m_background;
-	std::map<char, GameObjects>m_charToTexConverter;
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;
 	int m_level = 1;
-
-	std::vector<BaseObject*> m_you;
 	sf::Clock m_animationClock;
 	bool m_endLevel = false;
 

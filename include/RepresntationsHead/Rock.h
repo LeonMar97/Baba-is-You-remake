@@ -15,4 +15,5 @@ public:
 	std::unordered_set<Attribute*>& getStatic() override;
 
 private:
+	static bool m_registerit;
 };
