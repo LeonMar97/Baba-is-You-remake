@@ -22,31 +22,21 @@ typedef unique_ptr<Command> option;
 
 class Menu {
 public:
-	void add(unique_ptr<Command> c);
-	void activate();
-	Menu();
+	 virtual void add(unique_ptr<Command> c);
+	virtual void activate()=0;
+	Menu(sf::RenderWindow &window);
 	~Menu() {}
-private:
-	void setView();
-	void draw(sf::Time &deltaTime);
-	void setButtonsTextures();
 
+protected:
+	virtual void setView();
+	virtual void draw(sf::Time &deltaTime)=0;
+	virtual void setButtonsTextures()=0;
 
-private:
+protected:
 	sf::Clock m_animationClock;
 	vector<option> m_options;
-	sf::RenderWindow m_menuWindow;
-	std::shared_ptr<Controller> m_cntrl;
-	sf::RectangleShape m_startGameButton;
-	sf::RectangleShape m_loadLevelGameButton;
-	sf::RectangleShape m_exitGameButton;
-	std::vector<sf::RectangleShape>m_ButtonsRectangles;
-
-
+	sf::RenderWindow &m_menuWindow;
 	
-	std::vector<std::unique_ptr<Header>>m_babaIsU;
 
-	std::vector<std::unique_ptr<Header>>m_creators;
-	
 
 };

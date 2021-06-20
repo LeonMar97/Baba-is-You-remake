@@ -1,0 +1,15 @@
+#include "Menu.h"
+class MainMenu:public Menu{
+public:
+	
+	MainMenu(sf::RenderWindow&);
+	void draw(sf::Time& deltaTime)override;
+	void activate()override;
+	void setButtonsTextures()override;
+
+private:
+	std::shared_ptr<Controller> m_cntrl;
+	std::vector<std::unique_ptr<Header>>m_babaIsU;
+	std::vector<std::unique_ptr<Header>>m_creators;
+
+};

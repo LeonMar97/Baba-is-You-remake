@@ -1,7 +1,9 @@
 #include"NewGame.h"
 #include "Controller.h"
-NewGame::NewGame(std::shared_ptr<Controller> &c)
-	:m_cntrl(c)
+NewGame::NewGame(std::shared_ptr<Controller> &c, std::unique_ptr<sf::RectangleShape>rect)
+	:
+	Command(move(rect)),
+	m_cntrl(c)
 {
 
 }

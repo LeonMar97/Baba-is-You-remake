@@ -2,11 +2,17 @@
 #include "Animation.h"
 #include "Resources.h"
 #include "Controller.h"
-#include "Menu.h"
+#include "MainMenu.h"
+
+void startGame() {
+    auto window = sf::RenderWindow(sf::VideoMode(1920, 1080), "Baba is you", sf::Style::Fullscreen);
+    MainMenu m(window);
+    m.activate();
+
+}
 
 int main()
 {
-    
-    Menu m;
-    m.activate();
+    startGame();
+   
 }
