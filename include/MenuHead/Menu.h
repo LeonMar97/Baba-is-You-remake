@@ -29,6 +29,8 @@ public:
 private:
 	void setView();
 	void draw(sf::Time &deltaTime);
+	void setButtonsTextures();
+
 
 private:
 	sf::Clock m_animationClock;
@@ -38,7 +40,7 @@ private:
 	sf::RectangleShape m_startGameButton;
 	sf::RectangleShape m_loadLevelGameButton;
 	sf::RectangleShape m_exitGameButton;
-	
+	std::vector<sf::RectangleShape>m_ButtonsRectangles;
 
 
 	

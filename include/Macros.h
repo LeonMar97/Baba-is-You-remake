@@ -104,6 +104,9 @@ const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
 //~~~~~~~~~~~~~Menu~~~~~~~~~~~~~~~~~~
 const unsigned int START_NEW_GAME = 0;
+const unsigned int LOAD_LEVEL = 1;
+const unsigned int EXIT_GAME = 2;
+
 const unsigned int NUM_OF_SHEETS=2;
 const unsigned int NUM_OF_BUTTONS = 4;
 

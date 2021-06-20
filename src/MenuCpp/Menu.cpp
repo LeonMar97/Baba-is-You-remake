@@ -6,28 +6,15 @@ void Menu::add(unique_ptr<Command> c){
 Menu::Menu()
 	:
 		m_menuWindow(sf::VideoMode(1920, 1080), "Baba is you", sf::Style::Fullscreen),
-	m_startGameButton(sf::Vector2f(430, 48)),
-	m_exitGameButton(sf::Vector2f(430, 48)),
-	m_loadLevelGameButton(sf::Vector2f(430, 48)),
-
-
-	m_cntrl(std::make_shared<Controller>(m_menuWindow))
+		m_ButtonsRectangles{sf::RectangleShape(sf::Vector2f(430, 48)),sf::RectangleShape(sf::Vector2f(430, 48)), sf::RectangleShape(sf::Vector2f(430, 48))},
+		m_cntrl(std::make_shared<Controller>(m_menuWindow))
 {
-	setView();
-	m_startGameButton.setTexture(&Resources::instance().texture(1));
-	m_startGameButton.setTextureRect(sf::IntRect(0, 0, 428, 48));
-	m_startGameButton.setPosition(sf::Vector2f(750, 570));
 
-
-
-	m_loadLevelGameButton.setTexture(&Resources::instance().texture(1));
-	m_loadLevelGameButton.setTextureRect(sf::IntRect(0, 53, 428, 48));
-	m_loadLevelGameButton.setPosition(sf::Vector2f(750, 624));
 	
 
-	m_exitGameButton.setTexture(&Resources::instance().texture(1));
-	m_exitGameButton.setTextureRect(sf::IntRect(0, 107, 428, 48));
-	m_exitGameButton.setPosition(sf::Vector2f(750, 678));
+	setView();
+	setButtonsTextures();
+
 	
 	m_creators.push_back(std::make_unique<Header>(std::stringstream("GAME"), sf::Vector2f(650, 850), sf::Vector2f(1.f, 2.f), sf::Color::White));
 	m_creators.push_back(std::make_unique<Header>(std::stringstream("CREATORS"), m_creators[0]->wordEnd(), sf::Vector2f(1.f, 2.f), sf::Color::White));
@@ -116,4 +103,26 @@ void Menu::draw(sf::Time &deltaTime) {
 	m_menuWindow.draw(m_exitGameButton);
 
 
+}
+void Menu::setButtonsTextures() {
+	auto texRect = sf::IntRect(0,0,428,48);
+	auto pos = sf::Vector2f(750, 570);
+	for (auto & curRec : m_ButtonsRectangles) {
+		curRec.setTexture(&Resources::instance().texture(1));
+		curRec.setTextureRect(texRect);
+		curRec.setPosition(pos);
+		texRect += sf::IntRect(0, 53, 0, 0);
+			
+
+		m_loadLevelGameButton.setTexture(&Resources::instance().texture(1));
+		m_loadLevelGameButton.setTextureRect(sf::IntRect(0, 53, 428, 48));
+		m_loadLevelGameButton.setPosition(sf::Vector2f(750, 624));
+
+
+		m_exitGameButton.setTexture(&Resources::instance().texture(1));
+		m_exitGameButton.setTextureRect(sf::IntRect(0, 107, 428, 48));
+		m_exitGameButton.setPosition(sf::Vector2f(750, 678));
+
+
+	}
 }
