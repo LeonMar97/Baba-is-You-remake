@@ -14,7 +14,6 @@ Board::Board()
 void Board::addGameObj(char character, sf::Vector2u loc){
 	std::shared_ptr<BaseObject> baseObj;
 	std::unique_ptr<DataHolder> dataholder;
-	Word* wordObj;
 	switch (character)
 	{
 	case 'B': 
@@ -128,7 +127,10 @@ void Board::initialize(FileHandler& map) {
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
 			currentChar = map.what_In_Location(loc);
-			 addGameObj(currentChar, loc);
+			auto p = Factory::create(currentChar, loc);
+			m_dataHolder.push_back(std::move(p.second));
+			m_map.push_back(std::move(p.first));
+			 //addGameObj(currentChar, loc);
 		}
 	}
 	lookForRules(); //immediately detect rules and put them into play
@@ -299,5 +301,5 @@ bool Board::isLvlFinished() {
 
 void Board::restartBoard() {
 	for (auto& dataholder : m_dataHolder)
-		while (dataholder->undo());
+		while (dataholder->undo()); //empty all histories
 }		

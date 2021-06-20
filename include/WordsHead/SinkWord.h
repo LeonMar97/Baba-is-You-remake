@@ -7,4 +7,5 @@ public:
 	bool handleCollision(BaseObject*, BaseObject* obj) override;
 private:
 	Board& m_board;
+	static bool m_registerit;
 };

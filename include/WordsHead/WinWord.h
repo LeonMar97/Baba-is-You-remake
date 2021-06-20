@@ -9,4 +9,6 @@ public:
 
 private:
 	Board &m_board;
+	
+	static bool m_registerit;
 };

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "DataHolder.h"
 #include"Attribute.h"
+#include "Factory.h"
 
 std::vector<std::shared_ptr<BaseObject>> m_whatMoved = std::vector<std::shared_ptr<BaseObject>>();
 
