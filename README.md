@@ -3,7 +3,7 @@
 
 ## TODO:
 #* Detect win and defeat
-* detecting you is win and you is defeat
+#* detecting you is win and you is defeat
 #* adding flags
 #* potentially adding skulls, water, lava
 #* making borders and making sure nothing goes over the board
