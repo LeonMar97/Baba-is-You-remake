@@ -32,8 +32,8 @@
 class Board{
 	//--------------public--------functions-----------------------//
 public:
-	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	Board();
+	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
 	void initialize(FileHandler &map);
 	bool isLvlFinished();
 	

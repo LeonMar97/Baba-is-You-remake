@@ -6,7 +6,7 @@ YouWord::YouWord(const sf::Vector2u& loc)
 {
 }
 bool YouWord::move(BaseObject& curYou,const Direction& dir) {
-	curYou.undoOperation(); //overwrite default NoOperation that was inserted as default
+	curYou.undoOperation(); //overwrite default NoOperation that was inserted before
 	curYou.executeOperation(new OperationMove(dir)); //move to the direction needed
 	return true;
 }

@@ -2,8 +2,8 @@
 StopWord::StopWord(const sf::Vector2u& loc)
 	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, STOP_COLOR,
 		STOP_LIGHTER_COLOR)
-{
-}
+{}
+
 StopWord::StopWord()
 	: Attribute("Stop", Resources::instance().animationData(stopword_t), Direction::Stay, {0,0}, sf::Color(144, 103, 62),
 		sf::Color::Red)

@@ -50,9 +50,9 @@ public:
 	virtual BaseObject* clone() { return nullptr; }
 	DataHolder* getDataHolder() { return m_dataHolder; }
 protected:
-	std::shared_ptr<sf::Sprite> m_sprite; //shared so it is possible to copy object
-	std::vector<std::shared_ptr<Animation>> m_animation; //shared because on copying baseObject it might share
-	std::vector<std::shared_ptr<Animation>>::iterator m_currentAnimation; //to access animations more easily
+	sf::Sprite m_sprite; //shared so it is possible to copy object
+	std::vector<Animation> m_animation; //shared because on copying baseObject it might share
+	std::vector<Animation>::iterator m_currentAnimation; //to access animations more easily
 	sf::Vector2f m_lastPos;
 private:
 	sf::Color m_defaultColor;

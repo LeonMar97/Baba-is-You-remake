@@ -19,8 +19,11 @@ void DataHolder::replacePtr(const std::shared_ptr<BaseObject>& replacePtr) {
 	m_ptrObject = replacePtr; 
 }
 
+//retuens last operation
 BaseOperation* DataHolder::lastOp() {
 	if (!m_history.empty())
 		return m_history.top(); 
 	else return nullptr;
 }
+
+//DataHolder::~DataHolder{}
