@@ -1,7 +1,7 @@
 #include "Baba.h" 
 #include "Factory.h"
-CollisionStrategySet Baba::m_babaAttributes =
-std::set < std::shared_ptr<CollisionStrategy>, ColStrCmp> ();
+CollisionStrategySet Baba::m_babaAttributes = CollisionStrategySet();
+
 bool Baba::m_registerit = Factory::registerit('B',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData { 
 		auto obj = std::make_shared<Baba>(loc);

@@ -18,7 +18,7 @@ void Noun::fillAttributes(std::shared_ptr<CollisionStrategy>& colStr) {
 void Noun::removeAttribute(std::shared_ptr<CollisionStrategy>& colStr) {
 	auto &attributes = this->getStaticRepresentation();
 	auto del = attributes.find(colStr);
-	attributes.erase(colStr);
+	attributes.erase(del);
 }
 
 

@@ -14,7 +14,8 @@ private:
 
 class ColStrCmp {
 public:
-	bool operator()(const std::shared_ptr<CollisionStrategy>& a, const std::shared_ptr<CollisionStrategy>& b) const{
+	bool operator()(const std::shared_ptr<CollisionStrategy>& a,
+					const std::shared_ptr<CollisionStrategy>& b) const{
 	return *a < *b;
-}
+	}
 };

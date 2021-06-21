@@ -13,11 +13,3 @@ YouWord::YouWord(const sf::Vector2u& loc)
 		YOU_COLOR, YOU_LIGHTER_COLOR, std::make_shared<CollisionStrategyYou>())
 {}
 
-void YouWord::putRuleIntoAffect(Noun& noun) {
-	Attribute::putRuleIntoAffect(noun);
-	//noun.fillAttributes(&m_pushOfYou); //"you" is always pushed, otherwise cheating might occur
-}
-void YouWord::deleteRule(Noun& noun){
-	Attribute::deleteRule(noun);
-	//noun.removeAttribute(&m_pushOfYou);
-}

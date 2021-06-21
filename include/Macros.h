@@ -126,4 +126,4 @@ enum spriteSheet {
 
 class CollisionStrategy;
 class ColStrCmp;
-typedef std::set<std::shared_ptr<CollisionStrategy>, ColStrCmp> CollisionStrategySet;
+typedef std::multiset<std::shared_ptr<CollisionStrategy>, ColStrCmp> CollisionStrategySet;

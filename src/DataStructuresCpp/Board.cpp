@@ -152,9 +152,8 @@ void Board::moveYou(const Direction& dir) {
 		auto& attributes = curObj->getStatic();
 		//for (auto& it : attributes) {
 		if(!attributes.empty())
-			if ((*attributes.rbegin())->move(*curObj, dir)) {
+			if ((*attributes.rbegin())->move(*curObj, dir)) { //perform action based on properties
 				m_whatMoved.push_back(curObj);
-				break;
 			}
 	}
 	for (auto& moved : m_whatMoved)
