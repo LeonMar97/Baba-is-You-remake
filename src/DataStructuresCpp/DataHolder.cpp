@@ -28,4 +28,7 @@ BaseOperation* DataHolder::lastOp() {
 	else return nullptr;
 }
 
-//DataHolder::~DataHolder{}
+DataHolder::~DataHolder(){
+	m_ptrObject->resetStatic();
+
+}

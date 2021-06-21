@@ -13,7 +13,7 @@ public:
 
 
 	bool set_Map();	//sets the map on vector returns false if failed
-	char what_In_Location(const sf::Vector2u cur_Loc)const;// reuturns elemnt on board 
+	char what_In_Location(const unsigned int& mapNum, const sf::Vector2u cur_Loc)const;// reuturns elemnt on board 
 	bool rebuild_Map();
 
 	//--------------private--------functions-----------------------//
@@ -23,8 +23,7 @@ private:
 
 	//------------------members-----------------------//
 private:
-	
-	level m_fileHandler;
+	std::vector<level>m_levels;
 	std::ifstream m_Cf;
-	int m_Time;
+	
 };

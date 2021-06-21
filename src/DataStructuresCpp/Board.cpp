@@ -12,12 +12,12 @@ Board::Board()
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-void Board::initialize(FileHandler& map) {
+void Board::initialize(const unsigned int& mapNum,const FileHandler& map) {
 	sf::Vector2u loc;
 	char currentChar;
 	for (loc.x = 0; loc.x < MAP_SIZE.x; loc.x++) {
 		for (loc.y = 0; loc.y < MAP_SIZE.y; loc.y++) {
-			currentChar = map.what_In_Location(loc);
+			currentChar = map.what_In_Location(mapNum,loc);
 			auto p = Factory::create(currentChar, loc, *this);
 			if (p.second && p.first) {
 				m_dataHolder.push_back(std::move(p.second)); //shared and unique ptr should be held uniquely by vectors
@@ -192,4 +192,4 @@ bool Board::isLvlFinished() {
 void Board::restartBoard() {
 	for (auto& dataholder : m_dataHolder)
 		while (dataholder->undo()); //empty all histories
-}		
+}

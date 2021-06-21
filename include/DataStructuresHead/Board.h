@@ -34,7 +34,7 @@ class Board{
 public:
 	Board();
 	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
-	void initialize(FileHandler &map);
+	void initialize(const unsigned int &mapNum,const FileHandler &map);
 	bool isLvlFinished();
 	void checkCollisions(BaseObject*);
 	void lookForRules();
@@ -46,7 +46,6 @@ public:
 	void replaceObjectWith(std::shared_ptr<BaseObject>& replacedObject, std::shared_ptr<BaseObject>& replacingObject);
 	void undoAllObjects();
 	void restartBoard();
-
 	//set all objects to do nothing
 	//is needed because the interaction map only takes into account objects on board
 	//and disregards ones that are dead

@@ -1,3 +1,4 @@
 configure_file ("Spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menuButtons.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("menu2Buttons.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("map.txt" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -119,3 +119,8 @@ void BaseObject::undoOperation() {
 BaseOperation* BaseObject::lastOp() {
 	return m_dataHolder->lastOp();
 }
+void BaseObject::resetStatic() {//resets the static object virtualy for each one polymorfically
+	auto& staticVec = this->getStatic();
+	staticVec.clear();
+
+}

@@ -49,6 +49,7 @@ public:
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	virtual BaseObject* clone() { return nullptr; }
 	DataHolder* getDataHolder() { return m_dataHolder; }
+	virtual void resetStatic();//resets the static object virtualy for each one polymorfically
 protected:
 	sf::Sprite m_sprite; //shared so it is possible to copy object
 	std::vector<Animation> m_animation; //shared because on copying baseObject it might share
