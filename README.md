@@ -13,7 +13,7 @@
 * adding music, tutorial
 #* changing to factory
 #* building menu using commands pattern
-* making priority to attributes and in picture drawing
+#* making priority to attributes and in picture drawing
 
 * scoreboard (?)
 * making bubbles in animation
