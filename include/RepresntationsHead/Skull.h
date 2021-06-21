@@ -12,9 +12,8 @@ public:
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
 	static std::unordered_set<Attribute*>m_skullAttributes;//static attributes for all babas
-	std::unordered_set<Attribute*>& getStatic() override;
 
-	BaseObject* clone() override { return new Skull(*this); }
+	std::set<std::shared_ptr<CollisionStrategy>> & getStatic() override;
 
 private:
 	static bool m_registerit;

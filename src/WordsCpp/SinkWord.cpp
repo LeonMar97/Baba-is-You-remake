@@ -14,10 +14,3 @@ SinkWord::SinkWord(const sf::Vector2u& loc, Board& board)
 		WATER_LIGHTER_COLOR), m_board(board)
 {}
 
-bool SinkWord::handleCollision(BaseObject* passiveObj, BaseObject* activeObj) {
-	activeObj->undoOperation(); //for active object positioning after redo
-	//remove both objects from board using operationRemove
-	activeObj->executeOperation(new OperationRemove(m_board)); 
-	passiveObj->executeOperation(new OperationRemove(m_board));
-	return false;
-}

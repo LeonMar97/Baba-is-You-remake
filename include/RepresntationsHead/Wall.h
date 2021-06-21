@@ -12,7 +12,7 @@ public:
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
 	static std::unordered_set<Attribute*>m_wallAttributes;//static attributes for all babas
-	std::unordered_set<Attribute*>& getStatic() override;
+	std::set<std::shared_ptr<CollisionStrategy>> & getStatic() override;
 
 private:
 	static bool m_registerit;

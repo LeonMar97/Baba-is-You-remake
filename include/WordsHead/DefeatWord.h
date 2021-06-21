@@ -5,7 +5,7 @@
 class DefeatWord :public Attribute{
 public:
 	DefeatWord(const sf::Vector2u& loc, Board& board);
-	bool handleCollision(BaseObject*, BaseObject* obj) override;
+	//bool handleCollision(BaseObject*, BaseObject* obj) override;
 private:
 	Board& m_board;
 	static bool m_registerit;

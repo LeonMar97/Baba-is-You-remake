@@ -35,7 +35,7 @@ public:
 	void move(const Direction&);
 	bool collidesWith(BaseObject*);
 	Direction getDir();
-	virtual bool handleCollision(BaseObject*, BaseObject* obj);
+	//virtual bool handleCollision(BaseObject*, BaseObject* obj);
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 	sf::Vector2f returnLastPos()const;
@@ -47,7 +47,6 @@ public:
 	void undoOperation();
 	BaseOperation* lastOp();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
-	virtual BaseObject* clone() { return nullptr; }
 	DataHolder* getDataHolder() { return m_dataHolder; }
 protected:
 	sf::Sprite m_sprite; //shared so it is possible to copy object
