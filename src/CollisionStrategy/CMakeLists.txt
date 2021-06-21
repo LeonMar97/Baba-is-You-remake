@@ -1,3 +1,9 @@
 ﻿target_sources (oop2_ex04 PRIVATE 
-									"Board.cpp"
-									"DataHolder.cpp")
+									"CollisionStrategy.cpp"
+									"CollisionStrategyDefault.cpp"
+									"CollisionStrategyPush.cpp"
+									"CollisionStrategyStop.cpp"
+									"CollisionStrategyDefeat.cpp"
+									"CollisionStrategySink.cpp"
+									"CollisionStrategyWin.cpp"
+									)

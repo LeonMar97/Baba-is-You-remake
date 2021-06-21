@@ -40,7 +40,7 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 void Board::checkCollisions(BaseObject* cur) {
 	for(auto it = m_map.begin(); it < m_map.end(); it++){
 		if (cur->collidesWith(it->get()) && it->get() != cur) {
-			if (it->get()->triggerAttribute(cur)) {
+			if(auto ptr = it->get()->triggerAttribute(cur)) {
 				checkCollisions(it->get());//check collision as a result of current collision handling
 				//return; maybe this is not supposed to be here
 			}
