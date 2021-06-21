@@ -16,8 +16,8 @@ public:
 	virtual bool operator==(const Word& word) { return this == &word; }
 	std::type_index wordTypeId() override { return typeid(Word); } //need to check if can make this prettier
 
-	static std::unordered_set<Attribute*> m_wordAttributes;
-	std::unordered_set<Attribute*>& getStatic()override;
+	static CollisionStrategySet m_wordAttributes;
+	CollisionStrategySet& getStatic()override;
 
 	void setLighterColor();
 	void setDarkerColor();

@@ -12,8 +12,4 @@ StopWord::StopWord(const sf::Vector2u& loc)
 		STOP_LIGHTER_COLOR, std::make_shared<CollisionStrategyStop>())
 {}
 
-StopWord::StopWord()
-	: Attribute("Stop", Resources::instance().animationData(stopword_t), Direction::Stay, {0,0}, sf::Color(144, 103, 62),
-		sf::Color::Red)
-{}
 

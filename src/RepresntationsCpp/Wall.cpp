@@ -1,6 +1,6 @@
 #include "Wall.h" 
 #include "Factory.h"
-std::unordered_set<Attribute*>Wall::m_wallAttributes = std::unordered_set<Attribute*>();
+CollisionStrategySet Wall::m_wallAttributes = CollisionStrategySet();
 bool Wall::m_registerit = Factory::registerit('K',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Wall>(loc);
@@ -18,6 +18,6 @@ std::type_index Wall::wordTypeId() {
 	return typeid(WallWord);
 }
 
-std::unordered_set<Attribute*>& Wall::getStatic() {
+CollisionStrategySet& Wall::getStatic() {
 	return Wall::m_wallAttributes;
 }

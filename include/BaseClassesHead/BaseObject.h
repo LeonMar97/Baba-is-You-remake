@@ -8,13 +8,16 @@
 #include <stack>
 #include "BaseOperation.h"
 #include "NoOperation.h"
+#include "CollisionStrategy.h"
 
 #include "Resources.h"
-#include<unordered_set>
+#include<set>
 //base class for every object on the screen
 class Attribute;
 class Board;
 class DataHolder;
+
+
 class BaseObject {
 
 public:
@@ -29,7 +32,7 @@ public:
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
 public:
-	virtual std::unordered_set<Attribute*>& getStatic() = 0;
+	virtual CollisionStrategySet& getStatic() = 0;
 	void initializeDataHolder(DataHolder*);
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const Direction&);
@@ -39,7 +42,7 @@ public:
 	virtual std::type_index baseTypeId();
 	sf::Vector2f returnPos()const;
 	sf::Vector2f returnLastPos()const;
-	bool triggerAttribute(BaseObject*);
+	BaseObject* triggerAttribute(BaseObject*);
 	virtual std::type_index wordTypeId();
 	sf::Vector2u castToLoc(sf::Vector2f spritePos);
 	void setDefaultColor();

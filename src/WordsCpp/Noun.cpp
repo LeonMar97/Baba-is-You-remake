@@ -11,14 +11,14 @@ std::type_index Noun::baseTypeId() {
 	return typeid(Noun);
 }
 //adds atribute if rull is made 
-void Noun::fillAttributes(Attribute* atr) {
-	this->getStaticRepresentation().emplace(atr);
+void Noun::fillAttributes(std::shared_ptr<CollisionStrategy>& colStr) {
+	this->getStaticRepresentation().insert(colStr);
 }
 //removes all of the atributes of the current Noun refrences static member if its objects class 
-void Noun::removeAttribute(Attribute* atr) {
+void Noun::removeAttribute(std::shared_ptr<CollisionStrategy>& colStr) {
 	auto &attributes = this->getStaticRepresentation();
-	auto del = attributes.find(atr);
-	attributes.erase(del);
+	auto del = attributes.find(colStr);
+	attributes.erase(colStr);
 }
 
 

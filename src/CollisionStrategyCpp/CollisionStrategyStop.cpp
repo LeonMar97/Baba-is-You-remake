@@ -1,4 +1,4 @@
-#include "CollisionStrategy/CollisionStrategyStop.h"
+#include "CollisionStrategyStop.h"
 
 CollisionStrategyStop::CollisionStrategyStop()
 	: CollisionStrategy(2)

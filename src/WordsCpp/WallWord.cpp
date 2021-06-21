@@ -16,6 +16,6 @@ void WallWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& boa
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Wall>(board)); //transform to wall
 }
-std::unordered_set<Attribute*>& WallWord::getStaticRepresentation() {
+CollisionStrategySet& WallWord::getStaticRepresentation() {
 	return Wall::m_wallAttributes;
 }

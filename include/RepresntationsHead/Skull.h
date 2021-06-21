@@ -11,9 +11,9 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static std::unordered_set<Attribute*>m_skullAttributes;//static attributes for all babas
+	static CollisionStrategySet m_skullAttributes;
 
-	std::set<std::shared_ptr<CollisionStrategy>> & getStatic() override;
+	CollisionStrategySet & getStatic() override;
 
 private:
 	static bool m_registerit;

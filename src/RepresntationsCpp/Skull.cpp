@@ -1,6 +1,7 @@
 #include "Skull.h" 
 #include "Factory.h"
-std::unordered_set<Attribute*>Skull::m_skullAttributes = std::unordered_set<Attribute*>();
+
+CollisionStrategySet Skull::m_skullAttributes = CollisionStrategySet();
 bool Skull::m_registerit = Factory::registerit('G', 
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Skull>(loc);
@@ -18,6 +19,6 @@ std::type_index Skull::wordTypeId() {
 	return typeid(SkullWord);
 }
 
-std::unordered_set<Attribute*>& Skull::getStatic() {
+CollisionStrategySet& Skull::getStatic() {
 	return Skull::m_skullAttributes;
 }

@@ -86,9 +86,6 @@ bool BaseObject::collidesWith(BaseObject* obj) {
 	return m_sprite.getGlobalBounds().intersects(obj->m_sprite.getGlobalBounds());
 }
 
-bool BaseObject::handleCollision(BaseObject* passiveObject, BaseObject* activeObject) {
-	return false;
-}
 std::type_index BaseObject::baseTypeId() {
 	 return typeid(BaseObject);
 }

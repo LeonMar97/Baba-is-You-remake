@@ -1,6 +1,7 @@
 #include "Flag.h" 
 #include "Factory.h"
-std::unordered_set<Attribute*>Flag::m_flagAttributes = std::unordered_set<Attribute*>();
+
+CollisionStrategySet Flag::m_flagAttributes = CollisionStrategySet();
 bool Flag::m_registerit = Factory::registerit('F',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Flag>(loc);
@@ -16,6 +17,6 @@ std::type_index Flag::wordTypeId() {
 	return typeid(FlagWord);
 }
 
-std::unordered_set<Attribute*>& Flag::getStatic() {
+CollisionStrategySet& Flag::getStatic() {
 	return Flag::m_flagAttributes;
 }

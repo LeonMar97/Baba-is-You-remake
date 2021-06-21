@@ -4,5 +4,5 @@
 class CollisionStrategyDefault : public CollisionStrategy {
 public:
 	CollisionStrategyDefault();
-	BaseObject* handleCollision(BaseObject*, BaseObject*)
+	BaseObject* handleCollision(BaseObject*, BaseObject*);
 };

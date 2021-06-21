@@ -11,8 +11,8 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static std::unordered_set<Attribute*>m_waterAttributes;//static attributes for all babas
-	std::set<std::shared_ptr<CollisionStrategy>> & getStatic() override;
+	static CollisionStrategySet m_waterAttributes;
+	CollisionStrategySet & getStatic() override;
 
 private:
 	static bool m_registerit;

@@ -1,5 +1,6 @@
 #pragma once
 #include<tuple>
+#include <set>
 #include <SFML/Graphics.hpp>
 //~~~~~~~~~~~Texture~~~~~~~~~~~~~~~~~~~
 enum GameObjects {
@@ -121,3 +122,8 @@ enum spriteSheet {
     mainMenuSheet_t
 };
 
+//~~~~~~~~~~~~~~~~~~~~~~~~`attributes~~~~~~~~~~~~~~~~~~~
+
+class CollisionStrategy;
+class ColStrCmp;
+typedef std::set<std::shared_ptr<CollisionStrategy>, ColStrCmp> CollisionStrategySet;

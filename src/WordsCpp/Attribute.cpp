@@ -9,11 +9,11 @@ Attribute::Attribute(const std::string& word,
 	const std::shared_ptr<CollisionStrategy>& collisionStrategy)
 
 	: Predicate(word, animationData, dir, loc, defaultColor, lighterColor),
-	m_equipStrategy(std::move(collisionStrategy))
+	m_equipStrategy(collisionStrategy)
 {}
 
 void Attribute::putRuleIntoAffect(Noun& noun) {
-	noun.fillAttributes(this);
+	noun.fillAttributes(m_equipStrategy);
 }
 
 std::type_index Attribute::baseTypeId() {
@@ -21,7 +21,7 @@ std::type_index Attribute::baseTypeId() {
 }
 
 void Attribute:: deleteRule(Noun& curNoun) {
-	curNoun.removeAttribute(this);
+	curNoun.removeAttribute(m_equipStrategy);
 }
 
 bool Attribute::move(BaseObject& baseObj, const Direction&) {

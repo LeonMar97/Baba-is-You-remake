@@ -1,12 +1,12 @@
 #include "PushWord.h"
 
-std::unordered_set<Attribute*> Word::m_wordAttributes = std::unordered_set<Attribute*>{};
+CollisionStrategySet Word::m_wordAttributes = CollisionStrategySet{};
 
 Word::Word(const std::string& word, const AnimationData& animationData,
 	Direction dir, const sf::Vector2u& loc, const sf::Color& darkerColor, const sf::Color& lighterColor)
 	: m_word(word), BaseObject(animationData, dir, loc, darkerColor), m_colorWordInRule(lighterColor)
 {}
-std::unordered_set<Attribute*>& Word::getStatic() {
+CollisionStrategySet& Word::getStatic() {
 	return Word::m_wordAttributes;
 }
 void Word::setLighterColor() {

@@ -1,6 +1,6 @@
-#include "CollisionStrategy/CollisionStrategySink.h"
-CollisionStrategySink::CollisionStrategySink()
-	: CollisionStrategy(1)
+#include "CollisionStrategySink.h"
+CollisionStrategySink::CollisionStrategySink(Board& board)
+	: CollisionStrategy(1), m_board(board)
 {}
 
 BaseObject* CollisionStrategySink::handleCollision(BaseObject * passiveObj, BaseObject * activeObj) {

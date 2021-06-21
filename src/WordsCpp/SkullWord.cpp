@@ -17,6 +17,6 @@ void SkullWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& bo
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Skull>(board)); //trandform to skull
 }
-std::unordered_set<Attribute*>& SkullWord::getStaticRepresentation() {
+CollisionStrategySet& SkullWord::getStaticRepresentation() {
 	return Skull::m_skullAttributes;
 }

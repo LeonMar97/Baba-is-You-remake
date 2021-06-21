@@ -1,4 +1,4 @@
-#include "CollisionStrategy/CollisionStrategyPush.h"
+#include "CollisionStrategyPush.h"
 
 CollisionStrategyPush::CollisionStrategyPush()
 	: CollisionStrategy(2)

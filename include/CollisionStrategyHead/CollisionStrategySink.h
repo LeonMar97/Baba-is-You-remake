@@ -4,6 +4,8 @@
 
 class CollisionStrategySink: public CollisionStrategy {
 public:
-	CollisionStrategySink();
-	BaseObject* handleCollision(BaseObject*, BaseObject*)
+	CollisionStrategySink(Board& board);
+	BaseObject* handleCollision(BaseObject*, BaseObject*);
+private:
+	Board& m_board;
 };

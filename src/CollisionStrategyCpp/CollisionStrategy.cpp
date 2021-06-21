@@ -1,4 +1,4 @@
-#include "CollisionStrategy/CollisionStrategy.h"
+#include "CollisionStrategy.h"
 
 CollisionStrategy::CollisionStrategy(int priority)
 	: m_priority(priority)

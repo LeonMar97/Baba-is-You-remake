@@ -1,6 +1,6 @@
 #include "Water.h" 
 #include "Factory.h"
-std::unordered_set<Attribute*>Water::m_waterAttributes = std::unordered_set<Attribute*>();
+CollisionStrategySet Water::m_waterAttributes = CollisionStrategySet();
 bool Water::m_registerit = Factory::registerit('M',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Water>(loc);
@@ -18,6 +18,6 @@ std::type_index Water::wordTypeId() {
 	return typeid(WaterWord);
 }
 
-std::unordered_set<Attribute*>& Water::getStatic() {
+CollisionStrategySet& Water::getStatic() {
 	return Water::m_waterAttributes;
 }

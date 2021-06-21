@@ -1,7 +1,7 @@
 #pragma once
 #include "Predicate.h"
 #include "Noun.h"
-#include "CollisionStrategy/CollisionStrategy.h"
+#include "CollisionStrategy.h"
 class Attribute :public Predicate {
 public:
 	//using Predicate::Predicate;

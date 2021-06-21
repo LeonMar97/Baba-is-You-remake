@@ -6,4 +6,5 @@
 									"CollisionStrategyDefeat.cpp"
 									"CollisionStrategySink.cpp"
 									"CollisionStrategyWin.cpp"
+									"CollisionStrategyYou.cpp"
 									)
