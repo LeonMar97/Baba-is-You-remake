@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include "Macros.h"
+typedef std::vector<std::string>level;
 class FileHandler{
 	//--------------public--------functions-----------------------//
 public:
@@ -23,7 +24,7 @@ private:
 	//------------------members-----------------------//
 private:
 	
-	std::vector<std::string>m_fileHandler;
+	level m_fileHandler;
 	std::ifstream m_Cf;
 	int m_Time;
 };

@@ -7,7 +7,6 @@
 #* adding flags
 #* potentially adding skulls, water, lava
 #* making borders and making sure nothing goes over the board
-* generalize for any size of map
 * loading levels
 #* going back on failure (z)
 * adding music, tutorial
@@ -16,4 +15,3 @@
 * making priority to attributes and in picture drawing
 
 * scoreboard (?)
-* making bubbles in animation
