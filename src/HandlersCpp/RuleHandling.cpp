@@ -4,7 +4,7 @@
 #include "Is.h"
 #include "Rock.h"
 
-void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesOnBoard ,Board & b)
+void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTriplesOnBoard ,Board & b)
 {
 	 std::vector<ruleTuple> currentRulesNCN;
 	 std::vector<ruleTuple> currentRulesNCA;
@@ -12,23 +12,19 @@ void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTripplesO
 	 m_AllRulesNCA = &currentRulesNCA;
 	 m_AllRulesNCN = &currentRulesNCN;
 
-	for (auto &potentialRule : currentTripplesOnBoard) {
+	for (auto &potentialRule : currentTriplesOnBoard) {
 
+		auto& [first, second, third] = potentialRule;
 		//first checking whether  'you' 'is' 'win' which stops the game and making the rule seeking void..
-		
-
-		if (auto updateFunPtr = lookup(typeid(*std::get<0>(potentialRule)),
-			typeid(*std::get<1>(potentialRule)),typeid(*std::get<2>(potentialRule)))) {
+		if (auto updateFunPtr = lookup(typeid(*first),
+			typeid(*second),typeid(*third))) {
 
 			(this->*updateFunPtr)(potentialRule);
 			break;
 		}
-
-
-
 		//looks if the current ordered tuple is a rule
-		if (auto updateFunPtr = lookup(std::get<0>(potentialRule)->baseTypeId(), std::get<1>(potentialRule)->baseTypeId(),
-			std::get<2>(potentialRule)->baseTypeId()))
+		if (auto updateFunPtr = lookup(first->baseTypeId(), second->baseTypeId(),
+			third->baseTypeId()))
 		{
 			//the current tuple is a rule 
 			(this->*updateFunPtr)(potentialRule);
@@ -66,16 +62,22 @@ FunctionPtr RuleHandling::lookup(const std::type_index& class1, const std::type_
 //casting function
 void RuleHandling::updateRulesNCA(baseObjTuple& currentRule) {
 	
-	auto ncaRule=ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
-		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Attribute*>(std::get<2>(currentRule)));
+	auto& [noun, con, atr] = currentRule;
+	auto ncaRule=ruleTuple(
+		static_cast<Noun*>(noun),
+		static_cast<Conjunction*>(con),
+		static_cast<Attribute*>(atr));
 	m_AllRulesNCA->push_back(ncaRule);
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //casting function
 void RuleHandling::updateRulesNCN(baseObjTuple& currentRule) {
-	auto ncnRule = ruleTuple(static_cast<Noun*>(std::get<0>(currentRule)),
-		static_cast<Conjunction*>(std::get<1>(currentRule)), static_cast<Noun*>(std::get<2>(currentRule)));
+	auto& [noun1, con, noun2] = currentRule;
+	auto ncnRule = ruleTuple(
+		static_cast<Noun*>(noun1),
+		static_cast<Conjunction*>(con),
+		static_cast<Noun*>(noun2));
 	m_AllRulesNCN->push_back(ncnRule);
 }
 
@@ -101,25 +103,25 @@ void RuleHandling::updateRules(Board &b) {
 /// <param name="rules"></param>
 void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules) {
 	bool ruleAlreadyExists = false;
-	for (auto ruleIndex = 0; ruleIndex < rules->size(); ruleIndex++) {
+	for(auto rule_it = rules->begin(); rule_it < rules->end();){
 		ruleAlreadyExists = false;
-		unsigned int amountOfRules = currentRulesOnBoard->size();
-		for (unsigned int newRuleIndex = 0; newRuleIndex < currentRulesOnBoard->size(); newRuleIndex++) {
-			if (((*rules)[ruleIndex]) == ((*currentRulesOnBoard)[newRuleIndex])) {
-				(currentRulesOnBoard)->erase(currentRulesOnBoard->begin() + newRuleIndex); //remove new rule because it already exists
+		for(auto ruleOnBoard_it = currentRulesOnBoard->begin(); ruleOnBoard_it < currentRulesOnBoard->end();){
+			if (*rule_it == *ruleOnBoard_it) {
+				ruleOnBoard_it = currentRulesOnBoard->erase(ruleOnBoard_it); //remove new rule because it already exists
 				ruleAlreadyExists = true;
 				break;
 			}
+			else ruleOnBoard_it++;
 		}
 		if (!ruleAlreadyExists) {
-			auto& [noun, con, pred] = (*rules)[ruleIndex];
+			auto& [noun, con, pred] = (*rule_it);
 			noun->setDefaultColor();
 			con->setDefaultColor();
 			pred->setDefaultColor();
-			(std::get<2>((*rules)[ruleIndex]))->deleteRule(*(std::get<0>((*rules)[ruleIndex])));
-			rules->erase(rules->begin() + ruleIndex); //remove old rule because it is no longer on map
-			ruleIndex--;
+			pred->deleteRule(*noun);
+			rule_it = rules->erase(rule_it); //remove old rule because it is no longer on map
 		}
+		else rule_it++;
 	}
 }
 
