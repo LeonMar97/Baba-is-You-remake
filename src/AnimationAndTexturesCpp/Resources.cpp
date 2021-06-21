@@ -75,6 +75,7 @@ Resources& Resources::instance()
 Resources::Resources()
     : m_data(Max)
 {
+    //dont forget to change const NUM_OF_SHEETS if you add anouther sprite sheet!!!!!!!!!!!!!!!!!
     m_texture.resize(NUM_OF_SHEETS);
      loadSprite(gameSheet_t, "Spritesheet.png");
      loadSprite(mainMenuSheet_t, "menuButtons.png");

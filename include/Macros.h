@@ -108,7 +108,7 @@ const unsigned int START_NEW_GAME = 0;
 const unsigned int LOAD_LEVEL = 1;
 const unsigned int EXIT_GAME = 2;
 
-const unsigned int NUM_OF_SHEETS=2;
+const unsigned int NUM_OF_SHEETS=3;
 const unsigned int NUM_OF_BUTTONS = 3;
 
 const auto MAIN_MENU_BUTTONS_START = sf::IntRect(0, 0, 428, 48);

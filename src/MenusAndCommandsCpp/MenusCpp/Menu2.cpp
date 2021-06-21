@@ -5,11 +5,11 @@ Menu2::Menu2(Controller& con, sf::RenderWindow& gameWindeow)
 	Menu(gameWindeow)
 {
 	//~~~~~~~~~~~~creating the buttons (the order of the adding is importent!!!!!!!!!)~~~~~~~~~~~~~~~~~
-	//add(std::make_unique <Resume>(std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
-	//add(std::make_unique <Restart>(m_menuWindow, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
+	add(std::make_unique <Resume>(std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
+	add(std::make_unique <Restart>(m_cntrl, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
 
-	//add(std::make_unique <Controls>(m_menuWindow, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
-	//add(std::make_unique <ReturnToMenu>(m_menuWindow, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
+	add(std::make_unique <Controls>( std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), m_menuWindow));
+	add(std::make_unique <ReturnToMenu>(m_cntrl, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
 	setView();
 	setButtonsTextures();
 }
@@ -36,6 +36,7 @@ void Menu2::setButtonsTextures() {
 
 }
 void Menu2::activate() {
+	setView();
 
 	sf::Time deltaTime = {};
 
@@ -62,8 +63,8 @@ void Menu2::activate() {
 					for (auto& curOption : m_options) {
 						if (curOption->contains(mousepos)) {// sf::Vector2f(sf::Mouse::getPosition()))) {
 							curOption->execute();
-							setView();
 							deltaTime = m_animationClock.restart();
+							return;
 						}
 					}
 					//else if (m_exitGameButton.getGlobalBounds().contains(sf::Vector2f(mousepos)))

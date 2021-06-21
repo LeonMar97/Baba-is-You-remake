@@ -68,6 +68,8 @@ void Controller::startGameLoop() {
 					}
 					else if (event.key.code == sf::Keyboard::Tab) {
 					miniMenu.activate();
+					setView();
+
 					m_animationClock.restart();
 				}
 					m_mapOnScreen->lookForRules();
