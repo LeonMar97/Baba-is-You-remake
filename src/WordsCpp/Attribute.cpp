@@ -6,7 +6,7 @@ Attribute::Attribute(const std::string& word,
 	const sf::Vector2u& loc,
 	const sf::Color& defaultColor,
 	const sf::Color& lighterColor,
-	std::shared_ptr<CollisionStrategy>& collisionStrategy)
+	const std::shared_ptr<CollisionStrategy>& collisionStrategy)
 
 	: Predicate(word, animationData, dir, loc, defaultColor, lighterColor),
 	m_equipStrategy(std::move(collisionStrategy))

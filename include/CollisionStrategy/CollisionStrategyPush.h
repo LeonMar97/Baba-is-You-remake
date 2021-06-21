@@ -4,6 +4,6 @@
 
 class CollisionStrategyPush: public CollisionStrategy {
 public:
-	CollisionStrategyDefault();
-	BaseObject* handleCollision(BaseObject*, BaseObject*)
+	CollisionStrategyPush();
+	BaseObject* handleCollision(BaseObject*, BaseObject*);
 };

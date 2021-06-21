@@ -9,7 +9,7 @@ bool StopWord::m_registerit = Factory::registerit('s',
 
 StopWord::StopWord(const sf::Vector2u& loc)
 	:Attribute("Stop",Resources::instance().animationData(stopword_t), Direction::Stay, loc, STOP_COLOR,
-		STOP_LIGHTER_COLOR)
+		STOP_LIGHTER_COLOR, std::make_shared<CollisionStrategyStop>())
 {}
 
 StopWord::StopWord()

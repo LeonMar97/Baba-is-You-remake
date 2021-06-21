@@ -9,11 +9,10 @@ bool WinWord::m_registerit = Factory::registerit('w',
 	});
 WinWord::WinWord(const sf::Vector2u& loc, Board& board)
 	:Attribute("Win", Resources::instance().animationData(winword_t), Direction::Stay, loc,
-		WIN_COLOR, WIN_LIGHTER_COLOR), m_board(board)
+		WIN_COLOR, WIN_LIGHTER_COLOR, std::make_shared<CollisionStrategyWin>()), m_board(board)
 {
 }
 
 void WinWord::youWin() {
-			m_board.endLevel();
-
+	m_board.endLevel();
 }

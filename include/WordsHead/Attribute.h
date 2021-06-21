@@ -11,7 +11,8 @@ public:
 		const sf::Vector2u& loc,
 		const sf::Color&,
 		const sf::Color&,
-		std::shared_ptr<CollisionStrategy>&);
+		const std::shared_ptr<CollisionStrategy>&);
+
 	virtual void putRuleIntoAffect(Noun&);
 	virtual void deleteRule(Noun&)override;
 	std::type_index baseTypeId() override;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Attribute.h" 
 #include "NoOperation.h"
+#include "CollisionStrategy/CollisionStrategyStop.h"
 class StopWord :public Attribute{
 public:
 	StopWord();
