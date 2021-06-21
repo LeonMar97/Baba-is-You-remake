@@ -41,7 +41,7 @@ void Board::checkCollisions(BaseObject* cur) {
 	for(auto it = m_map.begin(); it < m_map.end(); it++){
 		if (cur->collidesWith(it->get()) && it->get() != cur) {
 			if(auto ptr = it->get()->triggerAttribute(cur)) {
-				checkCollisions(it->get());//check collision as a result of current collision handling
+				checkCollisions(ptr);//check collision as a result of current collision handling
 				//return; maybe this is not supposed to be here
 			}
 		}
@@ -147,15 +147,15 @@ void Board::undoAllObjects() {
 
 void Board::moveYou(const Direction& dir) {
 	m_whatMoved.clear();
-	
+
 	for (auto& curObj : m_map) {
 		auto& attributes = curObj->getStatic();
-		for (auto& it : attributes) {
-			if (it->move(*curObj, dir)) {
+		//for (auto& it : attributes) {
+		if(!attributes.empty())
+			if ((*attributes.rbegin())->move(*curObj, dir)) {
 				m_whatMoved.push_back(curObj);
 				break;
 			}
-		}
 	}
 	for (auto& moved : m_whatMoved)
 		checkCollisions(moved.get());

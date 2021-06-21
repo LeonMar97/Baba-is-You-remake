@@ -29,6 +29,7 @@
 #include"DataHolder.h"
 #include "RuleHandling.h"
 #include "NoOperation.h"
+#include "CollisionStrategy.h"
 class Board{
 	//--------------public--------functions-----------------------//
 public:

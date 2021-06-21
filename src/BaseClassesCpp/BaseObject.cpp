@@ -77,9 +77,9 @@ BaseObject* BaseObject::triggerAttribute(BaseObject* objectMoved) {
 	bool isMoved = false;
 	auto& attributes = getStatic();
 	//dont forget to make sure the set is sorted
-	for (auto& atr : attributes) {
-		return (atr->handleCollision(this, objectMoved));
-	}
+	if (!attributes.empty())
+		return ((*attributes.rbegin())->handleCollision(this, objectMoved));
+	else return nullptr;
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~collisions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bool BaseObject::collidesWith(BaseObject* obj) {
