@@ -42,7 +42,6 @@ void Board::checkCollisions(BaseObject* cur) {
 		if (cur->collidesWith(it->get()) && it->get() != cur) {
 			if(auto ptr = (*it)->triggerAttribute(cur)) {
 				checkCollisions(ptr);//check collision as a result of current collision handling
-				m_whatMoved.push_back(*it);
 				//return; maybe this is not supposed to be here
 			}
 		}
@@ -163,6 +162,11 @@ void Board::moveYou(const Direction& dir) {
 }
 //sorting the textures so the object which moved will appear on top of everything
 void Board:: sortTextures() {
+	//std::sort(m_map.begin(), m_map.end(),
+		//[&](const std::shared_ptr<BaseObject>& a, const std::shared_ptr<BaseObject>& b) {
+			//return a->getMovementCounter() < b->getMovementCounter();
+		//});
+	/*
 	for (auto &moved : m_whatMoved) {
 		auto temp = moved;
 		auto cur = std::find(m_map.begin(), m_map.end(), moved);
@@ -171,11 +175,13 @@ void Board:: sortTextures() {
 			m_map.push_back(temp);
 		}
 	}
+	*/
 }
 
 void Board::removeObject(const std::shared_ptr<BaseObject>& objToRemove) {
-	std::experimental::erase_if(m_map, 
-		[&](const std::shared_ptr<BaseObject>& baseObj) {return baseObj == objToRemove; });
+	m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
+	//std::experimental::erase_if(m_map, 
+		//[&](const std::shared_ptr<BaseObject>& baseObj) {return baseObj == objToRemove; });
 }
 
 void Board::addObject(const std::shared_ptr<BaseObject>& objToAdd) {

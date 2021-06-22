@@ -59,6 +59,8 @@ void BaseObject::move(const Direction& dir) {
 		undoOperation();
 		executeOperation(new NoOperation());
 	}
+	m_movementCounter = (m_movementCounter >> 1) | (m_movementCounter << (100 - 1));
+	m_movementCounter.set(1, 1);
 }
 
 Direction BaseObject::getDir() {

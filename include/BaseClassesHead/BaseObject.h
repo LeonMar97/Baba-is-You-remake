@@ -9,6 +9,7 @@
 #include "BaseOperation.h"
 #include "NoOperation.h"
 #include "CollisionStrategy.h"
+#include <bitset>
 
 #include "Resources.h"
 #include<set>
@@ -51,6 +52,7 @@ public:
 	BaseOperation* lastOp();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	DataHolder* getDataHolder() { return m_dataHolder; }
+	size_t getMovementCounter() { return m_movementCounter.count(); }
 protected:
 	sf::Sprite m_sprite; //shared so it is possible to copy object
 	std::vector<Animation> m_animation; //shared because on copying baseObject it might share
@@ -59,4 +61,5 @@ protected:
 private:
 	sf::Color m_defaultColor;
 	DataHolder* m_dataHolder;
+	std::bitset<100> m_movementCounter; //for lru algorithm, determining more frequently moved objects appear first
 };
