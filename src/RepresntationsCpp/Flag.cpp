@@ -1,4 +1,5 @@
 #include "Flag.h" 
+#include "FlagWord.h" 
 #include "Factory.h"
 
 CollisionStrategySet Flag::m_flagAttributes = CollisionStrategySet();

@@ -1,4 +1,5 @@
 #include "Water.h" 
+#include "WaterWord.h" 
 #include "Factory.h"
 CollisionStrategySet Water::m_waterAttributes = CollisionStrategySet();
 bool Water::m_registerit = Factory::registerit('M',

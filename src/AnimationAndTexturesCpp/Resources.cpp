@@ -152,6 +152,16 @@ Resources::Resources()
         sf::Vector2i(672, 792)
     ); 
 
+    m_data[flowers_t] = readDataDefault(
+        sf::Vector2i(170, 505)
+    );
+    m_data[flowers_t] = readDataDefault(
+        sf::Vector2i(170, 505)
+    );
+    m_data[flowerword_t] = readDataDefault(
+        sf::Vector2i(50, 720)
+    );
+
     //conjunctions
     m_data[is_t] = readDataDefault(
         sf::Vector2i(432, 720)

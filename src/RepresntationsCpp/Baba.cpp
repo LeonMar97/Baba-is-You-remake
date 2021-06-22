@@ -1,4 +1,5 @@
 #include "Baba.h" 
+#include "BabaWord.h" 
 #include "Factory.h"
 CollisionStrategySet Baba::m_babaAttributes = CollisionStrategySet();
 

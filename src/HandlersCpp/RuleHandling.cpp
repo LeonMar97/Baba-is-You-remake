@@ -1,8 +1,7 @@
 #include "RuleHandling.h"
 
-#include "Baba.h"
 #include "Is.h"
-#include "Rock.h"
+#include "WinWord.h"
 
 void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTriplesOnBoard ,Board & b)
 {

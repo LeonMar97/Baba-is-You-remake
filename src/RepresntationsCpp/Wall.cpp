@@ -1,4 +1,5 @@
 #include "Wall.h" 
+#include "WallWord.h" 
 #include "Factory.h"
 CollisionStrategySet Wall::m_wallAttributes = CollisionStrategySet();
 bool Wall::m_registerit = Factory::registerit('K',

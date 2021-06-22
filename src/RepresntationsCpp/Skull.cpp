@@ -1,4 +1,5 @@
 #include "Skull.h" 
+#include "SkullWord.h" 
 #include "Factory.h"
 
 CollisionStrategySet Skull::m_skullAttributes = CollisionStrategySet();

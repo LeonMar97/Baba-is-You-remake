@@ -4,4 +4,5 @@
 									"Flag.cpp"
 									"Skull.cpp"
 									"Water.cpp"
+									"Flower.cpp"
 									)

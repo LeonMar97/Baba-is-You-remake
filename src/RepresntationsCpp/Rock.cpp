@@ -1,4 +1,5 @@
 #include "Rock.h" 
+#include "RockWord.h" 
 #include "Factory.h"
 CollisionStrategySet Rock::m_rockAttributes = CollisionStrategySet();
 bool Rock::m_registerit = Factory::registerit('R', 

@@ -37,6 +37,13 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 	}
 }
 
+void Board::eraseObjects(){
+	std::experimental::erase_if(m_map, [&](const std::shared_ptr<BaseObject>& obj) {
+		return std::find(m_whatToErase.begin(), m_whatToErase.end(), obj) != m_whatToErase.end();
+		});
+	m_whatToErase.clear();
+}
+
 void Board::checkCollisions(BaseObject* cur) {
 	for(auto it = m_map.begin(); it < m_map.end(); it++){
 		if (cur->collidesWith(it->get()) && it->get() != cur) {
@@ -157,15 +164,21 @@ void Board::moveYou(const Direction& dir) {
 				m_whatMoved.push_back(curObj);
 			}
 	}
-	for (auto& moved : m_whatMoved)
+	for (auto& moved : m_whatMoved) {
 		checkCollisions(moved.get());
+		eraseObjects();
+	}
 }
 //sorting the textures so the object which moved will appear on top of everything
+//based on approximation to lru algorithm
+//each object has an associated bitset, where each bit correspond to one movement
+//this function sorts the objects based on the number of set bits in movement counter
+//in order to draw the most moved objects first
 void Board:: sortTextures() {
-	//std::sort(m_map.begin(), m_map.end(),
-		//[&](const std::shared_ptr<BaseObject>& a, const std::shared_ptr<BaseObject>& b) {
-			//return a->getMovementCounter() < b->getMovementCounter();
-		//});
+	std::sort(m_map.begin(), m_map.end(),
+		[&](const std::shared_ptr<BaseObject>& a, const std::shared_ptr<BaseObject>& b) {
+			return a->getMovementCounter() < b->getMovementCounter();
+		});
 	/*
 	for (auto &moved : m_whatMoved) {
 		auto temp = moved;
@@ -179,7 +192,8 @@ void Board:: sortTextures() {
 }
 
 void Board::removeObject(const std::shared_ptr<BaseObject>& objToRemove) {
-	m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
+	m_whatToErase.push_back(objToRemove);
+	//m_map.erase(std::find(m_map.begin(), m_map.end(), objToRemove));
 	//std::experimental::erase_if(m_map, 
 		//[&](const std::shared_ptr<BaseObject>& baseObj) {return baseObj == objToRemove; });
 }

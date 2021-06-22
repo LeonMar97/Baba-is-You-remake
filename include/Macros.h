@@ -13,6 +13,7 @@ enum GameObjects {
     walls_t,
     skulls_t,
     water_t,
+    flowers_t,
 
     rockword_t,
     babaword_t,
@@ -27,6 +28,7 @@ enum GameObjects {
     winword_t,
     defeatword_t,
     sinkword_t,
+    flowerword_t,
 
     conjunctions_t,
     is_t,
