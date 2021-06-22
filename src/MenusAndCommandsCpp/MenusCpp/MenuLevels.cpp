@@ -1,7 +1,7 @@
 #include "MenuLevels.h"
 MenuLevels::MenuLevels(sf::RenderWindow& gameWindow, std::shared_ptr<Controller>& c)
 :
-	Menu(gameWindow)
+	Menu(gameWindow),m_cntrl(c)
 	//~~~~~~~~adding commands~~~~~~~~~~~~~
 	
 	
@@ -9,6 +9,12 @@ MenuLevels::MenuLevels(sf::RenderWindow& gameWindow, std::shared_ptr<Controller>
 {
 	//~~~~~~~~~~~~creating the buttons (the order of the adding is importent!!!!!!!!!)~~~~~~~~~~~~~~~~~
 	add(std::make_unique <Resume>(std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
+	add(std::make_unique <LvlLoadCommand>(c,std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)),0));
+	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 1));
+	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 2));
+	
+
+
 
 
 	setView();
@@ -16,10 +22,11 @@ MenuLevels::MenuLevels(sf::RenderWindow& gameWindow, std::shared_ptr<Controller>
 }
 void MenuLevels::draw() {
 	auto deltaTime = m_animationClock.restart();
-	for (auto& cur : m_options) {
-		m_menuWindow.draw((cur)->getRect());
-	}
-
+	auto lvlPassed = m_cntrl->numOfLevels();
+	for (int i = 0; i < lvlPassed; i++) 
+		m_menuWindow.draw(m_options[i]->getRect());
+	
+	
 
 }
 void MenuLevels::setButtonsTextures() {

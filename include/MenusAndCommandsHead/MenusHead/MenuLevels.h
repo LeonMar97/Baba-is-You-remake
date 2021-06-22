@@ -4,6 +4,7 @@
 #include"NewGame.h"
 #include"Controller.h"
 #include "Resume.h"
+#include "LvlLoadCommand.h"
 class MenuLevels:public Menu{
 public:
 	
@@ -13,5 +14,6 @@ public:
 	void setButtonsTextures()override;
 
 private:
-	
+	std::shared_ptr<Controller>m_cntrl;
+
 };

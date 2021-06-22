@@ -53,13 +53,13 @@ void Menu2::setButtonsTextures() {
 void Menu2::activate() {
 	setView();
 
-	sf::Time deltaTime = {};
-
+	
+	auto deltaTime = m_animationClock.restart();
 	while (m_menuWindow.isOpen())
 	{
 		sf::Event event;
 		sf::Vector2f mousepos;
-		//deltaTime = m_animationClock.restart();
+		
 
 		while (m_menuWindow.pollEvent(event))
 		{
@@ -80,7 +80,6 @@ void Menu2::activate() {
 					for (auto& curOption : m_options) {
 						if (curOption->contains(mousepos)) {// sf::Vector2f(sf::Mouse::getPosition()))) {
 							curOption->execute();
-							//deltaTime = m_animationClock.restart();
 							return;
 						}
 					}

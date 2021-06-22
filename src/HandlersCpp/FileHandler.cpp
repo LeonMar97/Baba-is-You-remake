@@ -79,4 +79,10 @@ bool FileHandler::rebuild_Map() {
 
 //--------------------------------------------------
 
+bool FileHandler::mapAlreadyBuilt(unsigned int mapNum) {
+	return (m_levels.size() > mapNum);
+}
 
+unsigned int FileHandler::numOfLevels() const {
+	return m_levels.size();
+}

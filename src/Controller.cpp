@@ -27,6 +27,7 @@ void Controller::updateDataStructures(const unsigned int& levelNum) {
 
 //part of start game - maybe put in later
 void Controller::loadLevel(const unsigned int& levelNum) {
+	m_level = levelNum;
 	m_mapOnScreen = std::make_unique<Board>();
 	updateDataStructures(levelNum);
 }
@@ -95,14 +96,13 @@ void Controller::startGameLoop() {
 bool Controller::newLvl() {
 	//checking if there is a new lvl
 	//m_mapOnScreen.reset();
-
-	if (m_map.rebuild_Map()) {
-		loadLevel(++m_level);//when i get to this point the map already build and inside the levels vector
-		
-		//m_clock.restart();
-		return true;
+	if (m_map.mapAlreadyBuilt(++m_level) == false) {
+		if (!m_map.rebuild_Map())
+			return false;	
 	}
-	return false;
+	loadLevel(m_level);//when i get to this point the map already build and inside the levels vector
+	return true;
+
 }
 
 void Controller::setView() {
@@ -121,4 +121,8 @@ void Controller::restart() {
 
 void Controller::retToMainMenu() {
 	m_RetToMain = true;
+}
+
+unsigned int Controller::numOfLevels() const {
+	return m_map.numOfLevels();
 }

@@ -11,11 +11,14 @@ public:
 	FileHandler();
 	~FileHandler();
 
-
+	bool mapAlreadyBuilt(unsigned int mapNum);
+	
 	bool set_Map();	//sets the map on vector returns false if failed
 	char what_In_Location(const unsigned int& mapNum, const sf::Vector2u cur_Loc)const;// reuturns elemnt on board 
 	bool rebuild_Map();
 
+	unsigned int numOfLevels() const;
+	
 	//--------------private--------functions-----------------------//
 private:
 	void file_close();

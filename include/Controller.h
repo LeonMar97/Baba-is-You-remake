@@ -22,8 +22,10 @@ public:
 	void loadLevel(const unsigned int& levelNum);
 	void restart();
 	void retToMainMenu();
+	unsigned int numOfLevels()const;
 
-
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines

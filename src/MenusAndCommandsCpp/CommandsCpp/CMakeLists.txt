@@ -5,4 +5,5 @@ target_sources (oop2_ex04 PRIVATE	"NewGame.cpp"
 									"Resume.cpp"
 									"ReturnToMenu.cpp"
 									"Controls.cpp"
-									"LoadLevel.cpp")
+									"LoadLevel.cpp"
+									"LvlLoadCommand.cpp")

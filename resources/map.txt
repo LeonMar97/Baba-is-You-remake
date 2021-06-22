@@ -6,7 +6,7 @@ K
               K     K         
       KKKKKKKKKKKKKKK         
       K             K         
-      K kis         K         
+      K kip         K         
       K       B     K         
       KKKKKKKKKKKKKKK         
                               
@@ -29,6 +29,23 @@ k
                               
                               
             biy               
+                              
+                              
+                              
+B                             
+              KKKKKKK         
+          w   K     K         
+              K     K         
+              K     K         
+                              
+      K             K         
+      K kis         K         
+      K       B     K         
+      KKKKKKKKKKKKKKK         
+                              
+                              
+            biy               
+                              
                               
                               
                                
