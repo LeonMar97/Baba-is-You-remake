@@ -80,6 +80,9 @@ Resources::Resources()
      loadSprite(gameSheet_t, "Spritesheet.png");
      loadSprite(mainMenuSheet_t, "menuButtons.png");
      loadSprite(Menu2Sheet_t, "menu2Buttons.png");
+     loadSprite(MenuLevelSheet_t, "MenuLevelButtons.png");
+
+     
 
 
     //babas

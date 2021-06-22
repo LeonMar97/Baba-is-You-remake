@@ -1,6 +1,8 @@
+#pragma once
 #include "Menu.h"
 #include "ExitGame.h"
 #include"NewGame.h"
+#include"LoadLevel.h"
 
 class MainMenu:public Menu{
 public:
