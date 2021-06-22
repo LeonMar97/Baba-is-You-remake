@@ -40,7 +40,7 @@ void Controller::startGameLoop() {
 	sf::Time deltaTime = {};
 	deltaTime = m_animationClock.restart();//so the animations wont start bublin fast..
 
-	while (m_gameWindow.isOpen() && !m_RetToMain)
+	while (m_gameWindow.isOpen() )
 	{
 		deltaTime = m_animationClock.restart();
 
@@ -68,6 +68,10 @@ void Controller::startGameLoop() {
 				}
 				else if (event.key.code == sf::Keyboard::Tab) {
 					miniMenu.activate();
+					if (m_RetToMain) {
+						m_RetToMain = false;
+						return;
+					}
 					setView();
 
 					m_animationClock.restart();
@@ -89,7 +93,7 @@ void Controller::startGameLoop() {
 				break;
 		}
 	}
-	m_RetToMain = false;//setting it back to true incase we go back to menu without closing the window
+	m_RetToMain = false;//setting it back to false incase we go back to menu without closing the window
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

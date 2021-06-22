@@ -23,7 +23,7 @@ MenuLevels::MenuLevels(sf::RenderWindow& gameWindow, std::shared_ptr<Controller>
 void MenuLevels::draw() {
 	auto deltaTime = m_animationClock.restart();
 	auto lvlPassed = m_cntrl->numOfLevels();
-	for (int i = 0; i < lvlPassed; i++) 
+	for (int i = 0; i <= lvlPassed; i++) 
 		m_menuWindow.draw(m_options[i]->getRect());
 	
 	
@@ -46,6 +46,7 @@ void MenuLevels::setButtonsTextures() {
 void MenuLevels::activate() {
 
 	sf::Time deltaTime = {};
+	auto lvlPassed = m_cntrl->numOfLevels();
 
 	while (m_menuWindow.isOpen())
 	{
@@ -67,7 +68,8 @@ void MenuLevels::activate() {
 			case sf::Event::MouseButtonPressed:
 				mousepos = m_menuWindow.mapPixelToCoords(sf::Mouse::getPosition() - m_menuWindow.getPosition());
 				if (event.key.code == sf::Mouse::Left) {
-					for (auto& curOption:m_options) {
+					for (int i = 0; i <= lvlPassed; i++){
+						auto  &curOption = m_options[i];
 						if (curOption->contains(mousepos)) {
 							curOption->execute();
 							setView();
