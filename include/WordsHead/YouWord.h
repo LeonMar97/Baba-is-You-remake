@@ -8,6 +8,5 @@ public:
 	 //bool move(BaseObject& curYou, const Direction& dir)override ;
 	 
 private:
-	//PushWord m_pushOfYou;
 	static bool m_registerit;
 };

@@ -3,6 +3,7 @@
 #include "DataHolder.h"
 #include"Attribute.h"
 #include "Factory.h"
+#include "CollisionStrategy.h"
 
 std::vector<std::shared_ptr<BaseObject>> m_whatMoved = std::vector<std::shared_ptr<BaseObject>>();
 

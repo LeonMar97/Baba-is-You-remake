@@ -1,4 +1,3 @@
-
 #pragma once
 #include "Noun.h"
 #include "Attribute.h"
@@ -9,6 +8,9 @@
 #include <iostream>
 #include<tuple>
 #include "Macros.h"
+#include "Is.h"
+
+class WinWord;
 typedef std::tuple<Noun*, Conjunction*, Predicate*> ruleTuple;
 typedef std::tuple<BaseObject*, BaseObject*, BaseObject*>baseObjTuple;
 typedef std::vector<ruleTuple>* ptrToRTVector;

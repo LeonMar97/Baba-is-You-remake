@@ -1,5 +1,4 @@
 #include "Board.h"
-#include<array>
 
 Board::Board()
 {
@@ -9,6 +8,7 @@ Board::Board()
 	m_background.setOutlineColor(sf::Color::Black);
 	Word::m_wordAttributes.insert(std::move(std::make_shared<CollisionStrategyPush>())); //all words can be pushed
 }
+
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 

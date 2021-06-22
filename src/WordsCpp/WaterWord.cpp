@@ -1,6 +1,7 @@
 #include"WaterWord.h"
 #include "Factory.h"
 
+#include "OperationTransform.h"
 bool WaterWord::m_registerit = Factory::registerit('m',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<WaterWord>(loc);

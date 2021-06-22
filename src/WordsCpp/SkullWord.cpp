@@ -1,5 +1,6 @@
 #include"SkullWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 bool SkullWord::m_registerit = Factory::registerit('g',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<SkullWord>(loc);

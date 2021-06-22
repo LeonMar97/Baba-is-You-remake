@@ -1,6 +1,6 @@
-
 #include"FlowerWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 
 bool FlowerWord::m_registerit = Factory::registerit('p',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {

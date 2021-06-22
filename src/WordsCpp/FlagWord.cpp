@@ -1,5 +1,6 @@
 #include"FlagWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 
 bool FlagWord::m_registerit = Factory::registerit('f',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {

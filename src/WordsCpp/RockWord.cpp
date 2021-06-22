@@ -1,5 +1,6 @@
 #include"RockWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 
 bool RockWord::m_registerit = Factory::registerit('r',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {

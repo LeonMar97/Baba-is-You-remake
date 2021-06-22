@@ -1,5 +1,6 @@
 #include"WallWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 
 bool WallWord::m_registerit = Factory::registerit('k',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {

@@ -1,16 +1,15 @@
 #pragma once
-#include"FileHandler.h"
+#include "FileHandler.h"
 #include "Factory.h"
 #include "BaseObject.h"
-#include "functional"
+#include <functional>
 #include <experimental/vector>
-#include"Word.h"
 #include "Resources.h"
 #include "Direction.h"
-#include"DataHolder.h"
+#include "DataHolder.h"
 #include "RuleHandling.h"
 #include "NoOperation.h"
-#include "CollisionStrategy.h"
+#include "CollisionStrategyPush.h"
 #include <utility>
 class Board{
 	//--------------public--------functions-----------------------//
@@ -54,7 +53,6 @@ private:
 
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
-	void updateRules(std::vector<ruleTuple>& currentRules);
 	void searchTriples(std::vector<baseObjTuple>& vec,
 		std::function<float(const sf::Vector2f&)> mainCoordinate,
 		std::function<float(const sf::Vector2f&)> secondaryCoordinate);

@@ -8,7 +8,6 @@
 #include <stack>
 #include "BaseOperation.h"
 #include "NoOperation.h"
-#include "CollisionStrategy.h"
 #include <bitset>
 
 #include "Resources.h"
@@ -17,6 +16,7 @@
 class Attribute;
 class Board;
 class DataHolder;
+class CollisionStrategy;
 
 
 class BaseObject {

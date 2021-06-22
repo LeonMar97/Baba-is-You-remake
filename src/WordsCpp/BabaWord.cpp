@@ -1,5 +1,6 @@
 #include"BabaWord.h"
 #include "Factory.h"
+#include "OperationTransform.h"
 bool BabaWord::m_registerit = Factory::registerit('b',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<BabaWord>(loc);
