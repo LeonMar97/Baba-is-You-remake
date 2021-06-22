@@ -40,8 +40,9 @@ void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
 void Board::checkCollisions(BaseObject* cur) {
 	for(auto it = m_map.begin(); it < m_map.end(); it++){
 		if (cur->collidesWith(it->get()) && it->get() != cur) {
-			if(auto ptr = it->get()->triggerAttribute(cur)) {
+			if(auto ptr = (*it)->triggerAttribute(cur)) {
 				checkCollisions(ptr);//check collision as a result of current collision handling
+				m_whatMoved.push_back(*it);
 				//return; maybe this is not supposed to be here
 			}
 		}
@@ -152,6 +153,7 @@ void Board::moveYou(const Direction& dir) {
 		auto& attributes = curObj->getStatic();
 		//for (auto& it : attributes) {
 		if(!attributes.empty())
+			//rbegin because only the strategy with the highest priority is relevant
 			if ((*attributes.rbegin())->move(*curObj, dir)) { //perform action based on properties
 				m_whatMoved.push_back(curObj);
 			}

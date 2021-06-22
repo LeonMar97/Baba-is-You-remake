@@ -2,6 +2,8 @@
 #include <memory>
 
 //a base class for all possible operations that can be done on board
+
+//design pattern command
 class BaseObject;
 class BaseOperation {
 public:
