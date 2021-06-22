@@ -20,6 +20,7 @@ public:
 	void setButtonsTextures()override;
 private:
 	Controller &m_cntrl;
+	std::vector<std::unique_ptr<Header>>m_settings;
 
 
 };

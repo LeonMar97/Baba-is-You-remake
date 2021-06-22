@@ -32,61 +32,64 @@ void Controller::loadLevel(const unsigned int& levelNum) {
 }
 
 void Controller::startGameLoop() {
-	Menu2 miniMenu(*this, m_gameWindow) ;
+	Menu2 miniMenu(*this, m_gameWindow);
 	Direction dir;
 	//for making board visible entirely independent of screen size
-	 setView();
+	setView();
 	sf::Time deltaTime = {};
 	deltaTime = m_animationClock.restart();//so the animations wont start bublin fast..
 
-	while (m_gameWindow.isOpen())
+	while (m_gameWindow.isOpen() && !m_RetToMain)
 	{
-		while (!m_mapOnScreen->isLvlFinished()) {
-			deltaTime = m_animationClock.restart();
+		deltaTime = m_animationClock.restart();
 
-			sf::Event event;
-			while (m_gameWindow.pollEvent(event))
+		sf::Event event;
+		while (m_gameWindow.pollEvent(event))
+		{
+			switch (event.type)
 			{
-				switch (event.type)
-				{
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Z)
-						m_mapOnScreen->undoAllObjects();
-					else m_mapOnScreen->setDefaultOperation();
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Z)
+					m_mapOnScreen->undoAllObjects();
+				else m_mapOnScreen->setDefaultOperation();
 				if (event.key.code == sf::Keyboard::Right)
-						m_mapOnScreen->moveYou(Direction::Right);
-					else if (event.key.code == sf::Keyboard::Left)
-						m_mapOnScreen->moveYou(Direction::Left);
-					else if (event.key.code == sf::Keyboard::Up)
-						m_mapOnScreen->moveYou(Direction::Up);
-					else if (event.key.code == sf::Keyboard::Down)
-						m_mapOnScreen->moveYou(Direction::Down);
-					else if (event.key.code == sf::Keyboard::Escape) {
-					
-						m_gameWindow.close();
-						return;
-					}
-					else if (event.key.code == sf::Keyboard::Tab) {
+					m_mapOnScreen->moveYou(Direction::Right);
+				else if (event.key.code == sf::Keyboard::Left)
+					m_mapOnScreen->moveYou(Direction::Left);
+				else if (event.key.code == sf::Keyboard::Up)
+					m_mapOnScreen->moveYou(Direction::Up);
+				else if (event.key.code == sf::Keyboard::Down)
+					m_mapOnScreen->moveYou(Direction::Down);
+				else if (event.key.code == sf::Keyboard::Escape) {
+
+					m_gameWindow.close();
+					return;
+				}
+				else if (event.key.code == sf::Keyboard::Tab) {
 					miniMenu.activate();
 					setView();
 
 					m_animationClock.restart();
 				}
-					m_mapOnScreen->lookForRules();
-					
-					break;
-				case sf::Event::Closed:
-					m_gameWindow.close();
-					break;
-				}
+				m_mapOnScreen->lookForRules();
+
+				break;
+			case sf::Event::Closed:
+				m_gameWindow.close();
+				break;
 			}
-			m_gameWindow.clear(WINDOW_COLOR);
-			m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
-			m_gameWindow.display();
 		}
-		if (!newLvl())
-			break;
+		m_gameWindow.clear(WINDOW_COLOR);
+		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
+		m_gameWindow.display();
+
+		if (m_mapOnScreen->isLvlFinished()) {
+			if (!newLvl())
+				break;
+		}
 	}
+	m_RetToMain = false;//setting it back to true incase we go back to menu without closing the window
+
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 bool Controller::newLvl() {
@@ -114,4 +117,8 @@ void Controller::setView() {
 	}
 void Controller::restart() {
 	m_mapOnScreen->restartBoard();
+}
+
+void Controller::retToMainMenu() {
+	m_RetToMain = true;
 }

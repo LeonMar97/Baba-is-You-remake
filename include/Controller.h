@@ -12,13 +12,18 @@ class Menu2;
 class Controller {
 
 public:
+	
+	
+
+	
+
 	Controller(sf::RenderWindow&);
 	void startGameLoop();//the game loop
 	void loadLevel(const unsigned int& levelNum);
 	void restart();
-	
+	void retToMainMenu();
 
-	
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines
@@ -26,7 +31,8 @@ private:
 	void updateDataStructures(const unsigned int & levelNumber);
 	bool newLvl();
 	void printCongratulations();
-
+	void setView();
+	void moveYou(sf::Vector2i dir);
 	//void printNextLvlTex();
 	//void printEndGameTex();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
@@ -38,9 +44,9 @@ private:
 	sf::Clock m_animationClock;
 	bool m_endLevel = false;
 
-	void setView();
-	void moveYou(sf::Vector2i dir);
-	
+
+	bool m_RetToMain = false;
+
 	//sf::Sprite m_bgMenu;
 	//sf::Text kText;
 	//sf::Text m_lvlText;

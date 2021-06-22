@@ -28,22 +28,19 @@ MainMenu::MainMenu(sf::RenderWindow& gameWindeow)
 	m_babaIsU.push_back(std::make_unique<Header>(std::stringstream("BABA"), sf::Vector2f(400, 100), sf::Vector2f(5.f, 15.f), sf::Color(217, 57, 106)));
 	m_babaIsU.push_back(std::make_unique<Header>(std::stringstream("IS"), m_babaIsU[0]->wordEnd(), sf::Vector2f(5.f, 15.f), sf::Color(255, 255, 255)));
 	m_babaIsU.push_back(std::make_unique<Header>(std::stringstream("U"), m_babaIsU[1]->wordEnd(), sf::Vector2f(5.f, 15.f), sf::Color(217, 57, 106)));
-	
-	
-	
-	
-	
+
 	
 	setView();
 	setButtonsTextures();
 }
 void MainMenu::draw() {
-
+	auto deltaTime = m_animationClock.restart();
+	
 	for (auto& cur : m_babaIsU) {
-		cur->draw(m_menuWindow);
+		cur->draw(m_menuWindow,deltaTime);
 	}
 	for (auto& cur : m_creators) {
-		cur->draw(m_menuWindow);
+		cur->draw(m_menuWindow, deltaTime);
 	}
 	for (auto& cur : m_options) {
 		m_menuWindow.draw((cur)->getRect());
@@ -73,10 +70,10 @@ void MainMenu::activate() {
 	{
 		sf::Event event;
 		sf::Vector2f mousepos;
-		deltaTime = m_animationClock.restart();
-
+		
 		while (m_menuWindow.pollEvent(event))
 		{
+			
 
 			switch (event.type)
 			{

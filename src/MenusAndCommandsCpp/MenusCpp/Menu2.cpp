@@ -10,11 +10,26 @@ Menu2::Menu2(Controller& con, sf::RenderWindow& gameWindeow)
 
 	add(std::make_unique <Controls>( std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), m_menuWindow));
 	add(std::make_unique <ReturnToMenu>(m_cntrl, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
+
+	m_settings.push_back(std::make_unique<Header>(std::stringstream("SETTINGS"), sf::Vector2f(850,400 ), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	
+
 	setView();
+	
+	
+	
 	setButtonsTextures();
+
+
+
+
 }
 void Menu2::draw() {
-
+	auto deltaTime = m_animationClock.restart();
+	
+	for (auto& cur : m_settings) {
+		cur->draw(m_menuWindow, deltaTime);
+	}
 	for (auto& cur : m_options) {
 		m_menuWindow.draw((cur)->getRect());
 	}
@@ -44,7 +59,7 @@ void Menu2::activate() {
 	{
 		sf::Event event;
 		sf::Vector2f mousepos;
-		deltaTime = m_animationClock.restart();
+		//deltaTime = m_animationClock.restart();
 
 		while (m_menuWindow.pollEvent(event))
 		{
@@ -56,14 +71,16 @@ void Menu2::activate() {
 				for (auto& curOption : m_options) {
 					curOption->mouseHover(mousepos);
 				}
-
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Tab)
+					return;
 			case sf::Event::MouseButtonPressed:
 				mousepos = m_menuWindow.mapPixelToCoords(sf::Mouse::getPosition() - m_menuWindow.getPosition());
 				if (event.key.code == sf::Mouse::Left) {
 					for (auto& curOption : m_options) {
 						if (curOption->contains(mousepos)) {// sf::Vector2f(sf::Mouse::getPosition()))) {
 							curOption->execute();
-							deltaTime = m_animationClock.restart();
+							//deltaTime = m_animationClock.restart();
 							return;
 						}
 					}

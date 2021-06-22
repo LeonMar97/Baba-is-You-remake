@@ -8,5 +8,5 @@ ReturnToMenu::ReturnToMenu(Controller &c, std::unique_ptr<sf::RectangleShape>rec
 }
 void ReturnToMenu::execute() {
 
-	
+	m_cntrl.retToMainMenu();
 }
