@@ -18,6 +18,6 @@ public:
 	std::type_index baseTypeId() override;
 	virtual bool move(BaseObject&, const Direction&);
 private:
-//the relevant object is equipped with a collision strategy once the relevant rule is detected
-	std::shared_ptr<Property> m_equipStrategy; 
+//the relevant object is equipped with a property once the relevant rule is detected
+	std::shared_ptr<Property> m_equipProperty; 
 };
