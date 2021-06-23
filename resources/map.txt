@@ -1,16 +1,16 @@
       MMM                     
 mil   MMM                     
-      MMM     KKKKKKK         
+      MMM     KKKKKKK     A   
      kip  w   K     K         
-     bip      K     K         
+A    bip      K     K         
               K     K         
 g     KKKKKKKKKKKKKKK         
-i     K    P        K         
-d     K kip         K         
+i     K    P   P    K     A   
+d     K kip       A K         
       K       B     K         
 GGG   KKKKKKKKKKKKKKK         
                               
-                              
+     P                    P   
             biy               
                               
                               

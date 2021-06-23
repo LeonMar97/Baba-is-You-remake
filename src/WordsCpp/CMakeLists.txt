@@ -1,6 +1,7 @@
 ﻿target_sources (oop2_ex04 PRIVATE 
 									"Word.cpp"
 									"Is.cpp"
+									"AlgaeWord.cpp"
 									"BabaWord.cpp"
 									"RockWord.cpp"
 									"PushWord.cpp"

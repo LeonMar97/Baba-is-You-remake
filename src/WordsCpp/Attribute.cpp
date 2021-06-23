@@ -9,11 +9,11 @@ Attribute::Attribute(const std::string& word,
 	const std::shared_ptr<Property>& Property)
 
 	: Predicate(word, animationData, dir, loc, defaultColor, lighterColor),
-	m_equipStrategy(Property)
+	m_equipProperty(Property)
 {}
 
 void Attribute::putRuleIntoAffect(Noun& noun) {
-	noun.fillAttributes(m_equipStrategy);
+	noun.fillAttributes(m_equipProperty);
 }
 
 std::type_index Attribute::baseTypeId() {
@@ -21,7 +21,7 @@ std::type_index Attribute::baseTypeId() {
 }
 
 void Attribute:: deleteRule(Noun& curNoun) {
-	curNoun.removeAttribute(m_equipStrategy);
+	curNoun.removeAttribute(m_equipProperty);
 }
 
 bool Attribute::move(BaseObject& baseObj, const Direction&) {

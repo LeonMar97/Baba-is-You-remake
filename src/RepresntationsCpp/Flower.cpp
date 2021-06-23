@@ -11,7 +11,7 @@ bool Flower::m_registerit = Factory::registerit('P',
 	});
 
 Flower::Flower(const sf::Vector2u& loc)
-:BaseObject(Resources::instance().animationData(flowers_t), Direction::Stay, loc, FLAG_LIGHTER_COLOR)
+:BaseObject(Resources::instance().animationData(flowers_t), Direction::Stay, loc, FLOWER_LIGHTER_COLOR)
 {}
 
 std::type_index Flower::wordTypeId() {

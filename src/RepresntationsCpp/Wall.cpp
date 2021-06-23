@@ -10,7 +10,7 @@ bool Wall::m_registerit = Factory::registerit('K',
 	});
 
 Wall::Wall(const sf::Vector2u& loc)
-:BaseObject(Resources::instance().animationData(walls_t), Direction::Stay, loc, WALL_COLOR)
+:BaseObject(Resources::instance().animationData(walls_t), Direction::Stay, loc, WALL_LIGHTER_COLOR)
 {
 	
 }

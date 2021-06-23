@@ -10,7 +10,7 @@ bool FlowerWord::m_registerit = Factory::registerit('p',
 	});
 
 FlowerWord::FlowerWord(const sf::Vector2u& loc)
-	:Noun("Flower",Resources::instance().animationData(flowerword_t), Direction::Stay, loc, FLAG_COLOR, FLAG_LIGHTER_COLOR)
+	:Noun("Flower",Resources::instance().animationData(flowerword_t), Direction::Stay, loc, FLOWER_COLOR, FLOWER_LIGHTER_COLOR)
 {}
 
 void FlowerWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& board) {

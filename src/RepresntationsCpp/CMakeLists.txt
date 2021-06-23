@@ -2,6 +2,7 @@
 									"Baba.cpp"
 									"Wall.cpp"
 									"Flag.cpp"
+									"Algae.cpp"
 									"Skull.cpp"
 									"Water.cpp"
 									"Flower.cpp"

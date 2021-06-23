@@ -155,11 +155,14 @@ Resources::Resources()
     m_data[flowers_t] = readDataDefault(
         sf::Vector2i(170, 505)
     );
-    m_data[flowers_t] = readDataDefault(
-        sf::Vector2i(170, 505)
-    );
     m_data[flowerword_t] = readDataDefault(
         sf::Vector2i(50, 720)
+    );
+    m_data[algae_t] = readDataDefault(
+        sf::Vector2i(0, 505)
+    );
+    m_data[algaeword_t] = readDataDefault(
+        sf::Vector2i(25, 649)
     );
 
     //conjunctions

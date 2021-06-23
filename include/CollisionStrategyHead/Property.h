@@ -10,7 +10,9 @@ class Property {
 public:	
 	Property(int);
 	virtual BaseObject* handleCollision(BaseObject*, BaseObject*) = 0;
-	virtual bool move(BaseObject& curYou, const Direction& dir) { return false; }
+	
+	//could be abstract, most of the properties do not move so there is no point
+	virtual bool move(BaseObject& curYou, const Direction& dir);
 
 	//the properties of each object are present in a sorted set, and property with the highest
 	//priority is the one that is most relevant

@@ -14,6 +14,7 @@ enum GameObjects {
     skulls_t,
     water_t,
     flowers_t,
+    algae_t,
 
     rockword_t,
     babaword_t,
@@ -29,6 +30,7 @@ enum GameObjects {
     defeatword_t,
     sinkword_t,
     flowerword_t,
+    algaeword_t,
 
     conjunctions_t,
     is_t,
@@ -56,6 +58,10 @@ enum GameObjects {
 
     Max
 };
+
+enum GameSounds {
+    movememt_t
+};
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 class BaseObject;
 class DataHolder;
@@ -68,8 +74,8 @@ const float OBJECT_SIZE = 50.f;
 //~~~~~~~~~~~~~Colors~~~~~~~~~~~~~~~~~~
 const sf::Color WINDOW_COLOR(33, 33, 63); //bluish
 const sf::Color BOARD_COLOR(0, 0, 0);  //black
-const sf::Color WALL_COLOR = sf::Color(90, 151, 75);
-const sf::Color WALL_LIGHTER_COLOR = sf::Color(180, 255, 153);
+const sf::Color WALL_LIGHTER_COLOR = sf::Color(90, 151, 75);
+const sf::Color WALL_COLOR = sf::Color(45, 75, 37);
 
 const sf::Color STOP_COLOR = sf::Color(90, 151, 75);
 const sf::Color STOP_LIGHTER_COLOR = sf::Color(180, 255, 153);
@@ -103,6 +109,12 @@ const sf::Color DEFEAT_COLOR = sf::Color(95, 28, 28);
 
 const sf::Color WATER_LIGHTER_COLOR = sf::Color(95, 157, 209);
 const sf::Color WATER_COLOR = sf::Color(47, 78, 104);
+
+const sf::Color FLOWER_LIGHTER_COLOR = sf::Color(217, 38, 43);
+const sf::Color FLOWER_COLOR = sf::Color(109, 19, 21);
+
+const sf::Color ALGAE_LIGHTER_COLOR = sf::Color(47, 105, 22);
+const sf::Color ALGAE_COLOR = sf::Color(23, 52, 11);
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
