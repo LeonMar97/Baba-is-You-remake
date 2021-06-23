@@ -12,7 +12,7 @@ Board::Board()
 	m_restart.push_back(std::make_unique<Header>(std::stringstream("R"), m_restart[0]->wordEnd(), sf::Vector2f(1.f, 2.f), sf::Color::White));
 	
 	m_undo.push_back(std::make_unique<Header>(std::stringstream("UNDO"), sf::Vector2f(850, -100), sf::Vector2f(1.f, 2.f), sf::Color::White));
-	m_undo.push_back(std::make_unique<Header>(std::stringstream("N"), sf::Vector2f(1050, -80), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	m_undo.push_back(std::make_unique<Header>(std::stringstream("N"), sf::Vector2f(1050, -100), sf::Vector2f(2.f, 2.f), sf::Color::White));
 	m_undo[1]->m_sprites[0]->rotate(85);
 	
 }
