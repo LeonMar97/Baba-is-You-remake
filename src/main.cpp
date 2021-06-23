@@ -14,6 +14,9 @@ void startGame() {
 
 int main()
 {
-    startGame();
-   
+    try{startGame();}
+    catch(std::exception &e) {
+        auto file = std::fstream("log.txt", std::ios::out);
+        file << e.what();
+    }
 }
