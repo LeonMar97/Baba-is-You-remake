@@ -34,6 +34,7 @@ public:
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
 public:
+	void lruRestart();
 	virtual PropertySet& getStatic() = 0;
 	void initializeDataHolder(DataHolder*);
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);

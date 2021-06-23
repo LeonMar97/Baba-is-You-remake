@@ -10,12 +10,13 @@
 #include "RuleHandling.h"
 #include "NoOperation.h"
 #include "PropertyPush.h"
+#include "Header.h"
 #include <utility>
 class Board{
 	//--------------public--------functions-----------------------//
 public:
 	Board();
-	void drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime);
+	void drawBoard(sf::RenderWindow& gameWindow, sf::Time deltaTime);
 
 	//prevents mutating and iterating on a vector simultenously and causing exceptions and problems
 	void eraseObjects(); //removes all objects that need to be erased in one place
@@ -46,13 +47,16 @@ private:
 	std::vector<std::shared_ptr<BaseObject>> m_whatToErase;
 
 	RuleHandling m_ruleHandler;
-	
+	std::vector<std::unique_ptr<Header>>m_restart;
+	std::vector<std::unique_ptr<Header>>m_undo;
+
 	sf::RectangleShape m_background;
 	bool m_endLevel = false;
-	void sortTextures();
 
 	//--------------private--------functions-----------------------//
 	//void enterInVec(sf::Vector2f conPos, Word* curObj, std::array<Word*, 2>& vertical, std::array<Word*, 2>& horizontal);
+	void sortTextures();
+
 	void searchTriples(std::vector<baseObjTuple>& vec,
 		std::function<float(const sf::Vector2f&)> mainCoordinate,
 		std::function<float(const sf::Vector2f&)> secondaryCoordinate);

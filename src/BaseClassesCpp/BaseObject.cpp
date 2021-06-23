@@ -120,3 +120,6 @@ void BaseObject::resetStatic() {//resets the static object virtualy for each one
 	staticVec.clear();
 
 }
+void BaseObject::lruRestart() {
+	m_movementCounter .reset();
+}

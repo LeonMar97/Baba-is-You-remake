@@ -21,6 +21,7 @@ public:
 	void removeLastOperation();
 	BaseOperation* lastOp();
 	~DataHolder();
+	void lruRestart();
 private:
 	std::shared_ptr<BaseObject> m_ptrObject;
 	std::stack<BaseOperation*> m_history;

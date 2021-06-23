@@ -7,6 +7,14 @@ Board::Board()
 	m_background.setOutlineThickness(3);
 	m_background.setOutlineColor(sf::Color::Black);
 	Word::m_wordAttributes.insert(std::move(std::make_shared<PropertyPush>())); //all words can be pushed
+	
+	m_restart.push_back(std::make_unique<Header>(std::stringstream("RESTART"), sf::Vector2f(400, -100), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	m_restart.push_back(std::make_unique<Header>(std::stringstream("R"), m_restart[0]->wordEnd(), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	
+	m_undo.push_back(std::make_unique<Header>(std::stringstream("UNDO"), sf::Vector2f(850, -100), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	m_undo.push_back(std::make_unique<Header>(std::stringstream("N"), sf::Vector2f(1050, -80), sf::Vector2f(1.f, 2.f), sf::Color::White));
+	m_undo[1]->m_sprites[0]->rotate(85);
+	
 }
 
 
@@ -29,11 +37,19 @@ void Board::initialize(const unsigned int& mapNum,const FileHandler& map) {
 }
 
 //drawing the board on requested screen..
-void Board::drawBoard(sf::RenderWindow& game_Window, sf::Time deltaTime) {
+void Board::drawBoard(sf::RenderWindow& gameWindow, sf::Time deltaTime) {
 	sortTextures();
-	game_Window.draw(m_background);
+	gameWindow.draw(m_background);
 	for(auto &obj:m_map){
-		obj->draw(game_Window, deltaTime);
+		obj->draw(gameWindow, deltaTime);
+	}
+	if (m_whatMoved.empty()) {
+		for (auto& cur : m_restart) {
+			cur->draw(gameWindow, deltaTime);
+		}
+		for (auto& cur : m_undo) {
+			cur->draw(gameWindow, deltaTime);
+		}
 	}
 }
 
@@ -164,6 +180,7 @@ void Board::moveYou(const Direction& dir) {
 				m_whatMoved.push_back(curObj);
 			}
 	}
+	
 	for (auto& moved : m_whatMoved) {
 		checkCollisions(moved.get());
 		eraseObjects();
@@ -211,6 +228,9 @@ bool Board::isLvlFinished() {
 }
 
 void Board::restartBoard() {
-	for (auto& dataholder : m_dataHolder)
+	for (auto& dataholder : m_dataHolder) {
 		while (dataholder->undo()); //empty all histories
+		dataholder->lruRestart();
+	}
+	lookForRules();
 }

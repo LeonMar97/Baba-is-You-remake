@@ -32,3 +32,6 @@ DataHolder::~DataHolder(){
 	m_ptrObject->resetStatic();
 
 }
+void DataHolder::lruRestart() {
+	m_ptrObject->lruRestart();
+}
