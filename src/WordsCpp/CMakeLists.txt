@@ -2,6 +2,7 @@
 									"Word.cpp"
 									"Is.cpp"
 									"AlgaeWord.cpp"
+									"FlowerWord.cpp"
 									"BabaWord.cpp"
 									"RockWord.cpp"
 									"PushWord.cpp"
