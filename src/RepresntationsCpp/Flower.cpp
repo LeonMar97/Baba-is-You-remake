@@ -3,7 +3,7 @@
 #include "Factory.h"
 
 PropertySet Flower::m_flowerAttributes = PropertySet();
-bool Flower::m_registerit = Factory::registerit('P',
+bool Flower::m_registerit = Factory::registerit('V',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Flower>(loc);
 		auto dh = std::make_unique<DataHolder>(obj);

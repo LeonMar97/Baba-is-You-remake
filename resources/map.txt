@@ -1,51 +1,85 @@
-K                             
                               
-              KKKKKKK         
-          w   K     K         
-    v         K     K         
-              K     K         
-      KKKKKKKKKKKKKKK         
-      K             K         
-      K kip         K         
-      K       B     K         
-      KKKKKKKKKKKKKKK         
-           rip                
-           mis                
-            biy               
+      V                   V   
+             KKKKKKKKKKK      
+ V           K   V     K      
+             K i       K      
+         KKKKK         K      
+         K         w   K      
+V        K f    F      K      
+         K         V   K   V  
+         KKKKKKKKKKKKKKK      
+             K         K      
+       b     K  k      K      
+       i     K  i      K      
+       y     K  s   B  K   V  
+             K         K      
+             KKKKKKKKKKK      
+                              
+bkK                           
+iiK   V  KKKKKKKKKKKKKKK  V   
+ysK      K             K      
+KKK    V K    B     R  K      
+        mK             K      
+    VVV iK          R  K      
+        lKA            K      
+VV    KKKKMMMMMKKKKKKKKKKKK V 
+  V   K AK      K         K   
+     AK         K rip     K  V
+      K         K         K   
+      KA        K         K   
+VVV  AKMMMM  K            K   
+VVV   KMMMM     K  fiw    KV  
+     AKFMMMA    K         K  V
+      KKKKKKKKKKKKKKKKKKKKK  V
+                              
+ris R       G                 
+    R V   KKGKKKKKKKK         
+gid R     K G   K   K         
+    R  V  K G     F K         
+fiw R KKKKK G   K   K         
+    R K   K G   KKKKK   V     
+RRRRR K B   GKKKK             
+V     K   K GGGGGGGGGGGGGGGGGG
+      KKKKK    K              
+          K kisK     V        
+        b K    K   V          
+        i KKKKKK  V           
+        y                     
                               
                               
                               
-k                             
                               
-              KKKKKKK         
-          w   K     K         
-              K     K         
-              K     K         
-                              
-      K             K         
-      K kis         K         
-      K       B     K         
-      KKKKKKKKKKKKKKK         
-                              
-                              
-            biy               
-                              
-                              
-                              
-                              
-                              
-              KKKKKKK         
-          w   K     K         
-              K     K         
-              K     K         
-                              
-      K             K         
-      K kis         K         
-      K       B     K         
-      KKKKKKKKKKKKKKK         
-                              
-                              
-            biy               
-                              
+kisMM K     K     K      MMMMMM
+MMMM  K        B  K     MMMMM 
+MM    K     K     K    MMMM   
+M     K biy KKKKKKK   MMMM    
+      KK   KK        MMMM     
+      K     R       MMMM      
+      KKKKKKK      MMMM       
+      KrK         MMMM        
+       i         MMMM         
+       p        MMMM      F   
+         m     MMMM           
+             MMMMMM      fiw  
+       KKKKKMMMMMM            
+       KKKKKMMMMM             
+       KmilKMMMMMMM           
+       KKKKKMMMMM             
+           MMMM               
+ A                            
+A                             
+                 V            
+        KKKKKKKKKKKKK         
+    KKKKK        gidK         
+    K   K           K         
+A   K   KKK         K         
+    K a G V         Kkis      
+    K   KKK   rip   KKKKKKKK  
+    K   K            R  K  K  
+    KKbKK           KKK B  K  
+     KiKK  R        KKK K  K  
+   F KyKK           KKKKKKKK  
+     KKKKKKKKKKKKKKKKKK       
+fiw                           
                               
                                
