@@ -4,111 +4,112 @@
 //#include "Fonts.h"
 #include "Macros.h"
 #include "Baba.h"
-
+#include "Menu2.h"
 Controller::Controller(sf::RenderWindow& gameWindow)
-	: m_gameWindow(gameWindow)
+	:
+	m_gameWindow(gameWindow)
+
+
 {
+	
 	m_gameWindow.setFramerateLimit(60);
+	
 }
 
-void Controller::updateDataStructures() {
-	m_mapOnScreen->initialize(m_map);
+void Controller::updateDataStructures(const unsigned int& levelNum) {
+	
+	
+	m_mapOnScreen->initialize(levelNum,m_map);
 	//m_clock.restart();
 }
 
-/*
-void Controller::openMenu() {
-	auto menu = Menu(*this, m_gameWindow); //do i want to do this?
-	menu.run();
 
-}
-*/
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-/*
-void Controller::settingFontsAndSounds() {
-	m_timeText.setFont(Fonts::instance().get_Fonts(PipedFont_t));
-	m_timeText.setString("Time: " + std::to_string(int(m_clock.getElapsedTime().asSeconds())));
-	m_timeText.setPosition(MENU_POS);
-	m_timeText.setCharacterSize(50);
-	m_timeText.setFillColor(sf::Color::Black);
-	m_lvlText.setFont(Fonts::instance().get_Fonts(PipedFont_t));
-	m_lvlText.setString("Level: " + std::to_string(m_level));
-	m_lvlText.setPosition(MENU_POS + sf::Vector2f(0, 200));
-	m_lvlText.setCharacterSize(50);
-	m_lvlText.setFillColor(sf::Color::Black);
-	m_finishedLvlSound.setBuffer(Sounds::instance().get_Sounds(cheers_t));
-	m_finishedLvlSound.setVolume(5);
-}
-*/
+
 //part of start game - maybe put in later
+void Controller::loadLevel(const unsigned int& levelNum) {
+	m_level = levelNum;
+	m_mapOnScreen = std::make_unique<Board>();
+	updateDataStructures(levelNum);
+}
 
-void Controller::startGame() {
+void Controller::startGameLoop() {
+	Menu2 miniMenu(*this, m_gameWindow);
 	Direction dir;
 	//for making board visible entirely independent of screen size
-	 setView();
-	
-	m_mapOnScreen = std::make_unique<Board>();
-	updateDataStructures();
+	setView();
 	sf::Time deltaTime = {};
 	deltaTime = m_animationClock.restart();//so the animations wont start bublin fast..
 
-	while (m_gameWindow.isOpen())
+	while (m_gameWindow.isOpen() )
 	{
-		while (!m_mapOnScreen->isLvlFinished()) {
-			deltaTime = m_animationClock.restart();
+		deltaTime = m_animationClock.restart();
 
-			sf::Event event;
-			while (m_gameWindow.pollEvent(event))
+		sf::Event event;
+		while (m_gameWindow.pollEvent(event))
+		{
+			switch (event.type)
 			{
-				switch (event.type)
-				{
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Z)
-						m_mapOnScreen->undoAllObjects();
-					else m_mapOnScreen->setDefaultOperation();
-
-					if (event.key.code == sf::Keyboard::R)
-						m_mapOnScreen->restartBoard();
-					if (event.key.code == sf::Keyboard::Right)
-						m_mapOnScreen->moveYou(Direction::Right);
-					else if (event.key.code == sf::Keyboard::Left)
-						m_mapOnScreen->moveYou(Direction::Left);
-					else if (event.key.code == sf::Keyboard::Up)
-						m_mapOnScreen->moveYou(Direction::Up);
-					else if (event.key.code == sf::Keyboard::Down)
-						m_mapOnScreen->moveYou(Direction::Down);
-					else if (event.key.code == sf::Keyboard::Escape) {
-						m_gameWindow.close();
-						return;
-					}
-					m_mapOnScreen->lookForRules();
-					
-					break;
-				case sf::Event::Closed:
-					m_gameWindow.close();
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Z|| event.key.code == sf::Keyboard::BackSpace)
+					m_mapOnScreen->undoAllObjects();
+				else m_mapOnScreen->setDefaultOperation();
+				if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
+					m_mapOnScreen->moveYou(Direction::Right);
+				else if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A)
+					m_mapOnScreen->moveYou(Direction::Left);
+				else if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
+					m_mapOnScreen->moveYou(Direction::Up);
+				else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
+					m_mapOnScreen->moveYou(Direction::Down);
+				else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::R) {
+					restart();
 					break;
 				}
+				else if (event.key.code == sf::Keyboard::Escape) {
+					m_gameWindow.close();
+					return;
+				}
+				else if (event.key.code == sf::Keyboard::Tab) {
+					miniMenu.activate();
+					if (m_RetToMain) {
+						m_RetToMain = false;
+						return;
+					}
+					setView();
+
+					m_animationClock.restart();
+				}
+				m_mapOnScreen->lookForRules();
+
+				break;
+			case sf::Event::Closed:
+				m_gameWindow.close();
+				break;
 			}
-			m_gameWindow.clear(WINDOW_COLOR);
-			m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
-			m_gameWindow.display();
 		}
-		if (!newLvl())
-			break;
+		m_gameWindow.clear(WINDOW_COLOR);
+		m_mapOnScreen->drawBoard(m_gameWindow, deltaTime);
+		m_gameWindow.display();
+
+		if (m_mapOnScreen->isLvlFinished()) {
+			if (!newLvl())
+				break;
+		}
 	}
+	m_RetToMain = false;//setting it back to false incase we go back to menu without closing the window
+
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 bool Controller::newLvl() {
 	//checking if there is a new lvl
-	if (m_map.rebuild_Map()) {
-		m_mapOnScreen.reset();
-		m_mapOnScreen = std::make_unique<Board>();
-		updateDataStructures();
-		m_level++;
-		//m_clock.restart();
-		return true;
+	//m_mapOnScreen.reset();
+	if (m_map.mapAlreadyBuilt(++m_level) == false) {
+		if (!m_map.rebuild_Map())
+			return false;	
 	}
-	return false;
+	loadLevel(m_level);//when i get to this point the map already build and inside the levels vector
+	return true;
+
 }
 
 void Controller::setView() {
@@ -121,3 +122,14 @@ void Controller::setView() {
 	m_gameWindow.setView(view);
 	
 	}
+void Controller::restart() {
+	m_mapOnScreen->restartBoard();
+}
+
+void Controller::retToMainMenu() {
+	m_RetToMain = true;
+}
+
+unsigned int Controller::numOfLevels() const {
+	return m_map.numOfLevels();
+}

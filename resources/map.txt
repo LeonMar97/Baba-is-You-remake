@@ -1,16 +1,33 @@
-      MMM                     
-mil   MMM                     
-      MMM     KKKKKKK     A   
-     kip  w   K     K         
-A    bip      K     K         
-              K     K         
-g     KKKKKKKKKKKKKKK         
-i     K    P   P    K     A   
-d     K kip       A K         
-      K       B     K         
-GGG   KKKKKKKKKKKKKKK         
+K                             
                               
-     P                    P   
+              KKKKKKK         
+          w   K     K         
+              K     K         
+              K     K         
+      KKKKKKKKKKKKKKK         
+      K             K         
+      K kip         K         
+      K       B     K         
+      KKKKKKKKKKKKKKK         
+                              
+                              
+            biy               
+                              
+                              
+                              
+k                             
+                              
+              KKKKKKK         
+          w   K     K         
+              K     K         
+              K     K         
+                              
+      K             K         
+      K kis         K         
+      K       B     K         
+      KKKKKKKKKKKKKKK         
+                              
+                              
             biy               
                               
                               
@@ -21,7 +38,7 @@ GGG   KKKKKKKKKKKKKKK
           w   K     K         
               K     K         
               K     K         
-      KKKKKKKKKKKKKKK         
+                              
       K             K         
       K kis         K         
       K       B     K         

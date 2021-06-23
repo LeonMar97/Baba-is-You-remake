@@ -6,22 +6,35 @@
 #include "FileHandler.h"
 #include "BaseObject.h"
 #include "Direction.h"
-#include "Header.h"
-//#include "Menu.h"
 
+
+class Menu2;
 class Controller {
 
 public:
+	
+	
+
+	
+
 	Controller(sf::RenderWindow&);
-	void startGame();//the game loop
+	void startGameLoop();//the game loop
+	void loadLevel(const unsigned int& levelNum);
+	void restart();
+	void retToMainMenu();
+	unsigned int numOfLevels()const;
+
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private functions~~~~~~~~~~//
 private:
 	//creates the window and the outlines
 	//void generateBackgrounds();
-	void updateDataStructures();
+	void updateDataStructures(const unsigned int & levelNumber);
 	bool newLvl();
 	void printCongratulations();
+	void setView();
+	void moveYou(sf::Vector2i dir);
 	//void printNextLvlTex();
 	//void printEndGameTex();
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~private members~~~~~~~~~~//
@@ -29,16 +42,17 @@ private:
 	sf::RenderWindow& m_gameWindow;
 	FileHandler m_map;
 	std::unique_ptr<Board>m_mapOnScreen;
-	int m_level = 1;
+	int m_level = 0;
 	sf::Clock m_animationClock;
 	bool m_endLevel = false;
 
-	void setView();
-	void moveYou(sf::Vector2i dir);
+
+	bool m_RetToMain = false;
 
 	//sf::Sprite m_bgMenu;
-	//sf::Text m_timeText;
+	//sf::Text kText;
 	//sf::Text m_lvlText;
 	//sf::Sound m_finishedLvlSound;
 	//sf::Clock m_clock;
+
 };

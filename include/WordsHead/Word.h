@@ -21,6 +21,7 @@ public:
 
 	void setLighterColor();
 	void setDarkerColor();
+	void resetStatic()override;//resets the static object virtualy for each one polymorfically 
 
 protected:
 	std::string m_word;//for displaying

@@ -54,8 +54,8 @@ void Header::setArt(const sf::Vector2f & startPosOfSentence, const sf::Vector2f 
 
 }
 //draws the sentence with animataion in current window
-void Header::draw(sf::RenderWindow &drawingToWindow) {
-	auto deltaTime = m_clock.restart();
+void Header::draw(sf::RenderWindow &drawingToWindow, const sf::Time &deltaTime) {
+	
 	for (int i = 0; i < m_animations.size(); i++) {
 		m_animations[i].update(deltaTime);
 		drawingToWindow.draw(*m_sprites[i]);

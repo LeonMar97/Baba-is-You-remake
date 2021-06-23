@@ -51,9 +51,9 @@ public:
 	void executeOperation(BaseOperation*);
 	void undoOperation();
 	BaseOperation* lastOp();
-	void removeLastOperation();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	DataHolder* getDataHolder() { return m_dataHolder; }
+	virtual void resetStatic();//resets the static object virtualy for each one polymorfically
 	size_t getMovementCounter() { return m_movementCounter.count(); }
 protected:
 	sf::Sprite m_sprite; //shared so it is possible to copy object

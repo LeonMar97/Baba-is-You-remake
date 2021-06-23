@@ -20,6 +20,7 @@ public:
 	void replacePtr(const std::shared_ptr<BaseObject>& replacePtr);
 	void removeLastOperation();
 	BaseOperation* lastOp();
+	~DataHolder();
 private:
 	std::shared_ptr<BaseObject> m_ptrObject;
 	std::stack<BaseOperation*> m_history;

@@ -4,9 +4,9 @@
 RuleHandling::RuleHandling()
 {
 	m_ruleDetectionSound.setBuffer(Resources::instance().get_Sounds(ruleDetection_t));
-	m_ruleDetectionSound.setVolume(60);
+	m_ruleDetectionSound.setVolume(30);
 	m_ruleRemoveSound.setBuffer(Resources::instance().get_Sounds(ruleRemove_t));
-	m_ruleRemoveSound.setVolume(60);
+	m_ruleRemoveSound.setVolume(30);
 }
 
 void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTriplesOnBoard ,Board & b)

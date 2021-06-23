@@ -28,11 +28,7 @@ BaseOperation* DataHolder::lastOp() {
 	else return nullptr;
 }
 
-void DataHolder::removeLastOperation() {
-	if (!m_history.empty()) {
-		delete m_history.top();
-		m_history.pop();
-	}
-}
+DataHolder::~DataHolder(){
+	m_ptrObject->resetStatic();
 
-//DataHolder::~DataHolder{}
+}

@@ -43,6 +43,7 @@ FileHandler::FileHandler()
 */
 bool FileHandler::set_Map() {
 	std::string temp;
+	level m_fileHandler;
 	
 	
 	auto cur = std::string();
@@ -53,6 +54,7 @@ bool FileHandler::set_Map() {
 		}
 		m_fileHandler.push_back(cur);
 	}
+	m_levels.push_back(m_fileHandler);
 	return true;
 }
 //--------------------------------------------------
@@ -61,8 +63,8 @@ bool FileHandler::set_Map() {
 * requestd: location from which to return
 */
 
-char FileHandler::what_In_Location(const sf::Vector2u cur_Loc)const {
-	return m_fileHandler[cur_Loc.x][cur_Loc.y];
+char FileHandler::what_In_Location(const unsigned int& mapNum,const sf::Vector2u cur_Loc)const {
+	return m_levels[mapNum][cur_Loc.x][cur_Loc.y];
 }
 //--------------------------------------------------
 
@@ -71,10 +73,16 @@ char FileHandler::what_In_Location(const sf::Vector2u cur_Loc)const {
 * loading new map for each lvl
 */
 bool FileHandler::rebuild_Map() {
-	m_fileHandler.clear();//clrearing the string first then adding new char map
+	
 		return set_Map();
 }
 
 //--------------------------------------------------
 
+bool FileHandler::mapAlreadyBuilt(unsigned int mapNum) {
+	return (m_levels.size() > mapNum);
+}
 
+unsigned int FileHandler::numOfLevels() const {
+	return m_levels.size();
+}

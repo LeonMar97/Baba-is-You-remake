@@ -8,5 +8,7 @@ NewGame::NewGame(std::shared_ptr<Controller> &c, std::unique_ptr<sf::RectangleSh
 
 }
 void NewGame::execute() {
-	m_cntrl->startGame();
+
+	m_cntrl->loadLevel(0);
+	m_cntrl->startGameLoop();
 }

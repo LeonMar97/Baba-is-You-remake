@@ -15,3 +15,10 @@ void Word::setLighterColor() {
 void Word::setDarkerColor() {
 	setDefaultColor();
 }
+void Word::resetStatic() {
+	
+	auto &staticVec = this->getStatic();
+
+	staticVec.clear();
+	staticVec.insert(std::make_shared<PropertyPush>());
+}
