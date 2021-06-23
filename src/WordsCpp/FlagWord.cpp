@@ -17,6 +17,6 @@ void FlagWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& boa
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Flag>(board));
 }
-CollisionStrategySet& FlagWord::getStaticRepresentation() {
+PropertySet& FlagWord::getStaticRepresentation() {
 	return Flag::m_flagAttributes;
 }

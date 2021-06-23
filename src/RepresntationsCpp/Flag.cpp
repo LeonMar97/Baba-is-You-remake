@@ -2,7 +2,7 @@
 #include "FlagWord.h" 
 #include "Factory.h"
 
-CollisionStrategySet Flag::m_flagAttributes = CollisionStrategySet();
+PropertySet Flag::m_flagAttributes = PropertySet();
 bool Flag::m_registerit = Factory::registerit('F',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Flag>(loc);
@@ -18,6 +18,6 @@ std::type_index Flag::wordTypeId() {
 	return typeid(FlagWord);
 }
 
-CollisionStrategySet& Flag::getStatic() {
+PropertySet& Flag::getStatic() {
 	return Flag::m_flagAttributes;
 }

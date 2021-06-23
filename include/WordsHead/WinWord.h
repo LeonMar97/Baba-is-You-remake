@@ -1,7 +1,7 @@
 #pragma once
 #include "Attribute.h" 
 #include "Board.h"
-#include "CollisionStrategyWin.h"
+#include "PropertyWin.h"
 class WinWord :public Attribute{
 public:
 	WinWord(const sf::Vector2u& loc, Board& m_board);

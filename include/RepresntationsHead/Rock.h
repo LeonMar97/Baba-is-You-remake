@@ -11,8 +11,8 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static CollisionStrategySet m_rockAttributes;
-	CollisionStrategySet & getStatic() override;
+	static PropertySet m_rockAttributes;
+	PropertySet & getStatic() override;
 
 private:
 	static bool m_registerit;

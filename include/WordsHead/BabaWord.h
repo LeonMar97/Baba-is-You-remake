@@ -4,8 +4,8 @@
 class BabaWord :public Noun{
 public:
 	BabaWord(const sf::Vector2u& loc);
-	CollisionStrategySet & getStaticRepresentation() override;
-	///CollisionStrategySet& getStatic() override;
+	PropertySet & getStaticRepresentation() override;
+	///PropertySet& getStatic() override;
 	void replaceObjInLocation(std::shared_ptr<BaseObject>&, Board& board) override;
 private:
 

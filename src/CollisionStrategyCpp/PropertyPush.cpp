@@ -1,10 +1,10 @@
-#include "CollisionStrategyPush.h"
+#include "PropertyPush.h"
 
-CollisionStrategyPush::CollisionStrategyPush()
-	: CollisionStrategy(2)
+PropertyPush::PropertyPush()
+	: Property(2)
 {}
 
-BaseObject* CollisionStrategyPush::handleCollision(BaseObject * passiveObj, BaseObject * activeObj) {
+BaseObject* PropertyPush::handleCollision(BaseObject * passiveObj, BaseObject * activeObj) {
 	auto lastOp = passiveObj->lastOp();
 	//check if what is pushed has been moved before - if not, move it
 	if (dynamic_cast<NoOperation*>(lastOp)) { //must check if something happened before, otherwise weird stuff

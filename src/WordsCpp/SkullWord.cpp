@@ -18,6 +18,6 @@ void SkullWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& bo
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Skull>(board)); //trandform to skull
 }
-CollisionStrategySet& SkullWord::getStaticRepresentation() {
+PropertySet& SkullWord::getStaticRepresentation() {
 	return Skull::m_skullAttributes;
 }

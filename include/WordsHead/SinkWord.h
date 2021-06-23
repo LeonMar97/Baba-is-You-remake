@@ -1,7 +1,7 @@
 #pragma once
 #include "Attribute.h" 
 #include "Board.h"
-#include "CollisionStrategySink.h"
+#include "PropertySink.h"
 class SinkWord :public Attribute{
 public:
 	SinkWord(const sf::Vector2u& loc, Board& board);

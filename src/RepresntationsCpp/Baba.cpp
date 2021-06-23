@@ -1,7 +1,7 @@
 #include "Baba.h" 
 #include "BabaWord.h" 
 #include "Factory.h"
-CollisionStrategySet Baba::m_babaAttributes = CollisionStrategySet();
+PropertySet Baba::m_babaAttributes = PropertySet();
 
 bool Baba::m_registerit = Factory::registerit('B',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData { 
@@ -23,6 +23,6 @@ std::type_index Baba::wordTypeId() {
 	return typeid(BabaWord);
 }
 
-CollisionStrategySet& Baba::getStatic() {
+PropertySet& Baba::getStatic() {
 	return Baba::m_babaAttributes;
 }

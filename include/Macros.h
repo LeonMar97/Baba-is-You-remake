@@ -126,6 +126,6 @@ enum spriteSheet {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~`attributes~~~~~~~~~~~~~~~~~~~
 
-class CollisionStrategy;
+class Property;
 class ColStrCmp;
-typedef std::multiset<std::shared_ptr<CollisionStrategy>, ColStrCmp> CollisionStrategySet;
+typedef std::multiset<std::shared_ptr<Property>, ColStrCmp> PropertySet;

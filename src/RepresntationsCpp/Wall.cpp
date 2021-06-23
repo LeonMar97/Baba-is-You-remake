@@ -1,7 +1,7 @@
 #include "Wall.h" 
 #include "WallWord.h" 
 #include "Factory.h"
-CollisionStrategySet Wall::m_wallAttributes = CollisionStrategySet();
+PropertySet Wall::m_wallAttributes = PropertySet();
 bool Wall::m_registerit = Factory::registerit('K',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Wall>(loc);
@@ -19,6 +19,6 @@ std::type_index Wall::wordTypeId() {
 	return typeid(WallWord);
 }
 
-CollisionStrategySet& Wall::getStatic() {
+PropertySet& Wall::getStatic() {
 	return Wall::m_wallAttributes;
 }

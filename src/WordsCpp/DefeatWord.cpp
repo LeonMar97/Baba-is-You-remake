@@ -9,5 +9,5 @@ bool DefeatWord::m_registerit = Factory::registerit('d',
 
 DefeatWord::DefeatWord(const sf::Vector2u& loc, Board& board)
 	:Attribute("Defeat",Resources::instance().animationData(defeatword_t), Direction::Stay, loc, DEFEAT_COLOR,
-		DEFEAT_LIGHTER_COLOR, std::make_shared<CollisionStrategyDefeat>(board))
+		DEFEAT_LIGHTER_COLOR, std::make_shared<PropertyDefeat>(board))
 {}

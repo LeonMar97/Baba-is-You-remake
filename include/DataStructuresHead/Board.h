@@ -9,7 +9,7 @@
 #include "DataHolder.h"
 #include "RuleHandling.h"
 #include "NoOperation.h"
-#include "CollisionStrategyPush.h"
+#include "PropertyPush.h"
 #include <utility>
 class Board{
 	//--------------public--------functions-----------------------//

@@ -11,6 +11,6 @@ bool SinkWord::m_registerit = Factory::registerit('l',
 	});
 SinkWord::SinkWord(const sf::Vector2u& loc, Board& board)
 	:Attribute("Sink",Resources::instance().animationData(sinkword_t), Direction::Stay, loc, WATER_COLOR,
-		WATER_LIGHTER_COLOR, std::make_shared<CollisionStrategySink>(board))
+		WATER_LIGHTER_COLOR, std::make_shared<PropertySink>(board))
 {}
 

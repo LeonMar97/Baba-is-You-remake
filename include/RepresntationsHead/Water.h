@@ -11,8 +11,8 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static CollisionStrategySet m_waterAttributes;
-	CollisionStrategySet & getStatic() override;
+	static PropertySet m_waterAttributes;
+	PropertySet & getStatic() override;
 
 private:
 	static bool m_registerit;

@@ -2,7 +2,7 @@
 #include "SkullWord.h" 
 #include "Factory.h"
 
-CollisionStrategySet Skull::m_skullAttributes = CollisionStrategySet();
+PropertySet Skull::m_skullAttributes = PropertySet();
 bool Skull::m_registerit = Factory::registerit('G', 
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Skull>(loc);
@@ -20,6 +20,6 @@ std::type_index Skull::wordTypeId() {
 	return typeid(SkullWord);
 }
 
-CollisionStrategySet& Skull::getStatic() {
+PropertySet& Skull::getStatic() {
 	return Skull::m_skullAttributes;
 }

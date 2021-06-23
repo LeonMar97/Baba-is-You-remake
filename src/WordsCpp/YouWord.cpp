@@ -10,6 +10,6 @@ bool YouWord::m_registerit = Factory::registerit('y',
 	});
 YouWord::YouWord(const sf::Vector2u& loc)
 	:Attribute("You",Resources::instance().animationData(youword_t), Direction::Stay, loc,
-		YOU_COLOR, YOU_LIGHTER_COLOR, std::make_shared<CollisionStrategyYou>())
+		YOU_COLOR, YOU_LIGHTER_COLOR, std::make_shared<PropertyYou>())
 {}
 

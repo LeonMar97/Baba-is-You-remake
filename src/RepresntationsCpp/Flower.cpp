@@ -2,7 +2,7 @@
 #include "FlowerWord.h" 
 #include "Factory.h"
 
-CollisionStrategySet Flower::m_flowerAttributes = CollisionStrategySet();
+PropertySet Flower::m_flowerAttributes = PropertySet();
 bool Flower::m_registerit = Factory::registerit('P',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Flower>(loc);
@@ -18,6 +18,6 @@ std::type_index Flower::wordTypeId() {
 	return typeid(FlowerWord);
 }
 
-CollisionStrategySet& Flower::getStatic() {
+PropertySet& Flower::getStatic() {
 	return Flower::m_flowerAttributes;
 }

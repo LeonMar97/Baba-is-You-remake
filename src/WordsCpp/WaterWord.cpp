@@ -16,6 +16,6 @@ void WaterWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& bo
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Water>(board)); //transform to water
 }
-CollisionStrategySet& WaterWord::getStaticRepresentation() {
+PropertySet& WaterWord::getStaticRepresentation() {
 	return Water::m_waterAttributes;
 }

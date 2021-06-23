@@ -17,6 +17,6 @@ void FlowerWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& b
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Flower>(board));
 }
-CollisionStrategySet& FlowerWord::getStaticRepresentation() {
+PropertySet& FlowerWord::getStaticRepresentation() {
 	return Flower::m_flowerAttributes;
 }

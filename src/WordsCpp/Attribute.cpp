@@ -6,10 +6,10 @@ Attribute::Attribute(const std::string& word,
 	const sf::Vector2u& loc,
 	const sf::Color& defaultColor,
 	const sf::Color& lighterColor,
-	const std::shared_ptr<CollisionStrategy>& collisionStrategy)
+	const std::shared_ptr<Property>& Property)
 
 	: Predicate(word, animationData, dir, loc, defaultColor, lighterColor),
-	m_equipStrategy(collisionStrategy)
+	m_equipStrategy(Property)
 {}
 
 void Attribute::putRuleIntoAffect(Noun& noun) {

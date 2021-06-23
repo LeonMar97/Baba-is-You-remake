@@ -1,11 +1,11 @@
 #pragma once
-#include "CollisionStrategy.h"
+#include "Property.h"
 #include "WordsHead/YouWord.h"
 #include "Board.h"
 
-class CollisionStrategyWin: public CollisionStrategy {
+class PropertyWin: public Property {
 public:
-	CollisionStrategyWin(Board& board);
+	PropertyWin(Board& board);
 	BaseObject* handleCollision(BaseObject*, BaseObject*);
 private:
 	Board& m_board;

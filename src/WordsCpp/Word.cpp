@@ -1,12 +1,12 @@
 #include "PushWord.h"
 
-CollisionStrategySet Word::m_wordAttributes = CollisionStrategySet{};
+PropertySet Word::m_wordAttributes = PropertySet{};
 
 Word::Word(const std::string& word, const AnimationData& animationData,
 	Direction dir, const sf::Vector2u& loc, const sf::Color& darkerColor, const sf::Color& lighterColor)
 	: m_word(word), BaseObject(animationData, dir, loc, darkerColor), m_colorWordInRule(lighterColor)
 {}
-CollisionStrategySet& Word::getStatic() {
+PropertySet& Word::getStatic() {
 	return Word::m_wordAttributes;
 }
 void Word::setLighterColor() {

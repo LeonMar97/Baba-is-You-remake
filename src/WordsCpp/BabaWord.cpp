@@ -16,6 +16,6 @@ void BabaWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& boa
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Baba>(board));
 }
-CollisionStrategySet& BabaWord::getStaticRepresentation() {
+PropertySet& BabaWord::getStaticRepresentation() {
 	return Baba::m_babaAttributes;
 }

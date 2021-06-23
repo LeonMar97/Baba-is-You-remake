@@ -10,8 +10,8 @@ public:
 	std::type_index wordTypeId()override;
 
 	//------------------members-----------------------------------//
-	static CollisionStrategySet m_flowerAttributes;
-	CollisionStrategySet& getStatic() override;
+	static PropertySet m_flowerAttributes;
+	PropertySet& getStatic() override;
 private:
 	static bool m_registerit;
 };

@@ -11,8 +11,8 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static CollisionStrategySet m_flagAttributes;
-	CollisionStrategySet& getStatic() override;
+	static PropertySet m_flagAttributes;
+	PropertySet& getStatic() override;
 private:
 	static bool m_registerit;
 };

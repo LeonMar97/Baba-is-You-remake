@@ -1,7 +1,7 @@
 #pragma once
 #include "Attribute.h" 
 #include "NoOperation.h"
-#include "CollisionStrategyStop.h"
+#include "PropertyStop.h"
 class StopWord :public Attribute{
 public:
 	StopWord(const sf::Vector2u& loc);

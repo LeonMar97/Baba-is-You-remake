@@ -1,9 +1,9 @@
 #pragma once
-#include "CollisionStrategy.h"
+#include "Property.h"
 #include "OperationsHead/OperationMove.h"
 
-class CollisionStrategyPush: public CollisionStrategy {
+class PropertyPush: public Property {
 public:
-	CollisionStrategyPush();
+	PropertyPush();
 	BaseObject* handleCollision(BaseObject*, BaseObject*);
 };

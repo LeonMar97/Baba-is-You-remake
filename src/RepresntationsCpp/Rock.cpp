@@ -1,7 +1,7 @@
 #include "Rock.h" 
 #include "RockWord.h" 
 #include "Factory.h"
-CollisionStrategySet Rock::m_rockAttributes = CollisionStrategySet();
+PropertySet Rock::m_rockAttributes = PropertySet();
 bool Rock::m_registerit = Factory::registerit('R', 
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Rock>(loc);
@@ -19,6 +19,6 @@ std::type_index Rock::wordTypeId() {
 	return typeid(RockWord);
 }
 
-CollisionStrategySet& Rock::getStatic() {
+PropertySet& Rock::getStatic() {
 	return Rock::m_rockAttributes;
 }

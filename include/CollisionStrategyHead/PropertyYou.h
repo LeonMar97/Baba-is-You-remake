@@ -1,10 +1,10 @@
 #pragma once
-#include "CollisionStrategy.h"
+#include "Property.h"
 #include "OperationsHead/OperationMove.h"
 
-class CollisionStrategyYou : public CollisionStrategy {
+class PropertyYou : public Property {
 public:
-	CollisionStrategyYou();
+	PropertyYou();
 	BaseObject* handleCollision(BaseObject*, BaseObject*);
 	bool move(BaseObject& curYou, const Direction& dir) override;
 };

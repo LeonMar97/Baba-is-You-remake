@@ -17,6 +17,6 @@ void RockWord::replaceObjInLocation(std::shared_ptr<BaseObject>& cur, Board& boa
 	auto loc = castToLoc(cur->returnPos());
 	cur->executeOperation(new OperationTransform<Rock>(board));
 }
-CollisionStrategySet& RockWord::getStaticRepresentation() {
+PropertySet& RockWord::getStaticRepresentation() {
 	return Rock::m_rockAttributes;
 }

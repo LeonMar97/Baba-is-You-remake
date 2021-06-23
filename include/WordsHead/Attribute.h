@@ -1,7 +1,7 @@
 #pragma once
 #include "Predicate.h"
 #include "Noun.h"
-#include "CollisionStrategy.h"
+#include "Property.h"
 class Attribute :public Predicate {
 public:
 	//using Predicate::Predicate;
@@ -11,7 +11,7 @@ public:
 		const sf::Vector2u& loc,
 		const sf::Color&,
 		const sf::Color&,
-		const std::shared_ptr<CollisionStrategy>&);
+		const std::shared_ptr<Property>&);
 
 	virtual void putRuleIntoAffect(Noun&);
 	virtual void deleteRule(Noun&)override;
@@ -19,5 +19,5 @@ public:
 	virtual bool move(BaseObject&, const Direction&);
 private:
 //the relevant object is equipped with a collision strategy once the relevant rule is detected
-	std::shared_ptr<CollisionStrategy> m_equipStrategy; 
+	std::shared_ptr<Property> m_equipStrategy; 
 };

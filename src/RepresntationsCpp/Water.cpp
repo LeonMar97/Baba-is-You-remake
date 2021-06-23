@@ -1,7 +1,7 @@
 #include "Water.h" 
 #include "WaterWord.h" 
 #include "Factory.h"
-CollisionStrategySet Water::m_waterAttributes = CollisionStrategySet();
+PropertySet Water::m_waterAttributes = PropertySet();
 bool Water::m_registerit = Factory::registerit('M',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<Water>(loc);
@@ -19,6 +19,6 @@ std::type_index Water::wordTypeId() {
 	return typeid(WaterWord);
 }
 
-CollisionStrategySet& Water::getStatic() {
+PropertySet& Water::getStatic() {
 	return Water::m_waterAttributes;
 }

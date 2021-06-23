@@ -16,7 +16,7 @@
 class Attribute;
 class Board;
 class DataHolder;
-class CollisionStrategy;
+class Property;
 
 
 class BaseObject {
@@ -33,7 +33,7 @@ public:
 		Direction dir, const sf::Vector2u& loc, const sf::Color& color);
 
 public:
-	virtual CollisionStrategySet& getStatic() = 0;
+	virtual PropertySet& getStatic() = 0;
 	void initializeDataHolder(DataHolder*);
 	void draw(sf::RenderWindow& window, sf::Time deltaTime);
 	void move(const Direction&);

@@ -1,6 +1,6 @@
 #pragma once
 #include "Attribute.h" 
-#include "CollisionStrategyPush.h"
+#include "PropertyPush.h"
 class PushWord :public Attribute{
 public:
 	PushWord();

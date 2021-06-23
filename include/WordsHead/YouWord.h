@@ -1,7 +1,7 @@
 #pragma once
 #include "Attribute.h" 
 #include "PushWord.h"
-#include "CollisionStrategyYou.h"
+#include "PropertyYou.h"
 class YouWord :public Attribute{
 public:
 	YouWord(const sf::Vector2u& loc);

@@ -11,9 +11,9 @@ public:
 
 								  //--------------private--------functions-----------------------//		
 	//------------------members-----------------------------------//
-	static CollisionStrategySet m_skullAttributes;
+	static PropertySet m_skullAttributes;
 
-	CollisionStrategySet & getStatic() override;
+	PropertySet & getStatic() override;
 
 private:
 	static bool m_registerit;
