@@ -8,7 +8,7 @@
 #include "Direction.h"
 
 
-class Menu2;
+class MiniMenu;
 class Controller {
 
 public:

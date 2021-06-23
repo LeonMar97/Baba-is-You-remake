@@ -127,7 +127,7 @@ The generation of objects is done using Factory design-pattern
 	Menu.h -
 			All the menu classes are derived from Menu.h, all of them have the same structure based on 'command' design-pattern.
 			each one of the menu's has to request in the constructor for elements needed in the commands(might be a screen or controller..). 
-	Menu2.h
+	MiniMenu.h
 	MenuControls.h
 	MenuLevels.h
 	Header.h -

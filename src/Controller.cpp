@@ -4,7 +4,7 @@
 //#include "Fonts.h"
 #include "Macros.h"
 #include "Baba.h"
-#include "Menu2.h"
+#include "MiniMenu.h"
 Controller::Controller(sf::RenderWindow& gameWindow)
 	:
 	m_gameWindow(gameWindow)
@@ -33,7 +33,7 @@ void Controller::loadLevel(const unsigned int& levelNum) {
 }
 
 void Controller::startGameLoop() {
-	Menu2 miniMenu(*this, m_gameWindow);
+	MiniMenu miniMenu(*this, m_gameWindow);
 	Direction dir;
 	//for making board visible entirely independent of screen size
 	setView();

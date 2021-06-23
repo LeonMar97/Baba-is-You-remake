@@ -1,5 +1,5 @@
-#include "Menu2.h"
-Menu2::Menu2(Controller& con, sf::RenderWindow& gameWindeow)
+#include "MiniMenu.h"
+MiniMenu::MiniMenu(Controller& con, sf::RenderWindow& gameWindeow)
 	:
 	m_cntrl(con),
 	Menu(gameWindeow)
@@ -24,7 +24,7 @@ Menu2::Menu2(Controller& con, sf::RenderWindow& gameWindeow)
 
 
 }
-void Menu2::draw() {
+void MiniMenu::draw() {
 	auto deltaTime = m_animationClock.restart();
 	
 	for (auto& cur : m_settings) {
@@ -36,7 +36,7 @@ void Menu2::draw() {
 
 
 }
-void Menu2::setButtonsTextures() {
+void MiniMenu::setButtonsTextures() {
 	auto texRect = MAIN_MENU_BUTTONS_START;
 	auto pos = FIRST_BUTTON_REC;
 	for (auto& curRec : m_options) {
@@ -50,7 +50,7 @@ void Menu2::setButtonsTextures() {
 
 
 }
-void Menu2::activate() {
+void MiniMenu::activate() {
 	setView();
 
 	

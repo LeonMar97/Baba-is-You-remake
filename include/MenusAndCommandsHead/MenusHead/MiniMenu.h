@@ -9,11 +9,11 @@
 #include "Controller.h"
 
 
-class Menu2 :public Menu {
+class MiniMenu :public Menu {
 
 public:
 
-	Menu2(Controller &con, sf::RenderWindow& gameWindeow);
+	MiniMenu(Controller &con, sf::RenderWindow& gameWindeow);
 
 	void draw()override;
 	void activate()override;

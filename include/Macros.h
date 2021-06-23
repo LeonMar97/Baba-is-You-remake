@@ -139,7 +139,7 @@ const auto MAIN_MENU_POS_DIF=sf::Vector2f(0.f, 54.f);
 enum spriteSheet {
     gameSheet_t=0,
     mainMenuSheet_t,
-    Menu2Sheet_t,
+    MiniMenuSheet_t,
     MenuLevelSheet_t,
     controlBackGround_t
 };
