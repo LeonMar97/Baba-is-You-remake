@@ -30,6 +30,11 @@ Arrows move "you"
 Tab - shows mini-menu while in video
 Z - undo your previous action
 R - restart the board
+
+##Load Levels
+while in game after each level the game save its progress and can be accessesed from menu in option load leve(the levels are save in strings and not loaded 
+from the file again).
+
 ## Compile and run
 
 The levels of the game are pre-written into external file which the program reads. 
@@ -119,11 +124,14 @@ The generation of objects is done using Factory design-pattern
 	Resume.h
 	REturnToMenu,h
 	MaimMenu.h
-	Menu.h
+	Menu.h -
+			All the menu classes are derived from Menu.h, all of them have the same structure based on 'command' design-pattern.
+			each one of the menu's has to request in the constructor for elements needed in the commands(might be a screen or controller..). 
 	Menu2.h
 	MenuControls.h
 	MenuLevels.h
-	Header.h
+	Header.h -
+				makes it easy to create a sentence of animenated letters(an object which gets sstream and creates an animeted word)	.
 	BaseOperation.h - Abstract, for polymorphism on stack, has execute and undo, both cancel each other
 	NoOperation.h - does nothing, undo does nothing
 	OperationMove.h - moves to direction, undo moves to opposite

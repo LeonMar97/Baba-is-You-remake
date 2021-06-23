@@ -3,7 +3,7 @@
 #include "ExitGame.h"
 #include"NewGame.h"
 #include"LoadLevel.h"
-
+#include "Controls.h"
 class MainMenu:public Menu{
 public:
 	

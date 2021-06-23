@@ -10,6 +10,7 @@ MainMenu::MainMenu(sf::RenderWindow& gameWindeow)
 	//~~~~~~~~~~~~creating the buttons (the order of the adding is importent!!!!!!!!!)~~~~~~~~~~~~~~~~~
 	add(std::make_unique <NewGame>(m_cntrl, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
 	add(std::make_unique <LoadLevel>( std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)),m_menuWindow,m_cntrl));
+	add(std::make_unique <Controls>(std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), m_menuWindow));
 	add(std::make_unique <ExitGame>(m_menuWindow, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48))));
 
 
