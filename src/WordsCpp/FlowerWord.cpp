@@ -2,7 +2,7 @@
 #include "Factory.h"
 #include "OperationTransform.h"
 
-bool FlowerWord::m_registerit = Factory::registerit('p',
+bool FlowerWord::m_registerit = Factory::registerit('v',
 	[](const sf::Vector2u& loc, Board&) -> PairObjData {
 		auto obj = std::make_shared<FlowerWord>(loc);
 		auto dh = std::make_unique<DataHolder>(obj);
