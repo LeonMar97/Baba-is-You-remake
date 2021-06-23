@@ -103,12 +103,13 @@ const sf::Color WATER_COLOR = sf::Color(47, 78, 104);
 //~~~~~~~~~~~~~Controller~~~~~~~~~~~~~~~~~~
 const float DEFAULT_SCREEN_WIDTH = 1920.f;
 const float DEFAULT_SCREEN_HEIGHT= 1080.f;
+const sf::Vector2f SCREEN_SIZE(1920.f, 1080.f);
 //~~~~~~~~~~~~~Menu~~~~~~~~~~~~~~~~~~
 const unsigned int START_NEW_GAME = 0;
 const unsigned int LOAD_LEVEL = 1;
 const unsigned int EXIT_GAME = 2;
 
-const unsigned int NUM_OF_SHEETS=4;
+const unsigned int NUM_OF_SHEETS=5;
 const unsigned int NUM_OF_BUTTONS = 3;
 
 const auto MAIN_MENU_BUTTONS_START = sf::IntRect(0, 0, 428, 48);
@@ -120,6 +121,7 @@ enum spriteSheet {
     gameSheet_t=0,
     mainMenuSheet_t,
     Menu2Sheet_t,
-    MenuLevelSheet_t
+    MenuLevelSheet_t,
+    controlBackGround_t
 };
 

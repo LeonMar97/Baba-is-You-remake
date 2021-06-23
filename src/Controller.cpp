@@ -50,19 +50,22 @@ void Controller::startGameLoop() {
 			switch (event.type)
 			{
 			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Z)
+				if (event.key.code == sf::Keyboard::Z|| event.key.code == sf::Keyboard::BackSpace)
 					m_mapOnScreen->undoAllObjects();
 				else m_mapOnScreen->setDefaultOperation();
-				if (event.key.code == sf::Keyboard::Right)
+				if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
 					m_mapOnScreen->moveYou(Direction::Right);
-				else if (event.key.code == sf::Keyboard::Left)
+				else if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A)
 					m_mapOnScreen->moveYou(Direction::Left);
-				else if (event.key.code == sf::Keyboard::Up)
+				else if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
 					m_mapOnScreen->moveYou(Direction::Up);
-				else if (event.key.code == sf::Keyboard::Down)
+				else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
 					m_mapOnScreen->moveYou(Direction::Down);
+				else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::R) {
+					restart();
+					break;
+				}
 				else if (event.key.code == sf::Keyboard::Escape) {
-
 					m_gameWindow.close();
 					return;
 				}
