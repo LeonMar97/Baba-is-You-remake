@@ -1,6 +1,13 @@
 #include "RuleHandling.h"
 #include "WinWord.h"
 
+RuleHandling::RuleHandling()
+{
+	m_ruleDetectionSound.setBuffer(Resources::instance().get_Sounds(ruleDetection_t));
+	m_ruleDetectionSound.setVolume(60);
+	m_ruleRemoveSound.setBuffer(Resources::instance().get_Sounds(ruleRemove_t));
+	m_ruleRemoveSound.setVolume(60);
+}
 
 void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTriplesOnBoard ,Board & b)
 {
@@ -117,6 +124,7 @@ void RuleHandling::updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTV
 			con->setDefaultColor();
 			pred->setDefaultColor();
 			pred->deleteRule(*noun);
+			m_ruleRemoveSound.play();
 			rule_it = rules->erase(rule_it); //remove old rule because it is no longer on map
 		}
 		else rule_it++;
@@ -132,6 +140,8 @@ void RuleHandling::addNewNCA() {
 		noun->setLighterColor();
 		con->setLighterColor();
 		pred->setLighterColor();
+
+		m_ruleDetectionSound.play();
 	}
 	m_AllRulesNCA = nullptr;//not neccesery but to state a point ..
 }
@@ -144,6 +154,7 @@ void RuleHandling::addNewNCN(Board &b) {
 		noun->setLighterColor();
 		con->setLighterColor();
 		pred->setLighterColor();
+		m_ruleDetectionSound.play();
 	}
 	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
 }

@@ -18,6 +18,7 @@ public:
 	void execute(BaseOperation* op);
 	bool undo(); //returns true if the operation is done, false if empty histroy
 	void replacePtr(const std::shared_ptr<BaseObject>& replacePtr);
+	void removeLastOperation();
 	BaseOperation* lastOp();
 private:
 	std::shared_ptr<BaseObject> m_ptrObject;

@@ -23,6 +23,7 @@ class RuleHandling	{
 	//~~~~~~~~~~~~~~~~ public functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 public:
 	
+	RuleHandling();
 	void processCollision(std::vector<baseObjTuple>& currentTripplesOnBoard, Board& b);
 
 	//~~~~~~~~~~~~~~~~ private members ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,6 +47,9 @@ private:
 	FunctionPtr lookup(const std::type_index& class1, const std::type_index& class2, const std::type_index& class3);
 	void addNewNCA();
 	void addNewNCN(Board& b);
+
+	sf::Sound m_ruleDetectionSound;
+	sf::Sound m_ruleRemoveSound;
 
 };	
 

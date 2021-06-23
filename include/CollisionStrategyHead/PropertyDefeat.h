@@ -9,4 +9,5 @@ public:
 	BaseObject* handleCollision(BaseObject*, BaseObject*) override ;
 private:
 	Board& m_board;
+	sf::Sound m_defeatSound;
 };

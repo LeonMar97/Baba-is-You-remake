@@ -8,4 +8,5 @@ public:
 	BaseObject* handleCollision(BaseObject*, BaseObject*);
 private:
 	Board& m_board;
+	sf::Sound m_drownSound;
 };

@@ -3,7 +3,10 @@
 PropertyYou::PropertyYou()
 	: Property(100) //just to make a point, whoever you are, you are always pushed. 
 	//otherwise cheating might occur
-{}
+{
+	m_movementSound.setBuffer(Resources::instance().get_Sounds(movement_t));
+	m_movementSound.setVolume(30);
+}
 
 //same as push
 BaseObject* PropertyYou::handleCollision(BaseObject * passiveObj, BaseObject * activeObj) {
@@ -22,5 +25,6 @@ BaseObject* PropertyYou::handleCollision(BaseObject * passiveObj, BaseObject * a
 bool PropertyYou::move(BaseObject& curYou,const Direction& dir) {
 	curYou.undoOperation(); //overwrite default NoOperation that was inserted before
 	curYou.executeOperation(new OperationMove(dir)); //move to the direction needed
+	m_movementSound.play();
 	return true;
 }

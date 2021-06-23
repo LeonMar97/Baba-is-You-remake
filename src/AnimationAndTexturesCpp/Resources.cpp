@@ -2,6 +2,7 @@
 
 #include "Direction.h"
 #include <array>
+#include <string>
 #include <sstream> 
 #include <stdexcept>
 namespace {
@@ -170,6 +171,14 @@ Resources::Resources()
         sf::Vector2i(432, 720)
     );
     createAllLetter();
+
+    sf::SoundBuffer sounds;
+
+    loadSound(sounds, "movement.wav", movement_t);
+    loadSound(sounds, "ruleDetection.wav", ruleDetection_t);
+    loadSound(sounds, "ruleRemove.wav", ruleRemove_t);
+    loadSound(sounds, "drown.wav", drown_t);
+    loadSound(sounds, "defeat.wav", defeatSound_t);
 }
 void Resources::createAllLetter() {
     int j = 0;
@@ -192,4 +201,10 @@ void Resources:: loadSprite(spriteSheet curSheetInVec,std::string sheetName ) {
    
 }
 
+void Resources::loadSound(sf::SoundBuffer& sound, const std::string& soundName, GameSounds soundsEnum) {
+    if (!sound.loadFromFile(soundName)) throw std::exception((soundName +
+        "does not exist, please check CMake or give a valid file name").data());
+    m_gameSounds.insert(std::pair<GameSounds, sf::SoundBuffer>(soundsEnum, sound));
+    
+}
 

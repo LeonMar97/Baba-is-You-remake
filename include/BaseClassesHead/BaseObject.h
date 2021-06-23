@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Animation.h"
 #include "Macros.h"
 #include <typeinfo>
@@ -50,6 +51,7 @@ public:
 	void executeOperation(BaseOperation*);
 	void undoOperation();
 	BaseOperation* lastOp();
+	void removeLastOperation();
 	void replaceDataHolderPtr(std::shared_ptr<BaseObject>& replacingObject); 
 	DataHolder* getDataHolder() { return m_dataHolder; }
 	size_t getMovementCounter() { return m_movementCounter.count(); }

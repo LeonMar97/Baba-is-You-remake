@@ -8,10 +8,10 @@ void DataHolder::execute(BaseOperation* op) {
 }
 bool DataHolder::undo() {
 	if (!m_history.empty()) {
-		auto op = m_history.top();
+		auto op = m_history.top(); 
+		m_history.pop();
 		op->undo(m_ptrObject);
 		delete op;
-		m_history.pop();
 		return true;
 	}
 	return false;
@@ -26,6 +26,13 @@ BaseOperation* DataHolder::lastOp() {
 	if (!m_history.empty())
 		return m_history.top(); 
 	else return nullptr;
+}
+
+void DataHolder::removeLastOperation() {
+	if (!m_history.empty()) {
+		delete m_history.top();
+		m_history.pop();
+	}
 }
 
 //DataHolder::~DataHolder{}

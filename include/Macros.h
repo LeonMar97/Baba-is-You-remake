@@ -60,7 +60,11 @@ enum GameObjects {
 };
 
 enum GameSounds {
-    movememt_t
+    movement_t,
+    ruleDetection_t,
+    ruleRemove_t,
+    drown_t,
+    defeatSound_t,
 };
 //~~~~~~~~~~~BOARD~~~~~~~~~~~~~~~~~~~
 class BaseObject;
