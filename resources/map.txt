@@ -1,17 +1,51 @@
                               
+      V                   V   
+             KKKKKKKKKKK      
+ V           K   V     K      
+             K i       K      
+         KKKKK         K      
+         K         w   K      
+V        K f    F      K      
+         K         V   K   V  
+         KKKKKKKKKKKKKKK      
+             K         K      
+       b     K  k      K      
+       i     K  i      K      
+       y     K  s   B  K   V  
+             K         K      
+             KKKKKKKKKKK      
                               
-              KKKKKKK         
-          w   K     K         
-        V     K     K         
-              K     K         
-      KKKKKKKKKKKKKKK     a   
-      K             K         
-      K kip         K         
-      K       B     K         
-      KKKKKKKKKKKKKKK         
-           riv                
-           mis        A       
-            biy               
+bkK                           
+iiK   V  KKKKKKKKKKKKKKK  V   
+ysK      K             K      
+KKK    V K    B     R  K      
+        mK             K      
+    VVV iK          R  K      
+        lK             K      
+VV    KKKKMMMMMKKKKKKKKKKKK V 
+  V   K  K      K         K   
+      K         K rip     K  V
+      K         K         K   
+      K         K         K   
+VVV   KMMMM  K            K   
+VVV   KMMMM     K  fiw    KV  
+      KFMMM     K         K  V
+      KKKKKKKKKKKKKKKKKKKKK  V
+                              
+ris R       G                 
+    R V   KKGKKKKKKKK         
+gid R     K G   K   K         
+    R  V  K G     F K         
+fiw R KKKKK G   K   K         
+    R K   K G   KKKKK   V     
+RRRRR K B   GKKKK             
+V     K   K GGGGGGGGGGGGGGGGGGG
+      KKKKK    K              
+          K kisK     V        
+        b K    K   V          
+        i KKKKKK  V           
+        y                     
+                              
                               
                               
                                
