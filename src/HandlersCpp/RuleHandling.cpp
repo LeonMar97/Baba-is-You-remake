@@ -37,6 +37,7 @@ void  RuleHandling::processCollision(std::vector<baseObjTuple> &currentTriplesOn
 		}
 	}
 	updateRules(b);
+	colorTheRules();
     
 }
 
@@ -137,9 +138,6 @@ void RuleHandling::addNewNCA() {
 		auto &[noun, con, pred] = ruleToAdd;
 		static_cast<Attribute*>(pred)->putRuleIntoAffect(*noun);
 		m_RulesInGameNCA.push_back(ruleToAdd);
-		noun->setLighterColor();
-		con->setLighterColor();
-		pred->setLighterColor();
 
 		m_ruleDetectionSound.play();
 	}
@@ -151,9 +149,6 @@ void RuleHandling::addNewNCN(Board &b) {
 		auto &[noun, con, pred] = ruleToAdd;
 		b.replaceObjects(*noun,*static_cast<Noun*>(pred));
 		m_RulesInGameNCN.push_back(ruleToAdd);
-		noun->setLighterColor();
-		con->setLighterColor();
-		pred->setLighterColor();
 		m_ruleDetectionSound.play();
 	}
 	m_AllRulesNCN = nullptr;//not neccesery but to state a point ..
@@ -163,5 +158,18 @@ void RuleHandling::youWin(baseObjTuple& currentRule) {
 	auto& [noun, con, pred] = currentRule;
 	
 	static_cast<WinWord*>(pred)->youWin();
+
+}
+void RuleHandling::colorTheRules() {
+	for (auto& [noun, con, pred] : m_RulesInGameNCN) {//for each rule
+		noun->setLighterColor();
+		con->setLighterColor();
+		pred->setLighterColor();
+	}
+	for (auto& [noun, con, pred] : m_RulesInGameNCA) {//for each rule
+		noun->setLighterColor();
+		con->setLighterColor();
+		pred->setLighterColor();
+	}
 
 }

@@ -12,7 +12,9 @@ MenuLevels::MenuLevels(sf::RenderWindow& gameWindow, std::shared_ptr<Controller>
 	add(std::make_unique <LvlLoadCommand>(c,std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)),0));
 	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 1));
 	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 2));
-	
+	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 3));
+	add(std::make_unique <LvlLoadCommand>(c, std::make_unique <sf::RectangleShape>(sf::Vector2f(430, 48)), 4));
+
 
 
 

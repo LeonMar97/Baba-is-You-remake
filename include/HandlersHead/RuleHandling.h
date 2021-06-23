@@ -40,6 +40,7 @@ private:
 	void updateRulesNCA(baseObjTuple&);
 	void updateRulesNCN(baseObjTuple& currentRule);
 	void youWin(baseObjTuple& );
+	void colorTheRules();
 
 	void updateRules(Board& b);
 	void updateRulesVector(ptrToRTVector currentRulesOnBoard, ptrToRTVector rules);
