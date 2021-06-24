@@ -1,4 +1,4 @@
-﻿target_sources (oop2_ex04 PRIVATE
+﻿target_sources (Baba-Is-You-Remake PRIVATE
 									"Animation.cpp"
 									"Resources.cpp"
 									"Direction.cpp"

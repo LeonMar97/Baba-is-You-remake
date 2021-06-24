@@ -1,4 +1,4 @@
-﻿target_sources (oop2_ex04 PRIVATE	"main.cpp"
+﻿target_sources (Baba-Is-You-Remake PRIVATE	"main.cpp"
 									"Factory.cpp"
 									"Controller.cpp"
 									)

@@ -1,4 +1,4 @@
-target_sources (oop2_ex04 PRIVATE	"NewGame.cpp"
+target_sources (Baba-Is-You-Remake PRIVATE	"NewGame.cpp"
 									"Command.cpp"
 									"ExitGame.cpp"
 									"Restart.cpp"

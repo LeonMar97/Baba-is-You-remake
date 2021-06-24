@@ -1,1 +1,1 @@
-﻿target_include_directories (oop2_ex04 PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+﻿target_include_directories (Baba-Is-You-Remake PRIVATE ${CMAKE_CURRENT_LIST_DIR})
