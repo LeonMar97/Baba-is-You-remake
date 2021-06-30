@@ -1,7 +1,10 @@
 # Baba Is You - Remake
 ## All rights belong to [Baba is you](https://store.steampowered.com/app/736260/Baba_Is_You/)
+[![Watch the video](https://img.youtube.com/vi/uubevF1LBW4/maxresdefault.jpg)](https://youtu.be/uubevF1LBW4)
 
 Written in C++ using SFML, we created this game as a final project of object oriented programming course.
+The game based heavily on [Baba is you](https://store.steampowered.com/app/736261/Baba_Is_You/), and all rights belong to it's creators
+Spritesheet was taken from [here]()
 
 ## How to play
 The game has rules, which appear on board. 
@@ -16,9 +19,9 @@ Whenever there is no rule stating who "you" is, the player essentially does not 
 Whenever this is no rule stating what "win" is, there is no win condition, and proceeding to next level is not possible.
 
 The valid rules are:
-	* Noun - is - Noun: indicates transformation of all objects of one type to the other
-	* Noun - is - Attribute: gives all objects which the noun indicates the attribute
-	* You - is - Win (does not appear in original game)
+* Noun - is - Noun: indicates transformation of all objects of one type to the other
+* Noun - is - Attribute: gives all objects which the noun indicates the attribute
+* You - is - Win (does not appear in original game)
 
 Whenever noun is defeat, when "you" collide with it, the "you" object that collided is destroyed
 Whenever noun is sink, when something else is collided with it, both objects are destroyed
@@ -31,15 +34,17 @@ Tab - shows mini-menu while in video
 Z - undo your previous action
 R - restart the board
 
-##Load Levels
+## Load Levels
 while in game after each level the game save its progress and can be accessesed from menu in option load leve(the levels are save in strings and not loaded 
 from the file again).
 
 ## Compile and run
 
+CMake is provided, so building and running from visual studio should work.
+
 The levels of the game are pre-written into external file which the program reads. 
 The text file containing the levels must meet the following form:
-* The levels must not exceed 17X30
+* The levels dimensions must not exceed 17X30
 * No \n in between 2 consequent levels
 
 Legend:
