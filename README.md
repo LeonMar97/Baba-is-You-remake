@@ -1,6 +1,6 @@
 # Baba Is You - Remake
 ## All rights belong to [Baba is you](https://store.steampowered.com/app/736260/Baba_Is_You/)
-[![Watch the video](https://img.youtube.com/vi/uubevF1LBW4/maxresdefault.jpg)](https://youtu.be/uubevF1LBW4)
+[![Watch the video](http://i3.ytimg.com/vi/uubevF1LBW4/hqdefault.jpg)](https://youtu.be/uubevF1LBW4)
 
 Written in C++ using SFML, we created this game as a final project of object oriented programming course.
 The game based heavily on [Baba is you](https://store.steampowered.com/app/736261/Baba_Is_You/), and all rights belong to it's creators
