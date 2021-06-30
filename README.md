@@ -39,8 +39,8 @@ from the file again).
 
 The levels of the game are pre-written into external file which the program reads. 
 The text file containing the levels must meet the following form:
-	* The levels must not exceed 17X30
-	* No \n in between 2 consequent levels
+* The levels must not exceed 17X30
+* No \n in between 2 consequent levels
 
 Legend:
 ```
