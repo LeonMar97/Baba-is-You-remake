@@ -3,8 +3,8 @@
 [![Watch the video](http://i3.ytimg.com/vi/uubevF1LBW4/hqdefault.jpg)](https://youtu.be/uubevF1LBW4)
 
 Written in C++ using SFML, we created this game as a final project of object oriented programming course.
-The game based heavily on [Baba is you](https://store.steampowered.com/app/736261/Baba_Is_You/), and all rights belong to it's creators
-Spritesheet was taken from [here]()
+The game based heavily on [Baba is you](https://store.steampowered.com/app/736261/Baba_Is_You/), and all rights belong to it's creators.
+Spritesheet was taken from [here](https://www.spriters-resource.com/pc_computer/babaisyou/sheet/115231/)
 
 ## How to play
 The game has rules, which appear on board. 
